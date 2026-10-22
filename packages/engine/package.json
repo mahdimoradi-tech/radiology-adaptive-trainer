@@ -1,0 +1,16 @@
+{
+  "name": "@radiology/engine",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "dependencies": {
+    "@radiology/contracts": "*"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "vitest run",
+    "build": "node -e \"console.log('no build')\""
+  }
+}
