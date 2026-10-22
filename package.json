@@ -11,10 +11,20 @@
     "node": ">=24"
   },
   "scripts": {
-    "lint": "npm run lint --workspaces --if-present",
-    "format": "npm run format --workspaces --if-present",
-    "format:check": "npm run format:check --workspaces --if-present",
-    "test": "npm run test --workspaces --if-present",
+    "lint": "eslint .",
+    "lint:workspaces": "npm run lint --workspaces --if-present",
+    "format": "prettier --write \"**/*.{js,json,md,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{js,json,md,yml,yaml}\"",
+    "test": "vitest run",
+    "test:workspaces": "npm run test --workspaces --if-present",
     "build": "npm run build --workspaces --if-present"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.13.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.10",
+    "vitest": "^4.1.12"
   }
 }

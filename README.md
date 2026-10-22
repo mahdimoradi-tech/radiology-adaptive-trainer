@@ -5,6 +5,7 @@ An adaptive educational platform designed to train radiology residents on chest 
 **Status:** bootstrap
 
 ## How to Run
+
 Project is currently in the bootstrap phase (Task T00). Setup and execution instructions will be expanded as workspaces are scaffolded.
 
 - Prerequisites: Node.js 24 LTS, MongoDB Community 8.x, Git for Windows.
