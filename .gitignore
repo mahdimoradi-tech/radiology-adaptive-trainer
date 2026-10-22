@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production / Build output
+dist/
+build/
+coverage/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+*.log
+.vscode/*
+!.vscode/extensions.json
+~$*
+
+# Python / ML artifacts
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+/data/
+*.npy
+*.pt
+*.pth
+*.onnx
+*.zip
+
+# Reference documents
+docs/reference/*.pdf
+
+# Local agent config / local kit
+.agents/mcp_config.json
+antigravity-agent-kit/
+KIT-README-FA.md
