@@ -1,8 +1,7 @@
 import { CONTRACTS_VERSION } from '@radiology/contracts';
 
-/**
- * Engine version identifier
- */
 export const ENGINE_VERSION = '0.0.0';
-
 export { CONTRACTS_VERSION };
+
+export { largestRemainder, bucketOf } from './math.js';
+export { confusionMatrix, rates, classWeights, perClassCounts } from './rates.js';
