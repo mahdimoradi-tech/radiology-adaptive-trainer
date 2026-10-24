@@ -1,0 +1,13 @@
+{
+  "name": "@radiology/contracts",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "vitest run",
+    "build": "node -e \"console.log('no build')\""
+  }
+}
