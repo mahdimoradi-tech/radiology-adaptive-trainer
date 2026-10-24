@@ -1,5 +1,6 @@
 import { CLASS_IDS, BUCKETS, EngineConfigSchema } from '@radiology/contracts';
 import { allocateClassCounts, allocateBucketCounts } from './allocation.js';
+import { rates, classWeights } from './rates.js';
 import { createRng } from './rng.js';
 
 /**
@@ -187,4 +188,44 @@ export function selectFirstTest(imagePool, userConfig = {}) {
   });
 
   return pickImagesFromPool(imagePool, bucketCounts, weights, null, [], config, rng);
+}
+
+/**
+ * Select questions for subsequent (adaptive) training tests based on resident history.
+ *
+ * @param {import('@radiology/contracts').ImageMeta[]} imagePool - Catalog of images
+ * @param {import('@radiology/contracts').Response[]} [responseHistory=[]] - History of all user responses
+ * @param {Partial<import('@radiology/contracts').EngineConfig>} [userConfig={}] - Configuration overrides
+ * @returns {{ imageIds: string[], plan: any }}
+ */
+export function selectNextTest(imagePool, responseHistory = [], userConfig = {}) {
+  const config = EngineConfigSchema.parse(userConfig);
+  const rng = createRng(config.seed);
+
+  // If history is empty, fall back to baseline test
+  if (!responseHistory || responseHistory.length === 0) {
+    return selectFirstTest(imagePool, userConfig);
+  }
+
+  const ratesResult = rates(responseHistory, config.alpha);
+  const weights = classWeights(ratesResult);
+
+  const classCounts = allocateClassCounts(config.totalQuestions, weights, config.minClassShare);
+
+  const bucketCounts = allocateBucketCounts(classCounts, config.totalQuestions, responseHistory, {
+    minBucketShare: config.minBucketShare,
+    alpha: config.alpha,
+  });
+
+  const shownImageIds = responseHistory.map((r) => r.imageId);
+
+  return pickImagesFromPool(
+    imagePool,
+    bucketCounts,
+    weights,
+    ratesResult,
+    shownImageIds,
+    config,
+    rng,
+  );
 }

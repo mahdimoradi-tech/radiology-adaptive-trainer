@@ -7,4 +7,4 @@ export { largestRemainder, bucketOf } from './math.js';
 export { confusionMatrix, rates, classWeights, perClassCounts } from './rates.js';
 export { allocateClassCounts, allocateBucketCounts } from './allocation.js';
 export { createRng } from './rng.js';
-export { selectFirstTest } from './selection.js';
+export { selectFirstTest, selectNextTest } from './selection.js';
