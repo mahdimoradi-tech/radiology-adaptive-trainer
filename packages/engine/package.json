@@ -12,5 +12,8 @@
     "lint": "eslint .",
     "test": "vitest run",
     "build": "node -e \"console.log('no build')\""
+  },
+  "devDependencies": {
+    "fast-check": "^4.10.2"
   }
 }
