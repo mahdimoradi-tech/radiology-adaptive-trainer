@@ -20,6 +20,7 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Decisions and why
 
+- Temporary exception: solo mode (Date: 2026-10-24, Reason: Operator B is temporarily unavailable; Operator A switches to solo mode through at least T03 per `docs/SOLO-MODE.md` to keep project moving forward without stalling).
 - Stack: Pure JavaScript ESM (no TypeScript) so both operators can fully understand and defend every line.
 - Native Windows installation (no Docker) with local MongoDB service.
 - Prevent pushes to `main` branch via pre-push hook to enforce PR review workflow.

@@ -5,10 +5,10 @@ Operators: **A** = repo owner, **B** = partner. Session start: `/sync`, then `/s
 
 | Task | Driver | Reviewer | Status | Branch | PR | Folders touched |
 |---|---|---|---|---|---|---|
-| T00 | A (part 1) + B (part 2) | B / A | in-progress | chore/T00-bootstrap, chore/T00-operator-b | - | repo root, `.github/`, `docs/`, `packages/*` skeletons |
+| T00 | A (solo) | none (solo) | merged | chore/T00-bootstrap | #1 | repo root, `.github/`, `docs/`, `packages/*` skeletons |
 | T01 | A | B | todo | feat/T01-ml-pipeline | - | `ml/`, `docs/DATA-SOURCES.md` |
-| T02 | B | A | todo | feat/T02-adaptive-engine | - | `packages/engine`, `packages/contracts` (engine shapes), `docs/adr/` |
-| T03 | B | A | todo | feat/T03-api-foundation | - | `packages/contracts`, `apps/api` |
+| T02 | A (solo) | none (solo) | todo | feat/T02-adaptive-engine | - | `packages/engine`, `packages/contracts` (engine shapes), `docs/adr/` |
+| T03 | A (solo) | none (solo) | todo | feat/T03-api-foundation | - | `packages/contracts`, `apps/api` |
 | T04 | A | B | todo | feat/T04-web-foundation | - | `apps/web` |
 | T05 | A | B | todo | feat/T05-session-api | - | `apps/api` (sessions, metrics) |
 | T06 | B | A | todo | feat/T06-quiz-ui | - | `apps/web` |

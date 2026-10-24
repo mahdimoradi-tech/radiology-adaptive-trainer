@@ -23,3 +23,8 @@ We establish the following collaboration rules:
 - High cross-functional code ownership ensuring both students can defend any module.
 - Elimination of schema divergence between API, UI, and engine.
 - Clean, auditable Git history showing each contributor's verified role and commits.
+
+## Temporary exception: solo mode
+
+Date: 2026-10-24  
+Reason: Operator B is temporarily unavailable. To prevent project blocking and maintain momentum toward capstone deadlines, Operator A (repo owner) is operating in solo mode through at least T03, as specified in `docs/SOLO-MODE.md`. Operator A claims and drives tasks assigned to Operator B while maintaining strict commit identity and self-review quality gates. When Operator B returns, B reviews merged PRs and resumes collaborative driver/reviewer rotation.

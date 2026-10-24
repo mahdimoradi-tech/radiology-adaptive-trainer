@@ -9,6 +9,7 @@
 - Language rules: explain to the operator in simple PERSIAN (short sentences, define jargon once). Code, comments, commits, docs, ADRs in ENGLISH. Product UI text in Persian (default) through i18n keys.
 
 ## 1. Golden rules (never break)
+SOLO MODE is active: read docs/SOLO-MODE.md at the start of every session; it overrides the rules about the other operator's approval.
 1. Start every session by asking: "Which operator are you (A or B)?" and verify `git config user.name` / `user.email` match that person. NEVER commit under another identity and never as "agent".
 2. ONE task at a time, and only a task that is claimed by this operator in `docs/PROGRESS.md`. Read the whole task file, reply with a plan (max 10 bullets) and WAIT for "go".
 3. NEVER guess versions, APIs, flags or config keys: look them up (Context7 MCP / official docs / `npm view <pkg>`). Your training data is older than these libraries.
