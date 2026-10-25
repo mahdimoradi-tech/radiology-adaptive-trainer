@@ -40,11 +40,12 @@ export function isMastered(latestSessionResponses, threshold = 0.8, classIds = C
  * the resident's error confusion pairs.
  *
  * @param {import('@radiology/contracts').QuestionBankItem[]} bank - Question bank catalog
- * @param {import('@radiology/contracts').Response[]} [history=[]] - Resident response history
+ * @param {import('@radiology/contracts').Response[]} [history=[]] - Resident response history (contract-shaped)
  * @param {Object} [config={}] - Selection configuration
  * @param {number|string} [config.seed] - Seed for PRNG
  * @param {number} [config.alpha=1] - Laplace smoothing parameter
  * @param {number} [n=10] - Number of questions to select
+ * @param {string[]|Set<string>} [answeredQuestionIds=[]] - Question IDs already answered by user
  * @param {readonly import('@radiology/contracts').ClassId[]} [classIds=CLASS_IDS] - Classes list
  * @returns {{ questionIds: string[], plan: any }}
  */
@@ -53,6 +54,7 @@ export function selectTargetedQuestions(
   history = [],
   config = {},
   n = 10,
+  answeredQuestionIds = [],
   classIds = CLASS_IDS,
 ) {
   const seed = config.seed ?? 123456789;
@@ -60,13 +62,10 @@ export function selectTargetedQuestions(
   const rng = createRng(seed);
 
   // Exclude previously answered question IDs
-  const answeredIds = new Set(
-    history
-      .map((r) => /** @type {any} */ (r).questionId || /** @type {any} */ (r).id)
-      .filter(Boolean),
-  );
+  const answeredSet =
+    answeredQuestionIds instanceof Set ? answeredQuestionIds : new Set(answeredQuestionIds || []);
 
-  const eligibleBank = bank.filter((q) => q.status === 'approved' && !answeredIds.has(q.id));
+  const eligibleBank = bank.filter((q) => q.status === 'approved' && !answeredSet.has(q.id));
 
   // Generate 6 off-diagonal confusion pairs
   /** @type {Array<{ key: string, trueClass: import('@radiology/contracts').ClassId, confusedWith: import('@radiology/contracts').ClassId, weight: number }>} */

@@ -111,22 +111,36 @@ describe('Adaptive Engine - Targeted Practice and Mastery', () => {
     it('selects approved questions targeting user confusion pairs and excludes answered ones', () => {
       const bank = createMockBank();
 
-      // History where user repeatedly confuses covid19 for pneumonia
+      // History where user repeatedly confuses covid19 for pneumonia (contract-shaped)
       const history = [
         {
-          questionId: 'q_1',
+          sessionId: 's1',
+          imageId: 'img_cov_1',
           trueClass: 'covid19',
           answer: 'pneumonia',
           bucket: 'medium',
         },
-        { trueClass: 'covid19', answer: 'pneumonia', bucket: 'medium' },
-        { trueClass: 'covid19', answer: 'pneumonia', bucket: 'medium' },
+        {
+          sessionId: 's1',
+          imageId: 'img_cov_2',
+          trueClass: 'covid19',
+          answer: 'pneumonia',
+          bucket: 'medium',
+        },
+        {
+          sessionId: 's1',
+          imageId: 'img_cov_3',
+          trueClass: 'covid19',
+          answer: 'pneumonia',
+          bucket: 'medium',
+        },
       ];
 
       const config = { seed: 12345, alpha: 1 };
       const n = 10;
+      const answeredQuestionIds = ['q_1'];
 
-      const result = selectTargetedQuestions(bank, history, config, n);
+      const result = selectTargetedQuestions(bank, history, config, n, answeredQuestionIds);
 
       expect(result.questionIds).toHaveLength(10);
       // Must not include already answered question q_1
@@ -139,6 +153,23 @@ describe('Adaptive Engine - Targeted Practice and Mastery', () => {
       expect(result.plan.counts['covid19->pneumonia']).toBeGreaterThan(
         result.plan.counts['normal->pneumonia'],
       );
+    });
+
+    it('accepts answeredQuestionIds as a Set', () => {
+      const bank = createMockBank();
+      const history = [
+        {
+          sessionId: 's1',
+          imageId: 'img_cov_1',
+          trueClass: 'covid19',
+          answer: 'pneumonia',
+          bucket: 'medium',
+        },
+      ];
+      const answeredSet = new Set(['q_1', 'q_2']);
+      const result = selectTargetedQuestions(bank, history, { seed: 123 }, 5, answeredSet);
+      expect(result.questionIds).not.toContain('q_1');
+      expect(result.questionIds).not.toContain('q_2');
     });
 
     it('records shortfalls and falls back to same trueClass when bank lacks pair questions', () => {
@@ -162,9 +193,17 @@ describe('Adaptive Engine - Targeted Practice and Mastery', () => {
       ];
 
       // Need 5 questions but bank only has 2
-      const history = [{ trueClass: 'covid19', answer: 'pneumonia', bucket: 'easy' }];
+      const history = [
+        {
+          sessionId: 's1',
+          imageId: 'img_1',
+          trueClass: 'covid19',
+          answer: 'pneumonia',
+          bucket: 'easy',
+        },
+      ];
 
-      const result = selectTargetedQuestions(bank, history, { seed: 99, alpha: 1 }, 5);
+      const result = selectTargetedQuestions(bank, history, { seed: 99, alpha: 1 }, 5, []);
 
       // Available approved questions are 2, so it selects all 2 and records shortfall
       expect(result.questionIds).toHaveLength(2);
