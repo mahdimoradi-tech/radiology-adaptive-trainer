@@ -11,6 +11,10 @@
   "scripts": {
     "lint": "eslint .",
     "test": "vitest run",
+    "sim": "node src/simulator/cli.js",
     "build": "node -e \"console.log('no build')\""
+  },
+  "devDependencies": {
+    "fast-check": "^4.10.2"
   }
 }
