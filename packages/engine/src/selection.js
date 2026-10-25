@@ -149,6 +149,8 @@ export function pickImagesFromPool(
     classCounts[c] = BUCKETS.reduce((sum, b) => sum + (bucketCounts[c]?.[b] ?? 0), 0);
   }
 
+  const deficit = Math.max(0, config.totalQuestions - selectedImageIds.length);
+
   return {
     imageIds: selectedImageIds,
     plan: {
@@ -157,6 +159,7 @@ export function pickImagesFromPool(
       weights,
       errors,
       shortfalls,
+      deficit,
     },
   };
 }

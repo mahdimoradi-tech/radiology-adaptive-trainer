@@ -132,4 +132,26 @@ describe('Adaptive Engine - Adaptive Next Test Selection', () => {
     expect(res1.imageIds).toEqual(res2.imageIds);
     expect(res1.plan).toEqual(res2.plan);
   });
+
+  it('records plan.deficit and keeps plan.shortfalls when pool is depleted', () => {
+    // Small pool with only 15 images total
+    const smallPool = [];
+    let id = 1;
+    for (const c of ['covid19', 'pneumonia', 'normal']) {
+      for (let i = 0; i < 5; i++) {
+        smallPool.push({
+          id: `depleted_${id++}`,
+          trueClass: c,
+          difficulty: 0.5,
+          bucket: 'medium',
+          confusedWith: c === 'covid19' ? 'pneumonia' : 'covid19',
+        });
+      }
+    }
+
+    const result = selectNextTest(smallPool, [], { totalQuestions: 60, seed: 10 });
+    expect(result.imageIds).toHaveLength(15);
+    expect(result.plan.deficit).toBe(45);
+    expect(result.plan.shortfalls.length).toBeGreaterThan(0);
+  });
 });
