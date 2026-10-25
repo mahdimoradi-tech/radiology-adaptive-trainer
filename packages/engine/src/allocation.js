@@ -61,6 +61,16 @@ export function allocateBucketCounts(classCounts, totalQuestions, responses = []
     classIds = CLASS_IDS,
   } = options;
 
+  const minBucket = Math.max(1, Math.round(minBucketShare * totalQuestions));
+  for (const c of classIds) {
+    const Nc = classCounts[c] ?? 0;
+    if (Nc < buckets.length * minBucket) {
+      throw new RangeError(
+        `classCount for class '${c}' (${Nc}) is less than ${buckets.length} * minBucket (${buckets.length * minBucket})`,
+      );
+    }
+  }
+
   /** @type {any} */
   const result = {};
 
@@ -81,7 +91,6 @@ export function allocateBucketCounts(classCounts, totalQuestions, responses = []
   }
 
   // Adaptive test: allocate based on incorrect rates IR_{c, b}
-  const minBucket = Math.max(1, Math.round(minBucketShare * totalQuestions));
   const counts = perClassCounts(responses, classIds, buckets);
 
   for (const c of classIds) {

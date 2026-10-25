@@ -108,5 +108,16 @@ describe('Adaptive Engine - Allocation', () => {
       // Hard bucket for covid19 should have received more questions due to errors
       expect(bucketCounts.covid19.hard).toBeGreaterThan(bucketCounts.covid19.easy);
     });
+
+    it('throws RangeError when classCount < 3 * minBucket', () => {
+      // N = 60 -> minBucket = max(1, round(0.04 * 60)) = 2. 3 * minBucket = 6.
+      // If a class has classCount = 5 (< 6), it must throw RangeError.
+      const invalidClassCounts = { covid19: 5, pneumonia: 25, normal: 30 };
+      expect(() =>
+        allocateBucketCounts(invalidClassCounts, 60, [], {
+          minBucketShare: 0.04,
+        }),
+      ).toThrow(RangeError);
+    });
   });
 });
