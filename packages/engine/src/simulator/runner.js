@@ -18,7 +18,7 @@ export function createSimulatorPool() {
     const confused = c === 'covid19' ? 'pneumonia' : 'covid19';
     for (const b of BUCKETS) {
       const difficultyBase = b === 'easy' ? 0.2 : b === 'medium' ? 0.5 : 0.8;
-      // ~166 images per bucket = ~500 per class
+      // ~167 images per bucket = ~500 per class
       for (let i = 0; i < 167; i++) {
         pool.push({
           id: `sim_img_${id++}`,
@@ -32,6 +32,32 @@ export function createSimulatorPool() {
   }
 
   return pool;
+}
+
+/**
+ * Generate a fixed balanced probe test (60 items: 20 per class, balanced buckets).
+ * Used to measure trainee mastery impartially across all policies without skill updates.
+ *
+ * @param {import('@radiology/contracts').ImageMeta[]} pool - Full catalog pool
+ * @param {number} seed - Deterministic resident seed
+ * @returns {import('@radiology/contracts').ImageMeta[]} 60-image balanced probe test
+ */
+export function createBalancedProbeTest(pool, seed) {
+  const rng = createRng((seed ^ 0xdeadbeef) >>> 0);
+  const probeItems = [];
+
+  for (const c of CLASS_IDS) {
+    const classPool = pool.filter((img) => img.trueClass === c);
+    for (const b of BUCKETS) {
+      // 7 easy, 7 medium, 6 hard = 20 items per class
+      const quota = b === 'hard' ? 6 : 7;
+      const bucketImages = classPool.filter((img) => img.bucket === b);
+      rng.shuffle(bucketImages);
+      probeItems.push(...bucketImages.slice(0, quota));
+    }
+  }
+
+  return rng.shuffle(probeItems);
 }
 
 /**
@@ -88,6 +114,7 @@ function selectRandomQuestions(pool, shownIds, totalQuestions, rng) {
 
 /**
  * Simulate a single virtual resident through training sessions.
+ * Mastery is measured after each training session on a fixed balanced probe test.
  *
  * @param {Object} params
  * @param {'fixed' | 'random' | 'adaptive'} params.policy
@@ -95,7 +122,7 @@ function selectRandomQuestions(pool, shownIds, totalQuestions, rng) {
  * @param {Object} [params.residentParams]
  * @param {Object} [params.engineConfig]
  * @param {number} [params.maxSessions=12]
- * @param {number|string} params.seed
+ * @param {number} params.seed
  * @returns {{ policy: string, mastered: boolean, sessionsToMastery: number, finalFpr: Record<string, number>, finalFnr: Record<string, number> }}
  */
 export function simulateResident({
@@ -106,21 +133,23 @@ export function simulateResident({
   maxSessions = 12,
   seed,
 }) {
-  const rng = createRng(seed);
   const resident = new VirtualResident(residentParams);
   const totalQuestions = engineConfig.totalQuestions ?? 60;
   const masteryThreshold = engineConfig.masteryThreshold ?? 0.8;
 
+  // Fixed balanced probe test generated once per resident seed
+  const probeTest = createBalancedProbeTest(pool, seed);
+
   const allHistory = [];
-  let latestSessionResponses = [];
-  let sessionsCompleted = 0;
+  let latestProbeResponses = [];
+  let sessionsCompleted = maxSessions;
   let mastered = false;
 
   const poolMap = new Map(pool.map((img) => [img.id, img]));
 
   for (let s = 1; s <= maxSessions; s++) {
-    sessionsCompleted = s;
-    const sessionRng = createRng(rng.next() * 1e9);
+    const policyCode = policy === 'adaptive' ? 1 : policy === 'random' ? 2 : 3;
+    const sessionRng = createRng((seed * 31 + s * 997 + policyCode) >>> 0);
 
     let imageIds;
     if (policy === 'adaptive') {
@@ -144,12 +173,12 @@ export function simulateResident({
       imageIds = selectFixedQuestions(pool, shownIds, totalQuestions, sessionRng);
     }
 
-    latestSessionResponses = [];
+    // Trainee answers training questions and updates diagnostic skills
     for (const imgId of imageIds) {
       const img = poolMap.get(imgId);
       if (!img) continue;
 
-      const ans = resident.answer(img, sessionRng);
+      const ans = resident.answer(img, sessionRng, true);
       const resp = {
         sessionId: `sess_${s}`,
         imageId: img.id,
@@ -157,17 +186,27 @@ export function simulateResident({
         answer: ans,
         bucket: img.bucket,
       };
-      latestSessionResponses.push(resp);
       allHistory.push(resp);
     }
 
-    if (isMastered(latestSessionResponses, masteryThreshold)) {
+    // Impartial evaluation: assess mastery on the fixed balanced probe test (skills NOT updated)
+    const probeRng = createRng((seed * 7919 + s * 1013) >>> 0);
+    latestProbeResponses = probeTest.map((img) => ({
+      sessionId: `probe_${s}`,
+      imageId: img.id,
+      trueClass: img.trueClass,
+      answer: resident.answer(img, probeRng, false),
+      bucket: img.bucket,
+    }));
+
+    if (isMastered(latestProbeResponses, masteryThreshold)) {
       mastered = true;
+      sessionsCompleted = s;
       break;
     }
   }
 
-  const finalRates = rates(latestSessionResponses, 1);
+  const finalRates = rates(latestProbeResponses, 1);
   const finalFpr = /** @type {any} */ ({});
   const finalFnr = /** @type {any} */ ({});
   for (const c of CLASS_IDS) {
@@ -186,6 +225,7 @@ export function simulateResident({
 
 /**
  * Run comprehensive simulation comparing fixed, random, and adaptive policies.
+ * Uses a paired benchmark: each resident seed is tested identically across policies.
  *
  * @param {Object} [options={}]
  * @param {number} [options.numResidents=50] - Number of residents per policy
@@ -207,12 +247,8 @@ export function runSimulation(options = {}) {
   for (const policy of policies) {
     const residentResults = [];
     for (let i = 0; i < numResidents; i++) {
-      // Deterministic per-resident seed derived from masterSeed and resident index
-      const residentSeed =
-        (masterSeed * 10007 +
-          i * 37 +
-          (policy === 'adaptive' ? 1 : policy === 'random' ? 2 : 3)) >>>
-        0;
+      // Identical resident initial seed for paired benchmark comparison
+      const residentSeed = (masterSeed * 10007 + i * 37) >>> 0;
       const res = simulateResident({
         policy,
         pool,

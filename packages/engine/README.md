@@ -49,7 +49,9 @@ The package includes a Monte Carlo virtual trainee simulator to empirically comp
 4. **Learning Dynamics:** Exposure to questions updates diagnostic skill asymptotically:
    $$S_c \leftarrow S_c + \eta \cdot (1 - S_c)$$
    where $\eta$ is the learning rate ($\approx 0.03$).
-5. **Limitations:** The simulation models skill growth as an asymptotic exposure function. Real human diagnostic retention exhibits forgetting curves and visual cognitive plateaus that are not modeled here. Simulation results serve to verify that the adaptive allocation algorithm converges without bias under controlled assumptions.
+5. **Fair Balanced Probe Benchmark:** To ensure impartial evaluation, mastery is measured for ALL policies on the exact same fixed balanced probe test (60 images: 20 per class, balanced across buckets, generated once per resident seed). The resident answers the probe test without skill updates (`updateSkill = false`). Mastery is declared when per-class accuracy on the probe test reaches $\ge 80\%$ across all three classes simultaneously.
+6. **Data-Driven Analysis:** Simulation results are reported transparently. The console output dynamically identifies which policy converges fastest on the balanced probe without tuning parameters or hard-coding superiority claims.
+7. **Limitations:** The simulation models skill growth as an asymptotic exposure function. Real human diagnostic retention exhibits forgetting curves and visual cognitive plateaus that are not modeled here. Simulation results serve to verify that the adaptive allocation algorithm converges without bias under controlled assumptions.
 
 ### Running the Simulator
 

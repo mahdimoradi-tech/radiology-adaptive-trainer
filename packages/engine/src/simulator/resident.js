@@ -27,13 +27,14 @@ export class VirtualResident {
   }
 
   /**
-   * Produce an answer for a chest X-ray image and update skill.
+   * Produce an answer for a chest X-ray image and optionally update skill.
    *
    * @param {import('@radiology/contracts').ImageMeta} image - Image to evaluate
    * @param {ReturnType<import('../rng.js').createRng>} rng - PRNG instance
+   * @param {boolean} [updateSkill=true] - Whether question exposure updates trainee skill
    * @returns {import('@radiology/contracts').ClassId} Answer chosen by resident
    */
-  answer(image, rng) {
+  answer(image, rng, updateSkill = true) {
     const c = image.trueClass;
     const d = image.difficulty;
     const skill = this.skills[c] ?? 0.5;
@@ -52,7 +53,9 @@ export class VirtualResident {
     }
 
     // Trainee learning update per exposure: skill += learningRate * (1 - skill)
-    this.skills[c] += this.learningRate * (1 - this.skills[c]);
+    if (updateSkill) {
+      this.skills[c] += this.learningRate * (1 - this.skills[c]);
+    }
 
     return answerChosen;
   }

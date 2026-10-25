@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
 import { runSimulation } from './runner.js';
+import { formatSimulationSummary } from './summary.js';
 
 console.log('Running Virtual Resident Simulation (50 seeded residents per policy)...\n');
 const results = runSimulation({ numResidents: 50, seed: 42 });
 
 console.log('='.repeat(80));
-console.log(' VIRTUAL RESIDENT SIMULATION RESULTS (T02)');
+console.log(' VIRTUAL RESIDENT SIMULATION RESULTS (T02 — Fair Probe Comparison)');
 console.log('='.repeat(80));
 
 const tableData = Object.values(results).map((r) => ({
@@ -21,5 +22,5 @@ const tableData = Object.values(results).map((r) => ({
 
 console.table(tableData);
 console.log('='.repeat(80));
-console.log('Note: Simulation demonstrates faster/equal convergence for adaptive training');
-console.log('under the modeled learning assumptions (packages/engine/README.md).\n');
+console.log(formatSimulationSummary(results));
+console.log('='.repeat(80) + '\n');

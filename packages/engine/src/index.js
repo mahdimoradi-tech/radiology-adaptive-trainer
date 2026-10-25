@@ -10,4 +10,10 @@ export { createRng } from './rng.js';
 export { selectFirstTest, selectNextTest } from './selection.js';
 export { isMastered, selectTargetedQuestions } from './targeted.js';
 export { VirtualResident } from './simulator/resident.js';
-export { createSimulatorPool, simulateResident, runSimulation } from './simulator/runner.js';
+export {
+  createSimulatorPool,
+  createBalancedProbeTest,
+  simulateResident,
+  runSimulation,
+} from './simulator/runner.js';
+export { formatSimulationSummary } from './simulator/summary.js';
