@@ -45,3 +45,22 @@ jobs:
 
       - name: Run build
         run: npm run build
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Set up Python 3.12
+        run: uv python install 3.12
+
+      - name: Install Python dependencies
+        run: uv sync --directory ml
+
+      - name: Run Python linter and format check
+        run: |
+          uv run --directory ml ruff check .
+          uv run --directory ml ruff format --check .
+
+      - name: Run Python test suite
+        run: uv run --directory ml pytest

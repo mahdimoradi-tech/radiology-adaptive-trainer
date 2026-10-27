@@ -43,11 +43,13 @@ def test_assign_quantile_buckets():
     data = []
     # 6 samples of covid19 with difficulties 0.0, 0.1, 0.2, 0.3, 0.4, 0.5
     for i in range(6):
-        data.append({
-            "image_id": f"img_{i}",
-            "true_class": "covid19",
-            "difficulty": float(i * 0.1),
-        })
+        data.append(
+            {
+                "image_id": f"img_{i}",
+                "true_class": "covid19",
+                "difficulty": float(i * 0.1),
+            }
+        )
 
     df = pd.DataFrame(data)
     qdf = assign_quantile_buckets(df)
@@ -61,19 +63,21 @@ def test_compute_all_difficulties_table():
     """Test full table computation from synthetic arrays."""
     ids = np.array(["id_1", "id_2"], dtype=object)
     labels = np.array(["covid19", "normal"], dtype=object)
-    oof_probs = np.array([
-        [0.85, 0.10, 0.05],
-        [0.15, 0.35, 0.50],
-    ])
-    folds = np.array([0, 1])
-    manifest_df = pd.DataFrame([
-        {"image_id": "id_1", "path": "path/to/img1.png", "source": "cohen"},
-        {"image_id": "id_2", "path": "path/to/img2.png", "source": "kermany"},
-    ])
-
-    df = compute_all_difficulties(
-        ids, labels, oof_probs, folds, manifest_df, strategy="paper"
+    oof_probs = np.array(
+        [
+            [0.85, 0.10, 0.05],
+            [0.15, 0.35, 0.50],
+        ]
     )
+    folds = np.array([0, 1])
+    manifest_df = pd.DataFrame(
+        [
+            {"image_id": "id_1", "path": "path/to/img1.png", "source": "cohen"},
+            {"image_id": "id_2", "path": "path/to/img2.png", "source": "kermany"},
+        ]
+    )
+
+    df = compute_all_difficulties(ids, labels, oof_probs, folds, manifest_df, strategy="paper")
 
     assert len(df) == 2
     assert "difficulty" in df.columns

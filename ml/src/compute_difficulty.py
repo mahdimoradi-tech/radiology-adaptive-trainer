@@ -70,7 +70,7 @@ def compute_all_difficulties(
     oof_probs: np.ndarray,
     folds: np.ndarray,
     manifest_df: pd.DataFrame,
-    strategy: str = "quantile",
+    strategy: str = "paper",
     easy_threshold: float = 0.34,
     hard_threshold: float = 0.68,
 ) -> pd.DataFrame:
@@ -92,20 +92,22 @@ def compute_all_difficulties(
         )
 
         source_info = manifest_map.get(img_id, {})
-        records.append({
-            "image_id": img_id,
-            "filename": Path(source_info.get("path", "")).name,
-            "source": source_info.get("source", "unknown"),
-            "true_class": true_class,
-            "fold": fold,
-            "prob_covid19": round(float(probs[0]), 4),
-            "prob_pneumonia": round(float(probs[1]), 4),
-            "prob_normal": round(float(probs[2]), 4),
-            "p_true": round(p_true, 4),
-            "difficulty": round(difficulty, 4),
-            "bucket": bucket,
-            "confused_with": confused_with,
-        })
+        records.append(
+            {
+                "image_id": img_id,
+                "filename": Path(source_info.get("path", "")).name,
+                "source": source_info.get("source", "unknown"),
+                "true_class": true_class,
+                "fold": fold,
+                "prob_covid19": round(float(probs[0]), 4),
+                "prob_pneumonia": round(float(probs[1]), 4),
+                "prob_normal": round(float(probs[2]), 4),
+                "p_true": round(p_true, 4),
+                "difficulty": round(difficulty, 4),
+                "bucket": bucket,
+                "confused_with": confused_with,
+            }
+        )
 
     df = pd.DataFrame(records)
 
@@ -166,9 +168,9 @@ def main() -> None:
     parser.add_argument(
         "--strategy",
         type=str,
-        default="quantile",
-        choices=["quantile", "paper"],
-        help="Bucket assignment strategy (default: quantile)",
+        default="paper",
+        choices=["paper", "quantile"],
+        help="Bucket assignment strategy (default: paper, matching @radiology/engine)",
     )
     args = parser.parse_args()
 

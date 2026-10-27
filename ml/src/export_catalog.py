@@ -16,7 +16,7 @@ RANDOM_SEED = 42
 def select_catalog_images(
     df: pd.DataFrame, max_per_class: int = 500, seed: int = RANDOM_SEED
 ) -> Set[str]:
-    """Select up to max_per_class images prioritizing hard, then medium, then easy."""
+    """Select up to max_per_class images ensuring representation across Easy, Medium, and Hard."""
     selected_ids: Set[str] = set()
 
     for c in CLASSES:
@@ -25,24 +25,54 @@ def select_catalog_images(
             selected_ids.update(cdf["image_id"].tolist())
             continue
 
+        hard_df = cdf[cdf["bucket"] == "hard"]
+        med_df = cdf[cdf["bucket"] == "medium"]
+        easy_df = cdf[cdf["bucket"] == "easy"]
+
+        n_hard = len(hard_df)
+        n_med = len(med_df)
+        n_easy = len(easy_df)
+
         class_selected = []
-        # 1. Hard images
-        hard_ids = cdf[cdf["bucket"] == "hard"]["image_id"].tolist()
-        class_selected.extend(hard_ids[:max_per_class])
 
-        # 2. Medium images
-        remaining = max_per_class - len(class_selected)
-        if remaining > 0:
-            med_ids = cdf[cdf["bucket"] == "medium"]["image_id"].tolist()
-            class_selected.extend(med_ids[:remaining])
+        # If hard + medium fits within cap, take all hard & medium, fill remainder with easy
+        if n_hard + n_med < max_per_class:
+            class_selected.extend(hard_df["image_id"].tolist())
+            class_selected.extend(med_df["image_id"].tolist())
+            remaining = max_per_class - len(class_selected)
+            sample_easy = min(remaining, n_easy)
+            if sample_easy > 0:
+                class_selected.extend(
+                    easy_df.sample(n=sample_easy, random_state=seed)["image_id"].tolist()
+                )
+        else:
+            # If hard + medium exceeds cap, ensure balanced representation across all three tiers
+            # Reserve at least 25% for easy if available, and split remainder between hard and med
+            easy_quota = min(n_easy, max(1, max_per_class // 4))
+            if easy_quota > 0:
+                class_selected.extend(
+                    easy_df.sample(n=easy_quota, random_state=seed)["image_id"].tolist()
+                )
+            rem_for_hard_med = max_per_class - len(class_selected)
+            hard_quota = min(n_hard, rem_for_hard_med // 2)
+            med_quota = min(n_med, rem_for_hard_med - hard_quota)
+            if hard_quota > 0:
+                class_selected.extend(
+                    hard_df.sample(n=hard_quota, random_state=seed)["image_id"].tolist()
+                )
+            if med_quota > 0:
+                class_selected.extend(
+                    med_df.sample(n=med_quota, random_state=seed)["image_id"].tolist()
+                )
 
-        # 3. Easy images
-        remaining = max_per_class - len(class_selected)
-        if remaining > 0:
-            easy_df = cdf[cdf["bucket"] == "easy"]
-            sample_count = min(remaining, len(easy_df))
-            easy_ids = easy_df.sample(n=sample_count, random_state=seed)["image_id"].tolist()
-            class_selected.extend(easy_ids)
+            leftover_needed = max_per_class - len(class_selected)
+            if leftover_needed > 0:
+                remaining_candidates = cdf[~cdf["image_id"].isin(class_selected)]
+                class_selected.extend(
+                    remaining_candidates.sample(
+                        n=min(leftover_needed, len(remaining_candidates)), random_state=seed
+                    )["image_id"].tolist()
+                )
 
         selected_ids.update(class_selected)
 
@@ -57,7 +87,7 @@ def export_catalog(
     zip_output_path: Path,
     max_per_class: int = 500,
     seed: int = RANDOM_SEED,
-) -> Dict[str, int]:
+) -> Dict[str, Dict[str, int]]:
     """Build app catalog folder, write catalog.json, and zip archive."""
     df = pd.read_csv(difficulty_df_path)
     selected_ids = select_catalog_images(df, max_per_class=max_per_class, seed=seed)
@@ -67,7 +97,9 @@ def export_catalog(
     artifacts_dir.mkdir(parents=True, exist_ok=True)
 
     catalog_records = []
-    class_counts: Dict[str, int] = {c: 0 for c in CLASSES}
+    class_bucket_counts: Dict[str, Dict[str, int]] = {
+        c: {"easy": 0, "medium": 0, "hard": 0} for c in CLASSES
+    }
 
     print(f"Exporting {len(selected_ids)} catalog images...")
     for _, row in df.iterrows():
@@ -82,15 +114,17 @@ def export_catalog(
             shutil.copy2(src_web, dest_img)
 
         c = str(row["true_class"])
-        class_counts[c] += 1
+        b = str(row["bucket"])
+        class_bucket_counts[c][b] += 1
         catalog_records.append(
             {
+                "id": img_id,
                 "imageId": img_id,
                 "filename": f"{img_id}.jpg",
-                "class": c,
+                "trueClass": c,
                 "source": str(row["source"]),
                 "difficulty": float(row["difficulty"]),
-                "bucket": str(row["bucket"]),
+                "bucket": b,
                 "confusedWith": str(row["confused_with"]),
             }
         )
@@ -114,8 +148,8 @@ def export_catalog(
 
     zip_size_mb = zip_output_path.stat().st_size / (1024 * 1024)
     print(f"Catalog zip created: {zip_output_path} ({zip_size_mb:.2f} MB)")
-    print(f"Catalog counts: {class_counts}")
-    return class_counts
+    print(f"Catalog counts by class and bucket: {class_bucket_counts}")
+    return class_bucket_counts
 
 
 def main() -> None:

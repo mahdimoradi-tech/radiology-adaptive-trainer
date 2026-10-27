@@ -64,7 +64,26 @@ def test_build_manifest_synthetic(tmp_path: Path):
     assert report_md.is_file()
 
 
-def test_build_manifest_limit(tmp_path: Path):
+def test_scan_actualmed_synthetic(tmp_path: Path):
+    """Test Actualmed scanner with metadata.csv filtering."""
+    from build_manifest import scan_actualmed
+
+    actualmed_root = tmp_path / "actualmed"
+    images_dir = actualmed_root / "images"
+    images_dir.mkdir(parents=True)
+
+    img = Image.new("RGB", (32, 32), color="green")
+    img.save(images_dir / "ACT-001.jpg")
+    img.save(images_dir / "ACT-002.jpg")
+
+    meta_csv = actualmed_root / "metadata.csv"
+    meta_csv.write_text("patientid,finding\nACT-001,COVID-19\nACT-002,No finding\n")
+
+    records = scan_actualmed(actualmed_root)
+    assert len(records) == 1
+    assert records[0]["source"] == "actualmed"
+    assert records[0]["label"] == "covid19"
+    assert "ACT-001.jpg" in records[0]["path"]
     """Test limit parameter."""
     raw_dir = tmp_path / "raw"
     kermany_norm = raw_dir / "kermany" / "chest_xray" / "train" / "NORMAL"

@@ -19,13 +19,14 @@ def export_difficulty_json(
     if catalog_json_path.is_file():
         with open(catalog_json_path, encoding="utf-8") as f:
             cat_data = json.load(f)
-            catalog_ids = {item["imageId"] for item in cat_data}
+            catalog_ids = {item.get("id") or item.get("imageId") for item in cat_data}
 
     artifacts = []
     for _, row in df.iterrows():
         img_id = str(row["image_id"])
         artifacts.append(
             {
+                "id": img_id,
                 "imageId": img_id,
                 "filename": f"{img_id}.jpg",
                 "trueClass": str(row["true_class"]),

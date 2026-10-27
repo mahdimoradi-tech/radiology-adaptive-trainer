@@ -46,10 +46,10 @@ Buckets: Easy ($d < 0.34$), Medium ($0.34 \le d < 0.68$), Hard ($d \ge 0.68$).
 ```
 bucket      easy  hard  medium   All
 true_class                          
-covid19       59    59      59   177
-normal       527   528     527  1582
-pneumonia   1415  1415    1415  4245
-All         2001  2002    2001  6004
+covid19      172     3       2   177
+normal      1494    42      46  1582
+pneumonia   3946   165     134  4245
+All         5612   210     182  6004
 ```
 
 ### Difficulty Statistics per Class

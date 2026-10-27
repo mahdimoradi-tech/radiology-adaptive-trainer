@@ -125,6 +125,49 @@ def scan_figure1(figure1_root: Path) -> List[Dict[str, str]]:
     return records
 
 
+def scan_actualmed(actualmed_root: Path) -> List[Dict[str, str]]:
+    """Scan Actualmed dataset with metadata.csv filtering."""
+    records = []
+    if not actualmed_root.exists():
+        return records
+
+    meta_file = next(actualmed_root.rglob("metadata.csv"), None)
+    images_dir = next((d for d in actualmed_root.rglob("images") if d.is_dir()), None)
+
+    if meta_file and meta_file.is_file() and images_dir:
+        try:
+            df = pd.read_csv(meta_file, encoding="latin1")
+            for _, row in df.iterrows():
+                finding = str(row.get("finding", "")).strip()
+                if "COVID-19" in finding:
+                    patient_id = str(row.get("patientid", "")).strip()
+                    for ext in [".jpg", ".jpeg", ".png"]:
+                        img_path = images_dir / f"{patient_id}{ext}"
+                        if img_path.is_file():
+                            records.append(
+                                {
+                                    "path": str(img_path.resolve()),
+                                    "source": "actualmed",
+                                    "label": "covid19",
+                                }
+                            )
+                            break
+        except Exception as e:
+            print(f"Warning parsing Actualmed metadata: {e}")
+    else:
+        for path in actualmed_root.rglob("*"):
+            if path.is_file() and path.suffix.lower() in VALID_EXTENSIONS:
+                records.append(
+                    {
+                        "path": str(path.resolve()),
+                        "source": "actualmed",
+                        "label": "covid19",
+                    }
+                )
+
+    return records
+
+
 def build_manifest(
     raw_dir: Path,
     output_path: Path,
@@ -137,6 +180,7 @@ def build_manifest(
     kermany_dirs = [d for d in raw_dir.glob("*") if "kermany" in d.name.lower()]
     cohen_dirs = [d for d in raw_dir.glob("*") if "cohen" in d.name.lower()]
     figure1_dirs = [d for d in raw_dir.glob("*") if "figure1" in d.name.lower()]
+    actualmed_dirs = [d for d in raw_dir.glob("*") if "actualmed" in d.name.lower()]
 
     for d in kermany_dirs:
         raw_records.extend(scan_kermany(d))
@@ -144,6 +188,8 @@ def build_manifest(
         raw_records.extend(scan_cohen(d))
     for d in figure1_dirs:
         raw_records.extend(scan_figure1(d))
+    for d in actualmed_dirs:
+        raw_records.extend(scan_actualmed(d))
 
     total_scanned = len(raw_records)
 
