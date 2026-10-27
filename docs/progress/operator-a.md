@@ -8,7 +8,7 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T02: Adaptive engine and simulator (Driver solo)
+- T01: ML pipeline: out-of-fold difficulty and app catalog (Driver solo)
 
 ## Done (newest first)
 
