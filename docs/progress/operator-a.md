@@ -13,13 +13,18 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 ## Done (newest first)
 
 - Completed T01: implemented offline ML difficulty pipeline in `ml/` with Python 3.12 and `uv`.
+- Addressed code review findings and resolved catalog bucket starvation in `ml/src/export_catalog.py`: the catalog now contains a rich mix of difficulty levels across all classes (COVID: 172 Easy, 2 Med, 3 Hard; Pneumonia: 201 Easy, 134 Med, 165 Hard; Normal: 412 Easy, 46 Med, 42 Hard; total 1,177 images).
+- Aligned difficulty thresholds with canonical paper standard ($d < 0.34$, $0.34 \le d < 0.68$, $d \ge 0.68$) matching `@radiology/engine`'s `bucketOf()` function, documented in `docs/adr/0005-difficulty-thresholds-and-catalog-policy.md`.
+- Unified schema contracts across `catalog.json` and `difficulty.json` (`id`, `imageId`, `trueClass`).
+- Integrated uv, Python 3.12, ruff, and pytest into `.github/workflows/ci.yml`.
+- Expanded test suite to 16 unit tests covering catalog diversity, schema symmetry, and data sources.
 - Scanned raw datasets (`kermany`, `cohen`, `figure1`), identified and eliminated 171 duplicates via SHA-256 hashes, producing 6,004 clean images.
 - Implemented image preprocessing generating 768px web JPEGs and 224px ImageNet-normalized PyTorch tensors for model input.
 - Extracted 1024-dimensional DenseNet-121 features on CPU with frozen ImageNet backbone, saving `data/interim/features.npy`.
 - Implemented 3-class MLP head matching the reference paper and executed Stratified 5-Fold cross validation, achieving 95.24% Out-of-Fold accuracy (0.9315 macro F1).
-- Computed difficulty scores ($d = 1 - P(y_{\text{true}} \mid x)$), quantile-based balanced tertile buckets (Easy/Medium/Hard with 33% each), and `confusedWith` classes.
-- Exported web app catalog of 1,177 images (`catalog.json`), created 81.95 MB `catalog-images.zip`, and generated `ml/artifacts/difficulty.json` metadata for all 6,004 images.
-- Wrote 14 unit tests in `ml/tests/` and comprehensive evaluation report in `ml/reports/ml-report.md`.
+- Computed difficulty scores ($d = 1 - P(y_{\text{true}} \mid x)$) and `confusedWith` classes.
+- Exported web app catalog of 1,177 images (`catalog.json`), created 130.40 MB `catalog-images.zip`, and generated `ml/artifacts/difficulty.json` metadata for all 6,004 images.
+- Wrote evaluation report in `ml/reports/ml-report.md`.
 - Opened Pull Request #3 (`feat/T01-ml-pipeline`).
 
 - Completed T02: implemented pure JS adaptive question selection engine (`@radiology/engine`), Zod schemas and contracts (`@radiology/contracts`), and virtual-resident Monte Carlo simulator.
@@ -43,7 +48,7 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 - How Out-of-Fold (OOF) 5-fold cross-validation guarantees zero data leakage: each image is evaluated solely by a model that never trained on it.
 - Why the DenseNet-121 backbone was frozen: to preserve generic visual features and avoid overfitting to cross-dataset acquisition artifacts.
-- Why quantile-based tertiles were chosen over paper linear thresholds: because high model accuracy (>95%) caused >93% of samples to collapse into the "easy" bucket under linear 0.34/0.68 thresholds.
+- Why canonical linear thresholds (0.34 / 0.68) and catalog diversity sampling were chosen: to maintain strict semantic consistency with `@radiology/engine`'s `bucketOf()` function, ensuring high-confidence images ($d=0.001$) are clinically labeled Easy, while sampling all available hard and medium cases into the catalog to guarantee diversity and prevent engine shortfall (documented in ADR 0005).
 - How binary image files (`catalog-images.zip`) are cleanly separated from version-controlled metadata (`difficulty.json`).
 - Why Laplace smoothing ($\alpha = 1$) is mathematically required to prevent $0/0$ (`NaN`) in early training sessions.
 - How the Largest Remainder (Hamilton-Hare) algorithm guarantees exact integer sum $N$ while maintaining class and bucket minimum shares.
