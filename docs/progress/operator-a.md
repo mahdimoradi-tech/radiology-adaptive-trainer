@@ -8,7 +8,7 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T01: ML pipeline: out-of-fold difficulty and app catalog (Driver solo, PR #3 in review)
+- none (T01 merged; ready to claim T03)
 
 ## Done (newest first)
 
