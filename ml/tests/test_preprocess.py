@@ -50,13 +50,15 @@ def test_preprocess_manifest(tmp_path: Path):
     for i in range(3):
         p = raw_dir / f"img_{i}.png"
         Image.new("RGB", (100, 100), color=(i * 30, i * 30, i * 30)).save(p)
-        records.append({
-            "image_id": f"test_{i}",
-            "path": str(p),
-            "source": "test",
-            "label": "normal",
-            "sha256": f"hash_{i}",
-        })
+        records.append(
+            {
+                "image_id": f"test_{i}",
+                "path": str(p),
+                "source": "test",
+                "label": "normal",
+                "sha256": f"hash_{i}",
+            }
+        )
 
     manifest_path = tmp_path / "manifest.csv"
     pd.DataFrame(records).to_csv(manifest_path, index=False)

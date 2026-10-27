@@ -13,11 +13,13 @@ from tqdm import tqdm
 
 def get_model_transform() -> T.Compose:
     """Return standard ImageNet transform for DenseNet-121 model input (224x224 RGB)."""
-    return T.Compose([
-        T.Resize((224, 224), interpolation=T.InterpolationMode.BILINEAR),
-        T.ToTensor(),
-        T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-    ])
+    return T.Compose(
+        [
+            T.Resize((224, 224), interpolation=T.InterpolationMode.BILINEAR),
+            T.ToTensor(),
+            T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+        ]
+    )
 
 
 def create_web_image(

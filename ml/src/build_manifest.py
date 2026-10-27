@@ -46,11 +46,13 @@ def scan_kermany(kermany_root: Path) -> List[Dict[str, str]]:
                 label = "pneumonia"
 
             if label:
-                records.append({
-                    "path": str(path.resolve()),
-                    "source": "kermany",
-                    "label": label,
-                })
+                records.append(
+                    {
+                        "path": str(path.resolve()),
+                        "source": "kermany",
+                        "label": label,
+                    }
+                )
     return records
 
 
@@ -70,11 +72,13 @@ def scan_cohen(cohen_root: Path) -> List[Dict[str, str]]:
                 label = "normal"
 
             if label:
-                records.append({
-                    "path": str(path.resolve()),
-                    "source": "cohen",
-                    "label": label,
-                })
+                records.append(
+                    {
+                        "path": str(path.resolve()),
+                        "source": "cohen",
+                        "label": label,
+                    }
+                )
     return records
 
 
@@ -97,22 +101,26 @@ def scan_figure1(figure1_root: Path) -> List[Dict[str, str]]:
                     for ext in [".jpg", ".jpeg", ".png"]:
                         img_path = images_dir / f"{patient_id}{ext}"
                         if img_path.is_file():
-                            records.append({
-                                "path": str(img_path.resolve()),
-                                "source": "figure1",
-                                "label": "covid19",
-                            })
+                            records.append(
+                                {
+                                    "path": str(img_path.resolve()),
+                                    "source": "figure1",
+                                    "label": "covid19",
+                                }
+                            )
                             break
         except Exception as e:
             print(f"Warning parsing Figure1 metadata: {e}")
     else:
         for path in figure1_root.rglob("*"):
             if path.is_file() and path.suffix.lower() in VALID_EXTENSIONS:
-                records.append({
-                    "path": str(path.resolve()),
-                    "source": "figure1",
-                    "label": "covid19",
-                })
+                records.append(
+                    {
+                        "path": str(path.resolve()),
+                        "source": "figure1",
+                        "label": "covid19",
+                    }
+                )
 
     return records
 
@@ -157,13 +165,15 @@ def build_manifest(
 
         seen_hashes.add(sha256)
         image_id = f"{item['source']}_{sha256[:12]}"
-        clean_records.append({
-            "image_id": image_id,
-            "path": item["path"],
-            "source": item["source"],
-            "label": item["label"],
-            "sha256": sha256,
-        })
+        clean_records.append(
+            {
+                "image_id": image_id,
+                "path": item["path"],
+                "source": item["source"],
+                "label": item["label"],
+                "sha256": sha256,
+            }
+        )
 
     df = pd.DataFrame(clean_records)
     if limit is not None and limit > 0 and len(df) > limit:
