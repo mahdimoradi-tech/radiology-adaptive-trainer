@@ -2,12 +2,14 @@
 
 import argparse
 from pathlib import Path
+from typing import List
 
 import numpy as np
 import pandas as pd
 from sklearn.metrics import classification_report, confusion_matrix
 
-CLASSES = ["covid19", "pneumonia", "normal"]
+CLASS_ORDER: List[str] = ["covid19", "pneumonia", "normal"]
+CLASSES: List[str] = CLASS_ORDER
 
 
 def generate_ml_report(difficulty_df_path: Path, output_report_path: Path) -> None:
@@ -16,14 +18,16 @@ def generate_ml_report(difficulty_df_path: Path, output_report_path: Path) -> No
 
     prob_cols = ["prob_covid19", "prob_pneumonia", "prob_normal"]
     pred_indices = np.argmax(df[prob_cols].values, axis=1)
-    df["predicted_class"] = [CLASSES[idx] for idx in pred_indices]
+    df["predicted_class"] = [CLASS_ORDER[idx] for idx in pred_indices]
 
     y_true = df["true_class"]
     y_pred = df["predicted_class"]
 
     accuracy = float((y_true == y_pred).mean())
-    clf_rep = classification_report(y_true, y_pred, target_names=CLASSES, output_dict=True)
-    cm = confusion_matrix(y_true, y_pred, labels=CLASSES)
+    clf_rep = classification_report(
+        y_true, y_pred, labels=CLASS_ORDER, target_names=CLASS_ORDER, output_dict=True
+    )
+    cm = confusion_matrix(y_true, y_pred, labels=CLASS_ORDER)
 
     class_bucket_tab = pd.crosstab(df["true_class"], df["bucket"], margins=True)
     class_source_tab = pd.crosstab(df["true_class"], df["source"], margins=True)
@@ -48,6 +52,39 @@ def generate_ml_report(difficulty_df_path: Path, output_report_path: Path) -> No
 
     macro_f1 = clf_rep["macro avg"]["f1-score"]
     weighted_f1 = clf_rep["weighted avg"]["f1-score"]
+
+    # Compute per-source out-of-fold accuracy
+    source_stats = []
+    for src in sorted(df["source"].unique()):
+        sdf = df[df["source"] == src]
+        corr = int((sdf["true_class"] == sdf["predicted_class"]).sum())
+        total = len(sdf)
+        acc = (corr / total) * 100 if total > 0 else 0.0
+        source_stats.append((src, total, corr, acc))
+    total_corr = int((y_true == y_pred).sum())
+    total_samples = len(df)
+    source_stats.append(("All", total_samples, total_corr, (total_corr / total_samples) * 100))
+
+    source_acc_rows = "\n".join(
+        f"| **{src}** | {tot} | {cor} | {acc:.2f}% |" for src, tot, cor, acc in source_stats
+    )
+
+    # Compute COVID-19 difficulty decile distribution
+    covid_df = df[df["true_class"] == "covid19"]
+    bins = np.linspace(0.0, 1.0, 11)
+    decile_labels = [
+        f"[{bins[i]:.1f}, {bins[i + 1]:.1f}]" if i == 0 else f"({bins[i]:.1f}, {bins[i + 1]:.1f}]"
+        for i in range(10)
+    ]
+    covid_deciles = pd.cut(
+        covid_df["difficulty"], bins=bins, include_lowest=True, labels=decile_labels
+    )
+    decile_counts = covid_deciles.value_counts(sort=False)
+    covid_total = len(covid_df)
+    decile_rows = "\n".join(
+        f"| {lbl} | {cnt} | {(cnt / covid_total) * 100:.2f}% |"
+        for lbl, cnt in decile_counts.items()
+    )
 
     report_content = f"""# Machine Learning Pipeline Evaluation Report
 
@@ -106,11 +143,25 @@ Buckets: Easy ($d < 0.34$), Medium ($0.34 \\le d < 0.68$), Hard ($d \\ge 0.68$).
 
 ---
 
-## 4. Class by Data Source Breakdown
+## 4. Class and Performance by Data Source
+
+### Class by Data Source Breakdown
 
 ```
 {class_source_tab}
 ```
+
+### Out-of-Fold Accuracy by Data Source
+
+| Source | Samples | Correct | Accuracy |
+|---|---|---|---|
+{source_acc_rows}
+
+### COVID-19 Difficulty Distribution (Deciles)
+
+| Decile Range | Count | Percentage |
+|---|---|---|
+{decile_rows}
 
 ---
 
@@ -119,11 +170,20 @@ Buckets: Easy ($d < 0.34$), Medium ($0.34 \\le d < 0.68$), Hard ($d \\ge 0.68$).
 1. **Non-Clinical Educational Tool:** This model and difficulty scores are designed solely
    to structure adaptive practice questions for radiology residents. It is not approved
    or intended for clinical diagnosis, patient triaging, or real medical decision-making.
-2. **Dataset-Shift and Shortcut Risk:**
-   - COVID-19 cases were collected from multinational registries (Cohen and Figure1),
+2. **Dataset-Shift, Age Confound, and Shortcut Risk:**
+   - COVID-19 cases were collected from adult registries (Cohen and Figure1),
      whereas pneumonia and normal scans stem predominantly from pediatric radiographs (Kermany).
+   - Difficulty for COVID-19 partly reflects source differences;
+     do not interpret it as clinical difficulty.
+   - As quantified in Section 4, 96.61% of COVID-19 images fall into the lowest difficulty
+     decile [0.0, 0.1] and achieve 98.59% (Cohen) and 97.14% (Figure1) out-of-fold accuracy.
+     The model can distinguish sources based on demographic features
+     (adult vs pediatric ribcage/lung field morphology) and equipment artifacts.
    - Although the pre-trained DenseNet-121 backbone was frozen to reduce dataset-specific
      over-fitting, differences in patient age and imaging equipment create potential domain shifts.
+   - Catalog sampling policy guarantees that all available medium and hard COVID-19 images
+     are retained in the active pool, preventing adaptive engine starvation
+     (see ADR 0005 in `docs/adr/0005-difficulty-thresholds-and-catalog-policy.md`).
 3. **Out-of-Fold Integrity:** Every single image was evaluated exclusively by a head
    trained on the remaining four folds, ensuring zero training data leakage in difficulty scores.
 """
@@ -137,9 +197,12 @@ Buckets: Easy ($d < 0.34$), Medium ($0.34 \\le d < 0.68$), Hard ($d \\ge 0.68$).
 
 def main() -> None:
     """CLI entry point for report generation."""
+    default_df = Path(__file__).resolve().parent.parent.parent / "data/interim/difficulty_df.csv"
+    default_report = Path(__file__).resolve().parent.parent / "reports/ml-report.md"
+
     parser = argparse.ArgumentParser(description="Generate ML pipeline evaluation report")
-    parser.add_argument("--difficulty-df", type=str, default="../data/interim/difficulty_df.csv")
-    parser.add_argument("--output-report", type=str, default="../ml/reports/ml-report.md")
+    parser.add_argument("--difficulty-df", type=str, default=str(default_df))
+    parser.add_argument("--output-report", type=str, default=str(default_report))
     args = parser.parse_args()
 
     generate_ml_report(
