@@ -8,10 +8,15 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T01b: ML report fixes and data-quality check (`fix/T01b-ml-report`)
+- T01b: ML report fixes and data-quality check (`fix/T01b-ml-report`) — in-review
 
 ## Done (newest first)
 
+- Completed T01b: fixed Pneumonia and Normal class swap in `ml/src/report.py` by enforcing `CLASS_ORDER = ["covid19", "pneumonia", "normal"]` and setting `labels=CLASS_ORDER` in `classification_report`.
+- Regenerated `ml/reports/ml-report.md` with verified supports (177 covid, 4245 pneumonia, 1582 normal) and exact precision/recall alignment with the confusion matrix.
+- Developed comprehensive automated consistency test suite in `ml/tests/test_difficulty_consistency.py` (6 new unit tests, bringing total ML tests to 22, all passing). Proved that `difficulty.json` is 100% consistent with OOF predictions ($d = 1 - p_{\text{true}}$, 95.24% OOF accuracy, unique IDs, valid fold indices 0..4, and `confusedWith != trueClass` matching raw model argmax).
+- Quantified source and age confounding in `ml/reports/ml-report.md`: added per-source OOF accuracy table (Cohen 98.59%, Figure1 97.14%, Kermany 95.14%), COVID-19 difficulty deciles (96.61% in [0.0, 0.1]), and explicit clinical/educational disclaimer.
+- Documented deferral of Part B in ADR 0005 Addendum to maintain momentum and preserve catalog stability for downstream tasks (T08 question generation), delegating further evaluation to T10.
 - Completed T01: implemented offline ML difficulty pipeline in `ml/` with Python 3.12 and `uv`.
 - Addressed code review findings and resolved catalog bucket starvation in `ml/src/export_catalog.py`: the catalog now contains a rich mix of difficulty levels across all classes (COVID: 172 Easy, 2 Med, 3 Hard; Pneumonia: 201 Easy, 134 Med, 165 Hard; Normal: 412 Easy, 46 Med, 42 Hard; total 1,177 images).
 - Aligned difficulty thresholds with canonical paper standard ($d < 0.34$, $0.34 \le d < 0.68$, $d \ge 0.68$) matching `@radiology/engine`'s `bucketOf()` function, documented in `docs/adr/0005-difficulty-thresholds-and-catalog-policy.md`.
