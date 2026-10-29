@@ -8,7 +8,7 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- none (T01 merged; ready to claim T03)
+- T01b: ML report fixes and data-quality check (`fix/T01b-ml-report`)
 
 ## Done (newest first)
 
