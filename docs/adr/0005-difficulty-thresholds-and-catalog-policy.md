@@ -51,3 +51,19 @@ To ensure complete backward and forward compatibility with `@radiology/contracts
 ### 4. Pluggable Data Ingestion Architecture
 
 `ml/src/build_manifest.py` includes distinct, modular scanner functions (`scan_kermany`, `scan_cohen`, `scan_figure1`, `scan_actualmed`). Adding a new dataset requires only placing raw images in `data/raw/<source>` and re-running the pipeline; all downstream contracts remain unchanged.
+
+---
+
+## Addendum (2026-10-29, Task T01b): Source/Age Confound and Decision on Part B
+
+### 1. Documented Limitation: Source and Age Confounding
+As empirically quantified in `ml/reports/ml-report.md` Section 4:
+- All 177 COVID-19 images originate from adult cohorts (Cohen: 142, Figure1: 35).
+- Pneumonia (4,245) and normal (1,582) images originate from pediatric cohorts (Kermany).
+- The model achieves 98.59% OOF accuracy on Cohen and 97.14% on Figure1; 96.61% of COVID-19 images have difficulty $d \in [0.0, 0.10]$.
+- Consequently, COVID-19 difficulty partly reflects demographic/equipment domain shift rather than pure clinical subtlety.
+
+### 2. Decision on Part B (Optional Expansion)
+- **Decision:** Part B (ingesting adult normal scans from Cohen and Actualmed) is deferred. The project proceeds with the current catalog of 1,177 images to avoid invalidating downstream LLM question generation in T08 and maintain delivery momentum.
+- **Accepted Mitigation:** The catalog retains all available borderline cases (3 Hard, 2 Medium) for COVID-19. The demographic limitation is explicitly disclosed in the ML report and will be evaluated in Task T10 (evaluation and defense preparation).
+

@@ -7,6 +7,7 @@ Operators: **A** = repo owner, **B** = partner. Session start: `/sync`, then `/s
 |---|---|---|---|---|---|---|
 | T00 | A (solo) | none (solo) | merged | chore/T00-bootstrap | #1 | repo root, `.github/`, `docs/`, `packages/*` skeletons |
 | T01 | A (solo) | none (solo) | merged | feat/T01-ml-pipeline | #3 | `ml/`, `docs/DATA-SOURCES.md` |
+| T01b | A (solo) | none (solo) | in-review | fix/T01b-ml-report | #5 | `ml/`, `docs/` |
 | T02 | A (solo) | none (solo) | merged | feat/T02-adaptive-engine | #2 | `packages/engine`, `packages/contracts` (engine shapes), `docs/adr/` |
 | T03 | A (solo) | none (solo) | todo | feat/T03-api-foundation | - | `packages/contracts`, `apps/api` |
 | T04 | A | B | todo | feat/T04-web-foundation | - | `apps/web` |

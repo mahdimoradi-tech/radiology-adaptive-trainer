@@ -18,8 +18,8 @@
 | Class | Precision | Recall | F1-Score | Support |
 |---|---|---|---|---|
 | **COVID-19** | 0.8406 | 0.9831 | 0.9062 | 177 |
-| **Pneumonia** | 0.8839 | 0.9621 | 0.9213 | 1582 |
-| **Normal** | 0.9870 | 0.9475 | 0.9668 | 4245 |
+| **Pneumonia** | 0.9870 | 0.9475 | 0.9668 | 4245 |
+| **Normal** | 0.8839 | 0.9621 | 0.9213 | 1582 |
 
 ---
 
@@ -64,7 +64,9 @@ pneumonia    4245  0.067647  0.189585  0.0  0.0021  0.9998
 
 ---
 
-## 4. Class by Data Source Breakdown
+## 4. Class and Performance by Data Source
+
+### Class by Data Source Breakdown
 
 ```
 source      cohen  figure1  kermany   All
@@ -75,6 +77,30 @@ pneumonia       0        0     4245  4245
 All           142       35     5827  6004
 ```
 
+### Out-of-Fold Accuracy by Data Source
+
+| Source | Samples | Correct | Accuracy |
+|---|---|---|---|
+| **cohen** | 142 | 140 | 98.59% |
+| **figure1** | 35 | 34 | 97.14% |
+| **kermany** | 5827 | 5544 | 95.14% |
+| **All** | 6004 | 5718 | 95.24% |
+
+### COVID-19 Difficulty Distribution (Deciles)
+
+| Decile Range | Count | Percentage |
+|---|---|---|
+| [0.0, 0.1] | 171 | 96.61% |
+| (0.1, 0.2] | 1 | 0.56% |
+| (0.2, 0.3] | 0 | 0.00% |
+| (0.3, 0.4] | 1 | 0.56% |
+| (0.4, 0.5] | 1 | 0.56% |
+| (0.5, 0.6] | 0 | 0.00% |
+| (0.6, 0.7] | 0 | 0.00% |
+| (0.7, 0.8] | 1 | 0.56% |
+| (0.8, 0.9] | 0 | 0.00% |
+| (0.9, 1.0] | 2 | 1.13% |
+
 ---
 
 ## 5. Methodological Limitations and Ethical Disclosures
@@ -82,10 +108,19 @@ All           142       35     5827  6004
 1. **Non-Clinical Educational Tool:** This model and difficulty scores are designed solely
    to structure adaptive practice questions for radiology residents. It is not approved
    or intended for clinical diagnosis, patient triaging, or real medical decision-making.
-2. **Dataset-Shift and Shortcut Risk:**
-   - COVID-19 cases were collected from multinational registries (Cohen and Figure1),
+2. **Dataset-Shift, Age Confound, and Shortcut Risk:**
+   - COVID-19 cases were collected from adult registries (Cohen and Figure1),
      whereas pneumonia and normal scans stem predominantly from pediatric radiographs (Kermany).
+   - Difficulty for COVID-19 partly reflects source differences;
+     do not interpret it as clinical difficulty.
+   - As quantified in Section 4, 96.61% of COVID-19 images fall into the lowest difficulty
+     decile [0.0, 0.1] and achieve 98.59% (Cohen) and 97.14% (Figure1) out-of-fold accuracy.
+     The model can distinguish sources based on demographic features
+     (adult vs pediatric ribcage/lung field morphology) and equipment artifacts.
    - Although the pre-trained DenseNet-121 backbone was frozen to reduce dataset-specific
      over-fitting, differences in patient age and imaging equipment create potential domain shifts.
+   - Catalog sampling policy guarantees that all available medium and hard COVID-19 images
+     are retained in the active pool, preventing adaptive engine starvation
+     (see ADR 0005 in `docs/adr/0005-difficulty-thresholds-and-catalog-policy.md`).
 3. **Out-of-Fold Integrity:** Every single image was evaluated exclusively by a head
    trained on the remaining four folds, ensuring zero training data leakage in difficulty scores.
