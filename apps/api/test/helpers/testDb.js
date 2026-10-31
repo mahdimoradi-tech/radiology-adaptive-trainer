@@ -7,6 +7,7 @@ import { randomUUID } from 'node:crypto';
  */
 export async function setupTestDb(options = {}) {
   const baseUri = options.uri || process.env.MONGODB_URI_TEST || 'mongodb://127.0.0.1:27017';
+  const timeout = options.timeout || 10000;
   const dbName = `radiology_test_${randomUUID().replace(/-/g, '')}`;
 
   const parsedUrl = new URL(baseUri);
@@ -15,7 +16,7 @@ export async function setupTestDb(options = {}) {
 
   try {
     await mongoose.connect(uri, {
-      serverSelectionTimeoutMS: 3000,
+      serverSelectionTimeoutMS: timeout,
     });
   } catch (err) {
     throw new Error(`Start the MongoDB service (failed to connect to ${uri}): ${err.message}`, {

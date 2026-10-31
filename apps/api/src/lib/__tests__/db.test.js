@@ -40,7 +40,7 @@ describe('Database and Test Helper', () => {
   });
 
   it('fails with clear error message when MongoDB service is unreachable', async () => {
-    await expect(setupTestDb({ uri: 'mongodb://127.0.0.1:59999' })).rejects.toThrow(
+    await expect(setupTestDb({ uri: 'mongodb://127.0.0.1:59999', timeout: 1000 })).rejects.toThrow(
       /Start the MongoDB service/,
     );
   });
