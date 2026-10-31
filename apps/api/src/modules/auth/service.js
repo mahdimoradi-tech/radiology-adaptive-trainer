@@ -102,3 +102,41 @@ export async function loginUser({ email, password }, config) {
 export async function findUserById(id) {
   return UserModel.findById(id);
 }
+
+/**
+ * Create a new instructor or promote an existing user to instructor
+ * @param {{ email: string, password?: string, displayName?: string }} data
+ * @param {any} config
+ * @returns {Promise<import('@radiology/contracts').UserPublic>}
+ */
+export async function createOrPromoteInstructor(data, config) {
+  const normalizedEmail = data.email.trim().toLowerCase();
+  let user = await UserModel.findOne({ email: normalizedEmail });
+
+  if (user) {
+    user.role = 'instructor';
+    if (data.displayName) {
+      user.displayName = data.displayName.trim();
+    }
+    if (data.password) {
+      user.passwordHash = await bcrypt.hash(data.password, config.BCRYPT_COST);
+    }
+    await user.save();
+    return toPublicUser(user);
+  }
+
+  if (!data.password) {
+    throw new Error('Password is required when creating a new instructor');
+  }
+
+  const passwordHash = await bcrypt.hash(data.password, config.BCRYPT_COST);
+  user = await UserModel.create({
+    email: normalizedEmail,
+    passwordHash,
+    displayName: data.displayName ? data.displayName.trim() : 'Instructor',
+    language: 'fa',
+    role: 'instructor',
+  });
+
+  return toPublicUser(user);
+}
