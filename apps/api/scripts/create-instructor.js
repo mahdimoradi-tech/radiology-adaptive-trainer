@@ -1,5 +1,7 @@
 import readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
+import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 import { loadEnv } from '../src/config/env.js';
 import { connectDb, disconnectDb } from '../src/lib/db.js';
 import { createOrPromoteInstructor } from '../src/modules/auth/service.js';
@@ -66,6 +68,6 @@ export async function run() {
 }
 
 // Execute if run directly from CLI
-if (process.argv[1] === new URL(import.meta.url).pathname) {
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   run();
 }

@@ -1,3 +1,5 @@
+import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 import { loadEnv } from './config/env.js';
 import { createApp } from './app.js';
 import { logger } from './lib/logger.js';
@@ -24,6 +26,6 @@ async function start() {
 }
 
 // Only start listening if run directly
-if (process.argv[1] === new URL(import.meta.url).pathname) {
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   start();
 }

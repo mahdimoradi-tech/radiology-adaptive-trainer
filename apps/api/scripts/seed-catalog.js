@@ -1,4 +1,6 @@
 import { parseArgs } from 'node:util';
+import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 import { loadEnv } from '../src/config/env.js';
 import { connectDb, disconnectDb } from '../src/lib/db.js';
 import { seedCatalog } from '../src/modules/catalog/seed.js';
@@ -76,6 +78,6 @@ export async function run() {
 }
 
 // Execute if run directly from CLI
-if (process.argv[1] === new URL(import.meta.url).pathname) {
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   run();
 }

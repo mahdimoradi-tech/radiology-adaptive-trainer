@@ -8,10 +8,21 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T01b: ML report fixes and data-quality check (`fix/T01b-ml-report`) — in-review
+- T03: Contracts and API foundation (`feat/T03-api-foundation`) — completed, opening PR
 
 ## Done (newest first)
 
+- Completed T03: built secure Express 5 REST API in `apps/api` on local MongoDB with Mongoose 9 and Zod 4 runtime contracts.
+- Configured Vitest 4 monorepo projects runner (`test.projects: ['packages/*', 'apps/*']`), expanding automated test coverage from 57 to 140 passing tests across 22 test files with 100% pass rate.
+- Implemented cookie-based JWT session authentication (`rt_session`) with HS256, `httpOnly`, `SameSite=Lax`, and 12-hour expiration, including dummy bcrypt hash comparison to eliminate email enumeration timing attacks.
+- Added strict `toPublicUser` mapper preventing `passwordHash` leaks and enforced 8..72 byte password limits (accounting for 2-byte Persian UTF-8 characters).
+- Implemented role-based authorization guard (`requireRole`) distinguishing `resident` (default) and `instructor`, along with terminal prompt script `scripts/create-instructor.js`.
+- Generated deterministic 20-character HMAC-SHA256 opaque `publicId`s (`apps/api/src/modules/catalog/publicId.js`) to decouple image identifiers from dataset sources (Cohen, Figure1, Kermany), completely preventing data-source label leakage to trainees.
+- Built image file serving endpoint (`GET /api/images/:publicId/file`) with path traversal guards, private caching (`Cache-Control: private, max-age=86400`), and strict header redaction (no filenames or dataset clues exposed).
+- Developed idempotent catalog seeder (`scripts/seed-catalog.js`) supporting batch bulk writes of 500, pruning, and automated pool-health capacity warnings for cells with < 6 images.
+- Authored ADR 0007 (API architecture, auth, CSRF stance, dev proxy topology) and ADR 0008 (opaque public IDs and label leakage prevention).
+- Created Postman collection in `docs/postman/radiology-api.postman_collection.json` and comprehensive documentation in `apps/api/README.md`.
+- Synced `.agents/skills/api-conventions/SKILL.md` to reflect the production architecture.
 - Completed T01b: fixed Pneumonia and Normal class swap in `ml/src/report.py` by enforcing `CLASS_ORDER = ["covid19", "pneumonia", "normal"]` and setting `labels=CLASS_ORDER` in `classification_report`.
 - Regenerated `ml/reports/ml-report.md` with verified supports (177 covid, 4245 pneumonia, 1582 normal) and exact precision/recall alignment with the confusion matrix.
 - Developed comprehensive automated consistency test suite in `ml/tests/test_difficulty_consistency.py` (6 new unit tests, bringing total ML tests to 22, all passing). Proved that `difficulty.json` is 100% consistent with OOF predictions ($d = 1 - p_{\text{true}}$, 95.24% OOF accuracy, unique IDs, valid fold indices 0..4, and `confusedWith != trueClass` matching raw model argmax).
@@ -62,6 +73,11 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 - How the npm workspaces monorepo links `@radiology/contracts` to `@radiology/engine`.
 - Why conventional commit enforcement and branch protection were put in place.
 - Structure of the CI workflow and how MongoDB tests run in GitHub Actions.
+- Why cookie-based auth with `httpOnly`, `SameSite=Lax`, and `Content-Type: application/json` enforcement completely mitigates CSRF without synchronization tokens (documented in ADR 0007).
+- How the Vite dev server proxy topology allows same-origin cookie delivery in development without CORS complexity.
+- How HMAC-SHA256 opaque `publicId`s protect against label and source leakage during training sessions (documented in ADR 0008).
+- Why Express 5 requires `req.valid = { body, query, params }` instead of assigning to the read-only getter `req.query`.
+- How isolated test databases (`radiology_test_<uuid>`) prevent test contamination and enable parallel test execution without Docker.
 
 ## Open questions
 
