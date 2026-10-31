@@ -4,3 +4,6 @@
 export const CONTRACTS_VERSION = '0.0.0';
 
 export * from './engine.js';
+export * from './common.js';
+export * from './auth.js';
+export * from './catalog.js';

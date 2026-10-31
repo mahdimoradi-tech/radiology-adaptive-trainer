@@ -8,35 +8,62 @@ description: Conventions for the Express 5 + MongoDB (Mongoose) + Zod REST API i
 ## Layout (module per feature)
 ```
 src/
-  app.js            // builds the Express app (no listen) -> testable with supertest
-  server.js         // loads config, connects Mongo, listens
-  config/env.js     // Zod-validated env (fail fast)
-  middleware/       // errorHandler, validate(schema), requireAuth, requireRole, rateLimit
-  modules/<name>/   // <name>.routes.js, .controller.js, .service.js, .model.js, __tests__/
-  lib/              // logger (pino), httpErrors
-scripts/            // seed-images.js, create-instructor.js, analyze-images.js, generate-questions.js, export/import bank
-seed/               // question-bank.approved.json
+  app.js            // builds Express app (no listen) -> testable with supertest
+  server.js         // loads config, connects Mongo, listens on PORT (4000)
+  config/
+    env.js          // Zod-validated env with pure loadEnv(source)
+    paths.js        // REPO_ROOT and resolveRepoPath helpers
+  middleware/       // errorHandler, validate(schemas), requireAuth, requireRole, jsonOnly
+  modules/
+    health/         // health routes and ping
+    auth/           // routes, controller, service, model, mapper
+    catalog/        // routes, controller, service, model, seed, publicId
+    images/         // authenticated image file serving
+  lib/              // logger (pino/pino-http), httpErrors, db (connectDb/disconnectDb)
+scripts/            // seed-catalog.js, create-instructor.js
+test/
+  helpers/          // testDb.js (isolated database per test file, dropped on teardown)
 ```
-Routes only wire; controllers parse (Zod from `packages/contracts`) and call services; services hold logic and call `packages/engine`; models define schemas/indexes. Dev: `node --watch --env-file=.env src/server.js`. ES modules (`"type": "module"`), no TypeScript, JSDoc on exports.
+Routes only wire; controllers parse (Zod from `packages/contracts`) and call services; services hold business logic and call `packages/engine` or models. Dev: `node --watch --env-file-if-exists=../../.env src/server.js`. ES modules (`"type": "module"`), no TypeScript, JSDoc on exports.
 
 ## Express 5 facts
-Rejected promises in async handlers reach the error middleware automatically. Wildcards need names (`/*splat`). Check the official migration guide for anything else before coding.
+- Rejected promises in async handlers reach the error middleware automatically without extra packages.
+- `req.query` is a read-only getter: never assign to `req.query`. All validated inputs are stored in `req.valid = { body, query, params }`.
+- Wildcards require names (e.g. `/*splat`).
 
 ## Responses and errors
-Success `{ data }` (+ `meta` for pagination). Error `{ error: { code, message, details? } }` with stable machine `code`s; the web app maps `code` to Persian via i18n. HTTP: 400 validation, 401, 403, 404, 409, 429, 500 (log with request id; never leak stacks).
+- Success: `{ data }` (+ `meta` for pagination).
+- Error: `{ error: { code, message, details? } }` with stable machine codes defined in `packages/contracts` (`VALIDATION_ERROR`, `UNAUTHENTICATED`, `FORBIDDEN`, `NOT_FOUND`, `EMAIL_TAKEN`, `INVALID_CREDENTIALS`, `RATE_LIMITED`, `UNSUPPORTED_MEDIA_TYPE`, `INTERNAL_ERROR`).
+- HTTP codes: 400 validation/malformed JSON, 401 unauthenticated / invalid credentials, 403 forbidden role, 404 not found, 409 conflict, 413 payload too large (> 100kb), 415 non-JSON state-changing body, 429 rate-limited, 500 internal server error.
+- Internal errors are logged with request IDs via `pino-http`; stacks and sensitive details are never leaked to clients.
 
-## Auth and security
-Email + password; `bcryptjs` (cost 12). JWT (1h) in an `httpOnly`, `sameSite=lax` cookie (`secure` in production); no tokens in localStorage. Roles: `resident`, `instructor`. Instructors are created by script (`npm run create-instructor`), never by public registration. `helmet`, CORS allow-list from env, `express-rate-limit` on auth and LLM routes, body limit 100kb, Zod on every input, never build Mongo queries from raw user objects. `.env.example` lists every variable with dummy values.
+## Auth, roles and security
+- Email + password; `bcryptjs` (cost 12 in production, 4 in tests); passwords strictly 8..72 bytes (bcrypt truncation boundary; Persian UTF-8 characters are 2 bytes each).
+- JWT (HS256) in `httpOnly`, `SameSite=Lax` cookie `rt_session` with 12 h lifetime (`JWT_TTL_HOURS=12`).
+- Timing attack mitigation: `loginUser` compares against a precomputed dummy hash when an email is not found, returning the identical `INVALID_CREDENTIALS` error.
+- Roles: `resident` (default on register) and `instructor` (only created or promoted via `scripts/create-instructor.js`).
+- CSRF protection: state-changing routes require `Content-Type: application/json` via `jsonOnly` middleware (415 if missing) + `SameSite=Lax` cookies.
+- Dev topology: `apps/web` (Vite) proxies `/api` to Express (`http://127.0.0.1:4000`), ensuring same-origin cookie handling in development.
+
+## Image IDs and label leakage
+- Internal IDs (`cohen_...`, `kermany_...`) contain dataset names, which are confounded with disease classes.
+- Public images use opaque 20-character hexadecimal IDs: `publicId = HMAC-SHA256(PUBLIC_ID_SALT, id).slice(0, 20)`.
+- Image serving URL is `/api/images/:publicId/file` with `Cache-Control: private, max-age=86400` and no filename in headers.
+- Path traversal protection: stored filenames match `^[A-Za-z0-9_.-]+\.jpe?g$` and are served with `dotfiles: 'deny'`.
 
 ## Local MongoDB (Windows, no Docker)
-`MONGODB_URI=mongodb://127.0.0.1:27017/radiology`; tests use `MONGODB_URI_TEST=mongodb://127.0.0.1:27017/radiology_test` and drop it before each suite. CI uses a GitHub Actions MongoDB service container. Never point tests at the dev database.
-
-## Collections
-`users` (email unique, passwordHash, displayName, role, language) · `images` (imageId unique, filename, trueClass, source, difficulty, bucket, probs, confusedWith; index `{trueClass,bucket}`) · `sessions` (userId, index, kind `baseline|adaptive|targeted`, itemIds, plan, config snapshot, startedAt, finishedAt, metrics) · `responses` (sessionId, userId, itemType `image|question`, itemId, imageId, trueClass, answer, correct, bucket, answeredAt, timeMs; unique `{sessionId,itemId}`) · `image_analyses`, `question_bank` (see `question-generation`) · `llm_cache`, `llm_eval_samples` (see `llm-feedback`).
+- Dev: `MONGODB_URI=mongodb://127.0.0.1:27017/radiology`.
+- Tests: `MONGODB_URI_TEST=mongodb://127.0.0.1:27017`. Each test file gets a unique database `radiology_test_<uuid>` via `setupTestDb()`, dropped in `afterAll`.
+- If MongoDB is unreachable, tests fail with: "Start the MongoDB service".
 
 ## Endpoints (`/api`)
-Auth: `POST /auth/register`, `/auth/login`, `/auth/logout`, `GET /me`. Resident: `POST /sessions` (kind baseline|adaptive|targeted, engine builds it) · `GET /sessions` · `GET /sessions/:id` · `PUT /sessions/:id/answers/:itemId` (idempotent) · `POST /sessions/:id/finish` · `GET /sessions/:id/report` · `POST /sessions/:id/explanations` · `POST /sessions/:id/report-narrative` · `GET /progress` · `GET /images/:imageId/file` (auth required). Instructor: `GET /instructor/residents`, `GET /instructor/residents/:id/progress`, `GET /instructor/stats`, `GET /instructor/questions?status=&type=&pair=`, `PATCH /instructor/questions/:id` (approve|reject|edit, note), `GET /instructor/questions/stats`. `GET /health`.
-Rules: answers only for items that belong to the session; the true label/correct option is never sent before the answer is saved (reveal in the review/report); instructor routes require role `instructor`.
+- Health: `GET /api/health` (status, db ping, version).
+- Auth: `POST /api/auth/register`, `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/me`.
+- Images: `GET /api/images/:publicId/file` (cookie auth required).
+- Instructor catalog: `GET /api/catalog/stats`, `GET /api/catalog/images` (paginated, filters `trueClass`, `bucket`, `source`).
 
-## Testing
-Vitest 4 + supertest. Each endpoint: happy path, validation error, auth/role error. Engine is real (pure), LLM is fake. Keep `docs/postman/radiology-api.postman_collection.json` updated (one request per endpoint, login pre-request).
+## Testing and Postman
+- Vitest 4 workspaces project (`vitest run`).
+- Integration tests against real local MongoDB with supertest.
+- Strict leak tests ensure no response reveals `passwordHash`, internal IDs, or ground-truth labels to residents.
+- Postman collection maintained in `docs/postman/radiology-api.postman_collection.json`.
