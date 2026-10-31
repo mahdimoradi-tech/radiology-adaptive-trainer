@@ -6,6 +6,7 @@ import { jsonOnly } from './middleware/jsonOnly.js';
 import { notFound } from './middleware/notFound.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { createHealthRouter } from './modules/health/routes.js';
+import { createAuthRouter } from './modules/auth/routes.js';
 
 /**
  * Express application factory
@@ -46,6 +47,7 @@ export function createApp({ config, logger = defaultLogger }) {
   // Mount API router
   const apiRouter = express.Router();
   apiRouter.use(createHealthRouter());
+  apiRouter.use(createAuthRouter(config));
 
   app.use('/api', apiRouter);
 

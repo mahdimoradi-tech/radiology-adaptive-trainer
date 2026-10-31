@@ -52,6 +52,13 @@ export class ConflictError extends HttpError {
   }
 }
 
+export class InvalidCredentialsError extends HttpError {
+  constructor(message = 'Invalid email or password') {
+    super(401, 'INVALID_CREDENTIALS', message);
+    this.name = 'InvalidCredentialsError';
+  }
+}
+
 export class UnsupportedMediaTypeError extends HttpError {
   constructor(message = 'Content-Type must be application/json') {
     super(415, 'UNSUPPORTED_MEDIA_TYPE', message);
