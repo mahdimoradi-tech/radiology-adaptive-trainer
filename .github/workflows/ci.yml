@@ -18,6 +18,8 @@ jobs:
         image: mongo:8
         ports:
           - 27017:27017
+        env:
+          GLIBC_TUNABLES: 'glibc.pthread.rseq=1'
         options: >-
           --health-cmd mongosh
           --health-interval 5s
