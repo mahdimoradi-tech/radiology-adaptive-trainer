@@ -10,6 +10,8 @@ import { setupTestDb } from '../../../../test/helpers/testDb.js';
 import { createOrPromoteInstructor } from '../../auth/service.js';
 import { seedCatalog } from '../seed.js';
 import { CatalogStatsSchema, CatalogImageAdminSchema } from '@radiology/contracts';
+import { SessionModel } from '../../sessions/model.js';
+import { computePublicId } from '../publicId.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -102,6 +104,24 @@ describe('Catalog endpoints, Image serving, and Leak tests', () => {
       displayName: 'Dr. Resident',
     });
     residentCookie = residentReg.headers['set-cookie'];
+
+    // Create a training session for the resident containing the test images so canViewImage passes
+    await SessionModel.create({
+      userId: residentReg.body.data.user.id,
+      index: 1,
+      kind: 'baseline',
+      status: 'in_progress',
+      size: 60,
+      questions: testEntries.map((entry, idx) => ({
+        no: idx + 1,
+        imageId: entry.id,
+        publicId: computePublicId(entry.id, config.PUBLIC_ID_SALT),
+        trueClass: entry.trueClass,
+        bucket: entry.bucket,
+        difficulty: entry.difficulty,
+        confusedWith: entry.confusedWith,
+      })),
+    });
 
     // Create an instructor user and login to get cookie
     await createOrPromoteInstructor(

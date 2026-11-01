@@ -20,6 +20,7 @@ describe('Sessions API - Creation and Retrieval', () => {
 
   beforeAll(async () => {
     testDb = await setupTestDb();
+    await SessionModel.syncIndexes();
     config = loadEnv({
       NODE_ENV: 'test',
       JWT_SECRET: 'session-secret-jwt-key-with-32-chars-minimum-xyz',

@@ -100,7 +100,10 @@ const SessionSchema = new mongoose.Schema(
 );
 
 SessionSchema.index({ userId: 1, index: 1 }, { unique: true });
-SessionSchema.index({ userId: 1, status: 1 });
+SessionSchema.index(
+  { userId: 1, status: 1 },
+  { unique: true, partialFilterExpression: { status: 'in_progress' } },
+);
 SessionSchema.index({ userId: 1, 'questions.publicId': 1 });
 
 const ResponseSchema = new mongoose.Schema(
