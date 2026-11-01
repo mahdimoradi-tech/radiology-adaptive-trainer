@@ -8,9 +8,25 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T04: Web foundation (React 19, Vite, Tailwind CSS 4 RTL, i18n, auth pages, panel shells) (`feat/T04-web-foundation`) — in-progress (solo)
+- T04: Web foundation (React 19, Vite, Tailwind CSS 4 RTL, i18n, auth pages, panel shells) (`feat/T04-web-foundation`) — completed, opening PR
 
 ## Done (newest first)
+
+- Completed T04: built Persian right-to-left React 19 application in `apps/web` with Vite 8 and Tailwind CSS 4 logical utilities.
+- Configured dev server proxy topology routing `/api` to Express on `127.0.0.1:4000`, enabling seamless same-origin `SameSite=Lax` cookie sessions without cross-origin complexity.
+- Implemented robust UI component kit (`Button`, `Input`, `Field`, `Card`, `Alert`, `Badge`, `Spinner`, `LanguageSwitcher`, `XrayImage`) with 100% test coverage.
+- Created `XrayImage` container enforcing `dir="ltr"` and prohibiting CSS transforms to prevent anatomical diagnostic marker inversion.
+- Configured `i18next` + `react-i18next` with complete Persian (`fa.json`) and English (`en.json`) locale parity and automated parity regression testing.
+- Created `useDirection` hook dynamically maintaining `<html lang dir>` and synchronizing language choice with `localStorage` (`rt_lang`).
+- Implemented localized `fmt` formatting helpers for numbers, percentages, and Jalali dates (`fa-IR-u-ca-persian`).
+- Built typed API client (`lib/api.js`) throwing structured `ApiError`s and mapping backend error codes to i18n keys without leaking raw server text.
+- Implemented TanStack Query 5 auth hooks (`useMe`, `useLogin`, `useRegister`, `useLogout`) with graceful 401 handling.
+- Configured React Router 7 (`createBrowserRouter`) in library mode with `RequireAuth` and `RequireRole` guards, role-based landing redirection, and placeholder shells for upcoming tasks.
+- Built accessible login and registration pages with client-side validation against shared `@radiology/contracts` schemas.
+- Developed resident dashboard shell (`/app`) with 4 cards matching the paper's design and instructor dashboard shell (`/instructor`).
+- Created automated RTL class scanner (`scripts/check-rtl-classes.js`) catching physical directional classes (`ml-`, `mr-`, `pl-`, `pr-`, `text-left`, `text-right`, `scale-x-`) with `rtl-ok` escape hatch and wired into `npm run lint` and CI.
+- Authored ADR 0009 documenting web architecture, RTL enforcement, router choice, and proxy topology; synced `.agents/skills/persian-rtl-ui/SKILL.md`.
+- Expanded automated test coverage from 140 to 190 passing tests across 31 test files with 100% pass rate.
 
 - Merged PR #6 (T03): Contracts and API foundation into `main`.
 
