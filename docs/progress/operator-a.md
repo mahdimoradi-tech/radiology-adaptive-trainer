@@ -8,9 +8,19 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T04: Web foundation (React 19, Vite, Tailwind CSS 4 RTL, i18n, auth pages, panel shells) (`feat/T04-web-foundation`) — completed, opening PR
+- T05: Session API (baseline and adaptive tests, answers, finish, metrics, report, progress) (`feat/T05-session-api`) — in progress (solo)
+  - Step 0 completed: verified real `@radiology/engine` signatures:
+    - `selectFirstTest(imagePool, userConfig = {})`: returns `{ imageIds: string[], plan: { classCounts, bucketCounts, weights, errors: null, shortfalls, deficit } }`
+    - `selectNextTest(imagePool, responseHistory = [], userConfig = {})`: returns `{ imageIds: string[], plan: { classCounts, bucketCounts, weights, errors, shortfalls, deficit } }`
+    - `rates(responses, alpha = 1, classIds = CLASS_IDS)`: returns `Record<ClassId, { tp, fn, fp, tn, fnr, fpr, error }>`
+    - `classWeights(ratesResult, classIds = CLASS_IDS)`: returns `Record<ClassId, number>`
+    - `confusionMatrix(responses, classIds = CLASS_IDS)`: returns `Record<ClassId, Record<ClassId, number>>`
+    - `perClassCounts(responses, classIds = CLASS_IDS, buckets = BUCKETS)`: returns `Record<ClassId, { total, incorrect, byBucket }>`
+    - `isMastered(latestSessionResponses, threshold = 0.8, classIds = CLASS_IDS)`: returns `boolean`
 
 ## Done (newest first)
+
+- Merged PR #7 (T04): Web foundation (React 19, Vite, Tailwind CSS 4 RTL, i18n, auth pages, panel shells) into `main`.
 
 - Completed T04: built Persian right-to-left React 19 application in `apps/web` with Vite 8 and Tailwind CSS 4 logical utilities.
 - Configured dev server proxy topology routing `/api` to Express on `127.0.0.1:4000`, enabling seamless same-origin `SameSite=Lax` cookie sessions without cross-origin complexity.
