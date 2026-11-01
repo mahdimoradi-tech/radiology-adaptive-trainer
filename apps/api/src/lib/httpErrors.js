@@ -46,8 +46,8 @@ export class NotFoundError extends HttpError {
 }
 
 export class ConflictError extends HttpError {
-  constructor(message = 'Conflict', code = 'EMAIL_TAKEN') {
-    super(409, code, message);
+  constructor(message = 'Conflict', code = 'EMAIL_TAKEN', details = undefined) {
+    super(409, code, message, details);
     this.name = 'ConflictError';
   }
 }

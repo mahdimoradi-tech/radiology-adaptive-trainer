@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { createRequireAuth } from '../../middleware/requireAuth.js';
 import { findImageByPublicId, canViewImage } from '../catalog/service.js';
-import { NotFoundError, ForbiddenError } from '../../lib/httpErrors.js';
+import { NotFoundError } from '../../lib/httpErrors.js';
 
 const FILENAME_REGEX = /^[A-Za-z0-9_.-]+\.jpe?g$/;
 
@@ -18,12 +18,8 @@ export function createImagesRouter(config) {
       const { publicId } = req.params;
       const image = await findImageByPublicId(publicId);
 
-      if (!image) {
+      if (!image || !(await canViewImage(req.user, image))) {
         throw new NotFoundError('Image not found');
-      }
-
-      if (!canViewImage(req.user, image)) {
-        throw new ForbiddenError('You are not authorized to view this image');
       }
 
       if (!FILENAME_REGEX.test(image.filename)) {
