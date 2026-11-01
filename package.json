@@ -11,7 +11,7 @@
     "node": ">=24"
   },
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint . && node scripts/check-rtl-classes.js",
     "lint:workspaces": "npm run lint --workspaces --if-present",
     "format": "prettier --write \"**/*.{js,json,md,yml,yaml}\"",
     "format:check": "prettier --check \"**/*.{js,json,md,yml,yaml}\"",
