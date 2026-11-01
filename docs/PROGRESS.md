@@ -10,8 +10,8 @@ Operators: **A** = repo owner, **B** = partner. Session start: `/sync`, then `/s
 | T01b | A (solo) | none (solo) | merged | fix/T01b-ml-report | #5 | `ml/`, `docs/` |
 | T02 | A (solo) | none (solo) | merged | feat/T02-adaptive-engine | #2 | `packages/engine`, `packages/contracts` (engine shapes), `docs/adr/` |
 | T03 | A (solo) | none (solo) | merged | feat/T03-api-foundation | #6 | `packages/contracts`, `apps/api` |
-| T04 | A (solo) | none (solo) | in-review | feat/T04-web-foundation | #7 | `apps/web`, `docs/`, `scripts/` |
-| T05 | A | B | todo | feat/T05-session-api | - | `apps/api` (sessions, metrics) |
+| T04 | A (solo) | none (solo) | merged | feat/T04-web-foundation | #7 | `apps/web`, `docs/`, `scripts/` |
+| T05 | A (solo) | none (solo) | in-review | feat/T05-session-api | #8 | `packages/contracts`, `apps/api`, `docs/` |
 | T06 | B | A | todo | feat/T06-quiz-ui | - | `apps/web` |
 | T07 | A | B | todo | feat/T07-llm-core | - | `apps/api/src/modules/llm`, `apps/web` panels |
 | T08 | B | A | todo | feat/T08-question-generation | - | `apps/api/scripts`, `apps/api/src/modules/bank`, `apps/web` instructor panel |

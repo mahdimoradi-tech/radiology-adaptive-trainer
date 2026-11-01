@@ -9,6 +9,8 @@ import { createHealthRouter } from './modules/health/routes.js';
 import { createAuthRouter } from './modules/auth/routes.js';
 import { createCatalogRouter } from './modules/catalog/routes.js';
 import { createImagesRouter } from './modules/images/routes.js';
+import { createSessionsRouter } from './modules/sessions/routes.js';
+import { createAdminSessionsRouter } from './modules/sessions/admin.routes.js';
 
 /**
  * Express application factory
@@ -52,6 +54,8 @@ export function createApp({ config, logger = defaultLogger }) {
   apiRouter.use(createAuthRouter(config));
   apiRouter.use(createCatalogRouter(config));
   apiRouter.use(createImagesRouter(config));
+  apiRouter.use(createSessionsRouter(config));
+  apiRouter.use(createAdminSessionsRouter(config));
 
   app.use('/api', apiRouter);
 

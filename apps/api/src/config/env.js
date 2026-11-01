@@ -28,6 +28,14 @@ export const EnvSchema = z
         return val === undefined ? true : Boolean(val);
       }, z.boolean())
       .default(true),
+    ALLOW_REPEATS: z
+      .preprocess((val) => {
+        if (typeof val === 'string') {
+          return val.toLowerCase() === 'true' || val === '1';
+        }
+        return val === undefined ? false : Boolean(val);
+      }, z.boolean())
+      .default(false),
     CATALOG_FILE: z.string().default('ml/artifacts/catalog.json'),
     CATALOG_IMAGE_DIR: z.string().default('data/catalog/images'),
   })

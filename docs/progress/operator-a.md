@@ -8,9 +8,28 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T04: Web foundation (React 19, Vite, Tailwind CSS 4 RTL, i18n, auth pages, panel shells) (`feat/T04-web-foundation`) — completed, opening PR
+- T05: Session API (baseline and adaptive tests, answers, finish, metrics, report, progress) (`feat/T05-session-api`) — completed, opening PR
 
 ## Done (newest first)
+
+- Completed T05: built complete training session lifecycle in `apps/api` using `@radiology/engine` and local MongoDB.
+- Defined robust shared schemas in `packages/contracts/src/session.js` (`CreateSessionBodySchema`, `AnswerBodySchema`, `QuestionPublicSchema`, `SessionPublicSchema`, `SessionSummarySchema`, `ClassMetricsSchema`, `ReportItemSchema`, `SessionReportSchema`, `ProgressSchema`, `AdminResidentSummarySchema`) and appended 6 new error codes to `API_ERROR_CODES`.
+- Created `Session` and `Response` Mongoose models with unique compound indexes (`{ userId, index }` and `{ sessionId, questionNo }`) and a partial unique compound index on `{ userId: 1, status: 1 }` for `status: 'in_progress'` preventing double-click session creation races.
+- Built `engine.adapter.js` as the strict single gateway to `@radiology/engine` (`loadPool`, `loadHistory`, `buildTest`, and math helpers).
+- Implemented pure evaluation metrics in `metrics.js` (`computeClassMetrics`, `topConfusions`, `buildReport`, `buildProgress`) with hand-computed arithmetic tests across 3 classes and 12 answers with exact precision, recall, FPR, FNR, F1, and mastery verification.
+- Built session creation and retrieval endpoints (`POST /api/sessions`, `GET /api/sessions`, `GET /api/sessions/:id`) enforcing the single active session rule (409 `SESSION_IN_PROGRESS`) and deterministic seeding (`${userId}:${index}`).
+- Enforced strict privacy boundary: resident questions expose ONLY `{ no, imageUrl, answered, answer }`, completely redacting ground truth labels, buckets, difficulty, sources, and internal IDs. Verified via deep leak scanning.
+- Implemented idempotent question answering (`PUT /api/sessions/:id/questions/:no/answer`) by question number 1..N without exposing correctness or ground truth.
+- Implemented atomic session completion (`POST /api/sessions/:id/finish`) computing metrics once and locking the session against repeat completions (409 `SESSION_ALREADY_FINISHED`).
+- Verified adaptive behavior end to end: simulated a resident with a specific COVID-19 weakness; the engine adapted the next session with expected hand-computed error weights (~0.61 vs 0.34 vs 0.04) and class distribution, with zero image repeats.
+- Implemented resident progress endpoint (`GET /api/progress`) aggregating historical performance into learning curves and identifying top off-diagonal confusion pairs (`covid19 -> pneumonia`).
+- Implemented instructor administration endpoints (`GET /api/admin/users`, `GET /api/admin/users/:userId/progress`, `GET /api/admin/sessions/:id/report`) with role-based guards (403 for residents).
+- Replaced `canViewImage`: residents can only access image file bytes (`/api/images/:publicId/file`) for images present in one of their own sessions; instructors have global access.
+- Executed real catalog verification with PowerShell and mongosh: demonstrated baseline test, answering, finishing, report generation, and adaptive test creation. Documented catalog shortfalls (COVID-19 medium: requested 6, available 2; hard: requested 7, available 1) and confirmed zero-deficit fallback resolution.
+- Authored ADR 0010 documenting session lifecycle, feedback timing, and metrics; updated Postman collection with 10 new requests; synced `api-conventions` skill.
+- Expanded automated test coverage from 190 to 241 passing tests across 39 test files with 100% pass rate.
+
+- Merged PR #7 (T04): Web foundation (React 19, Vite, Tailwind CSS 4 RTL, i18n, auth pages, panel shells) into `main`.
 
 - Completed T04: built Persian right-to-left React 19 application in `apps/web` with Vite 8 and Tailwind CSS 4 logical utilities.
 - Configured dev server proxy topology routing `/api` to Express on `127.0.0.1:4000`, enabling seamless same-origin `SameSite=Lax` cookie sessions without cross-origin complexity.

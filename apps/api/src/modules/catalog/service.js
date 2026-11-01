@@ -1,15 +1,22 @@
 import { ImageModel } from './model.js';
+import { SessionModel } from '../sessions/model.js';
 
 /**
- * Check whether a user is authorized to view an image
- * (Extended in T05 with active session checks)
+ * Check whether a user is authorized to view an image.
+ * Instructors can view any image; residents can view only images included in their sessions.
+ *
  * @param {any} user
  * @param {any} image
- * @returns {boolean}
+ * @returns {Promise<boolean>}
  */
-export function canViewImage(user, image) {
+export async function canViewImage(user, image) {
   if (!user || !image) return false;
-  return true;
+  if (user.role === 'instructor') return true;
+  const exists = await SessionModel.exists({
+    userId: user._id,
+    'questions.publicId': image.publicId,
+  });
+  return Boolean(exists);
 }
 
 /**

@@ -18,6 +18,7 @@ describe('API Environment loader', () => {
     expect(env.BCRYPT_COST).toBe(12);
     expect(env.COOKIE_SECURE).toBe(false);
     expect(env.RATE_LIMIT_ENABLED).toBe(true);
+    expect(env.ALLOW_REPEATS).toBe(false);
     expect(env.catalogFilePath).toContain('catalog.json');
     expect(env.catalogImageDirPath).toContain('images');
   });

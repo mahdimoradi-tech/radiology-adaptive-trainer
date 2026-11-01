@@ -19,6 +19,7 @@ src/
     auth/           // routes, controller, service, model, mapper
     catalog/        // routes, controller, service, model, seed, publicId
     images/         // authenticated image file serving
+    sessions/       // routes, controller, service, model, engine.adapter, metrics, mapper, admin.routes
   lib/              // logger (pino/pino-http), httpErrors, db (connectDb/disconnectDb)
 scripts/            // seed-catalog.js, create-instructor.js
 test/
@@ -59,8 +60,10 @@ Routes only wire; controllers parse (Zod from `packages/contracts`) and call ser
 ## Endpoints (`/api`)
 - Health: `GET /api/health` (status, db ping, version).
 - Auth: `POST /api/auth/register`, `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/me`.
-- Images: `GET /api/images/:publicId/file` (cookie auth required).
-- Instructor catalog: `GET /api/catalog/stats`, `GET /api/catalog/images` (paginated, filters `trueClass`, `bucket`, `source`).
+- Images: `GET /api/images/:publicId/file` (cookie auth required; resident limited to own session images, instructor global).
+- Sessions: `POST /api/sessions`, `GET /api/sessions`, `GET /api/sessions/:id`, `PUT /api/sessions/:id/questions/:no/answer`, `POST /api/sessions/:id/finish`, `GET /api/sessions/:id/report`.
+- Progress: `GET /api/progress`.
+- Instructor admin: `GET /api/catalog/stats`, `GET /api/catalog/images`, `GET /api/admin/users`, `GET /api/admin/users/:userId/progress`, `GET /api/admin/sessions/:id/report`.
 
 ## Testing and Postman
 - Vitest 4 workspaces project (`vitest run`).
