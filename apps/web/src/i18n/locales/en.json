@@ -1,0 +1,88 @@
+{
+  "app": {
+    "name": "Radiology Adaptive Trainer",
+    "tagline": "Diagnostic practice on chest radiographs"
+  },
+  "nav": {
+    "home": "Home",
+    "tests": "Tests",
+    "progress": "My Progress",
+    "education": "Education",
+    "review": "Question Review",
+    "residents": "Residents",
+    "catalog": "Image Catalog",
+    "logout": "Logout",
+    "language": "Language"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "displayName": "Display Name",
+    "submitLogin": "Sign In",
+    "submitRegister": "Create Account",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "passwordHint": "At least 8 characters"
+  },
+  "home": {
+    "welcome": "Welcome, {{name}}",
+    "startTest": "Start Test",
+    "startTestDesc": "Adaptive test tailored to your diagnostic error pattern",
+    "reviewTests": "Review Tests",
+    "reviewTestsDesc": "View completed tests and answer analyses",
+    "education": "Education",
+    "educationDesc": "Review teaching cases and radiology reference guides",
+    "profile": "Profile",
+    "profileDesc": "View learning metrics and account details",
+    "comingSoon": "Coming Soon"
+  },
+  "instructor": {
+    "title": "Instructor Panel",
+    "subtitle": "Resident oversight, question bank review, and catalog monitoring",
+    "reviewTitle": "AI Question Review",
+    "reviewDesc": "Approve or reject Gemini-generated questions",
+    "residentsTitle": "Resident Performance",
+    "residentsDesc": "Track resident progress and diagnostic error distributions",
+    "catalogTitle": "Image & Difficulty Catalog",
+    "catalogDesc": "Monitor dataset distribution and classification strata"
+  },
+  "errors": {
+    "VALIDATION_ERROR": "The submitted information is invalid.",
+    "EMAIL_TAKEN": "This email is already registered.",
+    "INVALID_CREDENTIALS": "Incorrect email or password.",
+    "UNAUTHENTICATED": "Please log in to continue.",
+    "FORBIDDEN": "Access to this resource is forbidden.",
+    "NOT_FOUND": "The requested item was not found.",
+    "RATE_LIMITED": "Too many attempts. Please try again in a few minutes.",
+    "UNSUPPORTED_MEDIA_TYPE": "Invalid request content type.",
+    "NETWORK": "Could not connect to the server.",
+    "INTERNAL_ERROR": "An unexpected error occurred."
+  },
+  "disclaimer": {
+    "educational": "This platform is strictly for education and not for clinical diagnosis."
+  },
+  "classes": {
+    "covid19": "COVID-19",
+    "pneumonia": "Pneumonia",
+    "normal": "Normal"
+  },
+  "buckets": {
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard"
+  },
+  "common": {
+    "loading": "Loading…",
+    "retry": "Try Again",
+    "back": "Back",
+    "notFound": "Page Not Found",
+    "forbidden": "Access Forbidden",
+    "pageNotFoundDesc": "The page you are looking for does not exist or has been moved.",
+    "forbiddenDesc": "You do not have permission to view this page.",
+    "comingInTask": "This feature will be implemented in task {{task}}.",
+    "roleResident": "Resident",
+    "roleInstructor": "Instructor"
+  }
+}
