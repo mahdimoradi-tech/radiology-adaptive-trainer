@@ -29,6 +29,7 @@ Configured in `.env` at the repository root:
 | `COOKIE_SECURE`      | `boolean` | `false`                               | Whether cookies require HTTPS                       |
 | `CORS_ORIGIN`        | `string`  | `http://127.0.0.1:5173`               | Allowed CORS origin (empty = no CORS)               |
 | `RATE_LIMIT_ENABLED` | `boolean` | `true`                                | Rate limiting for authentication endpoints          |
+| `ALLOW_REPEATS`      | `boolean` | `false`                               | Allow question repeats across tests when exhausted  |
 | `CATALOG_FILE`       | `string`  | `ml/artifacts/catalog.json`           | Path to verified catalog JSON                       |
 | `CATALOG_IMAGE_DIR`  | `string`  | `data/catalog/images`                 | Path to catalog JPEG images                         |
 
@@ -127,12 +128,28 @@ Base path: `/api`
 
 ### Images
 
-- `GET /api/images/:publicId/file` — Serve raw JPEG image bytes (authenticated)
+- `GET /api/images/:publicId/file` — Serve raw JPEG image bytes (authenticated; residents only for images in their own sessions, instructors global)
+
+### Resident Training Sessions
+
+- `POST /api/sessions` — Create a new test session (baseline or adaptive, body: `{ size: 45..120 }`)
+- `GET /api/sessions` — List own sessions (newest first, paginated)
+- `GET /api/sessions/:id` — Get full session with questions (`{ no, imageUrl, answered, answer }`)
+- `PUT /api/sessions/:id/questions/:no/answer` — Submit answer for question `no` (`{ answer, timeMs? }`)
+- `POST /api/sessions/:id/finish` — Finish session, trigger metrics calculation, and receive report
+- `GET /api/sessions/:id/report` — View performance report for a finished session
+
+### Resident Progress
+
+- `GET /api/progress` — View learning trajectory across all finished sessions with top error confusion pairs
 
 ### Instructor Only
 
 - `GET /api/catalog/stats` — Aggregated catalog distribution counts
 - `GET /api/catalog/images` — Paginated catalog list with filters (`page`, `pageSize`, `trueClass`, `bucket`, `source`)
+- `GET /api/admin/users` — Paginated resident summary list (`sessionsFinished`, `lastAccuracy`, `lastActiveAt`)
+- `GET /api/admin/users/:userId/progress` — View progress trajectory for any resident
+- `GET /api/admin/sessions/:id/report` — View report for any finished session
 
 ---
 
