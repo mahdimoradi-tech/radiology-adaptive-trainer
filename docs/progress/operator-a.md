@@ -8,9 +8,11 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T03: Contracts and API foundation (`feat/T03-api-foundation`) — completed, opening PR
+- T04: Web foundation (React 19, Vite, Tailwind CSS 4 RTL, i18n, auth pages, panel shells) (`feat/T04-web-foundation`) — in-progress (solo)
 
 ## Done (newest first)
+
+- Merged PR #6 (T03): Contracts and API foundation into `main`.
 
 - Completed T03: built secure Express 5 REST API in `apps/api` on local MongoDB with Mongoose 9 and Zod 4 runtime contracts.
 - Configured Vitest 4 monorepo projects runner (`test.projects: ['packages/*', 'apps/*']`), expanding automated test coverage from 57 to 140 passing tests across 22 test files with 100% pass rate.
