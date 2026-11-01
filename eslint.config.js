@@ -12,6 +12,7 @@ export default [
       'ml/**',
       'node_modules/**',
       '.git/**',
+      'apps/web/dist/**',
     ],
   },
   js.configs.recommended,
@@ -26,6 +27,19 @@ export default [
     },
     rules: {
       'no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+    },
+  },
+  {
+    files: ['apps/web/**/*.{js,jsx}'],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+      },
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
     },
   },
   prettier,

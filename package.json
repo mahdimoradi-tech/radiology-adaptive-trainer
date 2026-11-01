@@ -11,7 +11,8 @@
     "node": ">=24"
   },
   "scripts": {
-    "lint": "eslint .",
+    "dev": "concurrently -n \"api,web\" -c \"blue,green\" \"npm run dev -w @radiology/api\" \"npm run dev -w @radiology/web\"",
+    "lint": "eslint . && node scripts/check-rtl-classes.js",
     "lint:workspaces": "npm run lint --workspaces --if-present",
     "format": "prettier --write \"**/*.{js,json,md,yml,yaml}\"",
     "format:check": "prettier --check \"**/*.{js,json,md,yml,yaml}\"",
@@ -24,10 +25,12 @@
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
     "@eslint/js": "^10.0.1",
+    "concurrently": "^10.0.6",
     "eslint": "^10.13.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.13.0",
     "husky": "^9.1.7",
+    "jsdom": "^26.1.0",
     "lint-staged": "^17.6.0",
     "prettier": "^3.9.10",
     "vitest": "^4.1.12"

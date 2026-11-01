@@ -9,8 +9,8 @@ Operators: **A** = repo owner, **B** = partner. Session start: `/sync`, then `/s
 | T01 | A (solo) | none (solo) | merged | feat/T01-ml-pipeline | #3 | `ml/`, `docs/DATA-SOURCES.md` |
 | T01b | A (solo) | none (solo) | merged | fix/T01b-ml-report | #5 | `ml/`, `docs/` |
 | T02 | A (solo) | none (solo) | merged | feat/T02-adaptive-engine | #2 | `packages/engine`, `packages/contracts` (engine shapes), `docs/adr/` |
-| T03 | A (solo) | none (solo) | in-review | feat/T03-api-foundation | #6 | `packages/contracts`, `apps/api` |
-| T04 | A | B | todo | feat/T04-web-foundation | - | `apps/web` |
+| T03 | A (solo) | none (solo) | merged | feat/T03-api-foundation | #6 | `packages/contracts`, `apps/api` |
+| T04 | A (solo) | none (solo) | in-review | feat/T04-web-foundation | #7 | `apps/web`, `docs/`, `scripts/` |
 | T05 | A | B | todo | feat/T05-session-api | - | `apps/api` (sessions, metrics) |
 | T06 | B | A | todo | feat/T06-quiz-ui | - | `apps/web` |
 | T07 | A | B | todo | feat/T07-llm-core | - | `apps/api/src/modules/llm`, `apps/web` panels |
