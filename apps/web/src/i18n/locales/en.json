@@ -178,6 +178,21 @@
   "disclaimer": {
     "educational": "This platform is strictly for education and not for clinical diagnosis."
   },
+  "llm": {
+    "sourceLlm": "AI Generated",
+    "sourceCache": "Cached",
+    "sourceFallback": "Template",
+    "draft": "Draft",
+    "narrativeTitle": "Educational Feedback & Study Insights",
+    "explanationTitle": "Diagnostic Guidance",
+    "strengths": "Strengths",
+    "weaknesses": "Areas to Improve",
+    "patterns": "Diagnostic Patterns",
+    "recommendations": "Recommendations",
+    "whatToLookFor": "Key radiological signs:",
+    "whyConfused": "Why it might be confused:",
+    "tip": "Educational tip:"
+  },
   "classes": {
     "covid19": "COVID-19",
     "pneumonia": "Pneumonia",

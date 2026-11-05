@@ -178,6 +178,21 @@
   "disclaimer": {
     "educational": "این سامانه فقط برای آموزش است و جایگزین تشخیص بالینی نیست."
   },
+  "llm": {
+    "sourceLlm": "تولید شده با هوش مصنوعی",
+    "sourceCache": "ذخیره‌شده",
+    "sourceFallback": "قالب ثابت",
+    "draft": "پیش‌نویس",
+    "narrativeTitle": "تحلیل آموزشی و راهنمای یادگیری",
+    "explanationTitle": "راهنمای تشخیصی خطای سؤال",
+    "strengths": "نقاط قوت",
+    "weaknesses": "زمینه‌های نیازمند تمرین",
+    "patterns": "الگوی تشخیص",
+    "recommendations": "توصیه‌های آموزشی",
+    "whatToLookFor": "نشانه‌های کلیدی در تصویر:",
+    "whyConfused": "علت احتمالی اشتباه:",
+    "tip": "نکته آموزشی:"
+  },
   "classes": {
     "covid19": "کووید-۱۹",
     "pneumonia": "ذات‌الریه",

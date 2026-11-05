@@ -15,6 +15,7 @@ import {
 } from '../../components/ui/index.js';
 import { fmt } from '../../lib/format.js';
 import { ApiError } from '../../lib/api.js';
+import { QuestionExplanationPanel } from '../../features/llm/QuestionExplanationPanel.jsx';
 
 /**
  * Filter options for review items
@@ -351,8 +352,12 @@ export function ReviewPage({ extra = null }) {
                   </div>
                 </div>
 
-                {/* Extra slot reserved for AI/LLM explanations (T07) */}
-                {extra && <div className="mt-4">{extra}</div>}
+                {/* Extra slot or default AI/LLM diagnostic explanation for wrong answers */}
+                {extra ? (
+                  <div className="mt-4">{extra}</div>
+                ) : status === 'incorrect' ? (
+                  <QuestionExplanationPanel sessionId={sessionId} questionNo={currentItem.no} />
+                ) : null}
               </CardContent>
 
               {/* Prev / Next Footer */}
