@@ -18,6 +18,10 @@
     "analysis:status": "node --env-file-if-exists=../../.env scripts/analysis-status.js",
     "analysis:export": "node --env-file-if-exists=../../.env scripts/analysis-export.js",
     "analysis:import": "node --env-file-if-exists=../../.env scripts/analysis-import.js",
+    "questions:generate": "node --env-file-if-exists=../../.env scripts/questions-generate.js",
+    "questions:status": "node --env-file-if-exists=../../.env scripts/questions-status.js",
+    "bank:export": "node --env-file-if-exists=../../.env scripts/bank-export.js",
+    "bank:import": "node --env-file-if-exists=../../.env scripts/bank-import.js",
     "test": "vitest run",
     "lint": "eslint .",
     "build": "node -e \"console.log('no build')\""
