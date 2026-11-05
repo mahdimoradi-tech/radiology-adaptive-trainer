@@ -9,6 +9,7 @@ import { LoginPage } from '../pages/auth/LoginPage.jsx';
 import { RegisterPage } from '../pages/auth/RegisterPage.jsx';
 import { ResidentHomePage } from '../pages/resident/ResidentHomePage.jsx';
 import { TestsPage } from '../pages/resident/TestsPage.jsx';
+import { QuizPage } from '../pages/resident/QuizPage.jsx';
 import { InstructorHomePage } from '../pages/instructor/InstructorHomePage.jsx';
 import { ForbiddenPage } from '../pages/system/ForbiddenPage.jsx';
 import { NotFoundPage } from '../pages/system/NotFoundPage.jsx';
@@ -59,7 +60,7 @@ export const router = createBrowserRouter([
           { path: 'tests', element: <TestsPage /> },
           {
             path: 'tests/:sessionId',
-            element: <PlaceholderPage titleKey="nav.tests" task="T06" />,
+            element: <QuizPage />,
           },
           {
             path: 'reports/:sessionId',
