@@ -14,7 +14,7 @@ Operators: **A** = repo owner, **B** = partner. Session start: `/sync`, then `/s
 | T05 | A (solo) | none (solo) | merged | feat/T05-session-api | #8 | `packages/contracts`, `apps/api`, `docs/` |
 | T06 | A (solo) | none (solo) | merged | feat/T06-resident-ui | #10 | `apps/web`, `docs/` |
 | T07 | A (solo) | none (solo) | merged | feat/T07-llm-core | #11 | `packages/contracts`, `apps/api`, `apps/web`, `docs/` |
-| T08a | A (solo) | none (solo) | in-progress | feat/T08a-image-analysis | - | `packages/contracts`, `apps/api`, `docs/` |
+| T08a | A (solo) | none (solo) | in-review | feat/T08a-image-analysis | #12 | `packages/contracts`, `apps/api`, `docs/` |
 | T08b | A (solo) | none (solo) | todo | feat/T08b-question-generation | - | `apps/api`, `apps/web`, `docs/` |
 | T09 | A + B | B / A | todo | feat/T09-targeted-practice | - | engine, api, web |
 | T10 | A (sim) + B (LLM) | B / A | todo | docs/T10-evaluation | - | `docs/evaluation/`, scripts |
