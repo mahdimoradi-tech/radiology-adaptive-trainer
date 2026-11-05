@@ -16,7 +16,8 @@
  */
 
 import { parseArgs } from 'node:util';
-import { resolve, dirname, fileURLToPath } from 'node:path';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { loadEnv } from '../src/config/env.js';
 import { connectDb, disconnectDb } from '../src/lib/db.js';
 import { GeminiProvider } from '../src/modules/llm/gemini.provider.js';

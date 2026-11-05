@@ -9,7 +9,8 @@
 
 import { parseArgs } from 'node:util';
 import { writeFile, mkdir } from 'node:fs/promises';
-import { resolve, dirname, fileURLToPath } from 'node:path';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { loadEnv } from '../src/config/env.js';
 import { connectDb, disconnectDb } from '../src/lib/db.js';
 import { ImageModel } from '../src/modules/catalog/model.js';

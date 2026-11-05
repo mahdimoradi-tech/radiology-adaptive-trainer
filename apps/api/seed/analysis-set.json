@@ -1,0 +1,842 @@
+[
+  {
+    "imageId": "cohen_923678e4f442",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_4ee0dc3abb90",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_39e65f02035e",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_3fde12107816",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_09e0483a0391",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_a320d544fb26",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_2691e407ec4c",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_cb3a1b8e176a",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_3c176b54f4d3",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_e0459a273e41",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_db42364c86f8",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_36c8beb23ce8",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_d4441e030c98",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_0ffc08867ba2",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_9f43d7fb945f",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_ff583f614574",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_17419b8e04fd",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_6e4af6a34efc",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_1d23f9b648f8",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_94429b286561",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_8391f4ff6731",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_a5eb82134592",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_e63182002f41",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_7d68fcce652c",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_15864ed6ed5d",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_d6d1acd58043",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_e4a51aa0e239",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "cohen_4c18a8e06199",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "stratum": "covid19:easy:cohen"
+  },
+  {
+    "imageId": "figure1_5ec6291b214d",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "figure1",
+    "stratum": "covid19:easy:figure1"
+  },
+  {
+    "imageId": "figure1_5008d0599b0a",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "figure1",
+    "stratum": "covid19:easy:figure1"
+  },
+  {
+    "imageId": "figure1_ab8ebc97d663",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "figure1",
+    "stratum": "covid19:easy:figure1"
+  },
+  {
+    "imageId": "figure1_fa40fc3e9f43",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "figure1",
+    "stratum": "covid19:easy:figure1"
+  },
+  {
+    "imageId": "figure1_2b58d3e56064",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "figure1",
+    "stratum": "covid19:easy:figure1"
+  },
+  {
+    "imageId": "figure1_e11edc40504b",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "figure1",
+    "stratum": "covid19:easy:figure1"
+  },
+  {
+    "imageId": "figure1_82ac3a2cd19a",
+    "trueClass": "covid19",
+    "bucket": "easy",
+    "source": "figure1",
+    "stratum": "covid19:easy:figure1"
+  },
+  {
+    "imageId": "cohen_81efbbd4f54f",
+    "trueClass": "covid19",
+    "bucket": "medium",
+    "source": "cohen",
+    "stratum": "covid19:medium:cohen"
+  },
+  {
+    "imageId": "figure1_83945123ceb8",
+    "trueClass": "covid19",
+    "bucket": "medium",
+    "source": "figure1",
+    "stratum": "covid19:medium:figure1"
+  },
+  {
+    "imageId": "cohen_04819091c13c",
+    "trueClass": "covid19",
+    "bucket": "hard",
+    "source": "cohen",
+    "stratum": "covid19:hard:cohen"
+  },
+  {
+    "imageId": "cohen_3b6af5806033",
+    "trueClass": "covid19",
+    "bucket": "hard",
+    "source": "cohen",
+    "stratum": "covid19:hard:cohen"
+  },
+  {
+    "imageId": "figure1_942c339e035c",
+    "trueClass": "covid19",
+    "bucket": "hard",
+    "source": "figure1",
+    "stratum": "covid19:hard:figure1"
+  },
+  {
+    "imageId": "kermany_c534e711c18f",
+    "trueClass": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "pneumonia:hard:kermany"
+  },
+  {
+    "imageId": "kermany_b99f11175096",
+    "trueClass": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "pneumonia:hard:kermany"
+  },
+  {
+    "imageId": "kermany_947183fb9bac",
+    "trueClass": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "pneumonia:hard:kermany"
+  },
+  {
+    "imageId": "kermany_73fcf020e783",
+    "trueClass": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "pneumonia:hard:kermany"
+  },
+  {
+    "imageId": "kermany_6cceb3bfc4a8",
+    "trueClass": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "pneumonia:hard:kermany"
+  },
+  {
+    "imageId": "kermany_a322ab2f81c7",
+    "trueClass": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "pneumonia:hard:kermany"
+  },
+  {
+    "imageId": "kermany_ff2ada893876",
+    "trueClass": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "pneumonia:hard:kermany"
+  },
+  {
+    "imageId": "kermany_95ba63d717b7",
+    "trueClass": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "pneumonia:hard:kermany"
+  },
+  {
+    "imageId": "kermany_7e2cebb068c0",
+    "trueClass": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "pneumonia:hard:kermany"
+  },
+  {
+    "imageId": "kermany_da9441f2f668",
+    "trueClass": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "pneumonia:hard:kermany"
+  },
+  {
+    "imageId": "kermany_e2743ee327e3",
+    "trueClass": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "pneumonia:hard:kermany"
+  },
+  {
+    "imageId": "kermany_52eefbcae1f5",
+    "trueClass": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "pneumonia:hard:kermany"
+  },
+  {
+    "imageId": "kermany_a74d37ba395a",
+    "trueClass": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "pneumonia:hard:kermany"
+  },
+  {
+    "imageId": "kermany_bf01d2ebf5f9",
+    "trueClass": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "pneumonia:hard:kermany"
+  },
+  {
+    "imageId": "kermany_dec5d857674e",
+    "trueClass": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "pneumonia:medium:kermany"
+  },
+  {
+    "imageId": "kermany_34d75d9243ef",
+    "trueClass": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "pneumonia:medium:kermany"
+  },
+  {
+    "imageId": "kermany_96baa5bdb545",
+    "trueClass": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "pneumonia:medium:kermany"
+  },
+  {
+    "imageId": "kermany_0af95ae084eb",
+    "trueClass": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "pneumonia:medium:kermany"
+  },
+  {
+    "imageId": "kermany_6007c3945a45",
+    "trueClass": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "pneumonia:medium:kermany"
+  },
+  {
+    "imageId": "kermany_c7719fdc45f9",
+    "trueClass": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "pneumonia:medium:kermany"
+  },
+  {
+    "imageId": "kermany_7f0eda89dd7c",
+    "trueClass": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "pneumonia:medium:kermany"
+  },
+  {
+    "imageId": "kermany_1ece9b7cedb1",
+    "trueClass": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "pneumonia:medium:kermany"
+  },
+  {
+    "imageId": "kermany_cedf1a08a387",
+    "trueClass": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "pneumonia:medium:kermany"
+  },
+  {
+    "imageId": "kermany_c1bf9f0b857a",
+    "trueClass": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "pneumonia:medium:kermany"
+  },
+  {
+    "imageId": "kermany_5d6a73a87115",
+    "trueClass": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "pneumonia:medium:kermany"
+  },
+  {
+    "imageId": "kermany_b6d03c9f3329",
+    "trueClass": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "pneumonia:medium:kermany"
+  },
+  {
+    "imageId": "kermany_9e85206347b7",
+    "trueClass": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "pneumonia:medium:kermany"
+  },
+  {
+    "imageId": "kermany_26ebbeba031c",
+    "trueClass": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "pneumonia:easy:kermany"
+  },
+  {
+    "imageId": "kermany_f8e8ed116b0d",
+    "trueClass": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "pneumonia:easy:kermany"
+  },
+  {
+    "imageId": "kermany_321329ff10ad",
+    "trueClass": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "pneumonia:easy:kermany"
+  },
+  {
+    "imageId": "kermany_29710462699d",
+    "trueClass": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "pneumonia:easy:kermany"
+  },
+  {
+    "imageId": "kermany_f36c19cc40ef",
+    "trueClass": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "pneumonia:easy:kermany"
+  },
+  {
+    "imageId": "kermany_8a019be070b3",
+    "trueClass": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "pneumonia:easy:kermany"
+  },
+  {
+    "imageId": "kermany_216a30c1cf24",
+    "trueClass": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "pneumonia:easy:kermany"
+  },
+  {
+    "imageId": "kermany_cc02b7d293a5",
+    "trueClass": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "pneumonia:easy:kermany"
+  },
+  {
+    "imageId": "kermany_49b008fb5f9f",
+    "trueClass": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "pneumonia:easy:kermany"
+  },
+  {
+    "imageId": "kermany_51af744d17c5",
+    "trueClass": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "pneumonia:easy:kermany"
+  },
+  {
+    "imageId": "kermany_6a945c12b3a6",
+    "trueClass": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "pneumonia:easy:kermany"
+  },
+  {
+    "imageId": "kermany_a95b063ca0e3",
+    "trueClass": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "pneumonia:easy:kermany"
+  },
+  {
+    "imageId": "kermany_b4829fa1a3bb",
+    "trueClass": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "pneumonia:easy:kermany"
+  },
+  {
+    "imageId": "kermany_835746a7f8e7",
+    "trueClass": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "normal:hard:kermany"
+  },
+  {
+    "imageId": "kermany_1e054ed36680",
+    "trueClass": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "normal:hard:kermany"
+  },
+  {
+    "imageId": "kermany_e557f9b883d4",
+    "trueClass": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "normal:hard:kermany"
+  },
+  {
+    "imageId": "kermany_f14236763d14",
+    "trueClass": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "normal:hard:kermany"
+  },
+  {
+    "imageId": "kermany_3853a4552e0b",
+    "trueClass": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "normal:hard:kermany"
+  },
+  {
+    "imageId": "kermany_bce64afb70da",
+    "trueClass": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "normal:hard:kermany"
+  },
+  {
+    "imageId": "kermany_c88d24ecb5fe",
+    "trueClass": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "normal:hard:kermany"
+  },
+  {
+    "imageId": "kermany_5dbccab7075e",
+    "trueClass": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "normal:hard:kermany"
+  },
+  {
+    "imageId": "kermany_f751c0926046",
+    "trueClass": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "normal:hard:kermany"
+  },
+  {
+    "imageId": "kermany_d987833373c0",
+    "trueClass": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "normal:hard:kermany"
+  },
+  {
+    "imageId": "kermany_462097a224b7",
+    "trueClass": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "normal:hard:kermany"
+  },
+  {
+    "imageId": "kermany_06c078db11cb",
+    "trueClass": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "normal:hard:kermany"
+  },
+  {
+    "imageId": "kermany_57bafb2909db",
+    "trueClass": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "normal:hard:kermany"
+  },
+  {
+    "imageId": "kermany_77a9eaa89eda",
+    "trueClass": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "stratum": "normal:hard:kermany"
+  },
+  {
+    "imageId": "kermany_fed1e2897a5c",
+    "trueClass": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "normal:medium:kermany"
+  },
+  {
+    "imageId": "kermany_688989c6884e",
+    "trueClass": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "normal:medium:kermany"
+  },
+  {
+    "imageId": "kermany_d45c9ed8961a",
+    "trueClass": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "normal:medium:kermany"
+  },
+  {
+    "imageId": "kermany_5b54ec4420fd",
+    "trueClass": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "normal:medium:kermany"
+  },
+  {
+    "imageId": "kermany_696eea445b9d",
+    "trueClass": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "normal:medium:kermany"
+  },
+  {
+    "imageId": "kermany_3ff940fdef00",
+    "trueClass": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "normal:medium:kermany"
+  },
+  {
+    "imageId": "kermany_b34e96fcb8a3",
+    "trueClass": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "normal:medium:kermany"
+  },
+  {
+    "imageId": "kermany_6e56e8560597",
+    "trueClass": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "normal:medium:kermany"
+  },
+  {
+    "imageId": "kermany_eb95a6fdfc3e",
+    "trueClass": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "normal:medium:kermany"
+  },
+  {
+    "imageId": "kermany_a9c469bdfdde",
+    "trueClass": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "normal:medium:kermany"
+  },
+  {
+    "imageId": "kermany_aa95355c6134",
+    "trueClass": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "normal:medium:kermany"
+  },
+  {
+    "imageId": "kermany_0371451b49cd",
+    "trueClass": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "normal:medium:kermany"
+  },
+  {
+    "imageId": "kermany_6ae5f2350d08",
+    "trueClass": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "stratum": "normal:medium:kermany"
+  },
+  {
+    "imageId": "kermany_5d8327386c4d",
+    "trueClass": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "normal:easy:kermany"
+  },
+  {
+    "imageId": "kermany_1b3ed9c43d43",
+    "trueClass": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "normal:easy:kermany"
+  },
+  {
+    "imageId": "kermany_f90cf048b355",
+    "trueClass": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "normal:easy:kermany"
+  },
+  {
+    "imageId": "kermany_f3e7ed222ac8",
+    "trueClass": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "normal:easy:kermany"
+  },
+  {
+    "imageId": "kermany_a27b104db725",
+    "trueClass": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "normal:easy:kermany"
+  },
+  {
+    "imageId": "kermany_018b2a4f622b",
+    "trueClass": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "normal:easy:kermany"
+  },
+  {
+    "imageId": "kermany_37806d92cd47",
+    "trueClass": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "normal:easy:kermany"
+  },
+  {
+    "imageId": "kermany_3f2f24eb4c7b",
+    "trueClass": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "normal:easy:kermany"
+  },
+  {
+    "imageId": "kermany_13bd089c2562",
+    "trueClass": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "normal:easy:kermany"
+  },
+  {
+    "imageId": "kermany_b6d68f1c3f25",
+    "trueClass": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "normal:easy:kermany"
+  },
+  {
+    "imageId": "kermany_56004f026d78",
+    "trueClass": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "normal:easy:kermany"
+  },
+  {
+    "imageId": "kermany_97441a3bc45e",
+    "trueClass": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "normal:easy:kermany"
+  },
+  {
+    "imageId": "kermany_ada765f9f37e",
+    "trueClass": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "stratum": "normal:easy:kermany"
+  }
+]

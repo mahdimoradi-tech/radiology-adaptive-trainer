@@ -8,9 +8,20 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- None (T07 completed and merged via PR #11; ready for T08a per roadmap).
+- T08a: Image analysis pipeline (offline, quota-aware, resumable) in `packages/contracts`, `apps/api`, `docs/` (branch `feat/T08a-image-analysis`). Claimed solo per `docs/SOLO-MODE.md`.
 
 ## Done (newest first)
+
+- Completed T08a code and test suite: built offline, quota-aware, resumable chest X-ray image analysis pipeline with closed vocabulary and automatic cross-run validation.
+- Defined shared closed vocabulary in `packages/contracts/src/vocabulary.js` (`laterality`, `zones`, `patterns`, `distribution`, `predictedClass`, `certainty`, `imageQuality`) and analysis contracts in `packages/contracts/src/analysis.js` (`AnalysisBatchSchema`, `ImageAnalysisSchema`, `AnalysisValidationSchema`).
+- Built Mongoose models in `apps/api/src/modules/analysis/model.js` (`AnalysisBatch`, `ImageAnalysis`, `AnalysisValidation`) with unique indexes and automatic batch ID assignment.
+- Implemented pure seeded stratified sampler `selectAnalysisSet` in `sampling.js` selecting 120 images (40 per class; oversampling medium/hard for COVID-19, largest remainder by source, 14 hard / 13 med / 13 easy for pneumonia and normal).
+- Implemented batch planner `planBatches` in `planner.js` grouping into mixed-class batches of 6 images, with Run B order reversed-and-rotated.
+- Implemented Prompt A and Prompt B builders in `prompts/v1/` ensuring zero label, source, or catalog ID leakage into prompt text or system instructions.
+- Implemented pure 9-reason validation rules in `validate.js` checking schema validity, quality, label match, clear-lung exclusivity, normal patterns, and non-empty consensus pattern intersection ($A \cap B$).
+- Implemented resumable runner `runner.js` and CLI scripts (`analysis-select`, `analysis-plan`, `analysis-run`, `analysis-validate`, `analysis-status`, `analysis-export`, `analysis-import`).
+- Authored ADR 0013, updated `docs/DATA-SOURCES.md` and `apps/api/README.md`, and synced `question-generation` skill.
+- Expanded automated test coverage with 49 new unit and integration tests across 5 new test files (106 analysis-related tests passing).
 
 - Merged PR #11 (`feat(api,web): llm core, quota guard, cache, kb and feedback panels (T07)`) into `main` with merge commit after all quality gates, green CI, and operator approval.
 

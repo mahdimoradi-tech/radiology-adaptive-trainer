@@ -47,3 +47,6 @@ KIT-README-FA.md
 .postman/
 postman/
 
+# Test artifacts
+apps/api/test-admin-images/
+
