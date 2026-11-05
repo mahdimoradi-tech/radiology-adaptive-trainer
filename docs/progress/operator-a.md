@@ -8,9 +8,11 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T05: Session API (baseline and adaptive tests, answers, finish, metrics, report, progress) (`feat/T05-session-api`) — completed, opening PR
+- None (T05 merged; ready to claim next task)
 
 ## Done (newest first)
+
+- Merged PR #8 (T05): Training session API, adaptive loop, metrics and progress tracking into `main`.
 
 - Completed T05: built complete training session lifecycle in `apps/api` using `@radiology/engine` and local MongoDB.
 - Defined robust shared schemas in `packages/contracts/src/session.js` (`CreateSessionBodySchema`, `AnswerBodySchema`, `QuestionPublicSchema`, `SessionPublicSchema`, `SessionSummarySchema`, `ClassMetricsSchema`, `ReportItemSchema`, `SessionReportSchema`, `ProgressSchema`, `AdminResidentSummarySchema`) and appended 6 new error codes to `API_ERROR_CODES`.
