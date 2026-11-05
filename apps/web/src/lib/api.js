@@ -111,6 +111,12 @@ export function getErrorI18nKey(code) {
     'UNSUPPORTED_MEDIA_TYPE',
     'NETWORK',
     'INTERNAL_ERROR',
+    'SESSION_IN_PROGRESS',
+    'SESSION_NOT_IN_PROGRESS',
+    'SESSION_NOT_FINISHED',
+    'SESSION_ALREADY_FINISHED',
+    'POOL_EXHAUSTED',
+    'QUESTION_NOT_FOUND',
   ];
   return recognizedCodes.includes(code) ? `errors.${code}` : 'errors.INTERNAL_ERROR';
 }
