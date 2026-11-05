@@ -8,9 +8,11 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T07: LLM core (provider abstraction, quota guard, cache, knowledge base, explanations, narrative) in `packages/contracts`, `apps/api`, `apps/web` (branch `feat/T07-llm-core`). Claimed solo per `docs/SOLO-MODE.md`.
+- None (T07 completed and merged via PR #11; ready for T08a per roadmap).
 
 ## Done (newest first)
+
+- Merged PR #11 (`feat(api,web): llm core, quota guard, cache, kb and feedback panels (T07)`) into `main` with merge commit after all quality gates, green CI, and operator approval.
 
 - Completed T07: built comprehensive, quota-safe LLM core, provider abstraction, daily budget guard, anti-hallucination verification, knowledge base, explanations, and narrative feedback panels.
 - Defined shared LLM schemas in `packages/contracts/src/llm.js` (`LLM_MODES`, `LangSchema`, `LlmSourceSchema`, `ExplanationPairSchema`, `ExplanationItemSchema`, `ExplanationsResponseSchema`, `NarrativeSchema`, `NarrativeResponseSchema`, `AdminLlmStatusSchema`).
