@@ -8,9 +8,20 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T08b: Question generation and instructor review panel in `packages/contracts`, `apps/api`, `apps/web`, `docs/` (branch `feat/T08b-question-generation`). Claimed solo per `docs/SOLO-MODE.md`.
+- T08b: Question generation and instructor review panel in `packages/contracts`, `apps/api`, `apps/web`, `docs/` (branch `feat/T08b-question-bank`). Status: in-review. Claimed solo per `docs/SOLO-MODE.md`.
 
 ## Done (newest first)
+
+- Completed T08b: Question generation, question bank, tied-keys validation engine, and instructor review panel.
+  - Defined comprehensive shared contracts in `packages/contracts/src/questionBank.js` with Zod schemas for question types (`finding`, `distribution`, `differential`), statuses (`pending_review`, `approved`, `rejected`), candidate generation outputs, tied-keys options, admin query parameters, audit history, and review statistics.
+  - Built Mongoose models `QuestionBankModel` (`question_bank`) and `QuestionGenAttemptModel` (`question_gen_attempts`) in `apps/api/src/modules/bank/model.js` with stable unique indexes and audit tracking.
+  - Implemented pure validation engine in `apps/api/src/modules/bank/validate.js` with 10 deterministic reason codes: schema validity, exactly 4 unique options, normalized deduplication, bounds check on `correctIndex`, non-empty stem, zero class label leakage in stems, absolute prohibition of digits (0-9, ۰-۹) and percentages (% / ٪), >=60% Persian script ratio, tied-keys consistency with consensus findings/vocabulary, and 300-char rationale cap.
+  - Implemented offline question generation service (`apps/api/src/modules/bank/generate.js`) and prompt (`prompts/v1/generate-questions.js`) using text-only inputs (consensus findings + KB snippets) in batches of up to 8 images, with SHA-1 stable ID idempotency skipping previously generated items at zero API cost.
+  - Created operational CLI scripts: `npm run questions:generate`, `npm run questions:status`, `npm run bank:export` (writing `apps/api/seed/question-bank.approved.json`), and `npm run bank:import`.
+  - Built Express admin endpoints with role `instructor` authorization: `GET /api/admin/questions`, `GET /api/admin/questions/stats`, `GET /api/admin/questions/:id`, `POST /api/admin/questions/:id/approve`, `POST /api/admin/questions/:id/reject`, and `PUT /api/admin/questions/:id` (with audit diff history and reset to `pending_review`). Verified strict resident isolation (HTTP 403 and zero leakage into resident sessions).
+  - Built complete instructor review panel in `apps/web/src/pages/instructor/InstructorReviewPage.jsx` and `features/bank/` components (`BankStatsStrip`, `BankFilterBar`, `BankQuestionList`, `BankQuestionDetail`), featuring split-view image inspection, highlighted correct answers, consensus finding badges, draft KB warnings, full audit history, and rapid keyboard review shortcuts (`A` approve, `R` reject, `J` next, `K` prev) with strictly ZERO bulk actions.
+  - Authored ADR 0013 Addendum, updated Postman collection with 6 new endpoints, updated `apps/api/README.md`, and synced `.agents/skills/question-generation/SKILL.md`.
+  - Expanded automated test coverage across contracts, API validation, generator, portable import/export, admin endpoints, and frontend components, reaching 520 / 520 tests passing across 69 test files (100% green).
 
 - Merged PR #12 (`feat(api,contracts): offline quota-aware image analysis pipeline (T08a)`) into `main` with merge commit after all quality gates, green CI, and operator approval.
 
@@ -158,6 +169,10 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 - How HMAC-SHA256 opaque `publicId`s protect against label and source leakage during training sessions (documented in ADR 0008).
 - Why Express 5 requires `req.valid = { body, query, params }` instead of assigning to the read-only getter `req.query`.
 - How isolated test databases (`radiology_test_<uuid>`) prevent test contamination and enable parallel test execution without Docker.
+- How the "tied-keys" design guarantees that distractor options and correct answers in generated questions strictly reflect closed-vocabulary findings and consensus VLM observations rather than ungrounded LLM hallucinations (documented in ADR 0013 Addendum).
+- Why question generation uses text-only inputs (validated VLM consensus + KB) instead of sending images directly to Gemini, saving bandwidth/quota and preventing multimodal hallucination.
+- How the pure validation engine enforces academic integrity through 10 deterministic criteria (zero digits/percentages, no class label in stem, >=60% Persian script ratio, deduplication).
+- Why bulk approval is strictly prohibited in the instructor review panel and why all approved items bear the honest labeling marker «بازبینی توسط مدرس (غیر بالینی)».
 
 ## Open questions
 

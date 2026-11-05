@@ -45,7 +45,7 @@ KIT-README-FA.md
 
 # Postman desktop local cache
 .postman/
-postman/
+/postman/
 
 # Test artifacts
 apps/api/test-admin-images/

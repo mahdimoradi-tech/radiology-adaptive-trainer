@@ -152,6 +152,25 @@ npm run analysis:import -w @radiology/api
 
 ---
 
+### Question Bank & Instructor Review (T08b)
+
+```powershell
+# Run question generator (dry-run or live)
+npm run questions:generate -w @radiology/api -- --dry-run
+npm run questions:generate -w @radiology/api -- --max-requests 12
+
+# Check question bank status & rejection counts
+npm run questions:status -w @radiology/api
+
+# Export approved bank questions to portable JSON
+npm run bank:export -w @radiology/api
+
+# Import approved bank questions
+npm run bank:import -w @radiology/api
+```
+
+---
+
 ## API Surface
 
 Base path: `/api`
@@ -188,6 +207,12 @@ Base path: `/api`
 - `GET /api/admin/users` — Paginated resident summary list (`sessionsFinished`, `lastAccuracy`, `lastActiveAt`)
 - `GET /api/admin/users/:userId/progress` — View progress trajectory for any resident
 - `GET /api/admin/sessions/:id/report` — View report for any finished session
+- `GET /api/admin/questions` — Paginated question bank list with filters (`status`, `type`, `trueClass`, `confusedWith`, `page`, `pageSize`)
+- `GET /api/admin/questions/stats` — Review panel statistics counts
+- `GET /api/admin/questions/:id` — Full question detail with image URL and AI consensus analysis
+- `POST /api/admin/questions/:id/approve` — Approve question (`{ note? }`)
+- `POST /api/admin/questions/:id/reject` — Reject question (`{ note? }`)
+- `PUT /api/admin/questions/:id` — Edit question and reset status to `pending_review` (`{ stem, options, correctIndex, rationale, note? }`)
 
 ---
 
