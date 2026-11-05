@@ -37,9 +37,11 @@ export class GeminiProvider {
       jsonSchema = z.toJSONSchema(schema);
     }
 
-    // Prepare input payload (supporting text + optional image parts)
+    // Prepare input payload (supporting multimodal parts array, text + optional image parts, or string/object)
     let inputPayload;
-    if (images && images.length > 0) {
+    if (Array.isArray(input)) {
+      inputPayload = input;
+    } else if (images && images.length > 0) {
       const textPart = {
         type: 'text',
         text: typeof input === 'string' ? input : JSON.stringify(input),
@@ -90,6 +92,20 @@ export class GeminiProvider {
         throw new LlmError(`Gemini 429 quota/rate limit: ${err.message}`, {
           code: 'LLM_RATE_LIMIT',
           status: 429,
+          retryable: true,
+          details: err,
+        });
+      }
+
+      const is503 =
+        err?.status === 503 ||
+        String(err?.message || '').includes('503') ||
+        String(err?.message || '').includes('high demand');
+
+      if (is503) {
+        throw new LlmError(`Gemini 503 high demand: ${err.message}`, {
+          code: 'LLM_UNAVAILABLE',
+          status: 503,
           retryable: true,
           details: err,
         });

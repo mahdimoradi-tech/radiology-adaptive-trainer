@@ -53,7 +53,7 @@ export async function run() {
     .filter((r) => r === 'A' || r === 'B');
   const delayMs = values['delay-ms']
     ? parseInt(values['delay-ms'], 10)
-    : config.LLM_MIN_INTERVAL_MS;
+    : Math.max(config.LLM_MIN_INTERVAL_MS, 35000);
   const dryRun = Boolean(values['dry-run']);
   const promptVersion = values['prompt-version'];
 
@@ -105,6 +105,7 @@ export async function run() {
       provider = new GeminiProvider({
         apiKey: config.GEMINI_API_KEY,
         model: config.GEMINI_MODEL,
+        timeoutMs: Math.max(config.LLM_TIMEOUT_MS, 180000),
       });
     }
 

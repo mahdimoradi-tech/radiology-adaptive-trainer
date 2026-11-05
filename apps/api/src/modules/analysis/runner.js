@@ -250,15 +250,16 @@ export async function runAnalysis(opts) {
       requestsMade++;
       // 429 → rate limit or quota exceeded
       if (err instanceof LlmError && err.status === 429) {
+        const isPerDay = String(err.message).toLowerCase().includes('per day');
         const isPerMinute =
           String(err.message).toLowerCase().includes('per minute') ||
           String(err.message).toLowerCase().includes('retry in');
 
-        if (isPerMinute) {
+        if (!isPerDay && isPerMinute) {
           const match = String(err.message).match(/retry in (\d+)s/i);
-          const waitSec = match ? parseInt(match[1], 10) + 2 : 30;
+          const waitSec = match ? parseInt(match[1], 10) + 20 : 45;
           console.log(
-            `  [429 Rate Limit (per-minute)] Waiting ${waitSec}s before retrying batch ${batch.batchId}...`,
+            `  [429 Rate Limit (per-minute)] Backing off ${waitSec}s before retrying batch ${batch.batchId}...`,
           );
           await sleep(waitSec * 1000);
           try {
@@ -278,14 +279,60 @@ export async function runAnalysis(opts) {
             requestsMade++;
           } catch (retryErr) {
             requestsMade++;
-            console.log(`429 quota error on retry — marking day exhausted. ${retryErr.message}`);
-            if (!dryRun) await markExhausted();
-            return { requestsMade, batchesDone, batchesFailed, exitReason: 'QUOTA_429' };
+            const isRetryPerDay = String(retryErr.message).toLowerCase().includes('per day');
+            if (isRetryPerDay) {
+              console.log(
+                `429 daily quota error on retry — marking day exhausted. ${retryErr.message}`,
+              );
+              if (!dryRun) await markExhausted();
+              return { requestsMade, batchesDone, batchesFailed, exitReason: 'QUOTA_429' };
+            }
+            console.log(
+              `429 per-minute limit on retry: ${retryErr.message}. Pausing run cleanly without daily lockout.`,
+            );
+            return { requestsMade, batchesDone, batchesFailed, exitReason: 'RATE_LIMIT_PAUSE' };
           }
         } else {
           console.log(`429 quota error — marking day exhausted. ${err.message}`);
           if (!dryRun) await markExhausted();
           return { requestsMade, batchesDone, batchesFailed, exitReason: 'QUOTA_429' };
+        }
+      } else if (
+        err instanceof LlmError &&
+        (err.status === 503 || err.code === 'LLM_UNAVAILABLE')
+      ) {
+        console.log(`  [503 High Demand] Waiting 12s before retrying batch ${batch.batchId}...`);
+        await sleep(12000);
+        try {
+          const retryResult = await provider.generateJson({
+            promptId: `analysis-${batch.run.toLowerCase()}`,
+            version: promptVersion,
+            system: systemInstruction,
+            input: inputParts,
+            schema: null,
+          });
+          rawText = retryResult.rawText;
+          try {
+            parsed = JSON.parse(rawText);
+          } catch {
+            parsed = retryResult.data;
+          }
+          requestsMade++;
+        } catch (retryErr) {
+          requestsMade++;
+          const errMsg = retryErr instanceof Error ? retryErr.message : String(retryErr);
+          console.error(`  [ERROR] Batch ${batch.batchId} 503 retry error: ${errMsg}`);
+          if (!dryRun) {
+            await BatchModel.updateOne(
+              { batchId: batch.batchId },
+              {
+                $inc: { attempts: 1 },
+                $set: { status: 'failed', lastError: errMsg.slice(0, 500) },
+              },
+            );
+          }
+          batchesFailed++;
+          continue;
         }
       } else {
         // Other error → fail the batch
