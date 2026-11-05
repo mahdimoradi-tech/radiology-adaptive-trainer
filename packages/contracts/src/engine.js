@@ -147,8 +147,8 @@ export const DEFAULT_ENGINE_CONFIG = EngineConfigSchema.parse({});
  * Question bank item status
  * @typedef {'pending_review' | 'approved' | 'rejected'} QuestionStatus
  */
-export const QUESTION_STATUSES = /** @type {const} */ (['pending_review', 'approved', 'rejected']);
-export const QuestionStatusSchema = z.enum(QUESTION_STATUSES);
+const QUESTION_STATUSES = /** @type {const} */ (['pending_review', 'approved', 'rejected']);
+const QuestionStatusSchema = z.enum(QUESTION_STATUSES);
 
 /**
  * Question bank item for targeted practice

@@ -13,6 +13,7 @@ import { QuizPage } from '../pages/resident/QuizPage.jsx';
 import { ReportPage } from '../pages/resident/ReportPage.jsx';
 import { ReviewPage } from '../pages/resident/ReviewPage.jsx';
 import { InstructorHomePage } from '../pages/instructor/InstructorHomePage.jsx';
+import { InstructorReviewPage } from '../pages/instructor/InstructorReviewPage.jsx';
 import { ForbiddenPage } from '../pages/system/ForbiddenPage.jsx';
 import { NotFoundPage } from '../pages/system/NotFoundPage.jsx';
 import { PlaceholderPage } from '../pages/system/PlaceholderPage.jsx';
@@ -88,7 +89,7 @@ export const router = createBrowserRouter([
           { index: true, element: <InstructorHomePage /> },
           {
             path: 'review',
-            element: <PlaceholderPage titleKey="instructor.reviewTitle" task="T08" />,
+            element: <InstructorReviewPage />,
           },
           {
             path: 'residents',
