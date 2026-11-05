@@ -33,6 +33,12 @@ const AnalysisBatchSchema = new mongoose.Schema(
 AnalysisBatchSchema.index({ status: 1 });
 AnalysisBatchSchema.index({ group: 1, run: 1 });
 
+AnalysisBatchSchema.pre('validate', function () {
+  if (!this._id && this.batchId) {
+    this._id = this.batchId;
+  }
+});
+
 export const AnalysisBatchModel =
   mongoose.models.AnalysisBatch ||
   mongoose.model('AnalysisBatch', AnalysisBatchSchema, 'analysis_batches');

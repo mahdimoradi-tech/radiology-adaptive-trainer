@@ -92,11 +92,11 @@ export function validateBatchResponse(parsed, expectedCount) {
 /**
  * @typedef {Object} RunnerOptions
  * @property {object} provider - LLM provider instance (Gemini or Fake)
- * @property {Function} reserveUsageFn - Budget reservation function (from budget.js)
- * @property {Function | null} enforceThrottleFn - Throttle enforcement function (from budget.js)
+ * @property {object} reserveUsageFn - Budget reservation function (from budget.js)
+ * @property {object} enforceThrottleFn - Throttle enforcement function (from budget.js)
  * @property {object} BatchModel - Mongoose model for AnalysisBatch
  * @property {object} AnalysisModel - Mongoose model for ImageAnalysis
- * @property {object} ImageModel - Mongoose model for catalog Images (needs findById().lean())
+ * @property {object} ImageModel - Mongoose model for catalog Images
  * @property {string} imageDir - Absolute path to catalog image directory
  * @property {number} budget - Daily request budget
  * @property {number} [maxRequests=Infinity] - Cap on requests for this invocation
@@ -106,7 +106,6 @@ export function validateBatchResponse(parsed, expectedCount) {
  * @property {boolean} [dryRun=false] - If true: use fake responses, no DB writes
  * @property {string} [model='gemini-3.8-flash'] - Model identifier (for stored metadata)
  * @property {string} [promptVersion='v1']
- * @property {((filePath: string) => Promise<string|null>) | null} [loadImageFn] - Injectable loader (tests)
  */
 
 /**
@@ -124,6 +123,7 @@ export async function runAnalysis(opts) {
     AnalysisModel,
     ImageModel,
     imageDir,
+    loadImageBase64Fn = loadImageBase64,
     budget,
     maxRequests = Infinity,
     maxBatches = Infinity,
@@ -132,11 +132,7 @@ export async function runAnalysis(opts) {
     dryRun = false,
     model = 'gemini-3.8-flash',
     promptVersion = 'v1',
-    loadImageFn = null, // injectable for tests; defaults to loadImageBase64
   } = opts;
-
-  // Resolve the image loader: injected fn takes priority (testing), else disk
-  const _loadImage = loadImageFn ?? ((filePath) => loadImageBase64(filePath));
 
   let requestsMade = 0;
   let batchesDone = 0;
@@ -182,7 +178,8 @@ export async function runAnalysis(opts) {
     let skipBatch = false;
     for (const imageId of batch.imageIds) {
       // Look up the filename from the catalog
-      const imgDoc = await ImageModel.findById(imageId).lean();
+      const imgQuery = ImageModel.findById(imageId);
+      const imgDoc = await (imgQuery?.lean ? imgQuery.lean() : imgQuery);
       if (!imgDoc) {
         console.warn(
           `  [WARN] imageId ${imageId} not found in catalog — skipping batch ${batch.batchId}`,
@@ -193,7 +190,7 @@ export async function runAnalysis(opts) {
       const filePath = resolve(imageDir, imgDoc.filename);
       let b64;
       try {
-        b64 = await _loadImage(filePath);
+        b64 = await loadImageBase64Fn(filePath);
       } catch {
         console.warn(`  [WARN] Could not read ${filePath} — skipping batch ${batch.batchId}`);
         skipBatch = true;

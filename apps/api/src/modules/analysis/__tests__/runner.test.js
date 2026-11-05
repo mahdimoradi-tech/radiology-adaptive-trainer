@@ -18,14 +18,13 @@ import { AnalysisBatchModel, ImageAnalysisModel } from '../model.js';
 // Minimal ImageModel stub for the runner (needs .findById)
 class FakeImageModel {
   constructor(catalog) {
-    this._catalog = catalog; // { [imageId]: { filename: 'somefile.jpg' } }
+    this._catalog = catalog;
   }
-  findById(id) {
-    const doc = this._catalog[id] ? { filename: this._catalog[id].filename } : null;
-    // Return a thenable with .lean() that returns the doc
-    return {
-      lean: () => Promise.resolve(doc),
-    };
+  async findById(id) {
+    if (this._catalog && this._catalog[id]) {
+      return { filename: this._catalog[id].filename };
+    }
+    return { filename: `${id}.jpg` };
   }
 }
 
@@ -93,13 +92,12 @@ function makeOpts(overrides = {}) {
     AnalysisModel: ImageAnalysisModel,
     ImageModel: fakeImageModel,
     imageDir: FAKE_IMAGE_DIR,
+    loadImageBase64Fn: async () => 'dGVzdA==',
     budget: 16,
     delayMs: 0,
     dryRun: true, // dry-run by default to avoid file I/O in most tests
     model: 'gemini-3.8-flash',
     promptVersion: 'v1',
-    // Inject a fake image loader so tests never hit the filesystem
-    loadImageFn: async (_filePath) => 'ZmFrZWJhc2U2NA==', // fake base64
     ...overrides,
   };
 }
@@ -237,29 +235,20 @@ describe('runner — resumability (Test 6)', () => {
   });
 
   it('after simulated kill (--max-batches 1), re-run processes the rest', async () => {
-    // Use DIFFERENT imageIds for each batch so the unique index allows 6+6=12 docs
-    const idsG0 = ['img-0', 'img-1', 'img-2', 'img-3', 'img-4', 'img-5'];
-    const idsG1 = ['img-6', 'img-7', 'img-8', 'img-9', 'img-10', 'img-11'];
-
-    // Build a FakeImageModel that knows all 12 images
-    const allImages = [...idsG0, ...idsG1].reduce((acc, id) => {
-      acc[id] = { filename: `${id}.jpg` };
-      return acc;
-    }, {});
-
-    await AnalysisBatchModel.create(batchDoc({ batchId: 'v1-g00-A', group: 0, imageIds: idsG0 }));
-    await AnalysisBatchModel.create(batchDoc({ batchId: 'v1-g01-A', group: 1, imageIds: idsG1 }));
+    await AnalysisBatchModel.create(batchDoc({ batchId: 'v1-g00-A', group: 0 }));
+    await AnalysisBatchModel.create(
+      batchDoc({
+        batchId: 'v1-g01-A',
+        group: 1,
+        imageIds: ['img-6', 'img-7', 'img-8', 'img-9', 'img-10', 'img-11'],
+      }),
+    );
 
     const provider = new FakeProvider();
     provider.enqueue(goodBatchResponse(6));
 
     // First run: limited to 1 batch
-    const opts = makeOpts({
-      provider,
-      dryRun: false,
-      maxBatches: 1,
-      ImageModel: new FakeImageModel(allImages),
-    });
+    const opts = makeOpts({ provider, dryRun: false, maxBatches: 1 });
     const result1 = await runAnalysis(opts);
     expect(result1.batchesDone).toBe(1);
     expect(result1.exitReason).toBe('CAP_REACHED');
@@ -267,16 +256,12 @@ describe('runner — resumability (Test 6)', () => {
     // Second run: processes the remaining batch
     const provider2 = new FakeProvider();
     provider2.enqueue(goodBatchResponse(6));
-    const opts2 = makeOpts({
-      provider: provider2,
-      dryRun: false,
-      ImageModel: new FakeImageModel(allImages),
-    });
+    const opts2 = makeOpts({ provider: provider2, dryRun: false });
     const result2 = await runAnalysis(opts2);
     expect(result2.batchesDone).toBe(1);
     expect(result2.exitReason).toBe('ALL_DONE');
 
-    // Total ImageAnalysis docs = 6 + 6 = 12 (different imageIds)
+    // Total ImageAnalysis docs = 6 + 6 = 12
     const count = await ImageAnalysisModel.countDocuments();
     expect(count).toBe(12);
   });
@@ -375,12 +360,10 @@ describe('validateBatchResponse', () => {
   });
 
   it('fails when index is out of range', () => {
-    // index=0 fails Zod validation (min 1), reported as SCHEMA_INVALID
-    const bad = { results: [goodItem(0), ...Array.from({ length: 5 }, (_, i) => goodItem(i + 2))] };
+    const bad = { results: [goodItem(7), ...Array.from({ length: 5 }, (_, i) => goodItem(i + 2))] };
     const r = validateBatchResponse(bad, 6);
     expect(r.ok).toBe(false);
-    // Zod catches index < 1 as schema invalid before our range check
-    expect(r.error).toMatch(/Schema invalid|out of range/);
+    expect(r.error).toMatch(/out of range/);
   });
 
   it('fails when indices are duplicated', () => {
