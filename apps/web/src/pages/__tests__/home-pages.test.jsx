@@ -25,7 +25,7 @@ describe('Home Page Shells', () => {
   });
 
   describe('ResidentHomePage', () => {
-    it('renders 4 cards matching the dashboard design and disables start test', () => {
+    it('renders 4 cards matching the dashboard design and enables test actions for T06', () => {
       const mockResident = { id: 'r1', displayName: 'دکتر مرادی', role: 'resident' };
       renderWithClient(<ResidentHomePage />, mockResident);
 
@@ -33,8 +33,11 @@ describe('Home Page Shells', () => {
 
       // Check the 4 cards
       const startTestBtn = screen.getByRole('button', { name: 'شروع آزمون' });
-      expect(startTestBtn).toBeDisabled();
-      expect(screen.getByText('به‌زودی')).toBeInTheDocument();
+      expect(startTestBtn).not.toBeDisabled();
+      expect(screen.getByRole('link', { name: /شروع آزمون/i })).toHaveAttribute(
+        'href',
+        '/app/tests',
+      );
 
       expect(screen.getByRole('heading', { name: 'بازبینی آزمون‌ها' })).toBeInTheDocument();
       expect(screen.getByRole('heading', { name: 'آموزش' })).toBeInTheDocument();

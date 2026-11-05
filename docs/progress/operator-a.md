@@ -8,9 +8,21 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- None (T05 merged; ready to claim next task)
+- T06: Resident training UI (tests list, quiz, report, review) in `apps/web` (branch `feat/T06-resident-ui`). Claimed solo per `docs/SOLO-MODE.md`.
 
 ## Done (newest first)
+
+- Completed T06: built resident training UI (`apps/web`) covering tests overview, interactive quiz, performance report, and question review.
+- Implemented sessions API client and TanStack Query hooks in `features/sessions/` (`keys.js`, `api.js`, `hooks.js`) with optimistic cache updates and rollbacks.
+- Built `TestsPage` (`/app/tests`) supporting test resumption, new test creation with size picker (45, 60, 90, 120), and handling 409 `SESSION_IN_PROGRESS` and `POOL_EXHAUSTED`.
+- Built `QuestionNavigator` with responsive two-column layout (naturally placed on the right in RTL mode) and accessible color/icon status markers.
+- Built `QuizPage` (`/app/tests/:sessionId`) with dark X-ray viewer, 3 fixed options (COVID-19, Pneumonia, Normal), keyboard keys 1/2/3, immediate autosave, response time tracking, and next-image prefetching.
+- Built `FinishDialog` with accessible focus management, modal backdrop, and unanswered question warnings.
+- Built `ReportPage` (`/app/reports/:sessionId`) presenting overall accuracy, 3x3 confusion matrix, one-vs-rest metrics table, difficulty breakdown tables, mastery indicators without hardcoded cutoffs, and pedagogical plan explanations without revealing catalog deficits.
+- Built `ReviewPage` (`/app/reports/:sessionId/review`) with question filter tabs, trainee vs ground truth comparisons, and an `extra` slot for LLM feedback (T07).
+- Authored strict privacy security test `QuizLeak.test.jsx` verifying zero leakage of forbidden diagnostic tokens (`trueClass`, `bucket`, `difficulty`, `confusedWith`, dataset prefixes).
+- Authored ADR 0011 documenting autosave deviation, information hiding, and evaluation review; updated `apps/web/README.md` and synced `persian-rtl-ui` skill.
+- Expanded automated test coverage from 241 to 264 passing tests across 43 test files with 100% pass rate.
 
 - Merged PR #8 (T05): Training session API, adaptive loop, metrics and progress tracking into `main`.
 
