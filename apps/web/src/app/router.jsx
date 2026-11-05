@@ -10,6 +10,7 @@ import { RegisterPage } from '../pages/auth/RegisterPage.jsx';
 import { ResidentHomePage } from '../pages/resident/ResidentHomePage.jsx';
 import { TestsPage } from '../pages/resident/TestsPage.jsx';
 import { QuizPage } from '../pages/resident/QuizPage.jsx';
+import { ReportPage } from '../pages/resident/ReportPage.jsx';
 import { InstructorHomePage } from '../pages/instructor/InstructorHomePage.jsx';
 import { ForbiddenPage } from '../pages/system/ForbiddenPage.jsx';
 import { NotFoundPage } from '../pages/system/NotFoundPage.jsx';
@@ -64,7 +65,7 @@ export const router = createBrowserRouter([
           },
           {
             path: 'reports/:sessionId',
-            element: <PlaceholderPage titleKey="nav.progress" task="T06" />,
+            element: <ReportPage />,
           },
           { path: 'progress', element: <PlaceholderPage titleKey="nav.progress" task="T06" /> },
           { path: 'education', element: <PlaceholderPage titleKey="nav.education" task="T06" /> },
