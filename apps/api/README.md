@@ -16,22 +16,30 @@ Secure REST API backend built with Express 5, MongoDB (Mongoose 9), and Zod 4 ru
 
 Configured in `.env` at the repository root:
 
-| Variable             | Type      | Default                               | Description                                         |
-| -------------------- | --------- | ------------------------------------- | --------------------------------------------------- |
-| `NODE_ENV`           | `string`  | `development`                         | `development`, `production`, or `test`              |
-| `PORT`               | `number`  | `4000`                                | HTTP listening port for Express                     |
-| `MONGODB_URI`        | `string`  | `mongodb://127.0.0.1:27017/radiology` | Local MongoDB connection URI                        |
-| `MONGODB_URI_TEST`   | `string`  | `mongodb://127.0.0.1:27017`           | Base URI for isolated test databases                |
-| `JWT_SECRET`         | `string`  | —                                     | Secret key for JWT signing (>= 32 chars)            |
-| `JWT_TTL_HOURS`      | `number`  | `12`                                  | Session lifetime in hours                           |
-| `PUBLIC_ID_SALT`     | `string`  | —                                     | Salt for HMAC-SHA256 public image IDs (>= 16 chars) |
-| `BCRYPT_COST`        | `number`  | `12`                                  | Bcrypt salt rounds (defaults to 4 in tests)         |
-| `COOKIE_SECURE`      | `boolean` | `false`                               | Whether cookies require HTTPS                       |
-| `CORS_ORIGIN`        | `string`  | `http://127.0.0.1:5173`               | Allowed CORS origin (empty = no CORS)               |
-| `RATE_LIMIT_ENABLED` | `boolean` | `true`                                | Rate limiting for authentication endpoints          |
-| `ALLOW_REPEATS`      | `boolean` | `false`                               | Allow question repeats across tests when exhausted  |
-| `CATALOG_FILE`       | `string`  | `ml/artifacts/catalog.json`           | Path to verified catalog JSON                       |
-| `CATALOG_IMAGE_DIR`  | `string`  | `data/catalog/images`                 | Path to catalog JPEG images                         |
+| Variable                           | Type      | Default                               | Description                                         |
+| ---------------------------------- | --------- | ------------------------------------- | --------------------------------------------------- |
+| `NODE_ENV`                         | `string`  | `development`                         | `development`, `production`, or `test`              |
+| `PORT`                             | `number`  | `4000`                                | HTTP listening port for Express                     |
+| `MONGODB_URI`                      | `string`  | `mongodb://127.0.0.1:27017/radiology` | Local MongoDB connection URI                        |
+| `MONGODB_URI_TEST`                 | `string`  | `mongodb://127.0.0.1:27017`           | Base URI for isolated test databases                |
+| `JWT_SECRET`                       | `string`  | —                                     | Secret key for JWT signing (>= 32 chars)            |
+| `JWT_TTL_HOURS`                    | `number`  | `12`                                  | Session lifetime in hours                           |
+| `PUBLIC_ID_SALT`                   | `string`  | —                                     | Salt for HMAC-SHA256 public image IDs (>= 16 chars) |
+| `BCRYPT_COST`                      | `number`  | `12`                                  | Bcrypt salt rounds (defaults to 4 in tests)         |
+| `COOKIE_SECURE`                    | `boolean` | `false`                               | Whether cookies require HTTPS                       |
+| `CORS_ORIGIN`                      | `string`  | `http://127.0.0.1:5173`               | Allowed CORS origin (empty = no CORS)               |
+| `RATE_LIMIT_ENABLED`               | `boolean` | `true`                                | Rate limiting for authentication endpoints          |
+| `ALLOW_REPEATS`                    | `boolean` | `false`                               | Allow question repeats across tests when exhausted  |
+| `CATALOG_FILE`                     | `string`  | `ml/artifacts/catalog.json`           | Path to verified catalog JSON                       |
+| `CATALOG_IMAGE_DIR`                | `string`  | `data/catalog/images`                 | Path to catalog JPEG images                         |
+| `LLM_MODE`                         | `string`  | `cache-only`                          | Execution mode: `live`, `cache-only`, `fake`        |
+| `LLM_ENABLED`                      | `boolean` | `true`                                | Master switch for LLM feedback features             |
+| `GEMINI_API_KEY`                   | `string`  | —                                     | Google AI Studio API key for Gemini 3.8 Flash       |
+| `GEMINI_MODEL`                     | `string`  | `gemini-3.8-flash`                    | Gemini model identifier                             |
+| `LLM_DAILY_REQUEST_BUDGET`         | `number`  | `16`                                  | Max daily live requests (Pacific day boundary)      |
+| `LLM_MIN_INTERVAL_MS`              | `number`  | `13000`                               | Inter-call throttle spacing in milliseconds         |
+| `LLM_TIMEOUT_MS`                   | `number`  | `60000`                               | Request timeout in milliseconds                     |
+| `LLM_RATE_LIMIT_PER_USER_PER_HOUR` | `number`  | `30`                                  | Per-user hourly rate limit for narrative generation |
 
 ---
 

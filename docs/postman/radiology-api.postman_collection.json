@@ -360,6 +360,65 @@
           }
         }
       ]
+    },
+    {
+      "name": "LLM Feedback & AI",
+      "item": [
+        {
+          "name": "Get Session Explanations",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lang\": \"fa\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sessions/{{sessionId}}/explanations",
+              "host": ["{{baseUrl}}"],
+              "path": ["sessions", "{{sessionId}}", "explanations"]
+            }
+          }
+        },
+        {
+          "name": "Get Report Narrative",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lang\": \"fa\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sessions/{{sessionId}}/report-narrative",
+              "host": ["{{baseUrl}}"],
+              "path": ["sessions", "{{sessionId}}", "report-narrative"]
+            }
+          }
+        },
+        {
+          "name": "Get LLM Status (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/llm/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "llm", "status"]
+            }
+          }
+        }
+      ]
     }
   ]
 }
