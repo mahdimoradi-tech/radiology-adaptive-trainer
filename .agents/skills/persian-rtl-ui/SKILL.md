@@ -30,8 +30,8 @@ Radiographs contain L/R markers: NEVER mirror, flip or rotate them in RTL. Image
 ## Charts (Recharts)
 Time runs left-to-right inside charts (ADR 0009); wrap each chart in `dir="ltr"`; localize labels, tooltips, legends with i18n.
 
-## Quiz and review UX
-Keyboard-operable (arrows select, Enter submits), visible focus, AA contrast, `aria-live` feedback, 44px touch targets. Loading, empty and error states on every data screen. LLM panels: skeleton -> text -> `disclaimer.educational`; generated questions show a small "AI-generated, instructor-approved" badge.
+## Quiz and review UX (ADR 0011)
+Keyboard-operable (radio options selectable via keys 1/2/3, visible focus, AA contrast, 44px touch targets). Two-column desktop layout with navigator placed first in DOM to naturally float right in RTL (`dir="rtl"`). Immediate autosave on option selection with optimistic updates and rollback on failure. Zero information leakage during in-progress exams (`QuizLeak.test.jsx`). Performance review with band labels from `perClassMastered` without hardcoded cutoffs, 3x3 confusion matrix, question filters, and `extra` slot for LLM feedback. Loading, empty and error states on every data screen. LLM panels: skeleton -> text -> `disclaimer.educational`; generated questions show a small "AI-generated, instructor-approved" badge.
 
 ## Testing
 Vitest + React Testing Library + jsdom: render key pages in `fa` and assert `dir="rtl"`; i18n key-parity test; role-guard tests; RTL class scanner regression suite.
