@@ -8,9 +8,23 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T06: Resident training UI (tests list, quiz, report, review) in `apps/web` (branch `feat/T06-resident-ui`). Claimed solo per `docs/SOLO-MODE.md`.
+- T07: LLM core (provider abstraction, quota guard, cache, knowledge base, explanations, narrative) in `packages/contracts`, `apps/api`, `apps/web` (branch `feat/T07-llm-core`). Claimed solo per `docs/SOLO-MODE.md`.
 
 ## Done (newest first)
+
+- Completed T07: built comprehensive, quota-safe LLM core, provider abstraction, daily budget guard, anti-hallucination verification, knowledge base, explanations, and narrative feedback panels.
+- Defined shared LLM schemas in `packages/contracts/src/llm.js` (`LLM_MODES`, `LangSchema`, `LlmSourceSchema`, `ExplanationPairSchema`, `ExplanationItemSchema`, `ExplanationsResponseSchema`, `NarrativeSchema`, `NarrativeResponseSchema`, `AdminLlmStatusSchema`).
+- Implemented pure anti-hallucination guard in `guard.js` normalizing Persian and Arabic-Indic digits to ASCII, detecting percent symbols (`%` and `٪`), and rejecting any unstated numbers not present in the input whitelist (whitelisting '3' for recommendations and '19' for COVID-19).
+- Created uniform provider abstraction (`provider.js`), offline `FakeProvider` with queued outcomes and call inspection, and official `GeminiProvider` using `@google/genai@2.32.0` Interactions API with structured JSON output and 429 quota handling.
+- Implemented daily request budget and throttle in `budget.js` tracking Pacific calendar days (`America/Los_Angeles`), reserving slots via atomic `findOneAndUpdate` in MongoDB (`llm_usage`), spacing calls with 13s inter-call interval (`LLM_MIN_INTERVAL_MS`), and tripping a daily circuit breaker on repeated 429s.
+- Created 6 grounded medical knowledge base markdown files in `apps/api/src/modules/llm/kb/` with `reviewed: false` and empty sources; built keyword-scoring retrieval in `retrieval.js` prioritizing exact pair comparisons.
+- Implemented deterministic Persian and English fallbacks in `fallback.js` for all 6 confusion pairs and report narratives.
+- Built error explanations endpoint `POST /api/sessions/:id/explanations` serving strictly from cache or fallback (never calling Gemini live).
+- Built narrative report endpoint `POST /api/sessions/:id/report-narrative` with per-user rate limiting (30 req/user/hour), cache -> live -> fallback routing, and instructor status endpoint `GET /api/admin/llm/status`.
+- Built portable cache export and import utilities in `portable.js` (`npm run llm:cache:export` and `import`) and checked in clean offline seed `apps/api/seed/llm-cache.portable.json`.
+- Built frontend LLM components in `apps/web/src/features/llm/` (`LlmPanel`, `NarrativePanel`, `QuestionExplanationPanel`) with source badges (AI, Cached, Template), draft badge, educational disclaimer, and skeleton loader; integrated into `ReportPage` and `ReviewPage`.
+- Authored ADR 0012 and `docs/GEMINI-NOTES.md`, updated Postman collection with 3 new LLM endpoints, and synced `llm-feedback` skill.
+- Expanded automated test coverage from 264 to 347 passing tests across 55 test files with 100% pass rate.
 
 - Completed T06: built resident training UI (`apps/web`) covering tests overview, interactive quiz, performance report, and question review.
 - Implemented sessions API client and TanStack Query hooks in `features/sessions/` (`keys.js`, `api.js`, `hooks.js`) with optimistic cache updates and rollbacks.

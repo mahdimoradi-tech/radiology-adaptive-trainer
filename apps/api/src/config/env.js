@@ -38,6 +38,21 @@ export const EnvSchema = z
       .default(false),
     CATALOG_FILE: z.string().default('ml/artifacts/catalog.json'),
     CATALOG_IMAGE_DIR: z.string().default('data/catalog/images'),
+    LLM_MODE: z.enum(['live', 'cache-only', 'fake']).default('cache-only'),
+    LLM_ENABLED: z
+      .preprocess((val) => {
+        if (typeof val === 'string') {
+          return val.toLowerCase() === 'true' || val === '1';
+        }
+        return val === undefined ? true : Boolean(val);
+      }, z.boolean())
+      .default(true),
+    GEMINI_API_KEY: z.string().default(''),
+    GEMINI_MODEL: z.string().default('gemini-3.8-flash'),
+    LLM_DAILY_REQUEST_BUDGET: z.coerce.number().int().min(1).default(16),
+    LLM_MIN_INTERVAL_MS: z.coerce.number().int().min(0).default(13000),
+    LLM_TIMEOUT_MS: z.coerce.number().int().min(1000).default(60000),
+    LLM_RATE_LIMIT_PER_USER_PER_HOUR: z.coerce.number().int().min(1).default(30),
   })
   .refine(
     (env) => {
@@ -49,6 +64,18 @@ export const EnvSchema = z
     {
       message: 'JWT_SECRET cannot be "change-me" in production',
       path: ['JWT_SECRET'],
+    },
+  )
+  .refine(
+    (env) => {
+      if (env.LLM_MODE === 'live' && env.LLM_ENABLED && !env.GEMINI_API_KEY?.trim()) {
+        return false;
+      }
+      return true;
+    },
+    {
+      message: 'GEMINI_API_KEY is required when LLM_MODE is "live" and LLM_ENABLED is true',
+      path: ['GEMINI_API_KEY'],
     },
   );
 

@@ -23,6 +23,14 @@ description: Core spec for all LLM (Gemini) usage in the platform (plain JavaScr
 ## Modes (`LLM_MODE`)
 `live` (call Gemini, cache results) · `cache-only` (never call the network; only stored results; used for demos and offline work) · `fake` (deterministic fixtures; used by ALL tests). `LLM_ENABLED=false` disables LLM panels (fallback templates).
 
+## Quota guard & Throttling (ADR 0012)
+- Real free quota is 5 req/min, 250k tokens/min, 20 requests/day (Pacific day: `America/Los_Angeles`).
+- Hard daily budget: `LLM_DAILY_REQUEST_BUDGET=16` reserved atomically in Mongo collection `llm_usage`.
+- Throttle spacing: `LLM_MIN_INTERVAL_MS=13000` between consecutive live calls across all processes.
+- 429 Handling: wait 65s and retry ONCE; a second 429 marks `exhausted = true` for the Pacific day.
+- Deviation on explanations: Keyed by `(lang, trueClass, userAnswer)` for 6 canonical confusion pairs (not per-image), pre-generated and stored in portable cache (`apps/api/seed/llm-cache.portable.json`). The `/api/sessions/:id/explanations` endpoint serves strictly from cache/fallback and NEVER calls Gemini live. Only `/api/sessions/:id/report-narrative` may trigger a live call.
+- Anti-hallucination guard (`guard.js`): Rejects `%` or `٪`, normalizes Persian/Arabic digits, and verifies all numbers against input integers (including '3' recommendations and '19' for COVID-19).
+
 ## Architecture
 ```
 modules/llm/

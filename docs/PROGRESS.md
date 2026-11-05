@@ -12,8 +12,8 @@ Operators: **A** = repo owner, **B** = partner. Session start: `/sync`, then `/s
 | T03 | A (solo) | none (solo) | merged | feat/T03-api-foundation | #6 | `packages/contracts`, `apps/api` |
 | T04 | A (solo) | none (solo) | merged | feat/T04-web-foundation | #7 | `apps/web`, `docs/`, `scripts/` |
 | T05 | A (solo) | none (solo) | merged | feat/T05-session-api | #8 | `packages/contracts`, `apps/api`, `docs/` |
-| T06 | A (solo) | none (solo) | in-review | feat/T06-resident-ui | #10 | `apps/web`, `docs/` |
-| T07 | A | B | todo | feat/T07-llm-core | - | `apps/api/src/modules/llm`, `apps/web` panels |
+| T06 | A (solo) | none (solo) | merged | feat/T06-resident-ui | #10 | `apps/web`, `docs/` |
+| T07 | A (solo) | none (solo) | in-review | feat/T07-llm-core | #11 | `packages/contracts`, `apps/api`, `apps/web`, `docs/` |
 | T08 | B | A | todo | feat/T08-question-generation | - | `apps/api/scripts`, `apps/api/src/modules/bank`, `apps/web` instructor panel |
 | T09 | A + B | B / A | todo | feat/T09-targeted-practice | - | engine, api, web |
 | T10 | A (sim) + B (LLM) | B / A | todo | docs/T10-evaluation | - | `docs/evaluation/`, scripts |

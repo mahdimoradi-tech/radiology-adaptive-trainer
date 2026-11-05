@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useParams, useNavigate, Link, Navigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { useSessionReport, useCreateSession } from '../../features/sessions/hooks.js';
+import { NarrativePanel } from '../../features/llm/NarrativePanel.jsx';
 import {
   Card,
   CardHeader,
@@ -196,6 +197,9 @@ export function ReportPage() {
         </Card>
       ) : (
         <>
+          {/* AI Pedagogical Narrative Report Panel */}
+          <NarrativePanel sessionId={sessionId} />
+
           {/* 2. Per-Class Narrative Sentences Block (as in the paper) */}
           <Card>
             <CardHeader>
