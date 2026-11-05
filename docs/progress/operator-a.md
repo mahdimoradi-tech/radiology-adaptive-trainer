@@ -8,7 +8,7 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T06: Resident training UI (tests list, quiz, report, review) in `apps/web` (branch `feat/T06-resident-ui`). Claimed solo per `docs/SOLO-MODE.md`.
+- T07: LLM core (provider abstraction, quota guard, cache, knowledge base, explanations, narrative) in `packages/contracts`, `apps/api`, `apps/web` (branch `feat/T07-llm-core`). Claimed solo per `docs/SOLO-MODE.md`.
 
 ## Done (newest first)
 
