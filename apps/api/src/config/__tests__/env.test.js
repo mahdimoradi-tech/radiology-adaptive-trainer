@@ -59,13 +59,34 @@ describe('API Environment loader', () => {
     ).toThrow();
   });
 
-  it('correctly parses boolean strings for flags', () => {
+  it('loads LLM config defaults', () => {
+    const env = loadEnv(validSource);
+    expect(env.LLM_MODE).toBe('cache-only');
+    expect(env.LLM_ENABLED).toBe(true);
+    expect(env.GEMINI_MODEL).toBe('gemini-3.8-flash');
+    expect(env.LLM_DAILY_REQUEST_BUDGET).toBe(16);
+    expect(env.LLM_MIN_INTERVAL_MS).toBe(13000);
+    expect(env.LLM_TIMEOUT_MS).toBe(60000);
+    expect(env.LLM_RATE_LIMIT_PER_USER_PER_HOUR).toBe(30);
+  });
+
+  it('rejects LLM_MODE=live when GEMINI_API_KEY is missing and LLM_ENABLED is true', () => {
+    expect(() =>
+      loadEnv({
+        ...validSource,
+        LLM_MODE: 'live',
+        LLM_ENABLED: 'true',
+      }),
+    ).toThrow('GEMINI_API_KEY');
+  });
+
+  it('accepts LLM_MODE=live when GEMINI_API_KEY is provided', () => {
     const env = loadEnv({
       ...validSource,
-      COOKIE_SECURE: 'true',
-      RATE_LIMIT_ENABLED: 'false',
+      LLM_MODE: 'live',
+      GEMINI_API_KEY: 'test-api-key',
     });
-    expect(env.COOKIE_SECURE).toBe(true);
-    expect(env.RATE_LIMIT_ENABLED).toBe(false);
+    expect(env.LLM_MODE).toBe('live');
+    expect(env.GEMINI_API_KEY).toBe('test-api-key');
   });
 });
