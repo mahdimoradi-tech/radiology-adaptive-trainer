@@ -120,6 +120,36 @@ npm test -w @radiology/api
 npm run lint -w @radiology/api
 ```
 
+### Multimodal Image Analysis Pipeline (T08a)
+
+Batch-oriented, resumable closed-vocabulary analysis using Google Gemini (`gemini-3.8-flash`).
+
+> **Privacy & Terms Notice:** Catalog images are submitted to Google's Gemini API. The operator must verify Google AI Studio free-tier terms regarding content usage. No trainee, user, or patient identifiable information is transmitted.
+
+```powershell
+# 1. Deterministically sample 120-image analysis set (seed/analysis-set.json)
+npm run analysis:select -w @radiology/api
+
+# 2. Plan 40 batches (groups of 6 images, run A and B) in MongoDB
+npm run analysis:plan -w @radiology/api
+
+# 3. Dry-run verification (offline fake provider, 0 budget used)
+npm run analysis:run -w @radiology/api -- --dry-run
+
+# 4. Live execution (runs within daily budget, resumable)
+npm run analysis:run -w @radiology/api -- --max-batches 2 --runs A
+
+# 5. Compute consensus & validation
+npm run analysis:validate -w @radiology/api
+
+# 6. View pipeline coverage & accuracy dashboard
+npm run analysis:status -w @radiology/api
+
+# 7. Export / import portable analyses
+npm run analysis:export -w @radiology/api
+npm run analysis:import -w @radiology/api
+```
+
 ---
 
 ## API Surface

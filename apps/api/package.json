@@ -11,6 +11,13 @@
     "llm:pregenerate": "node --env-file-if-exists=../../.env scripts/pregenerate-explanations.js",
     "llm:cache:export": "node --env-file-if-exists=../../.env scripts/export-llm-cache.js",
     "llm:cache:import": "node --env-file-if-exists=../../.env scripts/import-llm-cache.js",
+    "analysis:select": "node --env-file-if-exists=../../.env scripts/analysis-select.js",
+    "analysis:plan": "node --env-file-if-exists=../../.env scripts/analysis-plan.js",
+    "analysis:run": "node --env-file-if-exists=../../.env scripts/analysis-run.js",
+    "analysis:validate": "node --env-file-if-exists=../../.env scripts/analysis-validate.js",
+    "analysis:status": "node --env-file-if-exists=../../.env scripts/analysis-status.js",
+    "analysis:export": "node --env-file-if-exists=../../.env scripts/analysis-export.js",
+    "analysis:import": "node --env-file-if-exists=../../.env scripts/analysis-import.js",
     "test": "vitest run",
     "lint": "eslint .",
     "build": "node -e \"console.log('no build')\""

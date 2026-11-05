@@ -42,3 +42,11 @@ docs/reference/*.pdf
 .agents/mcp_config.json
 antigravity-agent-kit/
 KIT-README-FA.md
+
+# Postman desktop local cache
+.postman/
+postman/
+
+# Test artifacts
+apps/api/test-admin-images/
+
