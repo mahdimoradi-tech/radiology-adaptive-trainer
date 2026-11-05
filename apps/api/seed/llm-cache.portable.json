@@ -1,0 +1,104 @@
+[
+  {
+    "key": "384f71a9f000f3bf7ae050ccba02e684d0c2e7e786ca6e81925340767cab9264",
+    "promptId": "explain-pairs",
+    "version": "v1",
+    "lang": "fa",
+    "portable": true,
+    "input": {
+      "lang": "fa",
+      "trueClass": "covid19",
+      "userAnswer": "pneumonia"
+    },
+    "response": {
+      "whatToLookFor": ["کدورت‌های دوطرفه، محیطی و شیشه‌مات در نواحی تحتانی ریه"],
+      "whyConfused": "تداخل و شباهت ظاهری زیاد بین درگیری‌های ریوی ویروسی و پنومونی",
+      "tip": "تثبیت فوکال لوبار با برونکوگرام هوایی بیشتر شاخص پنومونی باکتریال است"
+    }
+  },
+  {
+    "key": "e6b56c6e28d2d7f34bd1c3e5e70c3ec76673c82d58b75d06301373b4a664e1b5",
+    "promptId": "explain-pairs",
+    "version": "v1",
+    "lang": "fa",
+    "portable": true,
+    "input": {
+      "lang": "fa",
+      "trueClass": "covid19",
+      "userAnswer": "normal"
+    },
+    "response": {
+      "whatToLookFor": ["مات‌شدگی‌های بسیار خفیف در حاشیه‌ها یا قاعده ریه‌ها"],
+      "whyConfused": "در مراحل اولیه بیماری کووید-۱۹ رادیوگرافی می‌تواند طبیعی باشد",
+      "tip": "رادیوگرافی نرمال به هیچ عنوان ردکننده عفونت فعال کووید-۱۹ نیست"
+    }
+  },
+  {
+    "key": "02e4c36b9dc279d2c47f45ab56d6a5ff034d5c8f63b1f589773cb23efc10baa9",
+    "promptId": "explain-pairs",
+    "version": "v1",
+    "lang": "fa",
+    "portable": true,
+    "input": {
+      "lang": "fa",
+      "trueClass": "pneumonia",
+      "userAnswer": "covid19"
+    },
+    "response": {
+      "whatToLookFor": ["تثبیت فوکال لوبار یا سگمنتال همراه با برونکوگرام هوایی"],
+      "whyConfused": "الگوی بینابینی پنومونی ویروسی شباهت زیادی به کووید-۱۹ دارد",
+      "tip": "به دنبال تثبیت‌های موضعی یک‌طرفه با برونکوگرام هوایی بگردید"
+    }
+  },
+  {
+    "key": "f0eff487aa1caa5126df60f63d309acdb7da32a36d5fca16d3cfee84a988a922",
+    "promptId": "explain-pairs",
+    "version": "v1",
+    "lang": "fa",
+    "portable": true,
+    "input": {
+      "lang": "fa",
+      "trueClass": "pneumonia",
+      "userAnswer": "normal"
+    },
+    "response": {
+      "whatToLookFor": ["کدورت‌های ظریف رتروکاردیال، پری‌هیلار یا پشت دیافراگم"],
+      "whyConfused": "پنومونی خفیف در مراحل اول می‌تواند با بافت طبیعی اشتباه شود",
+      "tip": "زوایای کوستوفرنیک و نواحی مخفی پشت قلب را به دقت وارسی کنید"
+    }
+  },
+  {
+    "key": "2a1ef8439cae7034a3bbd86fcd87aa34567b539bbc8f30cfa9bdc20aa2c76a27",
+    "promptId": "explain-pairs",
+    "version": "v1",
+    "lang": "fa",
+    "portable": true,
+    "input": {
+      "lang": "fa",
+      "trueClass": "normal",
+      "userAnswer": "covid19"
+    },
+    "response": {
+      "whatToLookFor": ["فیلدهای ریوی شفاف و عدم وجود کدورت‌های محیطی و قاعده‌ای"],
+      "whyConfused": "مارکینگ‌های برونکووواسکولار طبیعی ممکن است شبیه کدورت به نظر برسند",
+      "tip": "به تقارن عروق ریوی و شفافیت زاویه‌های قفسه سینه توجه فرمایید"
+    }
+  },
+  {
+    "key": "6e284a5cc5646a169c4b688d1e7afb1c7d8daf377d38977861910413d8985070",
+    "promptId": "explain-pairs",
+    "version": "v1",
+    "lang": "fa",
+    "portable": true,
+    "input": {
+      "lang": "fa",
+      "trueClass": "normal",
+      "userAnswer": "pneumonia"
+    },
+    "response": {
+      "whatToLookFor": ["زوایای تیز دنده‌ای-دیافراگمی و کانتور شفاف مدیاستن و قلب"],
+      "whyConfused": "دم ناکافی یا چرخش بیمار می‌تواند کدورت کاذب ریوی ایجاد کند",
+      "tip": "تکنیک دم عمیق و تقارن استخوان‌های ترقوه را پیش از قضاوت بررسی کنید"
+    }
+  }
+]

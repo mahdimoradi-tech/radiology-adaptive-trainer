@@ -8,6 +8,9 @@
     "seed:catalog": "node --env-file-if-exists=../../.env scripts/seed-catalog.js",
     "create-instructor": "node --env-file-if-exists=../../.env scripts/create-instructor.js",
     "llm:smoke": "node --env-file-if-exists=../../.env scripts/llm-smoke.js",
+    "llm:pregenerate": "node --env-file-if-exists=../../.env scripts/pregenerate-explanations.js",
+    "llm:cache:export": "node --env-file-if-exists=../../.env scripts/export-llm-cache.js",
+    "llm:cache:import": "node --env-file-if-exists=../../.env scripts/import-llm-cache.js",
     "test": "vitest run",
     "lint": "eslint .",
     "build": "node -e \"console.log('no build')\""

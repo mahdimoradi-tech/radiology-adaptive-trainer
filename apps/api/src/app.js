@@ -11,6 +11,7 @@ import { createCatalogRouter } from './modules/catalog/routes.js';
 import { createImagesRouter } from './modules/images/routes.js';
 import { createSessionsRouter } from './modules/sessions/routes.js';
 import { createAdminSessionsRouter } from './modules/sessions/admin.routes.js';
+import { createLlmRouter } from './modules/llm/routes.js';
 
 /**
  * Express application factory
@@ -56,6 +57,7 @@ export function createApp({ config, logger = defaultLogger }) {
   apiRouter.use(createImagesRouter(config));
   apiRouter.use(createSessionsRouter(config));
   apiRouter.use(createAdminSessionsRouter(config));
+  apiRouter.use(createLlmRouter(config));
 
   app.use('/api', apiRouter);
 
