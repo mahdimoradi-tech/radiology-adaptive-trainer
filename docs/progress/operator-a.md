@@ -8,9 +8,11 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T08a: Image analysis pipeline (offline, quota-aware, resumable) in `packages/contracts`, `apps/api`, `docs/` (branch `feat/T08a-image-analysis`). Claimed solo per `docs/SOLO-MODE.md`.
+- T08b: Question generation and instructor review panel in `packages/contracts`, `apps/api`, `apps/web`, `docs/` (branch `feat/T08b-question-generation`). Claimed solo per `docs/SOLO-MODE.md`.
 
 ## Done (newest first)
+
+- Merged PR #12 (`feat(api,contracts): offline quota-aware image analysis pipeline (T08a)`) into `main` with merge commit after all quality gates, green CI, and operator approval.
 
 - Completed T08a code and test suite: built offline, quota-aware, resumable chest X-ray image analysis pipeline with closed vocabulary and automatic cross-run validation.
 - Defined shared closed vocabulary in `packages/contracts/src/vocabulary.js` (`laterality`, `zones`, `patterns`, `distribution`, `predictedClass`, `certainty`, `imageQuality`) and analysis contracts in `packages/contracts/src/analysis.js` (`AnalysisBatchSchema`, `ImageAnalysisSchema`, `AnalysisValidationSchema`).
