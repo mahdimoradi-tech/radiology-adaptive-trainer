@@ -272,9 +272,7 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                   {sessions.map((s) => {
-                    const reportLink = isInstructor
-                      ? `/instructor/sessions/${s.id}/report`
-                      : `/app/reports/${s.id}`;
+                    const reportLink = isInstructor ? null : `/app/reports/${s.id}`;
                     return (
                       <tr key={s.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
                         <td className="px-3 py-2.5 font-medium text-slate-900 dark:text-slate-100">
@@ -296,12 +294,14 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
                           </Badge>
                         </td>
                         <td className="px-3 py-2.5 text-end">
-                          <Link
-                            to={reportLink}
-                            className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
-                          >
-                            {t('progress.viewReport', 'کارنامه')}
-                          </Link>
+                          {reportLink && (
+                            <Link
+                              to={reportLink}
+                              className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
+                            >
+                              {t('progress.viewReport', 'کارنامه')}
+                            </Link>
+                          )}
                         </td>
                       </tr>
                     );
