@@ -1,4 +1,4 @@
-import { CLASS_IDS } from '@radiology/contracts';
+import { CLASS_IDS, MASTERY_THRESHOLD } from '@radiology/contracts';
 import { largestRemainder } from './math.js';
 import { confusionMatrix } from './rates.js';
 import { createRng } from './rng.js';
@@ -9,11 +9,15 @@ import { createRng } from './rng.js';
  * and every class must have at least one question in the session.
  *
  * @param {import('@radiology/contracts').Response[]} latestSessionResponses - Responses from latest test
- * @param {number} [threshold=0.80] - Accuracy threshold (default 0.80)
+ * @param {number} [threshold=MASTERY_THRESHOLD] - Accuracy threshold (default 0.80)
  * @param {readonly import('@radiology/contracts').ClassId[]} [classIds=CLASS_IDS] - Classes list
  * @returns {boolean}
  */
-export function isMastered(latestSessionResponses, threshold = 0.8, classIds = CLASS_IDS) {
+export function isMastered(
+  latestSessionResponses,
+  threshold = MASTERY_THRESHOLD,
+  classIds = CLASS_IDS,
+) {
   if (!latestSessionResponses || latestSessionResponses.length === 0) {
     return false;
   }

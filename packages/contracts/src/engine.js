@@ -1,6 +1,11 @@
 import { z } from 'zod';
 
 /**
+ * Default accuracy threshold to declare trainee mastery across all disease classes
+ */
+export const MASTERY_THRESHOLD = 0.8;
+
+/**
  * Standard chest X-ray disease classes
  * @typedef {'covid19' | 'pneumonia' | 'normal'} ClassId
  */
@@ -113,7 +118,7 @@ export const EngineConfigSchema = z
       easyMax: 0.34,
       mediumMax: 0.68,
     }),
-    masteryThreshold: z.number().min(0).max(1).default(0.8),
+    masteryThreshold: z.number().min(0).max(1).default(MASTERY_THRESHOLD),
     seed: z.union([z.number(), z.string()]).optional(),
   })
   .superRefine((config, ctx) => {

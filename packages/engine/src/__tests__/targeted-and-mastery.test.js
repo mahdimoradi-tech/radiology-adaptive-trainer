@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { MASTERY_THRESHOLD } from '@radiology/contracts';
 import { isMastered, selectTargetedQuestions } from '../index.js';
 
 describe('Adaptive Engine - Targeted Practice and Mastery', () => {
@@ -48,6 +49,22 @@ describe('Adaptive Engine - Targeted Practice and Mastery', () => {
       ];
 
       expect(isMastered(responses, 0.8)).toBe(false);
+    });
+
+    it('uses MASTERY_THRESHOLD from @radiology/contracts as default threshold (0.8)', () => {
+      expect(MASTERY_THRESHOLD).toBe(0.8);
+      const responses = [
+        { trueClass: 'covid19', answer: 'covid19' },
+        { trueClass: 'covid19', answer: 'covid19' },
+        { trueClass: 'covid19', answer: 'covid19' },
+        { trueClass: 'covid19', answer: 'covid19' },
+        { trueClass: 'covid19', answer: 'pneumonia' },
+        { trueClass: 'pneumonia', answer: 'pneumonia' },
+        { trueClass: 'normal', answer: 'normal' },
+      ];
+      // covid19 is 80%, pneumonia is 100%, normal is 100%
+      expect(isMastered(responses)).toBe(true);
+      expect(isMastered(responses, MASTERY_THRESHOLD)).toBe(true);
     });
 
     it('returns false when any class has zero questions in the session', () => {
