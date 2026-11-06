@@ -15,10 +15,13 @@ Operators: **A** = repo owner, **B** = partner. Session start: `/sync`, then `/s
 | T06 | A (solo) | none (solo) | merged | feat/T06-resident-ui | #10 | `apps/web`, `docs/` |
 | T07 | A (solo) | none (solo) | merged | feat/T07-llm-core | #11 | `packages/contracts`, `apps/api`, `apps/web`, `docs/` |
 | T08a | A (solo) | none (solo) | merged | feat/T08a-image-analysis | #12 | `packages/contracts`, `apps/api`, `docs/` |
-| T08b | A (solo) | none (solo) | in-review | feat/T08b-question-bank | #13 | `packages/contracts`, `apps/api`, `apps/web`, `docs/` |
-| T09 | A + B | B / A | todo | feat/T09-targeted-practice | - | engine, api, web |
-| T10 | A (sim) + B (LLM) | B / A | todo | docs/T10-evaluation | - | `docs/evaluation/`, scripts |
-| T11 | A + B | B / A | todo | chore/T11-hardening | - | docs, root, scripts |
+| T08b | A (solo) | none (solo) | merged | feat/T08b-question-bank | #13 | `packages/contracts`, `apps/api`, `apps/web`, `docs/` |
+| T08c | A (solo) | none (solo) | todo | docs/T08c-llm-runbook | - | `docs/`, `apps/api/seed/` |
+| T09a | A (solo) | none (solo) | todo | feat/T09a-progress-and-residents | - | `apps/api`, `apps/web`, `docs/` |
+| T09b | A (solo) | none (solo) | todo | feat/T09b-targeted-practice | - | `packages/contracts`, `apps/api`, `apps/web`, `docs/` |
+| T09c | A (solo) | none (solo) | todo | feat/T09c-education-catalog | - | `apps/web`, `docs/` |
+| T10 | A (solo) | none (solo) | todo | feat/T10-evaluation | - | `packages/engine`, `apps/api`, `docs/evaluation/` |
+| T11 | A (solo) | none (solo) | todo | chore/T11-hardening-release | - | repo root, `apps/api`, `apps/web`, `docs/` |
 
 ## Open questions (add a line, date, who)
 - Professor meeting: confirm goal (reproduce paper vs usable product), LLM expectation (image analysis + question generation), who reviews generated questions/KB scientifically, deadline and delivery format, how individual grades are assessed, whether the agent-assisted workflow is accepted.
