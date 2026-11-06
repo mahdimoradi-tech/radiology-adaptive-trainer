@@ -257,4 +257,100 @@ describe('QuizPage', () => {
       expect(screen.getByTestId('report-page')).toBeInTheDocument();
     });
   });
+
+  it('submits finish with application/json header and redirects to report', async () => {
+    const user = userEvent.setup();
+
+    globalThis.fetch = vi.fn().mockImplementation(async (url) => {
+      if (url.includes('/finish')) {
+        return {
+          ok: true,
+          status: 200,
+          headers: new Headers({ 'content-type': 'application/json' }),
+          json: async () => ({
+            data: { sessionId: 's-123', overall: { accuracy: 1 } },
+          }),
+        };
+      }
+      return {
+        ok: true,
+        status: 200,
+        headers: new Headers({ 'content-type': 'application/json' }),
+        json: async () => ({ data: mockSession }),
+      };
+    });
+
+    renderQuiz('s-123', '/app/tests/s-123?q=1');
+
+    await waitFor(() => {
+      expect(screen.getByText(/سؤال ۱:/i)).toBeInTheDocument();
+    });
+
+    // Open finish dialog
+    const openFinishBtn = screen.getByRole('button', { name: /ثبت نهایی و خروج/i });
+    await user.click(openFinishBtn);
+
+    // Dialog is visible
+    expect(screen.getByText(/تأیید ثبت نهایی آزمون/i)).toBeInTheDocument();
+
+    // Confirm submission
+    const confirmBtn = screen.getByRole('button', { name: /^ثبت نهایی$/i });
+    await user.click(confirmBtn);
+
+    await waitFor(() => {
+      expect(globalThis.fetch).toHaveBeenCalledWith(
+        '/api/sessions/s-123/finish',
+        expect.objectContaining({
+          method: 'POST',
+          headers: expect.objectContaining({
+            'Content-Type': 'application/json',
+          }),
+          body: JSON.stringify({}),
+        }),
+      );
+      expect(screen.getByTestId('report-page')).toBeInTheDocument();
+    });
+  });
+
+  it('displays translated error alert when finish fails with an ApiError', async () => {
+    const user = userEvent.setup();
+
+    globalThis.fetch = vi.fn().mockImplementation(async (url) => {
+      if (url.includes('/finish')) {
+        return {
+          ok: false,
+          status: 415,
+          headers: new Headers({ 'content-type': 'application/json' }),
+          json: async () => ({
+            error: {
+              code: 'UNSUPPORTED_MEDIA_TYPE',
+              message: 'Content-Type must be application/json',
+            },
+          }),
+        };
+      }
+      return {
+        ok: true,
+        status: 200,
+        headers: new Headers({ 'content-type': 'application/json' }),
+        json: async () => ({ data: mockSession }),
+      };
+    });
+
+    renderQuiz('s-123', '/app/tests/s-123?q=1');
+
+    await waitFor(() => {
+      expect(screen.getByText(/سؤال ۱:/i)).toBeInTheDocument();
+    });
+
+    const openFinishBtn = screen.getByRole('button', { name: /ثبت نهایی و خروج/i });
+    await user.click(openFinishBtn);
+
+    const confirmBtn = screen.getByRole('button', { name: /^ثبت نهایی$/i });
+    await user.click(confirmBtn);
+
+    await waitFor(() => {
+      expect(screen.getByText(/درخواست نامعتبر بود/i)).toBeInTheDocument();
+    });
+  });
 });

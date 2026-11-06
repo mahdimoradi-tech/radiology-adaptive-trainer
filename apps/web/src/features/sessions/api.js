@@ -68,6 +68,7 @@ export async function answerQuestion(sessionId, questionNo, { answer, timeMs }) 
 export async function finishSession(sessionId) {
   const res = await apiFetch(`/api/sessions/${sessionId}/finish`, {
     method: 'POST',
+    body: {},
   });
   return res?.data;
 }

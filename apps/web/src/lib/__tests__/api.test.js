@@ -83,7 +83,7 @@ describe('API Client (apiFetch)', () => {
     }
   });
 
-  it('handles 204 No Content gracefully returning null', async () => {
+  it('handles 204 No Content gracefully returning null and supplies Content-Type for POST without body', async () => {
     globalThis.fetch = vi.fn().mockResolvedValue({
       ok: true,
       status: 204,
@@ -92,6 +92,68 @@ describe('API Client (apiFetch)', () => {
 
     const res = await apiFetch('/api/auth/logout', { method: 'POST' });
     expect(res).toBeNull();
+    expect(globalThis.fetch).toHaveBeenCalledWith('/api/auth/logout', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({}),
+      credentials: 'include',
+    });
+  });
+
+  it('automatically adds Content-Type and empty JSON body for state-changing methods without body', async () => {
+    globalThis.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      headers: new Headers({ 'content-type': 'application/json' }),
+      json: async () => ({ success: true }),
+    });
+
+    for (const method of ['POST', 'PUT', 'PATCH']) {
+      await apiFetch(`/api/action-${method}`, { method });
+      expect(globalThis.fetch).toHaveBeenCalledWith(`/api/action-${method}`, {
+        method,
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}),
+        credentials: 'include',
+      });
+    }
+  });
+
+  it('does not add Content-Type: application/json for GET or FormData requests', async () => {
+    globalThis.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      headers: new Headers({ 'content-type': 'application/json' }),
+      json: async () => ({ data: 'ok' }),
+    });
+
+    await apiFetch('/api/info', { method: 'GET' });
+    expect(globalThis.fetch).toHaveBeenCalledWith('/api/info', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+      body: undefined,
+      credentials: 'include',
+    });
+
+    const formData = new FormData();
+    formData.append('key', 'val');
+    await apiFetch('/api/upload', { method: 'POST', body: formData });
+    expect(globalThis.fetch).toHaveBeenCalledWith('/api/upload', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+      },
+      body: formData,
+      credentials: 'include',
+    });
   });
 
   it('getErrorI18nKey maps codes to i18n paths correctly', () => {

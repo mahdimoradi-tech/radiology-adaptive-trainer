@@ -8,9 +8,16 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T08b: Question generation and instructor review panel in `packages/contracts`, `apps/api`, `apps/web`, `docs/` (branch `feat/T08b-question-bank`). Status: in-review. Claimed solo per `docs/SOLO-MODE.md`.
+- Bugfix: HTTP 415 Unsupported Media Type on session finish (`POST /api/sessions/:id/finish`) and logout (branch `fix/finish-session-415`).
 
 ## Done (newest first)
+
+- Fixed HTTP 415 `UnsupportedMediaTypeError` on state-changing requests without a payload (`fix/finish-session-415`):
+  - In `apps/web/src/lib/api.js`: configured `apiFetch` to automatically inject `Content-Type: application/json` and serialize an empty JSON object `{}` for state-changing HTTP methods (`POST`, `PUT`, `PATCH`) when `body` is undefined (unless the payload is `FormData`), satisfying the backend's CSRF-prevention `jsonOnly` middleware.
+  - In `apps/web/src/features/sessions/api.js`: explicitly set `body: {}` in `finishSession`.
+  - In `apps/web/src/features/auth/hooks.js`: explicitly set `body: {}` in `useLogout`.
+  - In `apps/web/src/pages/resident/QuizPage.jsx`: mapped API error codes using `getErrorI18nKey(err.code)` instead of hardcoded generic error messages to provide meaningful user feedback.
+  - Added regression test suites across `api.test.js`, `api.test.jsx`, `auth-hooks.test.jsx`, and `QuizPage.test.jsx`, reaching 524 / 524 passing unit tests (100% green) and passing lint and build.
 
 - Completed T08b: Question generation, question bank, tied-keys validation engine, and instructor review panel.
   - Defined comprehensive shared contracts in `packages/contracts/src/questionBank.js` with Zod schemas for question types (`finding`, `distribution`, `differential`), statuses (`pending_review`, `approved`, `rejected`), candidate generation outputs, tied-keys options, admin query parameters, audit history, and review statistics.

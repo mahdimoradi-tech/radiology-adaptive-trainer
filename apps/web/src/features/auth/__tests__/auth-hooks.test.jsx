@@ -123,6 +123,16 @@ describe('Auth Hooks', () => {
         await result.current.mutateAsync();
       });
 
+      expect(globalThis.fetch).toHaveBeenCalledWith('/api/auth/logout', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}),
+        credentials: 'include',
+      });
+
       expect(queryClient.getQueryData(['me'])).toBeNull();
     });
   });

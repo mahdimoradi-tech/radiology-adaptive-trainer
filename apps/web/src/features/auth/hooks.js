@@ -74,7 +74,7 @@ export function useLogout() {
 
   return useMutation({
     mutationFn: async () => {
-      await apiFetch('/api/auth/logout', { method: 'POST' });
+      await apiFetch('/api/auth/logout', { method: 'POST', body: {} });
     },
     onSuccess: () => {
       queryClient.clear();
