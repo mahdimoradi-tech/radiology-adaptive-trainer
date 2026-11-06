@@ -8,9 +8,45 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T08c: LLM operational runbook and verified data generation plan (branch `docs/T08c-llm-runbook`).
+- T09a: Demo seed, resident progress page, instructor residents pages (branch `feat/T09a-progress-and-residents`, PR #17).
 
 ## Done (newest first)
+
+- Completed T09a: Synthetic demo resident seed, resident learning progress page, accessible SVG line chart, and instructor residents management views:
+  - Authored `apps/api/scripts/demo-seed.js` and npm script `demo:seed`:
+    - Strict refusal to run in `production` environment with exit code 1 and error code `PRODUCTION_REFUSED`.
+    - Idempotently creates or reuses synthetic demo resident `demo.resident@example.com` (`Demo Resident (synthetic)`).
+    - Simulates 4 finished training sessions (size 45) through the real `sessionService` methods (`createSession`, `answerQuestion`, `finishSession`), driven by the engine's `VirtualResident` simulator with deterministic seed `demo-synthetic-resident-2026`.
+    - Accuracy improves progressively across sessions while strictly never reaching 100%.
+    - `--reset` flag cleanly deletes ONLY the demo resident and its sessions/responses, leaving all other users and records untouched.
+    - Added comprehensive unit tests in `apps/api/scripts/__tests__/demo-seed.test.js`.
+  - Exported shared constant `MASTERY_THRESHOLD = 0.8` from `packages/contracts/src/engine.js` and wired it into `packages/engine` (`isMastered`), with contract and engine test coverage.
+  - Implemented accessible SVG `LineChart` component in `apps/web/src/components/charts/LineChart.jsx`:
+    - Zero third-party chart dependencies (hand-written SVG).
+    - Enforced `dir="ltr"` canvas for time-series left-to-right progression in accordance with ADR 0009 and Persian RTL rules.
+    - Series distinguished by dash patterns (`solid`, `dashed`, `dotted`, `dash-dot`), geometric marker shapes (circle, square, triangle, diamond), and text legend with high-contrast palette.
+    - Dashed 80% mastery threshold line with localized label.
+    - Accessible plain `<table>` rendered beneath the chart as accessible screen-reader and fallback table.
+    - Tested in `LineChart.test.jsx`.
+  - Built resident learning progress feature (`apps/web/src/features/progress/` and `apps/web/src/pages/resident/ProgressPage.jsx`):
+    - TanStack Query hook `useProgress` fetching `GET /api/progress`.
+    - Handles loading (spinner), error (alert with retry), empty (card with start test action), and full analytics states.
+    - Deployed reusable presentational component `ProgressView` containing per-class accuracy trajectory line chart, finished test history table with links to reports, most frequent confusions breakdown with frequency counts, class mastery status badges calculated strictly from the latest session, and celebration banner upon mastering all classes.
+    - Tested in `ProgressPage.test.jsx`.
+  - Built instructor residents roster (`apps/web/src/features/residents/` and `apps/web/src/pages/instructor/InstructorResidentsPage.jsx`):
+    - Connects to paginated `GET /api/admin/users`.
+    - Table displaying trainee display name, email, finished session counts, latest accuracy, and last active timestamp.
+    - Row click navigates to `/instructor/residents/:userId`.
+    - Pagination controls with localized page numbers and disable states.
+    - Tested in `InstructorResidentsPage.test.jsx`.
+  - Built instructor resident detail inspector (`apps/web/src/pages/instructor/ResidentDetailPage.jsx`):
+    - Connects to `GET /api/admin/users/:userId/progress` via `useAdminUserProgress(userId)`.
+    - Reuses `ProgressView` in instructor mode.
+    - Handles 404/invalid user IDs gracefully with error alert and return navigation.
+    - Tested in `ResidentDetailPage.test.jsx` and extended `guards.test.jsx` verifying strict 403 Forbidden protection for resident roles.
+  - Replaced placeholders in `router.jsx` so that only `/education` and `/instructor/catalog` (T09c) remain as placeholders.
+  - Added full bilingual translations in `fa.json` and `en.json` (100% key parity).
+  - Updated `apps/api/README.md` documenting `npm run demo:seed`.
 
 - Completed T08c (Part A): Authored comprehensive LLM & Data Generation Operational Runbook (`docs/LLM-RUNBOOK.md`):
   - Cataloged all 14 scripts across image analysis, question bank, and LLM feedback with verified CLI flags, input/output files, MongoDB mutations, and exact source code line references.

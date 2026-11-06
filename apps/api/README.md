@@ -171,6 +171,20 @@ npm run bank:import -w @radiology/api
 
 ---
 
+### Synthetic Demo Resident Seed (T09a)
+
+Creates (or resets) an idempotent synthetic demo resident (`demo.resident@example.com` / `Demo Resident (synthetic)`) with 4 completed training sessions (size 45) evaluated through the engine's virtual resident simulator.
+
+```powershell
+# Create demo resident with 4 completed sessions
+npm run demo:seed -w @radiology/api
+
+# Reset (delete only demo resident and its sessions)
+npm run demo:seed -w @radiology/api -- --reset
+```
+
+---
+
 ## API Surface
 
 Base path: `/api`
