@@ -15,7 +15,7 @@ import {
   Spinner,
 } from '../../components/ui/index.js';
 import { fmt } from '../../lib/format.js';
-import { ApiError } from '../../lib/api.js';
+import { ApiError, getErrorI18nKey } from '../../lib/api.js';
 
 const OPTIONS = /** @type {const} */ ([
   { id: 'covid19', labelKey: 'quiz.optionCovid19' },
@@ -147,7 +147,9 @@ export function QuizPage() {
         navigate(`/app/reports/${sessionId}`);
         return;
       }
-      setSaveError(t('errors.INTERNAL_ERROR'));
+      const errorKey =
+        err instanceof ApiError ? getErrorI18nKey(err.code) : 'errors.INTERNAL_ERROR';
+      setSaveError(t(errorKey));
       setIsFinishDialogOpen(false);
     }
   };

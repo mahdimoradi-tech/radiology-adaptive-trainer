@@ -117,7 +117,13 @@ describe('Sessions API and Query Keys', () => {
     const result = await finishSession('sess-1');
     expect(globalThis.fetch).toHaveBeenCalledWith(
       '/api/sessions/sess-1/finish',
-      expect.objectContaining({ method: 'POST' }),
+      expect.objectContaining({
+        method: 'POST',
+        headers: expect.objectContaining({
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({}),
+      }),
     );
     expect(result).toEqual(mockReport);
   });

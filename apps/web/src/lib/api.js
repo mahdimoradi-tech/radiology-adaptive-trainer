@@ -38,10 +38,16 @@ export async function apiFetch(endpoint, options = {}) {
     ...headers,
   };
 
+  const isStateChanging = ['POST', 'PUT', 'PATCH'].includes(method.toUpperCase());
+  if (isStateChanging && !(body instanceof FormData) && !reqHeaders['Content-Type']) {
+    reqHeaders['Content-Type'] = 'application/json';
+  }
+
   let reqBody = body;
   if (body !== undefined && typeof body !== 'string' && !(body instanceof FormData)) {
-    reqHeaders['Content-Type'] = 'application/json';
     reqBody = JSON.stringify(body);
+  } else if (isStateChanging && body === undefined && !(body instanceof FormData)) {
+    reqBody = JSON.stringify({});
   }
 
   let res;
