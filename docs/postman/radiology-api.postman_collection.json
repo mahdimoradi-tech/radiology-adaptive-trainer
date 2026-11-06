@@ -14,6 +14,11 @@
       "key": "samplePublicId",
       "value": "a1b2c3d4e5f6a7b8c9d0",
       "type": "string"
+    },
+    {
+      "key": "questionId",
+      "value": "65f000000000000000000001",
+      "type": "string"
     }
   ],
   "item": [
@@ -415,6 +420,124 @@
               "raw": "{{baseUrl}}/admin/llm/status",
               "host": ["{{baseUrl}}"],
               "path": ["admin", "llm", "status"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Question Bank (Instructor)",
+      "item": [
+        {
+          "name": "List Questions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/questions?page=1&pageSize=20&status=pending_review",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "questions"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "20"
+                },
+                {
+                  "key": "status",
+                  "value": "pending_review"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Question Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/questions/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "questions", "stats"]
+            }
+          }
+        },
+        {
+          "name": "Get Question Detail",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/questions/{{questionId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "questions", "{{questionId}}"]
+            }
+          }
+        },
+        {
+          "name": "Approve Question",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"note\": \"Approved after reviewing consensus findings\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/questions/{{questionId}}/approve",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "questions", "{{questionId}}", "approve"]
+            }
+          }
+        },
+        {
+          "name": "Reject Question",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"note\": \"Distractors unclear or ambiguous\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/questions/{{questionId}}/reject",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "questions", "{{questionId}}", "reject"]
+            }
+          }
+        },
+        {
+          "name": "Edit Question",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stem\": \"کدام الگوی رادیولوژیک در کلیشه قفسه سینه مشاهده می‌شود؟\",\n  \"options\": [\n    {\n      \"text\": \"کدورت شیشه‌مات\",\n      \"key\": \"ground_glass\"\n    },\n    {\n      \"text\": \"تراکم ریوی\",\n      \"key\": \"consolidation\"\n    },\n    {\n      \"text\": \"ضخیم‌شدگی پرده جنب\",\n      \"key\": \"pleural_thickening\"\n    },\n    {\n      \"text\": \"ریه‌های شفاف بدون ضایعه\",\n      \"key\": \"clear_lungs\"\n    }\n  ],\n  \"correctIndex\": 0,\n  \"rationale\": \"کدورت‌های محیطی دوطرفه شیشه‌مات با درگیری لوب‌های تحتانی منطبق بر نشانه‌های کووید است.\",\n  \"note\": \"اصلاح صورت سوال و گزینه‌ها برای دقت بیشتر\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/questions/{{questionId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "questions", "{{questionId}}"]
             }
           }
         }

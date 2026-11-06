@@ -73,3 +73,41 @@ The original skill specification assumed processing ~600 images individually twi
 ### Negative / Trade-offs
 - A batch size of 6 introduces potential cross-image context influence in the LLM's attention layers (mitigated by mixed classes, Run B rotation, and independent position checks).
 - Rejection of discordant or misclassified hard images limits the pool of high-difficulty images available for automated question generation.
+
+---
+
+## 4. Addendum (T08b): Question Bank Generation, Tied-Keys Validation, and Review Panel
+
+- **Context Task:** T08b (Question Generation and Review Panel)
+- **Status:** Accepted (2026-11-05)
+
+### 4.1 Input and Prompt Architecture
+- Model input is strictly **TEXT ONLY**: validated consensus findings (patterns, distribution, laterality, zones), trueClass, confusedWith, bucket, and 1-3 KB snippets for the confusion pair. No images are sent to the LLM during question generation.
+- **Batching:** Up to 8 images per request (`--batch-size 8`), sending shared KB snippets once per pair.
+- **Idempotency:** `stableId = sha1(imageId + type + promptVersion + slot)`. The generator checks existing stable IDs and skips previously generated items, ensuring zero cost and zero duplication on repeat runs.
+
+### 4.2 Question Types and Tied-Keys Design
+- **`finding`:** Generated for all validated images. Options have `key` tied to closed vocabulary (`PATTERN_VALUES`). Exactly one option key matches the image's consensus patterns ($A \cap B$), exactly three option keys are chosen from non-consensus distractors, and `correctIndex` points to the consensus option.
+- **`distribution`:** Generated if consensus distribution is non-null/non-none and disease class. Options have `key` tied to `DISTRIBUTION_VALUES`. Exactly one option key matches consensus distribution, and three keys are non-matching distractors.
+- **`differential`:** Generated if distribution is not applicable, capped per ordered pair (`--max-differential-per-pair 4`). Options have `key: null`; `kbRef` is linked directly to a verified KB slug.
+
+### 4.3 Strict Content Integrity Rules
+- **No Digits:** Rejects any ASCII 0-9 or Arabic/Persian digits (۰-۹, ٠-٩).
+- **No Percentages:** Rejects % or ٪ symbols.
+- **Zero Label Leakage in Stems:** Finding and distribution stems must not contain disease names (covid, pneumonia, normal, کووید، ذات‌الریه).
+- **Persian Script Purity:** At least 60% Persian characters across stem and each option text.
+- **4 Unique Options:** Normalized for diacritics, vowels, and whitespace.
+- **Concise Rationale:** Rationale capped at 300 characters.
+- **Rejection Logging:** Rejected candidates are saved in `question_gen_attempts` for T10 evaluation metrics.
+
+### 4.4 Status Flow and Review Panel
+- **Status Transitions:** New items are strictly `pending_review` (never automatically `approved`).
+- Approve from `pending_review` or `rejected` -> `approved`.
+- Reject from `pending_review` or `approved` -> `rejected`.
+- Edit re-validates the candidate, records before/after diffs in `history[]`, sets `edited: true`, and resets status to `pending_review`.
+- **No Bulk Actions:** Every question requires individual human inspection.
+- **Keyboard Shortcuts:** `A` (approve), `R` (reject), `J` (next), `K` (previous) for rapid reviewer flow.
+
+### 4.5 Academic Limitation: Non-Clinical Reviewer
+- Because the reviewer is Operator A (a computer science undergraduate, not a licensed radiologist or clinician), questions are approved solely based on alignment with ground-truth catalog labels, consensus VLM pattern agreement, and verified KB texts.
+- All approved items carry the honest labeling marker «بازبینی توسط مدرس (غیر بالینی)» in the UI and database metadata. This is formally documented as a study limitation for the thesis defense.
