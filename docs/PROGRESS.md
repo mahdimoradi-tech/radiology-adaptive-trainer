@@ -17,7 +17,7 @@ Operators: **A** = repo owner, **B** = partner. Session start: `/sync`, then `/s
 | T08a | A (solo) | none (solo) | merged | feat/T08a-image-analysis | #12 | `packages/contracts`, `apps/api`, `docs/` |
 | T08b | A (solo) | none (solo) | merged | feat/T08b-question-bank | #13 | `packages/contracts`, `apps/api`, `apps/web`, `docs/` |
 | T08c | A (solo) | none (solo) | merged | docs/T08c-llm-runbook | #16 | `docs/`, `apps/api/seed/` |
-| T09a | A (solo) | none (solo) | in-progress | feat/T09a-progress-and-residents | #17 | `apps/api`, `apps/web`, `docs/` |
+| T09a | A (solo) | none (solo) | in-review | feat/T09a-progress-and-residents | #17 | `apps/api`, `apps/web`, `docs/` |
 | T09b | A (solo) | none (solo) | todo | feat/T09b-targeted-practice | - | `packages/contracts`, `apps/api`, `apps/web`, `docs/` |
 | T09c | A (solo) | none (solo) | todo | feat/T09c-education-catalog | - | `apps/web`, `docs/` |
 | T10 | A (solo) | none (solo) | todo | feat/T10-evaluation | - | `packages/engine`, `apps/api`, `docs/evaluation/` |
