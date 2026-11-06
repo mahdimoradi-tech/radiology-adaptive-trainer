@@ -8,9 +8,17 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- Bugfix: HTTP 415 Unsupported Media Type on session finish (`POST /api/sessions/:id/finish`) and logout (branch `fix/finish-session-415`).
+- T08c: LLM operational runbook and verified data generation plan (branch `docs/T08c-llm-runbook`).
 
 ## Done (newest first)
+
+- Completed T08c (Part A): Authored comprehensive LLM & Data Generation Operational Runbook (`docs/LLM-RUNBOOK.md`):
+  - Cataloged all 14 scripts across image analysis, question bank, and LLM feedback with verified CLI flags, input/output files, MongoDB mutations, and exact source code line references.
+  - Formulated exact mathematical request budgets: 40 requests across 3 calendar days for 120-image dual-run analysis (at 6 images/batch), ~8-10 requests for question generation (8 images/batch), and 1-2 requests for confusion pair explanations (all 6 pairs per language in 1 request).
+  - Outlined exact Pacific reset boundary (00:00 America/Los_Angeles corresponding to ~11:30 AM Tehran Standard Time) and established the rule to inspect `Day` output from status scripts rather than wall clocks.
+  - Specified recovery procedures for HTTP 429 RPM backoff, HTTP 429 RPD daily circuit-breaker, HTTP 503 retry semantics, schema validation fallbacks, and network/VPN dropouts.
+  - Documented known empirical unknowns (MCQ candidate validation yield, VLM consensus pass rate on hard cases, real-world VPN latency) explicitly in Section 8.
+  - Zero code modifications; 100% green lint, build, and test suite (524 / 524 passing tests).
 
 - Fixed HTTP 415 `UnsupportedMediaTypeError` on state-changing requests without a payload (`fix/finish-session-415`):
   - In `apps/web/src/lib/api.js`: configured `apiFetch` to automatically inject `Content-Type: application/json` and serialize an empty JSON object `{}` for state-changing HTTP methods (`POST`, `PUT`, `PATCH`) when `body` is undefined (unless the payload is `FormData`), satisfying the backend's CSRF-prevention `jsonOnly` middleware.
