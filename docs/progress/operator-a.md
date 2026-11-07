@@ -8,7 +8,7 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T09a: Demo seed, resident progress page, instructor residents pages (branch `feat/T09a-progress-and-residents`, PR #17).
+- T09b: Targeted practice API + UI (branch `feat/T09b-targeted-practice`).
 
 ## Done (newest first)
 
