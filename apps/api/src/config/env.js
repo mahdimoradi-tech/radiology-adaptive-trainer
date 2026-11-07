@@ -19,7 +19,12 @@ export const EnvSchema = z
         return val === undefined ? false : Boolean(val);
       }, z.boolean())
       .default(false),
-    CORS_ORIGIN: z.string().default(''),
+    CORS_ORIGIN: z
+      .string()
+      .refine((val) => val !== '*', {
+        message: 'CORS_ORIGIN cannot be * when credentials are used',
+      })
+      .default(''),
     RATE_LIMIT_ENABLED: z
       .preprocess((val) => {
         if (typeof val === 'string') {

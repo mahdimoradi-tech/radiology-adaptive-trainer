@@ -29,7 +29,7 @@ export function createAuthController(config) {
         path: '/',
         httpOnly: true,
         sameSite: 'lax',
-        secure: config.COOKIE_SECURE,
+        secure: Boolean(config.COOKIE_SECURE || config.NODE_ENV === 'production'),
       });
       res.status(204).end();
     },
