@@ -199,7 +199,7 @@ Base path: `/api`
 
 ### Images
 
-- `GET /api/images/:publicId/file` — Serve raw JPEG image bytes (authenticated; residents only for images in their own sessions, instructors global)
+- `GET /api/images/:publicId/file` — Serve raw JPEG image bytes (authenticated; residents only for images in their own sessions or practice sets, instructors global)
 
 ### Resident Training Sessions
 
@@ -209,6 +209,13 @@ Base path: `/api`
 - `PUT /api/sessions/:id/questions/:no/answer` — Submit answer for question `no` (`{ answer, timeMs? }`)
 - `POST /api/sessions/:id/finish` — Finish session, trigger metrics calculation, and receive report
 - `GET /api/sessions/:id/report` — View performance report for a finished session
+
+### Resident Targeted Practice
+
+- `POST /api/practice` — Create a targeted practice set from approved question bank items (`{ size?: 5..20 }`, default 10)
+- `GET /api/practice` — List own practice sets (newest first, paginated)
+- `GET /api/practice/:id` — Get full practice set detail with questions (answered questions include rationale and correct index)
+- `PUT /api/practice/:id/questions/:no/answer` — Submit answer for practice question `no` (`{ selectedIndex: 0..3, timeMs? }`), receiving immediate rationale and feedback
 
 ### Resident Progress
 

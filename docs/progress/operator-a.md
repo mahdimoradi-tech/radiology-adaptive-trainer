@@ -12,6 +12,33 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Done (newest first)
 
+- Completed T09b: Targeted practice API, option shuffling, zero label leakage guard, and resident practice interface:
+  - Authored contracts in `packages/contracts/src/practice.js` and exported from index:
+    - Strict schemas: `PracticeCreateRequest`, `PracticeQuestionAnswerResident`, `PracticeQuestionResident`, `PracticeSetResident`, `PracticeAnswerRequest`, `PracticeAnswerResponse`, `PracticeSummary`.
+    - Enforced `.strict()` on all resident-facing objects, rejecting forbidden diagnostic keys (`trueClass`, `confusedWith`, `bucket`, `difficulty`, etc.).
+    - Verified by 41 contract unit tests.
+  - Authored MongoDB model `PracticeSetModel` in `apps/api/src/modules/practice/model.js` storing set metadata, permutations, and answers.
+  - Implemented service layer and pure adapter `buildEngineHistory` in `apps/api/src/modules/practice/service.js`:
+    - Pure adapter extracting `Response[]` strictly from finished test sessions.
+    - Integrated with existing `selectTargetedQuestions` from `@radiology/engine`.
+    - Shuffled options using deterministic seeded PRNG `createRng` to eliminate answer position bias.
+    - Handled `NO_HISTORY` (409) and `PRACTICE_POOL_EXHAUSTED` (409) gracefully.
+    - Extended `canViewImage` in `catalog/service.js` to authorize residents for images belonging to their own practice sets via indexed `publicIds`.
+    - Verified by 10 service unit tests and 4 image access authorization tests.
+  - Implemented Express 5 REST endpoints in `apps/api/src/modules/practice/`:
+    - `POST /api/practice` (resident only, create set)
+    - `GET /api/practice` (resident only, paginated list of sets)
+    - `GET /api/practice/:id` (resident only, full set with answered rationale)
+    - `PUT /api/practice/:id/questions/:no/answer` (resident only, submit answer, returns immediate rationale)
+    - Comprehensive leak scanning with `assertNoForbiddenKeys` across all responses and negative security checks for 401 unauthenticated, 403 instructor, and 404 foreign ownership.
+  - Built frontend features and pages in `apps/web`:
+    - TanStack Query hooks in `apps/web/src/features/practice/`.
+    - `PracticeHomePage` displaying practice set history, pagination, and special alerts for `NO_HISTORY` and `PRACTICE_POOL_EXHAUSTED`.
+    - `PracticeSetPage` offering single-question presentation, accessible radio group, un-mirrored medical radiograph display, instant feedback and rationale reveal, and completion celebration score screen.
+    - Linked targeted practice from `ReportPage` whenever error pairs exist in the confusion matrix.
+    - Verified zero leakage in frontend via `PracticeLeak.test.jsx` and user flows via `PracticePages.test.jsx`.
+  - Documented architectural decisions in `docs/adr/0014-targeted-practice.md`, updated Postman collection with 4 new requests, and synced skill documentation.
+
 - Completed T09a: Synthetic demo resident seed, resident learning progress page, accessible SVG line chart, and instructor residents management views:
   - Authored `apps/api/scripts/demo-seed.js` and npm script `demo:seed`:
     - Strict refusal to run in `production` environment with exit code 1 and error code `PRODUCTION_REFUSED`.

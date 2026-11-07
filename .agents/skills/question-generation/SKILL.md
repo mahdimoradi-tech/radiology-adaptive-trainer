@@ -72,7 +72,7 @@ Rejects candidates failing any of the following checks, saving attempts in `ques
   - `POST /api/admin/questions/:id/approve` — Approve question (`{ note? }`).
   - `POST /api/admin/questions/:id/reject` — Reject question (`{ note? }`).
   - `PUT /api/admin/questions/:id` — Edit question and reset status to `pending_review`.
-- **Resident Isolation:** Resident users receive 403 on all `/api/admin/questions*` endpoints. Question bank stems and options never leak to resident endpoints.
+- **Resident Isolation:** Resident users receive 403 on all `/api/admin/questions*` endpoints. Approved questions are served to residents exclusively via the targeted practice API (`/api/practice`) under strict Zero Label Leakage rules (ADR 0014).
 - **Web UI (`/instructor/review`):**
   - Split-pane review interface: stats strip, filter bar, 20/page list, detail pane with `XrayImage`, consensus finding badges, options with correct highlighted, rationale, draft KB badge, and audit history.
   - Keyboard shortcuts: `A` (approve), `R` (reject), `J` (next), `K` (previous).
