@@ -41,12 +41,12 @@ This document contains empirical, reproducible evaluation results across the fou
 
 > **Important:** The agent produces facts, empirical metrics, Wilson confidence intervals, and tables only. This section is reserved for human qualitative interpretation.
 
-- [ ] **TODO: Adaptive Engine Simulation Limits** — Trainee skill growth in the simulator is modeled as an asymptotic exposure function ($S_c \\leftarrow S_c + \\eta(1-S_c)$). Real human diagnostic learning exhibits forgetting curves, fatigue, and visual cognitive plateaus that are not modeled here.
-- [ ] **TODO: Dataset Source Confounder & COVID-19 Sample Size** — The COVID-19 class contains only 177 images (142 from Cohen, 35 from Figure1), whereas Kermany comprises 5,827 pediatric images (1,582 normal, 4,245 pneumonia). The CNN backbone may exploit institutional/scanner shortcuts between datasets rather than true pathology.
-- [ ] **TODO: Single Non-Expert Question Rubric Reviewer** — The question bank rubric is rated by one non-expert reviewer (the system’s builder); ratings are indicative of clarity, distractor plausibility, and absence of answer leakage, not formal board-certified pedagogical certification.
-- [ ] **TODO: Limited LLM Batch Sample Size** — LLM image analysis evaluation is constrained to verified batches executed under the free-tier quota (15 RPM / 16 RPD) and requires cautious statistical extrapolation.
-- [ ] **TODO: Free-Tier API Rate Limits** — Gemini free-tier rate limits restrict daily throughput, requiring portable caching and offline batch processing for sustainable operation.
-- [ ] **TODO: Educational Purpose Strictly Defined** — Platform is an educational prototype. Neither LLM feedback nor CNN feature extraction constitutes clinical diagnosis or medical device software.
+- [ ] **TODO: Adaptive Engine Simulation Limits** - Trainee skill growth in the simulator is modeled as an asymptotic exposure function ($S_c \\leftarrow S_c + \\eta(1-S_c)$). Real human diagnostic learning exhibits forgetting curves, fatigue, and visual cognitive plateaus that are not modeled here.
+- [ ] **TODO: Dataset Source Confounder & COVID-19 Sample Size** - The COVID-19 class contains only 177 images (142 from Cohen, 35 from Figure1), whereas Kermany comprises 5,827 pediatric images (1,582 normal, 4,245 pneumonia). The CNN backbone may exploit institutional/scanner shortcuts between datasets rather than true pathology.
+- [ ] **TODO: Single Non-Expert Question Rubric Reviewer** - The question bank rubric is rated by one non-expert reviewer (the system's builder); ratings are indicative of clarity, distractor plausibility, and absence of answer leakage, not formal board-certified pedagogical certification.
+- [ ] **TODO: Limited LLM Batch Sample Size** - LLM image analysis evaluation is constrained to verified batches executed under the free-tier quota (15 RPM / 16 RPD) and requires cautious statistical extrapolation.
+- [ ] **TODO: Free-Tier API Rate Limits** - Gemini free-tier rate limits restrict daily throughput, requiring portable caching and offline batch processing for sustainable operation.
+- [ ] **TODO: Educational Purpose Strictly Defined** - Platform is an educational prototype. Neither LLM feedback nor CNN feature extraction constitutes clinical diagnosis or medical device software.
 `;
 
 export async function runAllEvaluations({

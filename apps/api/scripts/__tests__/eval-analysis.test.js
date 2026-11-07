@@ -145,7 +145,7 @@ describe('eval-analysis — Image Analysis Evaluation Logic (T10)', () => {
 
     // Markdown contains expected tables
     const md = formatAnalysisMarkdown(report);
-    expect(md).toContain('### E2 — LLM Image Analysis');
+    expect(md).toContain('### E2 - LLM Image Analysis');
     expect(md).toContain('LLM Run A');
     expect(md).toContain('DenseNet-121 Baseline');
   });

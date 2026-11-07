@@ -11,7 +11,7 @@ This document contains empirical, reproducible evaluation results across the fou
 ### E1 - Adaptive Engine Simulation Evaluation
 
 > **Note:** simulated residents, not human data; known limitations in packages/engine README
-> Command: `npm run eval:simulation` | Seeds: master=42, n=50 | SHA: `37b39654b3a5efb874b0437d48daf631dd7f75c0`
+> Command: `npm run eval:simulation` | Seeds: master=42, n=50 | SHA: `e2fd2f7a60920e7cee4be2521522b1e61a47c667`
 
 | Policy | N | Mastery Rate (Wilson 95% CI) | Sessions to Mastery (Mean +/- SD) | Sessions (Median [Min-Max]) | Avg FPR (Covid / Pneu / Norm) | Avg FNR (Covid / Pneu / Norm) |
 |---|---|---|---|---|---|---|
@@ -23,7 +23,7 @@ This document contains empirical, reproducible evaluation results across the fou
 
 ### E2 - LLM Image Analysis vs Dataset Ground Truth
 
-> Command: `npm run eval:analysis` | Images: 0 | SHA: `37b39654b3a5efb874b0437d48daf631dd7f75c0`
+> Command: `npm run eval:analysis` | Images: 0 | SHA: `e2fd2f7a60920e7cee4be2521522b1e61a47c667`
 
 #### Summary Quality & Reliability
 - **Schema-valid rate:** N/A (0/0)
@@ -49,7 +49,7 @@ This document contains empirical, reproducible evaluation results across the fou
 ### E3 - Question Bank Quality & Rubric Evaluation
 
 > **Note:** Rated by one non-expert reviewer (the system's builder); results are indicative only.
-> Command: `npm run eval:questions score` | Rated: 0 | SHA: `37b39654b3a5efb874b0437d48daf631dd7f75c0`
+> Command: `npm run eval:questions score` | Rated: 0 | SHA: `e2fd2f7a60920e7cee4be2521522b1e61a47c667`
 
 _Rubric rating is pending manual review in `docs/evaluation/question-rubric.csv`._
 
@@ -77,7 +77,7 @@ _Rubric rating is pending manual review in `docs/evaluation/question-rubric.csv`
 
 ### E4 - ML (DenseNet-121) Out-of-Fold Performance & Confounder Analysis
 
-> Command: `npm run eval:ml` | Total Images: 6004 | Catalog Subset: 1177 | SHA: `37b39654b3a5efb874b0437d48daf631dd7f75c0`
+> Command: `npm run eval:ml` | Total Images: 6004 | Catalog Subset: 1177 | SHA: `e2fd2f7a60920e7cee4be2521522b1e61a47c667`
 
 #### 1. Out-of-Fold (OOF) Classification Accuracy
 | Dataset Scope | N | Accuracy (Wilson 95% CI) | Covid-19 Recall / Prec | Pneumonia Recall / Prec | Normal Recall / Prec |
@@ -120,9 +120,9 @@ _Rubric rating is pending manual review in `docs/evaluation/question-rubric.csv`
 
 > **Important:** The agent produces facts, empirical metrics, Wilson confidence intervals, and tables only. This section is reserved for human qualitative interpretation.
 
-- [ ] **TODO: Adaptive Engine Simulation Limits** — Trainee skill growth in the simulator is modeled as an asymptotic exposure function ($S_c \leftarrow S_c + \eta(1-S_c)$). Real human diagnostic learning exhibits forgetting curves, fatigue, and visual cognitive plateaus that are not modeled here.
-- [ ] **TODO: Dataset Source Confounder & COVID-19 Sample Size** — The COVID-19 class contains only 177 images (142 from Cohen, 35 from Figure1), whereas Kermany comprises 5,827 pediatric images (1,582 normal, 4,245 pneumonia). The CNN backbone may exploit institutional/scanner shortcuts between datasets rather than true pathology.
-- [ ] **TODO: Single Non-Expert Question Rubric Reviewer** — The question bank rubric is rated by one non-expert reviewer (the system’s builder); ratings are indicative of clarity, distractor plausibility, and absence of answer leakage, not formal board-certified pedagogical certification.
-- [ ] **TODO: Limited LLM Batch Sample Size** — LLM image analysis evaluation is constrained to verified batches executed under the free-tier quota (15 RPM / 16 RPD) and requires cautious statistical extrapolation.
-- [ ] **TODO: Free-Tier API Rate Limits** — Gemini free-tier rate limits restrict daily throughput, requiring portable caching and offline batch processing for sustainable operation.
-- [ ] **TODO: Educational Purpose Strictly Defined** — Platform is an educational prototype. Neither LLM feedback nor CNN feature extraction constitutes clinical diagnosis or medical device software.
+- [ ] **TODO: Adaptive Engine Simulation Limits** - Trainee skill growth in the simulator is modeled as an asymptotic exposure function ($S_c \leftarrow S_c + \eta(1-S_c)$). Real human diagnostic learning exhibits forgetting curves, fatigue, and visual cognitive plateaus that are not modeled here.
+- [ ] **TODO: Dataset Source Confounder & COVID-19 Sample Size** - The COVID-19 class contains only 177 images (142 from Cohen, 35 from Figure1), whereas Kermany comprises 5,827 pediatric images (1,582 normal, 4,245 pneumonia). The CNN backbone may exploit institutional/scanner shortcuts between datasets rather than true pathology.
+- [ ] **TODO: Single Non-Expert Question Rubric Reviewer** - The question bank rubric is rated by one non-expert reviewer (the system's builder); ratings are indicative of clarity, distractor plausibility, and absence of answer leakage, not formal board-certified pedagogical certification.
+- [ ] **TODO: Limited LLM Batch Sample Size** - LLM image analysis evaluation is constrained to verified batches executed under the free-tier quota (15 RPM / 16 RPD) and requires cautious statistical extrapolation.
+- [ ] **TODO: Free-Tier API Rate Limits** - Gemini free-tier rate limits restrict daily throughput, requiring portable caching and offline batch processing for sustainable operation.
+- [ ] **TODO: Educational Purpose Strictly Defined** - Platform is an educational prototype. Neither LLM feedback nor CNN feature extraction constitutes clinical diagnosis or medical device software.

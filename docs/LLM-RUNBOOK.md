@@ -262,3 +262,13 @@ All statements in this document have been verified against the underlying source
    Per ADR 0013, high-difficulty images ($d \ge 0.68$) were misclassified by the out-of-fold DenseNet-121 model. Because auto-validation strictly requires agreement with the true dataset label, the consensus pass rate on hard images may be low. This outcome is an evaluated scientific property (T10), not a software defect.
 3. **`UNKNOWN: Real-World Latency under VPN Proxy`**  
    Multimodal requests carrying 6 raw base64 JPEG images (~1.5 MB payload) have an execution timeout of 180,000 ms. The exact network latency per batch depends on the operator's VPN tunnel performance and is measured empirically during execution.
+
+---
+
+## 9. Evaluation Suite Integration (T10)
+
+Once image analyses and question bank items are generated and exported to `apps/api/seed/`:
+- **`npm run eval:analysis`**: Evaluates LLM multimodal image analysis accuracy, Run A vs Run B Cohen's kappa agreement, auto-validation pass rate, and compares against the DenseNet-121 baseline on the identical images.
+- **`npm run eval:questions export-rubric`**: Samples up to 24 approved questions (8 per type) for human grading in `docs/evaluation/question-rubric.csv`.
+- **`npm run eval:questions score`**: Aggregates the completed human rubric with Wilson 95% confidence intervals and reports pipeline statistics.
+- **`npm run eval:all`**: Orchestrates E1 through E4 and compiles the master empirical evaluation report into `docs/EVALUATION.md`.
