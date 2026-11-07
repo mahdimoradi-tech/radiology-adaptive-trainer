@@ -22,6 +22,7 @@
     "eval:simulation": "node scripts/eval-simulation.js",
     "eval:analysis": "node scripts/eval-analysis.js",
     "eval:questions": "node scripts/eval-questions.js",
+    "eval:ml": "node scripts/eval-ml.js",
     "prepare": "husky"
   },
   "devDependencies": {
