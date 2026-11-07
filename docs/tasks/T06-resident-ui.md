@@ -1,6 +1,6 @@
 # T06 — Resident UI: tests list, quiz, report and review
 
-Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T06-resident-ui` · Skills: `persian-rtl-ui`, `api-conventions`, `git-workflow`, `team-collaboration` · Estimate: 7-8 h · Folders: `apps/web`, `docs/`.
+Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T06-resident-ui` · Skills: `persian-rtl-ui`, `api-conventions`, `git-workflow`, `review-workflow` · Estimate: 7-8 h · Folders: `apps/web`, `docs/`.
 
 If this task and a skill disagree, THIS TASK WINS. Record deviations in ADR 0011 and sync the skill at the end.
 No API or contracts change in this task. If you find an API gap, STOP, write it in the PR as a question, and do not patch the API here.

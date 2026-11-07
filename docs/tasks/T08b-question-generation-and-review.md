@@ -1,6 +1,6 @@
 # T08b — Question generation, question bank and instructor review panel
 
-Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T08b-question-bank` · Skills: `question-generation`, `llm-feedback`, `api-conventions`, `persian-rtl-ui`, `git-workflow`, `team-collaboration` · Estimate: 9-10 h + 1 quota day · Folders: `packages/contracts`, `apps/api`, `apps/web`, `docs/`.
+Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T08b-question-bank` · Skills: `question-generation`, `llm-feedback`, `api-conventions`, `persian-rtl-ui`, `git-workflow`, `review-workflow` · Estimate: 9-10 h + 1 quota day · Folders: `packages/contracts`, `apps/api`, `apps/web`, `docs/`.
 
 If this task and a skill disagree, THIS TASK WINS. Record deviations in an addendum to ADR 0013 and sync `question-generation`.
 

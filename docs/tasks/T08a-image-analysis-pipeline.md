@@ -1,6 +1,6 @@
 # T08a — Image analysis pipeline (offline, quota-aware, resumable)
 
-Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T08a-image-analysis` · Skills: `question-generation`, `llm-feedback`, `api-conventions`, `git-workflow`, `team-collaboration` · Estimate: 6 h of coding + about 3 calendar days of quota-limited runs · Folders: `packages/contracts`, `apps/api`, `docs/`.
+Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T08a-image-analysis` · Skills: `question-generation`, `llm-feedback`, `api-conventions`, `git-workflow`, `review-workflow` · Estimate: 6 h of coding + about 3 calendar days of quota-limited runs · Folders: `packages/contracts`, `apps/api`, `docs/`.
 
 If this task and a skill disagree, THIS TASK WINS (the skill assumes about 600 images and 1200 calls, impossible with 20 requests/day). Record deviations in ADR 0013.
 

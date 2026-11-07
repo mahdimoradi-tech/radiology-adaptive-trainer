@@ -1,6 +1,6 @@
 # T01 — ML pipeline: out-of-fold difficulty and app catalog
 
-Driver: **A** · Reviewer: **B** · Branch: `feat/T01-ml-pipeline` · Skills: `ml-difficulty-pipeline`, `git-workflow`, `team-collaboration` · Estimate: 8 h (plus unattended run time) · Folders: `ml/`, `docs/DATA-SOURCES.md` only.
+Driver: **A** · Reviewer: **B** · Branch: `feat/T01-ml-pipeline` · Skills: `ml-difficulty-pipeline`, `git-workflow`, `review-workflow` · Estimate: 8 h (plus unattended run time) · Folders: `ml/`, `docs/DATA-SOURCES.md` only.
 
 ## Goal
 For every chest X-ray, produce a difficulty score from a model that never saw that image (5-fold out-of-fold), buckets, `confusedWith`, and a ~1,500-image catalog (web-size images) for the app. Output files the rest of the team depends on: `ml/artifacts/difficulty.json`, `ml/artifacts/catalog.json`, `ml/reports/ml-report.md`, and a shareable `catalog-images.zip` (not committed).

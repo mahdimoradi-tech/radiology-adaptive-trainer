@@ -1,6 +1,6 @@
 # T07 — LLM core: provider, modes, quota guard, cache, knowledge base, explanations, narrative
 
-Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T07-llm-core` · Skills: `llm-feedback`, `api-conventions`, `git-workflow`, `team-collaboration` (+ `persian-rtl-ui` for step 8) · Estimate: 8-9 h · Folders: `packages/contracts`, `apps/api`, `apps/web` (step 8 only), `docs/`.
+Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T07-llm-core` · Skills: `llm-feedback`, `api-conventions`, `git-workflow`, `review-workflow` (+ `persian-rtl-ui` for step 8) · Estimate: 8-9 h · Folders: `packages/contracts`, `apps/api`, `apps/web` (step 8 only), `docs/`.
 
 If this task and a skill disagree, THIS TASK WINS (it changes the explanation key and adds a quota guard). Record deviations in ADR 0012 and sync `llm-feedback` at the end.
 

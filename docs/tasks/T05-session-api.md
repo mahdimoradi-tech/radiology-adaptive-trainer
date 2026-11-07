@@ -1,6 +1,6 @@
 # T05 — Session API (baseline and adaptive tests, answers, finish, metrics, report, progress)
 
-Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T05-session-api` · Skills: `api-conventions`, `adaptive-engine`, `git-workflow`, `team-collaboration` · Estimate: 6-7 h · Folders: `packages/contracts`, `apps/api`, `docs/`.
+Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T05-session-api` · Skills: `api-conventions`, `adaptive-engine`, `git-workflow`, `review-workflow` · Estimate: 6-7 h · Folders: `packages/contracts`, `apps/api`, `docs/`.
 
 If this task and a skill disagree, THIS TASK WINS (for example the answer route below differs from the one in `api-conventions`). Record deviations in ADR 0010 and sync the skill at the end.
 

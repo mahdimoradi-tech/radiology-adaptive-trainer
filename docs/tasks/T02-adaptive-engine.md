@@ -1,6 +1,6 @@
 # T02 — Adaptive engine and simulator (test-driven)
 
-Driver: **B** · Reviewer: **A** · Branch: `feat/T02-adaptive-engine` · Skills: `adaptive-engine`, `team-collaboration`, `git-workflow` · Estimate: 7 h · Folders: `packages/engine`, `packages/contracts` (engine shapes only), `docs/adr/`.
+Driver: **B** · Reviewer: **A** · Branch: `feat/T02-adaptive-engine` · Skills: `adaptive-engine`, `review-workflow`, `git-workflow` · Estimate: 7 h · Folders: `packages/engine`, `packages/contracts` (engine shapes only), `docs/adr/`.
 
 ## Goal
 A pure JavaScript library implementing question allocation and selection exactly as in the `adaptive-engine` skill, plus a seeded virtual-resident simulator that compares `fixed`, `random` and `adaptive` policies. No Express, no database, no files.

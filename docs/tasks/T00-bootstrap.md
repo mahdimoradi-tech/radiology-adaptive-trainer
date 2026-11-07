@@ -1,6 +1,6 @@
 # T00 — Team bootstrap (environment, Git, repo, tooling, CI, docs)
 
-Operators: **Part 1 = Operator A** (repo owner) · **Part 2 = Operator B** · **Part 3 = both** · Branches: `chore/T00-bootstrap` (A), `chore/T00-operator-b` (B) · Skills: `git-workflow`, `team-collaboration` · Estimate: A 3 h, B 2 h · Language: JavaScript (ES modules), Windows, NO Docker.
+Operators: **Part 1 = Operator A** (repo owner) · **Part 2 = Operator B** · **Part 3 = both** · Branches: `chore/T00-bootstrap` (A), `chore/T00-operator-b` (B) · Skills: `git-workflow`, `review-workflow` · Estimate: A 3 h, B 2 h · Language: JavaScript (ES modules), Windows, NO Docker.
 
 ## Goal
 A green, versioned monorepo on GitHub that both operators can clone, run, and contribute to with the review workflow - before any product code. Nothing product-related is built here.
@@ -57,7 +57,7 @@ Fresh-clone test in a temp folder: `git clone <repo>`, `cd` into it, `git switch
 ## PART 2 — Operator B (starts when A has pushed `chore/T00-bootstrap`; machine setup in step 1 can start earlier)
 1. Accept the invitation. `git clone <repo>`. Local git identity (B's own name/email).
 2. Run Step 0 and `/setup-check` on B's machine; fix gaps.
-3. `npm ci`, `npm run lint`, `npm test`, `npm run build` on A's branch - all must pass. Review A's PR with the checklist in `team-collaboration` (B's agent explains the diff in Persian; B must be able to explain it back). Approve or request changes.
+3. `npm ci`, `npm run lint`, `npm test`, `npm run build` on A's branch - all must pass. Review with the checklist in `review-workflow` (B's agent explains the diff in Persian; B must be able to explain it back). Approve or request changes.
 4. After merge: `/sync`, then update `docs/progress/developer-log.md` and the board.
 - Environment notes recorded in `docs/progress/developer-log.md`.
 

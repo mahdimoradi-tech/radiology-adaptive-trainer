@@ -1,6 +1,6 @@
 # T04 — Web foundation (React + Vite + Tailwind RTL, i18n, auth pages, panel shells)
 
-Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T04-web-foundation` · Skills: `persian-rtl-ui`, `git-workflow`, `team-collaboration` · Estimate: 6 h · Folders: `apps/web`, root config files named below, `docs/`.
+Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T04-web-foundation` · Skills: `persian-rtl-ui`, `git-workflow`, `review-workflow` · Estimate: 6 h · Folders: `apps/web`, root config files named below, `docs/`.
 
 If this task and a skill disagree, THIS TASK WINS; record deviations in ADR 0009 and sync the skill at the end.
 

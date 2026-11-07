@@ -1,6 +1,6 @@
 # T03 — Contracts and API foundation (config, auth, roles, catalog, images)
 
-Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T03-api-foundation` · Skills: `api-conventions`, `git-workflow`, `team-collaboration` · Estimate: 6 h · Folders: `packages/contracts`, `apps/api`, `docs/`, plus the root files named below.
+Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T03-api-foundation` · Skills: `api-conventions`, `git-workflow`, `review-workflow` · Estimate: 6 h · Folders: `packages/contracts`, `apps/api`, `docs/`, plus the root files named below.
 
 If this task and a skill disagree, THIS TASK WINS. Write every deviation into ADR 0007 and, at the end, sync the skill (last step).
 

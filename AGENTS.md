@@ -47,7 +47,7 @@ Dependency direction: `web -> api (HTTP)`, `api -> engine, contracts`, `engine -
 - Every feature ships with tests. Tests never call the real Gemini API (fake provider).
 - Add dependencies only via the protocol in `docs/TOOLCHAIN.md`.
 
-## 6. Git and teamwork (details: skills `git-workflow`, `team-collaboration`)
+## 6. Git and review workflow (details: skills `git-workflow`, `review-workflow`)
 Branch per task `type/Txx-name`; small Conventional Commits; push after each logical step; one PR per task with Driver and Reviewer filled; the OTHER operator reviews; merge with a merge commit; `git pull --rebase origin main` before starting work each day. Contracts first, then implementations.
 
 ## 7. Definition of Done
@@ -64,4 +64,4 @@ Branch per task `type/Txx-name`; small Conventional Commits; push after each log
 At the end of each task update your row in the `docs/PROGRESS.md` board and your log `docs/progress/operator-<a|b>.md`. A new chat starts with: `AGENTS.md` -> `docs/PROGRESS.md` -> your operator log -> the task file.
 
 ## 10. Skills index (load only what is needed)
-`git-workflow` · `team-collaboration` · `adaptive-engine` · `ml-difficulty-pipeline` · `api-conventions` · `persian-rtl-ui` · `llm-feedback` · `question-generation`. Slash workflows: `/start-task`, `/finish-task`, `/status`, `/sync` (start of each session), `/setup-check` (machine health).
+`git-workflow` · `review-workflow` · `adaptive-engine` · `ml-difficulty-pipeline` · `api-conventions` · `persian-rtl-ui` · `llm-feedback` · `question-generation`. Slash workflows: `/start-task`, `/finish-task`, `/status`, `/sync` (start of each session), `/setup-check` (machine health).
