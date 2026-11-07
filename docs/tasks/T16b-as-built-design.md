@@ -34,7 +34,7 @@
 ## Verification
 ```powershell
 git diff --stat main
-git grep -n -i -E "operator|partner|collaborat" -- docs/as-built
+git grep -n -i -E "team-workflow|two-person" -- docs/as-built
 git grep -n "from '@radiology" packages
 ```
 Also in the PR body: the number of endpoints in section 5 versus the number in the route inventory (must be equal) and every conflict found between documents and code (for example the class-weight formula) with the resolution.

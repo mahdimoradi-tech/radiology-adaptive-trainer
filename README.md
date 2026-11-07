@@ -31,7 +31,7 @@ The system dynamically models each trainee's individual diagnostic error pattern
 - [Empirical Evaluation & Metrics](#empirical-evaluation--metrics)
 - [Known Issues & Limitations](#known-issues--limitations)
 - [Datasets & Licenses](#datasets--licenses)
-- [Team & Solo Mode](#team--solo-mode)
+- [Project Author & Development](#project-author--development)
 - [Screenshots](#screenshots)
 
 ---
