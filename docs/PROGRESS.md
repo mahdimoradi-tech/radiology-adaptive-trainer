@@ -20,8 +20,8 @@ Operators: **A** = repo owner, **B** = partner. Session start: `/sync`, then `/s
 | T09a | A (solo) | none (solo) | merged | feat/T09a-progress-and-residents | #17 | `apps/api`, `apps/web`, `docs/` |
 | T09b | A (solo) | none (solo) | merged | feat/T09b-targeted-practice | #18 | `packages/contracts`, `apps/api`, `apps/web`, `docs/` |
 | T09c | A (solo) | none (solo) | merged | feat/T09c-education-catalog | #19 | `apps/web`, `docs/` |
-| T10 | A (solo) | none (solo) | in-review | feat/T10-evaluation | #20 | `packages/engine`, `apps/api`, `docs/evaluation/` |
-| T11 | A (solo) | none (solo) | todo | chore/T11-hardening-release | - | repo root, `apps/api`, `apps/web`, `docs/` |
+| T10 | A (solo) | none (solo) | merged | feat/T10-evaluation | #20 | `packages/engine`, `apps/api`, `docs/evaluation/` |
+| T11 | A (solo) | none (solo) | in-progress | chore/T11-hardening-release | - | repo root, `apps/api`, `apps/web`, `docs/` |
 
 ## Open questions (add a line, date, who)
 - Professor meeting: confirm goal (reproduce paper vs usable product), LLM expectation (image analysis + question generation), who reviews generated questions/KB scientifically, deadline and delivery format, how individual grades are assessed, whether the agent-assisted workflow is accepted.
