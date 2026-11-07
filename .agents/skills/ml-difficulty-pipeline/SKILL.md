@@ -27,4 +27,4 @@ Raw data in `data/raw/<source>/` (git-ignored; never commit images): `kermany` (
 
 ## Acceptance
 `uv run pytest` passes (tiny synthetic tests: fold disjointness, difficulty formula, bucket function, confusedWith, JSON schema); same seed -> identical outputs; `git ls-files` contains no jpg/png/npy; report linked from the board; `docs/DATA-SOURCES.md` filled.
-Optional (Could): Grad-CAM sanity check; Colab notebook if the CPU is too slow (the operator runs it).
+Optional (Could): Grad-CAM sanity check; Colab notebook if the CPU is too slow (the developer runs it).
