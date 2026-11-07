@@ -1,8 +1,8 @@
-## Task & Team
+## Task
 
 - **Task ID:** T05
-- **Driver:** Operator A (solo)
-- **Reviewer:** none (solo) -> AI review per `docs/SOLO-MODE.md`
+- **Branch:** feat/T05-session-api
+- **Review:** AI review per `docs/WORKFLOW.md`
 
 ## Summary
 
@@ -99,7 +99,7 @@ powershell -ExecutionPolicy Bypass -File scripts/verify-session-flow.ps1
 ## Contract Changes
 
 - **Contract changed?** [x] Yes / [ ] No
-- _Justification (Operator A):_ Added `packages/contracts/src/session.js` schemas (`CreateSessionBodySchema`, `AnswerBodySchema`, `QuestionPublicSchema`, `SessionPublicSchema`, `SessionSummarySchema`, `ClassMetricsSchema`, `ReportItemSchema`, `SessionReportSchema`, `ProgressSchema`, `AdminResidentSummarySchema`) and appended 6 error codes to `API_ERROR_CODES` (`SESSION_IN_PROGRESS`, `SESSION_NOT_IN_PROGRESS`, `SESSION_NOT_FINISHED`, `SESSION_ALREADY_FINISHED`, `POOL_EXHAUSTED`, `QUESTION_NOT_FOUND`). Fully covered with 17 contract tests.
+- _Justification (Mahdi):_ Added `packages/contracts/src/session.js` schemas (`CreateSessionBodySchema`, `AnswerBodySchema`, `QuestionPublicSchema`, `SessionPublicSchema`, `SessionSummarySchema`, `ClassMetricsSchema`, `ReportItemSchema`, `SessionReportSchema`, `ProgressSchema`, `AdminResidentSummarySchema`) and appended 6 error codes to `API_ERROR_CODES` (`SESSION_IN_PROGRESS`, `SESSION_NOT_IN_PROGRESS`, `SESSION_NOT_FINISHED`, `SESSION_ALREADY_FINISHED`, `POOL_EXHAUSTED`, `QUESTION_NOT_FOUND`). Fully covered with 17 contract tests.
 
 ## Dependencies Added
 

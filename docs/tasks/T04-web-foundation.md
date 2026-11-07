@@ -1,6 +1,6 @@
 # T04 — Web foundation (React + Vite + Tailwind RTL, i18n, auth pages, panel shells)
 
-Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T04-web-foundation` · Skills: `persian-rtl-ui`, `git-workflow`, `review-workflow` · Estimate: 6 h · Folders: `apps/web`, root config files named below, `docs/`.
+Developer: Mahdi · Branch: `feat/T04-web-foundation` · Skills: `persian-rtl-ui`, `git-workflow`, `review-workflow` · Estimate: 6 h · Folders: `apps/web`, root config files named below, `docs/`.
 
 If this task and a skill disagree, THIS TASK WINS; record deviations in ADR 0009 and sync the skill at the end.
 
@@ -13,7 +13,7 @@ T03 merged; `/sync` done; the API runs (`npm run dev -w @radiology/api`), the ca
 ## Binding decisions
 | Topic | Decision |
 |---|---|
-| Template | `npm create vite@latest apps/web -- --template react` (JavaScript). Answer the prompts conservatively (no "start now", no experimental options unless the current docs recommend them; tell the operator what was asked) |
+| Template | `npm create vite@latest apps/web -- --template react` (JavaScript). Answer the prompts conservatively (no "start now", no experimental options unless the current docs recommend them; tell the developer what was asked) |
 | UI kit | none; Tailwind CSS 4 utilities + a tiny own component set |
 | Router | `react-router` v7 with `createBrowserRouter` + `RouterProvider` (verify imports in the current docs; the package is `react-router`, not `react-router-dom`) |
 | Server state | TanStack Query 5; auth state is the `['me']` query |
@@ -82,7 +82,7 @@ i18n key parity fa/en · direction hook sets `dir="rtl"` for `fa` and `dir="ltr"
 7. `feat(web): add resident and instructor home shells`.
 8. `chore(web): add rtl class check and react lint rules` — extend the root `eslint.config.js` with a block for `apps/web/**/*.{js,jsx}` (browser globals, React rules); keep the existing rules for other packages.
 9. `chore(repo): add root dev script for api and web` — `concurrently` (verify the package) so `npm run dev` starts both; document in the root README.
-10. `docs(web): add web readme, ADR 0009 and sync persian-rtl-ui skill` — ADR 0009 records the proxy topology, the RTL lint rule, the router choice; sync the skill (under 12,000 characters), board, operator log.
+10. `docs(web): add web readme, ADR 0009 and sync persian-rtl-ui skill` — ADR 0009 records the proxy topology, the RTL lint rule, the router choice; sync the skill (under 12,000 characters), board, developer log.
 
 ## Verification (show real outputs)
 `npm run lint`, `npm test`, `npm run build` pass (the web build must succeed). Run `npm run dev`, open `http://127.0.0.1:5173` with the Antigravity browser or your browser: register a resident, log in, see `/app` in RTL with Vazirmatn; log out; log in as the instructor and see `/instructor`; try `/instructor` as the resident and see `/forbidden`; switch to English and see `dir="ltr"`. Take two screenshots (login, resident home) and attach them to the PR.

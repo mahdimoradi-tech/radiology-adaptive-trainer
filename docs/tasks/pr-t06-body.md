@@ -1,8 +1,8 @@
-## Task & Team
+## Task
 
 - **Task ID:** T06
-- **Driver:** Operator A (solo)
-- **Reviewer:** none (solo) -> AI review per `docs/SOLO-MODE.md`
+- **Branch:** feat/T06-resident-ui
+- **Review:** AI review per `docs/WORKFLOW.md`
 
 ## Summary
 

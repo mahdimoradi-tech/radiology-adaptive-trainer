@@ -1,6 +1,6 @@
 # T01 — ML pipeline: out-of-fold difficulty and app catalog
 
-Driver: **A** · Reviewer: **B** · Branch: `feat/T01-ml-pipeline` · Skills: `ml-difficulty-pipeline`, `git-workflow`, `review-workflow` · Estimate: 8 h (plus unattended run time) · Folders: `ml/`, `docs/DATA-SOURCES.md` only.
+Developer: Mahdi · Branch: `feat/T01-ml-pipeline` · Skills: `ml-difficulty-pipeline`, `git-workflow`, `review-workflow` · Estimate: 8 h (plus unattended run time) · Folders: `ml/`, `docs/DATA-SOURCES.md` only.
 
 ## Goal
 For every chest X-ray, produce a difficulty score from a model that never saw that image (5-fold out-of-fold), buckets, `confusedWith`, and a ~1,500-image catalog (web-size images) for the app. Output files the rest of the team depends on: `ml/artifacts/difficulty.json`, `ml/artifacts/catalog.json`, `ml/reports/ml-report.md`, and a shareable `catalog-images.zip` (not committed).
@@ -32,7 +32,7 @@ T00 merged (A has `/sync`ed). Free disk space >= 15 GB. Read `docs/DOMAIN.md` se
 - [ ] No image was scored by a model trained on it (fold column proves it; test exists).
 - [ ] Catalog has <= 500 per class and includes hard/medium/easy images; zip created and its size reported.
 - [ ] Report lists limitations honestly (source shortcut, label noise, not clinical).
-- [ ] PR opened (Driver A, Reviewer B). B can explain: what out-of-fold means, why we freeze the backbone, what `difficulty` means.
+- [ ] PR opened; review checklist completed. Can explain: what out-of-fold means, why we freeze the backbone, what `difficulty` means.
 
 ## After merge
 A sends `catalog-images.zip` to B out-of-band (Drive/USB). B unzips it into `data/catalog/` (the `npm run data:install` script arrives in T03). Update the board and your log.

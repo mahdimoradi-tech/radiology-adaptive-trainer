@@ -1,6 +1,6 @@
 # T06 — Resident UI: tests list, quiz, report and review
 
-Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T06-resident-ui` · Skills: `persian-rtl-ui`, `api-conventions`, `git-workflow`, `review-workflow` · Estimate: 7-8 h · Folders: `apps/web`, `docs/`.
+Developer: Mahdi · Branch: `feat/T06-resident-ui` · Skills: `persian-rtl-ui`, `api-conventions`, `git-workflow`, `review-workflow` · Estimate: 7-8 h · Folders: `apps/web`, `docs/`.
 
 If this task and a skill disagree, THIS TASK WINS. Record deviations in ADR 0011 and sync the skill at the end.
 No API or contracts change in this task. If you find an API gap, STOP, write it in the PR as a question, and do not patch the API here.
@@ -109,7 +109,7 @@ Add keys for `sessions.*`, `quiz.*`, `report.*`, `review.*`, `classes.*`, `bucke
 4. `feat(web): add finish dialog and resume behavior` (+ test 4).
 5. `feat(web): add report page with confusion matrix and metrics` (+ test 5).
 6. `feat(web): add review page with filters` (+ test 6).
-7. `docs(web): add ADR 0011, readme notes and sync persian-rtl-ui skill` — ADR 0011 documents: autosave deviation from the paper, no-feedback rule, band labels from `perClassMastered`, plan card without shortfalls, URL-based question state; update the board and operator log.
+7. `docs(web): add ADR 0011, readme notes and sync persian-rtl-ui skill` — ADR 0011 documents: autosave deviation from the paper, no-feedback rule, band labels from `perClassMastered`, plan card without shortfalls, URL-based question state; update the board and developer log.
 
 ## Verification (show real outputs)
 `npm run lint`, `npm test`, `npm run build`. Manual run (`npm run dev`): log in as a resident, start a 45-question test, answer about 10 (mix), refresh the page (answers and position survive), open DevTools -> Network and confirm no JSON field named `trueClass`/`bucket`/`difficulty` appears in any resident response, finish, open the report and the review, start the next test. Paste screenshots of quiz, report and review (desktop width and a narrow width) in the PR. Report what the baseline plan looked like for covid19 medium/hard (the catalog has only 2 medium and 3 hard covid19 images) — read it from `mongosh`, never from the UI.

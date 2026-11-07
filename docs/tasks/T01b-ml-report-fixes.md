@@ -1,6 +1,6 @@
 # T01b — ML report fixes and data-quality check
 
-Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `fix/T01b-ml-report` · Skills: `ml-difficulty-pipeline`, `git-workflow` · Estimate: Part A 1 h; Part B (optional) 2-3 h · Folders: `ml/`, `docs/` only.
+Developer: Mahdi · Branch: `fix/T01b-ml-report` · Skills: `ml-difficulty-pipeline`, `git-workflow` · Estimate: Part A 1 h; Part B (optional) 2-3 h · Folders: `ml/`, `docs/` only.
 
 ## Why this task exists (findings from reading the merged T01 outputs)
 1. **The per-class table in `ml/reports/ml-report.md` section 1 has the Pneumonia and Normal rows swapped.** Its supports say Pneumonia = 1582 and Normal = 4245, but the manifest, the bucket tables and the confusion matrix all say Normal = 1582 and Pneumonia = 4245. Recomputed from the confusion matrix: pneumonia precision 0.9870, recall 0.9475, F1 0.9668; normal precision 0.8839, recall 0.9621, F1 0.9213. COVID-19 (0.8406 / 0.9831 / 0.9062) and macro-F1 are correct. Most likely cause: `target_names` order differs from the label-encoding order inside the report script.
@@ -13,14 +13,14 @@ Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.m
 3. `docs(ml): quantify the source/class confound in the report` — add to the report: class x source table (exists), per-source OOF accuracy, COVID-19 difficulty histogram (deciles), and one honest paragraph: "difficulty for COVID-19 partly reflects source differences; do not interpret it as clinical difficulty". Keep `ADR 0005` unchanged except a link.
 4. Push, `/finish-task`, AI review, `merge` (small PR).
 
-## Decision gate (Operator A decides, before T07/T08 start — NOT before T03)
+## Decision gate (Developer decides, before T07/T08 start — NOT before T03)
 Part B changes the catalog. Every LLM call in T08 is made per catalog image, so changing the catalog AFTER T08 wastes API quota and review time. Decide before T07 starts.
 - **Skip Part B:** add a short "accepted limitation" addendum to ADR 0005 and continue. T10 will measure the effect.
 - **Do Part B (recommended if time allows):** reduces the age confound.
 
 ## Part B (optional): add adult images of the non-COVID classes
-1. Inspect what exists locally WITHOUT committing anything: `data/raw/cohen/CovidDataset/` (the 142 adult NORMAL images are not used today) and the local `data/actualmed.zip` (unzip into `data/raw/actualmed/`, list folders and counts per label, read its README/license). Report counts and licenses to the operator and WAIT.
-2. If the operator approves: extend `build_manifest.py` with these sources (labels: cohen normal -> `normal`; any adult pneumonia/normal/COVID from actualmed only if its labels are clear and the license allows), keep dedup by sha256, update `docs/DATA-SOURCES.md`.
+1. Inspect what exists locally WITHOUT committing anything: `data/raw/cohen/CovidDataset/` (the 142 adult NORMAL images are not used today) and the local `data/actualmed.zip` (unzip into `data/raw/actualmed/`, list folders and counts per label, read its README/license). Report counts and licenses to the developer and WAIT.
+2. If approved: extend `build_manifest.py` with these sources (labels: cohen normal -> `normal`; any adult pneumonia/normal/COVID from actualmed only if its labels are clear and the license allows), keep dedup by sha256, update `docs/DATA-SOURCES.md`.
 3. Re-run preprocess, extract features, OOF training, difficulty, catalog export (long CPU run; ask before each step longer than 10 minutes; batch size 16).
 4. Re-check the Part A tests, regenerate the report, and compare: COVID-19 recall/precision, covid bucket counts, class x source table. Write the comparison in the report ("before/after").
 5. Catalog: still <= 500 per class; COVID-19 gets every available image.
@@ -31,7 +31,7 @@ Part B changes the catalog. Every LLM call in T08 is made per catalog image, so 
 - [ ] The new consistency test exists and passes (`uv run pytest`); `uv run ruff check` passes.
 - [ ] The report contains the confound section with real numbers.
 - [ ] No images/feature files tracked by git (`git ls-files | Select-String "\.(jpg|png|npy|zip)$"` prints nothing).
-- [ ] Decision about Part B written in the ADR 0005 addendum and in the operator log.
+- [ ] Decision about Part B written in the ADR 0005 addendum and in the developer log.
 
 ## Out of scope
 App code, LLM calls, fine-tuning the backbone, Grad-CAM.

@@ -1,6 +1,6 @@
 # T08b — Question generation, question bank and instructor review panel
 
-Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T08b-question-bank` · Skills: `question-generation`, `llm-feedback`, `api-conventions`, `persian-rtl-ui`, `git-workflow`, `review-workflow` · Estimate: 9-10 h + 1 quota day · Folders: `packages/contracts`, `apps/api`, `apps/web`, `docs/`.
+Developer: Mahdi · Branch: `feat/T08b-question-bank` · Skills: `question-generation`, `llm-feedback`, `api-conventions`, `persian-rtl-ui`, `git-workflow`, `review-workflow` · Estimate: 9-10 h + 1 quota day · Folders: `packages/contracts`, `apps/api`, `apps/web`, `docs/`.
 
 If this task and a skill disagree, THIS TASK WINS. Record deviations in an addendum to ADR 0013 and sync `question-generation`.
 
@@ -13,7 +13,7 @@ T06, T07 and T08a merged; `analysis:status` shows the analysis runs finished (or
 ## Human steps
 1. Run `analysis:validate` and paste `analysis:status` (auto_passed per class x bucket). The number of `auto_passed` images decides the bank size; strict label agreement may reject many hard images — that is a finding, not a bug.
 2. One quota day for generation: `npm run questions:generate -w @radiology/api -- --max-requests 12` (VPN on). Do not use the model in AI Studio that day.
-3. Review questions in the panel yourself. Reviewer = operator A only (not a clinician). Therefore: approve only what you can verify against the image/KB text, prefer rejecting when unsure, and record in the PR how many were approved/rejected. If a medical student becomes available later, they review the same panel.
+3. Review questions in the panel yourself. Reviewer = the developer only (not a clinician). Therefore: approve only what you can verify against the image/KB text, prefer rejecting when unsure, and record in the PR how many were approved/rejected. If a medical student becomes available later, they review the same panel.
 
 ## Binding decisions
 | Topic | Decision |
@@ -28,7 +28,7 @@ T06, T07 and T08a merged; `analysis:status` shows the analysis runs finished (or
 | Access | Instructor only (`/api/admin/questions*`); resident -> 403. Nothing in this task reaches residents. |
 | Honest labeling | Items carry `source { model, promptVersion, analysisIds }`; the panel shows «بازبینی توسط مدرس (غیر بالینی)» next to approved items unless a clinical reviewer flag is set later. |
 
-## Contract changes (`packages/contracts/src/questionBank.js`; Operator A approves in the PR)
+## Contract changes (`packages/contracts/src/questionBank.js`; justified in the PR)
 `QUESTION_TYPES ('finding'|'distribution'|'differential')`, `QUESTION_STATUSES ('pending_review'|'approved'|'rejected')`, `QuestionOptionSchema { text, key: string|null }`, `GeneratedQuestionSchema { type, stem, options[4], correctIndex 0..3, rationale, kbRef|null, tags[] }`, `GenerationOutputSchema { items: [{ imageIndex, questions[] }] }`, `QuestionBankAdminSchema` (id, stableId, type, pair { trueClass, confusedWith }, bucket, stem, options, correctIndex, rationale, kbRef, tags, status, edited, source, reviewedBy|null, reviewedAt|null, note|null, history[], imageUrl, analysis summary { consensus, certaintyA, certaintyB }), `QuestionBankStatsSchema` (counts by status and by type and by pair), edit/approve/reject bodies. Tests for every schema. Append no new error codes unless needed (use `NOT_FOUND`, `FORBIDDEN`, `VALIDATION_ERROR`).
 
 ## API (`apps/api/src/modules/bank/`: `model.js`, `validate.js` pure, `generate.js` service used by the script, `routes.js` under admin, `mapper.js`)
@@ -69,7 +69,7 @@ Cut order if time is short: step 7's edit form (keep approve/reject) -> keyboard
 ## Acceptance criteria
 - [ ] Generation, checks, bank, admin API, export/import, and panel work; nothing reaches residents (tested).
 - [ ] Every approved item satisfies the tied-keys rule; no item can be approved without an instructor action.
-- [ ] Review done by the operator with counts reported; limitations written down.
+- [ ] Review done by the developer with counts reported; limitations written down.
 - [ ] CI green; ADR 0013 addendum; skill synced; board and log updated; AI review blockers fixed.
 
 ## Out of scope

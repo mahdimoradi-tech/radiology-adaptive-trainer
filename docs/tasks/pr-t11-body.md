@@ -1,9 +1,8 @@
-## Task & Team
+## Task
 
 - **Task ID:** T11 - Hardening, docs, demo script, release
-- **Driver:** Operator A (solo)
-- **Reviewer:** none (solo) -> AI Review per `docs/SOLO-MODE.md`
 - **Branch:** `chore/T11-hardening-release`
+- **Review:** AI Review per `docs/WORKFLOW.md`
 
 ---
 

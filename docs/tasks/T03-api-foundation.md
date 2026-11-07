@@ -1,6 +1,6 @@
 # T03 — Contracts and API foundation (config, auth, roles, catalog, images)
 
-Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T03-api-foundation` · Skills: `api-conventions`, `git-workflow`, `review-workflow` · Estimate: 6 h · Folders: `packages/contracts`, `apps/api`, `docs/`, plus the root files named below.
+Developer: Mahdi · Branch: `feat/T03-api-foundation` · Skills: `api-conventions`, `git-workflow`, `review-workflow` · Estimate: 6 h · Folders: `packages/contracts`, `apps/api`, `docs/`, plus the root files named below.
 
 If this task and a skill disagree, THIS TASK WINS. Write every deviation into ADR 0007 and, at the end, sync the skill (last step).
 
@@ -14,7 +14,7 @@ A secure, tested Express 5 API on the local MongoDB: health check, cookie-based 
 4. **Windows:** commands in PowerShell, `127.0.0.1` for MongoDB, no bash-only npm scripts.
 
 ## Prerequisites
-- T01 and T02 merged; `/sync` done; board row for T03 claimed (Driver A (solo)).
+- T01 and T02 merged; `/sync` done; board row for T03 set to in-progress.
 - MongoDB service running: `mongosh "mongodb://127.0.0.1:27017" --quiet --eval "db.runCommand({ping:1}).ok"` prints `1`.
 - `.env` exists at the repo root (copy of `.env.example`). The agent never prints its values.
 
@@ -36,7 +36,7 @@ A secure, tested Express 5 API on the local MongoDB: health check, cookie-based 
 | Tests | Vitest 4 projects + supertest against a REAL local MongoDB, one unique database per test file, dropped afterwards | no extra packages; CI has a MongoDB service |
 | Passwords | length 8..72 BYTES (bcrypt truncates at 72 bytes; Persian characters are 2 bytes), must differ from the email | correctness |
 
-## Contracts to add (`packages/contracts/src/`), contract change approved by Operator A in the PR
+## Contracts to add (`packages/contracts/src/`), contract change justified in the PR
 - `common.js`: `API_ERROR_CODES` = `VALIDATION_ERROR, UNAUTHENTICATED, FORBIDDEN, NOT_FOUND, EMAIL_TAKEN, INVALID_CREDENTIALS, RATE_LIMITED, UNSUPPORTED_MEDIA_TYPE, INTERNAL_ERROR` (later tasks append); `ApiErrorSchema` = `{ error: { code, message, details? } }`; `PaginationQuerySchema` (`page` default 1, `pageSize` default 20, max 100; coerce numbers); `ObjectIdSchema` (24 hex chars).
 - `auth.js`: `RoleSchema = z.enum(['resident','instructor'])`; `LanguageSchema = z.enum(['fa','en'])`; `RegisterBodySchema { email, password, displayName (2..60, trimmed), language default 'fa' }`; `LoginBodySchema { email, password }`; `UserPublicSchema { id, email, displayName, role, language, createdAt }`. Email: trimmed, lowercased, max 254.
 - `catalog.js`: `CatalogEntrySchema` = `ImageMetaSchema.extend({ imageId: z.string().optional(), filename: /^[A-Za-z0-9_.-]+\.jpe?g$/, source: z.string().min(1) })` then refine "if `imageId` exists it equals `id`". `CatalogFileSchema = z.array(CatalogEntrySchema).min(1)` with a refine for duplicate ids. `ImagePublicSchema { id: publicId, url }`. `CatalogImageAdminSchema` = entry without `imageId` plus `publicId` and `url`. `CatalogStatsSchema { total, byClass, byBucket, byClassBucket, bySource }`.
@@ -84,7 +84,7 @@ Asks (readline) for email, display name and password (password never as a CLI ar
 7. `feat(api): add catalog model, public ids and seed script` (+ tests).
 8. `feat(api): add catalog stats, catalog list and image file endpoints` (+ tests, leak tests).
 9. `docs(api): add postman collection, api readme and ADRs` — `docs/postman/radiology-api.postman_collection.json` (one request per endpoint with example bodies), `apps/api/README.md` (setup, env table, scripts, PowerShell examples, how a teammate installs images: `Expand-Archive`), ADR 0007 (API architecture, auth, CSRF stance, dev proxy topology), ADR 0008 (opaque public ids and label leakage; note that image CONTENT can still reveal the source — see ADR 0006).
-10. `docs(repo): sync api-conventions skill and board` — update `.agents/skills/api-conventions/SKILL.md` to what was really built (keep it under 12,000 characters), `.env.example`, board row, operator log.
+10. `docs(repo): sync api-conventions skill and board` — update `.agents/skills/api-conventions/SKILL.md` to what was really built (keep it under 12,000 characters), `.env.example`, board row, developer log.
 
 ## Verification (show real outputs; PowerShell)
 - `npm run lint`, `npm test`, `npm run build` all pass; test count not lower than before.
@@ -99,10 +99,10 @@ Asks (readline) for email, display name and password (password never as a CLI ar
 
 ## Acceptance criteria
 - [ ] All endpoints above work and are tested; no response leaks `passwordHash`, internal ids or labels to residents.
-- [ ] Seed is idempotent, validates the file, prints pool-health warnings, and the real catalog is imported (counts reported to the operator).
+- [ ] Seed is idempotent, validates the file, prints pool-health warnings, and the real catalog is imported (counts reported to the developer).
 - [ ] CI is green (MongoDB service container) and `npm test` runs every workspace through Vitest projects.
 - [ ] ADR 0007 and 0008 written; contracts change described in the PR; skill synced; no secret or image committed.
-- [ ] AI review done in a fresh chat (see `docs/SOLO-MODE.md`) and its blockers fixed.
+- [ ] AI review done in a fresh chat (see `docs/WORKFLOW.md`) and its blockers fixed.
 
 ## After merge
 Send the PR's catalog summary tables to Claude (they decide how T05/T06/T08 handle small pools, especially COVID-19). Then `/sync` and `/start-task T04`.

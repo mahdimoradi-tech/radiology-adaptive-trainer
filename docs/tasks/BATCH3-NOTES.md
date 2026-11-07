@@ -1,6 +1,6 @@
 # Batch 3 notes (T08c, T09a, T09b, T09c, T10, T11)
 
-Written 2026-11-06 by Claude for Mahdi (Solo Mode). Source: evidence-batch3.txt.
+Written 2026-11-06 by Claude for Mahdi. Source: evidence-batch3.txt.
 
 ## 1. State at the start of batch 3
 - Merged: T00-T08b (last = PR #13). Lint + RTL check pass. 69 test files / 520 tests pass.
@@ -65,4 +65,4 @@ Read AGENTS.md. Task: docs-only. I added docs/tasks/BATCH3-NOTES.md and task fil
 Review quickly, run `npm run lint` and `npm test` yourself, merge (merge commit, never squash).
 
 ## 8. Rules that apply to every task in this batch
-Solo Mode (never impersonate B), JavaScript only, Windows/PowerShell, no Docker, no secrets in git or chat, no force push, no --no-verify, no direct push to main, small Conventional Commits, tests first for engine code, no label leakage to residents, reports data-driven (never tune parameters to make a result look good), merge commit never squash.
+Development workflow (docs/WORKFLOW.md), JavaScript only, Windows/PowerShell, no Docker, no secrets in git or chat, no force push, no --no-verify, no direct push to main, small Conventional Commits, tests first for engine code, no label leakage to residents, reports data-driven (never tune parameters to make a result look good), merge commit never squash.

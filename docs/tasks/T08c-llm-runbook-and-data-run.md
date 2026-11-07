@@ -2,7 +2,7 @@
 
 - Branch: `docs/T08c-llm-runbook` (Part A). Part B uses a second branch `chore/T08c-data-seeds`.
 - Depends on: T08b merged (PR #13).
-- Type: Part A = docs-only PR written by the agent. Part B = checklist done by Mahdi (operator), NOT by the agent.
+- Type: Part A = docs-only PR written by the agent. Part B = checklist done by Mahdi (developer), NOT by the agent.
 - Estimate: Part A about 1 h. Part B about 10 min/day for several days + about 3 min per generated question for review.
 - Skills to read first: llm-feedback, question-generation, api-conventions. ADRs: 0012, 0013. Docs: docs/GEMINI-NOTES.md, apps/api README.
 
@@ -27,7 +27,7 @@ Step 2 - Write `docs/LLM-RUNBOOK.md` with these sections:
 3. Recommended order: preflight -> analysis:select/plan -> analysis:run (repeat daily) -> analysis:validate -> analysis:status -> analysis:export -> questions:generate (repeat daily) -> review in the instructor panel -> bank:export -> llm:pregenerate (explanations/narratives for demo) -> llm:cache:export.
 4. Cost formulas with numbers: (a) requests needed for the full planned analysis set, (b) requests per generated question and per confusion pair, (c) requests for llm:pregenerate. If a number cannot be derived from code, write UNKNOWN and say how to measure it (run once, read the counter).
 5. Day plan table: for each day which script, how many requests, what to check afterwards.
-6. Failure modes: 429 per-minute, 429 daily, 503, schema-invalid output, network/VPN down. For each: what the script does and what the operator does.
+6. Failure modes: 429 per-minute, 429 daily, 503, schema-invalid output, network/VPN down. For each: what the script does and what the developer does.
 7. Safety: never commit `.env`; seed JSON files may be committed (they contain model outputs only); do not use the same key in other tools during runs.
 8. "Verification of this document": list each claim that you could not verify as UNKNOWN.
 Commit: `docs: add LLM runbook`.
@@ -40,7 +40,7 @@ Step 4 - `npm run lint` and `npm test` (nothing else changes, they must still pa
 - No UNKNOWN is hidden: unknowns are listed in the PR body.
 - No code changed. `git diff --stat main` shows only docs.
 
-## Part B - operator checklist (Mahdi, after Part A is merged)
+## Part B - developer checklist (Mahdi, after Part A is merged)
 Daily preflight (2 min): VPN on; MongoDB running; on branch main, clean tree; `.env` has the Gemini key and LLM_MODE=live (do not paste it anywhere); run `npm run analysis:status -w apps/api` and `npm run questions:status -w apps/api` and look at the "Day / Used / Remaining" lines.
 
 B1 Analysis: follow the runbook until `Done == Total`. Then `analysis:validate`, `analysis:status`, `analysis:export`.
