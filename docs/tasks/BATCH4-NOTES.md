@@ -15,7 +15,7 @@ Written 2026-11-07 after all of T00-T11 were merged (main at c546152, PR #21). F
 | Class weights = `error / totalError` (uniform if total error is 0) | `packages/engine/src/rates.js:81` |
 | Real Gemini quota: 5 RPM, 250k TPM, 20 RPD; project guard 16 per Pacific day, throttle 13 s | LLM-RUNBOOK.md section 1.1 |
 | No real Google API key in git history (3 commits mention the text "AIza" only in docs) | `git log -S` + regex check |
-| 52 files mention operator/partner/collaborat; PR template contains a partner name; 2 files have local `file:///d:` links | `git grep` |
+| Docs contained team-workflow wording and local file links (cleaned in T12) | Repository audit |
 
 ## Statements from the previous agent report that are WRONG or unsupported (do not use them anywhere)
 - Adaptive 88% / random 64% / fixed 58% mastery; adaptive 3.3 sessions. (File says 100% for all; 4.50/4.60/4.64.)
