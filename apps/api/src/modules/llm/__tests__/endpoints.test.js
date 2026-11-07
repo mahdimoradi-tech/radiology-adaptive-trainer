@@ -272,6 +272,49 @@ describe('LLM Endpoints Integration', () => {
       const usageDocAfter = await LlmUsage.findOne().lean();
       expect(usageDocAfter.count).toBe(1);
     });
+
+    it('in LLM_MODE=cache-only, never calls the network provider even if provider throws', async () => {
+      const cacheOnlyConfig = loadEnv({
+        ...config,
+        LLM_MODE: 'cache-only',
+      });
+      const cacheOnlyApp = createApp({
+        config: cacheOnlyConfig,
+        logger: createLogger({ NODE_ENV: 'test' }),
+      });
+
+      const fake = getFakeProvider();
+      fake.reset();
+      fake.enqueue(new Error('Network error: should never be reached in cache-only mode!'));
+
+      const session = await SessionModel.create({
+        userId: residentUser.id,
+        index: 2,
+        kind: 'baseline',
+        status: 'finished',
+        size: 45,
+        summaryMetrics: {
+          accuracy: 0.8,
+          classMetrics: { covid19: { accuracy: 0.8, fpr: 0.1, fnr: 0.2 } },
+          topConfusions: [{ trueClass: 'covid19', userAnswer: 'pneumonia', count: 2 }],
+        },
+        questions: [],
+      });
+
+      const res = await request(cacheOnlyApp)
+        .post(`/api/sessions/${session._id}/report-narrative`)
+        .set('Cookie', residentCookie)
+        .set('Content-Type', 'application/json')
+        .send({ lang: 'fa' });
+
+      expect(res.status).toBe(200);
+      expect(res.body.source).toBe('fallback');
+      expect(res.body.narrative).toBeDefined();
+      expect(res.body.narrative.recommendations).toHaveLength(3);
+      // Provider was NEVER called, error was never consumed or thrown
+      expect(fake.calls).toHaveLength(0);
+      expect(fake.queue).toHaveLength(1);
+    });
   });
 
   describe('Rate Limiting on Narrative Endpoint', () => {
