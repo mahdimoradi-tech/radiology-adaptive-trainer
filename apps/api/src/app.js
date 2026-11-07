@@ -13,6 +13,7 @@ import { createSessionsRouter } from './modules/sessions/routes.js';
 import { createAdminSessionsRouter } from './modules/sessions/admin.routes.js';
 import { createAdminBankRouter } from './modules/bank/routes.js';
 import { createLlmRouter } from './modules/llm/routes.js';
+import { createPracticeRouter } from './modules/practice/routes.js';
 
 /**
  * Express application factory
@@ -60,6 +61,7 @@ export function createApp({ config, logger = defaultLogger }) {
   apiRouter.use(createAdminSessionsRouter(config));
   apiRouter.use(createAdminBankRouter(config));
   apiRouter.use(createLlmRouter(config));
+  apiRouter.use(createPracticeRouter(config));
 
   app.use('/api', apiRouter);
 
