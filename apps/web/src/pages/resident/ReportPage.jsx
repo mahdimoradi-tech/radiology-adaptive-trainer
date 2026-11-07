@@ -95,6 +95,10 @@ export function ReportPage() {
 
   const isZeroAnswered = answeredCount === 0;
 
+  const hasErrorPairs = CLASS_IDS.some((trueId) =>
+    CLASS_IDS.some((predId) => trueId !== predId && (confusion?.[trueId]?.[predId] ?? 0) > 0),
+  );
+
   return (
     <div className="space-y-8">
       {/* Header and Actions */}
@@ -115,6 +119,11 @@ export function ReportPage() {
           <Link to={`/app/reports/${sessionId}/review`}>
             <Button variant="outline">{t('report.actionReview')}</Button>
           </Link>
+          {hasErrorPairs && (
+            <Link to="/app/practice">
+              <Button variant="secondary">{t('practice.targetedPractice')}</Button>
+            </Link>
+          )}
           <Button
             variant="primary"
             isLoading={createMutation.isPending}
@@ -300,6 +309,17 @@ export function ReportPage() {
                   </tbody>
                 </table>
               </div>
+
+              {hasErrorPairs && (
+                <div className="mt-4 p-3 rounded-lg bg-sky-50 border border-sky-100 flex flex-wrap items-center justify-between gap-3">
+                  <span className="text-xs text-sky-800">{t('practice.homeSubtitle')}</span>
+                  <Link to="/app/practice">
+                    <Button size="sm" variant="outline">
+                      {t('practice.targetedPractice')}
+                    </Button>
+                  </Link>
+                </div>
+              )}
             </CardContent>
           </Card>
 
