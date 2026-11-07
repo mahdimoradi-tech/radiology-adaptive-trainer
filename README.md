@@ -42,8 +42,10 @@ npm run build        # Production builds
 
 ## Workspaces
 
-- `apps/web`: React 19 + Vite 8 + Tailwind CSS 4 RTL application (resident & instructor panels)
-- `apps/api`: Express 5 + Mongoose 9 REST API with JWT cookie session auth
-- `packages/contracts`: Shared Zod 4 runtime schemas and contracts
-- `packages/engine`: Pure JS adaptive question selection engine and virtual simulator
+- `apps/web`: React 19 + Vite 8 + Tailwind CSS 4 RTL application:
+  - **Resident Panel**: Baseline & adaptive diagnostic testing, accessible radiograph quiz runner, performance analytics reports with confusion matrices and LLM narrative feedback, targeted practice on confusion pairs, learning progress tracking, and resident educational guide (`/app/education`).
+  - **Instructor Panel**: AI-generated question bank review queue, resident trainee roster and individual diagnostic progress inspector, and radiograph catalog distribution and difficulty monitoring (`/instructor/catalog`).
+- `apps/api`: Express 5 + Mongoose REST API with JWT cookie session auth and role-based access control
+- `packages/contracts`: Shared Zod 4 runtime schemas and contracts across all modules
+- `packages/engine`: Pure JS adaptive question selection engine and virtual resident simulator
 - `ml/`: Offline DenseNet-121 feature extraction and difficulty estimation pipeline

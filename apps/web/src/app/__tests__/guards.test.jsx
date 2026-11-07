@@ -127,5 +127,41 @@ describe('Route Guards', () => {
       expect(screen.queryByText('جزئیات دستیار استاد')).not.toBeInTheDocument();
       expect(screen.getByText('دسترسی غیرمجاز')).toBeInTheDocument();
     });
+
+    it('blocks resident trainee from accessing /instructor/catalog and redirects to /forbidden', () => {
+      renderWithClient(
+        <Routes>
+          <Route element={<RequireRole allowedRoles={['instructor']} />}>
+            <Route path="/instructor/catalog" element={<div>کاتالوگ تصاویر استاد</div>} />
+          </Route>
+          <Route path="/forbidden" element={<div>دسترسی غیرمجاز</div>} />
+        </Routes>,
+        {
+          initialEntries: ['/instructor/catalog'],
+          user: { id: 'resident-user-1', role: 'resident' },
+        },
+      );
+
+      expect(screen.queryByText('کاتالوگ تصاویر استاد')).not.toBeInTheDocument();
+      expect(screen.getByText('دسترسی غیرمجاز')).toBeInTheDocument();
+    });
+
+    it('allows instructor into /instructor/catalog', () => {
+      renderWithClient(
+        <Routes>
+          <Route element={<RequireRole allowedRoles={['instructor']} />}>
+            <Route path="/instructor/catalog" element={<div>کاتالوگ تصاویر استاد</div>} />
+          </Route>
+          <Route path="/forbidden" element={<div>دسترسی غیرمجاز</div>} />
+        </Routes>,
+        {
+          initialEntries: ['/instructor/catalog'],
+          user: { id: 'instructor-user-1', role: 'instructor' },
+        },
+      );
+
+      expect(screen.getByText('کاتالوگ تصاویر استاد')).toBeInTheDocument();
+      expect(screen.queryByText('دسترسی غیرمجاز')).not.toBeInTheDocument();
+    });
   });
 });

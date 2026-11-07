@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router';
 import { useMe } from '../../features/auth/hooks.js';
 import {
   Card,
@@ -35,9 +36,7 @@ export function InstructorHomePage() {
             <CardDescription>{t('instructor.reviewDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-xs text-slate-500">
-              {t('common.comingInTask', { task: 'T08' })}
-            </p>
+            <p className="text-xs text-slate-500">{t('common.comingInTask', { task: 'T08' })}</p>
           </CardContent>
           <CardFooter>
             <Button variant="outline" disabled className="w-full">
@@ -56,9 +55,7 @@ export function InstructorHomePage() {
             <CardDescription>{t('instructor.residentsDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-xs text-slate-500">
-              {t('common.comingInTask', { task: 'T08' })}
-            </p>
+            <p className="text-xs text-slate-500">{t('common.comingInTask', { task: 'T08' })}</p>
           </CardContent>
           <CardFooter>
             <Button variant="outline" disabled className="w-full">
@@ -72,19 +69,19 @@ export function InstructorHomePage() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle>{t('instructor.catalogTitle')}</CardTitle>
-              <Badge variant="secondary">T08</Badge>
+              <Badge variant="secondary">T09</Badge>
             </div>
             <CardDescription>{t('instructor.catalogDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-xs text-slate-500">
-              {t('common.comingInTask', { task: 'T08' })}
-            </p>
+            <p className="text-xs text-slate-500">{t('instructor.catalog.subtitle')}</p>
           </CardContent>
           <CardFooter>
-            <Button variant="outline" disabled className="w-full">
-              {t('nav.catalog')}
-            </Button>
+            <Link to="/instructor/catalog" className="w-full">
+              <Button variant="outline" className="w-full">
+                {t('nav.catalog')}
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
       </div>
