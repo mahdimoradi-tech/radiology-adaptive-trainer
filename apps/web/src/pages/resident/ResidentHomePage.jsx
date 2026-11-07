@@ -78,12 +78,14 @@ export function ResidentHomePage() {
             <CardDescription>{t('home.educationDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-xs text-slate-500">{t('common.comingInTask', { task: 'T09' })}</p>
+            <p className="text-xs text-slate-500">{t('education.subtitle')}</p>
           </CardContent>
           <CardFooter>
-            <Button variant="outline" disabled className="w-full">
-              {t('home.education')}
-            </Button>
+            <Link to="/app/education" className="w-full">
+              <Button variant="outline" className="w-full">
+                {t('home.education')}
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
 

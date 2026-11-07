@@ -15,13 +15,14 @@ import { ReviewPage } from '../pages/resident/ReviewPage.jsx';
 import { ProgressPage } from '../pages/resident/ProgressPage.jsx';
 import { PracticeHomePage } from '../pages/resident/PracticeHomePage.jsx';
 import { PracticeSetPage } from '../pages/resident/PracticeSetPage.jsx';
+import { EducationPage } from '../pages/resident/EducationPage.jsx';
 import { InstructorHomePage } from '../pages/instructor/InstructorHomePage.jsx';
 import { InstructorReviewPage } from '../pages/instructor/InstructorReviewPage.jsx';
 import { InstructorResidentsPage } from '../pages/instructor/InstructorResidentsPage.jsx';
 import { ResidentDetailPage } from '../pages/instructor/ResidentDetailPage.jsx';
+import { InstructorCatalogPage } from '../pages/instructor/InstructorCatalogPage.jsx';
 import { ForbiddenPage } from '../pages/system/ForbiddenPage.jsx';
 import { NotFoundPage } from '../pages/system/NotFoundPage.jsx';
-import { PlaceholderPage } from '../pages/system/PlaceholderPage.jsx';
 
 /**
  * Root landing redirector based on authentication and user role
@@ -81,7 +82,7 @@ export const router = createBrowserRouter([
           { path: 'practice', element: <PracticeHomePage /> },
           { path: 'practice/:setId', element: <PracticeSetPage /> },
           { path: 'progress', element: <ProgressPage /> },
-          { path: 'education', element: <PlaceholderPage titleKey="nav.education" task="T06" /> },
+          { path: 'education', element: <EducationPage /> },
         ],
       },
     ],
@@ -108,7 +109,7 @@ export const router = createBrowserRouter([
           },
           {
             path: 'catalog',
-            element: <PlaceholderPage titleKey="instructor.catalogTitle" task="T08" />,
+            element: <InstructorCatalogPage />,
           },
         ],
       },
