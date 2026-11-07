@@ -20,6 +20,7 @@
     "test:workspaces": "npm run test --workspaces --if-present",
     "build": "npm run build --workspaces --if-present",
     "eval:simulation": "node scripts/eval-simulation.js",
+    "eval:analysis": "node scripts/eval-analysis.js",
     "prepare": "husky"
   },
   "devDependencies": {

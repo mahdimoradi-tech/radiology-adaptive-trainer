@@ -1,0 +1,342 @@
+{
+  "metadata": {
+    "command": "npm run eval:analysis",
+    "date": "2026-11-07T12:45:47.322Z",
+    "gitSha": "e7676a87224469a4a1271191ec3a373f1a3baac4",
+    "nImages": 0,
+    "totalRunOutputs": 0
+  },
+  "quality": {
+    "schemaValidOutputs": 0,
+    "totalRunOutputs": 0,
+    "schemaValidRate": null,
+    "schemaValidCi": {
+      "low": null,
+      "high": null
+    },
+    "autoPassedCount": 0,
+    "autoRejectedCount": 0,
+    "passRate": null,
+    "passRateCi": {
+      "low": null,
+      "high": null
+    }
+  },
+  "agreement": {
+    "matrix": {
+      "covid19": {
+        "covid19": 0,
+        "pneumonia": 0,
+        "normal": 0
+      },
+      "pneumonia": {
+        "covid19": 0,
+        "pneumonia": 0,
+        "normal": 0
+      },
+      "normal": {
+        "covid19": 0,
+        "pneumonia": 0,
+        "normal": 0
+      }
+    },
+    "rawAgreement": null,
+    "cohenKappa": null
+  },
+  "runA": {
+    "total": 0,
+    "correct": 0,
+    "accuracy": null,
+    "accuracyCi": {
+      "low": null,
+      "high": null
+    },
+    "byClass": {
+      "covid19": {
+        "tp": 0,
+        "actualTotal": 0,
+        "predictedTotal": 0,
+        "recall": null,
+        "recallCi": {
+          "low": null,
+          "high": null
+        },
+        "precision": null,
+        "precisionCi": {
+          "low": null,
+          "high": null
+        }
+      },
+      "pneumonia": {
+        "tp": 0,
+        "actualTotal": 0,
+        "predictedTotal": 0,
+        "recall": null,
+        "recallCi": {
+          "low": null,
+          "high": null
+        },
+        "precision": null,
+        "precisionCi": {
+          "low": null,
+          "high": null
+        }
+      },
+      "normal": {
+        "tp": 0,
+        "actualTotal": 0,
+        "predictedTotal": 0,
+        "recall": null,
+        "recallCi": {
+          "low": null,
+          "high": null
+        },
+        "precision": null,
+        "precisionCi": {
+          "low": null,
+          "high": null
+        }
+      }
+    },
+    "confusion": {
+      "covid19": {
+        "covid19": 0,
+        "pneumonia": 0,
+        "normal": 0
+      },
+      "pneumonia": {
+        "covid19": 0,
+        "pneumonia": 0,
+        "normal": 0
+      },
+      "normal": {
+        "covid19": 0,
+        "pneumonia": 0,
+        "normal": 0
+      }
+    }
+  },
+  "runB": {
+    "total": 0,
+    "correct": 0,
+    "accuracy": null,
+    "accuracyCi": {
+      "low": null,
+      "high": null
+    },
+    "byClass": {
+      "covid19": {
+        "tp": 0,
+        "actualTotal": 0,
+        "predictedTotal": 0,
+        "recall": null,
+        "recallCi": {
+          "low": null,
+          "high": null
+        },
+        "precision": null,
+        "precisionCi": {
+          "low": null,
+          "high": null
+        }
+      },
+      "pneumonia": {
+        "tp": 0,
+        "actualTotal": 0,
+        "predictedTotal": 0,
+        "recall": null,
+        "recallCi": {
+          "low": null,
+          "high": null
+        },
+        "precision": null,
+        "precisionCi": {
+          "low": null,
+          "high": null
+        }
+      },
+      "normal": {
+        "tp": 0,
+        "actualTotal": 0,
+        "predictedTotal": 0,
+        "recall": null,
+        "recallCi": {
+          "low": null,
+          "high": null
+        },
+        "precision": null,
+        "precisionCi": {
+          "low": null,
+          "high": null
+        }
+      }
+    },
+    "confusion": {
+      "covid19": {
+        "covid19": 0,
+        "pneumonia": 0,
+        "normal": 0
+      },
+      "pneumonia": {
+        "covid19": 0,
+        "pneumonia": 0,
+        "normal": 0
+      },
+      "normal": {
+        "covid19": 0,
+        "pneumonia": 0,
+        "normal": 0
+      }
+    }
+  },
+  "consensus": {
+    "total": 0,
+    "correct": 0,
+    "accuracy": null,
+    "accuracyCi": {
+      "low": null,
+      "high": null
+    },
+    "byClass": {
+      "covid19": {
+        "tp": 0,
+        "actualTotal": 0,
+        "predictedTotal": 0,
+        "recall": null,
+        "recallCi": {
+          "low": null,
+          "high": null
+        },
+        "precision": null,
+        "precisionCi": {
+          "low": null,
+          "high": null
+        }
+      },
+      "pneumonia": {
+        "tp": 0,
+        "actualTotal": 0,
+        "predictedTotal": 0,
+        "recall": null,
+        "recallCi": {
+          "low": null,
+          "high": null
+        },
+        "precision": null,
+        "precisionCi": {
+          "low": null,
+          "high": null
+        }
+      },
+      "normal": {
+        "tp": 0,
+        "actualTotal": 0,
+        "predictedTotal": 0,
+        "recall": null,
+        "recallCi": {
+          "low": null,
+          "high": null
+        },
+        "precision": null,
+        "precisionCi": {
+          "low": null,
+          "high": null
+        }
+      }
+    },
+    "confusion": {
+      "covid19": {
+        "covid19": 0,
+        "pneumonia": 0,
+        "normal": 0
+      },
+      "pneumonia": {
+        "covid19": 0,
+        "pneumonia": 0,
+        "normal": 0
+      },
+      "normal": {
+        "covid19": 0,
+        "pneumonia": 0,
+        "normal": 0
+      }
+    }
+  },
+  "densenetBaseline": {
+    "total": 0,
+    "correct": 0,
+    "accuracy": null,
+    "accuracyCi": {
+      "low": null,
+      "high": null
+    },
+    "confusion": {
+      "covid19": {
+        "covid19": 0,
+        "pneumonia": 0,
+        "normal": 0
+      },
+      "pneumonia": {
+        "covid19": 0,
+        "pneumonia": 0,
+        "normal": 0
+      },
+      "normal": {
+        "covid19": 0,
+        "pneumonia": 0,
+        "normal": 0
+      }
+    },
+    "byClass": {
+      "covid19": {
+        "tp": 0,
+        "actualTotal": 0,
+        "predictedTotal": 0,
+        "recall": null,
+        "recallCi": {
+          "low": null,
+          "high": null
+        },
+        "precision": null,
+        "precisionCi": {
+          "low": null,
+          "high": null
+        }
+      },
+      "pneumonia": {
+        "tp": 0,
+        "actualTotal": 0,
+        "predictedTotal": 0,
+        "recall": null,
+        "recallCi": {
+          "low": null,
+          "high": null
+        },
+        "precision": null,
+        "precisionCi": {
+          "low": null,
+          "high": null
+        }
+      },
+      "normal": {
+        "tp": 0,
+        "actualTotal": 0,
+        "predictedTotal": 0,
+        "recall": null,
+        "recallCi": {
+          "low": null,
+          "high": null
+        },
+        "precision": null,
+        "precisionCi": {
+          "low": null,
+          "high": null
+        }
+      }
+    }
+  },
+  "breakdown": {
+    "bySource": {},
+    "byBucket": {}
+  }
+}
