@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "command": "npm run eval:questions",
+    "date": "2026-11-07T12:48:58.603Z",
+    "gitSha": "4a9bf45571dc060691c2f146cf50a9a92aaf670e",
+    "totalQuestions": 0
+  },
+  "counts": {
+    "total": 0,
+    "pending": 0,
+    "approved": 0,
+    "rejected": 0,
+    "edited": 0,
+    "editRate": null,
+    "approvalRate": null
+  },
+  "byType": {
+    "finding": 0,
+    "distribution": 0,
+    "differential": 0
+  },
+  "byPair": {},
+  "generationAttempts": {
+    "totalAttempts": 0,
+    "rejectionReasons": {}
+  }
+}
