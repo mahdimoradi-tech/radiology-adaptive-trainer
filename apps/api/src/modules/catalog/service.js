@@ -1,9 +1,10 @@
 import { ImageModel } from './model.js';
 import { SessionModel } from '../sessions/model.js';
+import { PracticeSetModel } from '../practice/model.js';
 
 /**
  * Check whether a user is authorized to view an image.
- * Instructors can view any image; residents can view only images included in their sessions.
+ * Instructors can view any image; residents can view only images included in their sessions or practice sets.
  *
  * @param {any} user
  * @param {any} image
@@ -12,11 +13,18 @@ import { SessionModel } from '../sessions/model.js';
 export async function canViewImage(user, image) {
   if (!user || !image) return false;
   if (user.role === 'instructor') return true;
-  const exists = await SessionModel.exists({
+
+  const inSession = await SessionModel.exists({
     userId: user._id,
     'questions.publicId': image.publicId,
   });
-  return Boolean(exists);
+  if (inSession) return true;
+
+  const inPractice = await PracticeSetModel.exists({
+    userId: user._id,
+    publicIds: image.publicId,
+  });
+  return Boolean(inPractice);
 }
 
 /**
