@@ -40,6 +40,18 @@ npm test             # Vitest monorepo test suite
 npm run build        # Production builds
 ```
 
+### 6. Evaluation Suite (Reproducible Metrics)
+
+Run the empirical evaluation pipelines for report metrics, Wilson confidence intervals, and tables:
+
+```powershell
+npm run eval:simulation   # E1: Adaptive vs Random vs Fixed simulation (50 seeds)
+npm run eval:analysis     # E2: LLM analysis vs dataset ground truth & DenseNet baseline
+npm run eval:questions    # E3: Question bank pipeline stats & rubric scoring
+npm run eval:ml           # E4: DenseNet-121 out-of-fold accuracy & confounders
+npm run eval:all          # Run all evaluations and update docs/EVALUATION.md
+```
+
 ## Workspaces
 
 - `apps/web`: React 19 + Vite 8 + Tailwind CSS 4 RTL application:

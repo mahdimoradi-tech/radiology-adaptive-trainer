@@ -1,0 +1,12 @@
+{
+  "metadata": {
+    "command": "npm run eval:questions score",
+    "date": "2026-11-07T12:58:12.604Z",
+    "gitSha": "e2fd2f7a60920e7cee4be2521522b1e61a47c667",
+    "note": "Rated by one non-expert reviewer (the system's builder); results are indicative only."
+  },
+  "status": "pending_review",
+  "ratedCount": 0,
+  "types": {},
+  "overall": null
+}

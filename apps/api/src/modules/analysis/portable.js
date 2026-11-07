@@ -286,6 +286,7 @@ export async function getAnalysisStatusSummary({
   ImageAnalysisModel = DefaultImageAnalysisModel,
   AnalysisValidationModel = DefaultAnalysisValidationModel,
   AnalysisBatchModel = DefaultAnalysisBatchModel,
+  getUsageStatusFn = getUsageStatus,
 } = {}) {
   // 1. Batch status
   const batches = await AnalysisBatchModel.find({ promptVersion }).lean();
@@ -326,7 +327,7 @@ export async function getAnalysisStatusSummary({
       schemaValidCount++;
     }
   }
-  const schemaValidRate = allAnalyses.length > 0 ? schemaValidCount / allAnalyses.length : 1.0;
+  const schemaValidRate = allAnalyses.length > 0 ? schemaValidCount / allAnalyses.length : null;
 
   // 4. Accuracy & agreement vs dataset labels
   // Look up catalog metadata for all distinct images
@@ -414,7 +415,7 @@ export async function getAnalysisStatusSummary({
   }
 
   // 6. Today's budget status
-  const usage = await getUsageStatus({ budget });
+  const usage = await getUsageStatusFn({ budget });
 
   return {
     batches: batchStats,
@@ -427,17 +428,17 @@ export async function getAnalysisStatusSummary({
     schemaValidRate,
     runA: {
       total: runATotal,
-      accuracy: runATotal > 0 ? runACorrect / runATotal : 0,
+      accuracy: runATotal > 0 ? runACorrect / runATotal : null,
       byClass: runAByClass,
     },
     runB: {
       total: runBTotal,
-      accuracy: runBTotal > 0 ? runBCorrect / runBTotal : 0,
+      accuracy: runBTotal > 0 ? runBCorrect / runBTotal : null,
       byClass: runBByClass,
     },
     agreement: {
       total: agreementTotal,
-      rate: agreementTotal > 0 ? agreementCount / agreementTotal : 0,
+      rate: agreementTotal > 0 ? agreementCount / agreementTotal : null,
     },
     validations: {
       total: validations.length,

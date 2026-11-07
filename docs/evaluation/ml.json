@@ -1,0 +1,284 @@
+{
+  "metadata": {
+    "command": "npm run eval:ml",
+    "date": "2026-11-07T12:58:12.604Z",
+    "gitSha": "e2fd2f7a60920e7cee4be2521522b1e61a47c667",
+    "totalImages": 6004,
+    "catalogSubsetCount": 1177,
+    "catalogJsonCount": 1177
+  },
+  "overallOof": {
+    "total": 6004,
+    "correct": 5718,
+    "accuracy": 0.95236508994004,
+    "accuracyCi": {
+      "low": 0.9466821352322864,
+      "high": 0.9574695321485579
+    },
+    "byClass": {
+      "covid19": {
+        "tp": 174,
+        "actualTotal": 177,
+        "predictedTotal": 207,
+        "recall": 0.9830508474576272,
+        "recallCi": {
+          "low": 0.9513594917468587,
+          "high": 0.9942194016051135
+        },
+        "precision": 0.8405797101449275,
+        "precisionCi": {
+          "low": 0.7845733443160519,
+          "high": 0.8841751379568961
+        }
+      },
+      "pneumonia": {
+        "tp": 4022,
+        "actualTotal": 4245,
+        "predictedTotal": 4075,
+        "recall": 0.9474676089517079,
+        "recallCi": {
+          "low": 0.9403424778963865,
+          "high": 0.953783582251396
+        },
+        "precision": 0.9869938650306749,
+        "precisionCi": {
+          "low": 0.9830279608952296,
+          "high": 0.9900424324242855
+        }
+      },
+      "normal": {
+        "tp": 1522,
+        "actualTotal": 1582,
+        "predictedTotal": 1722,
+        "recall": 0.9620733249051833,
+        "recallCi": {
+          "low": 0.9514859637225602,
+          "high": 0.9704219998470675
+        },
+        "precision": 0.883855981416957,
+        "precisionCi": {
+          "low": 0.8678611416174986,
+          "high": 0.8981419492802987
+        }
+      }
+    },
+    "confusion": {
+      "covid19": {
+        "covid19": 174,
+        "pneumonia": 2,
+        "normal": 1
+      },
+      "pneumonia": {
+        "covid19": 24,
+        "pneumonia": 4022,
+        "normal": 199
+      },
+      "normal": {
+        "covid19": 9,
+        "pneumonia": 51,
+        "normal": 1522
+      }
+    }
+  },
+  "catalogOof": {
+    "total": 1177,
+    "correct": 891,
+    "accuracy": 0.7570093457943925,
+    "accuracyCi": {
+      "low": 0.731696168095374,
+      "high": 0.7806502804037303
+    },
+    "byClass": {
+      "covid19": {
+        "tp": 174,
+        "actualTotal": 177,
+        "predictedTotal": 207,
+        "recall": 0.9830508474576272,
+        "recallCi": {
+          "low": 0.9513594917468587,
+          "high": 0.9942194016051135
+        },
+        "precision": 0.8405797101449275,
+        "precisionCi": {
+          "low": 0.7845733443160519,
+          "high": 0.8841751379568961
+        }
+      },
+      "pneumonia": {
+        "tp": 277,
+        "actualTotal": 500,
+        "predictedTotal": 330,
+        "recall": 0.554,
+        "recallCi": {
+          "low": 0.5101821562121956,
+          "high": 0.5969943849864668
+        },
+        "precision": 0.8393939393939394,
+        "precisionCi": {
+          "low": 0.7959085795001523,
+          "high": 0.8750683149312187
+        }
+      },
+      "normal": {
+        "tp": 440,
+        "actualTotal": 500,
+        "predictedTotal": 640,
+        "recall": 0.88,
+        "recallCi": {
+          "low": 0.848579770224084,
+          "high": 0.9056255196924294
+        },
+        "precision": 0.6875,
+        "precisionCi": {
+          "low": 0.6505600714889479,
+          "high": 0.7222024216460095
+        }
+      }
+    },
+    "confusion": {
+      "covid19": {
+        "covid19": 174,
+        "pneumonia": 2,
+        "normal": 1
+      },
+      "pneumonia": {
+        "covid19": 24,
+        "pneumonia": 277,
+        "normal": 199
+      },
+      "normal": {
+        "covid19": 9,
+        "pneumonia": 51,
+        "normal": 440
+      }
+    }
+  },
+  "bySource": {
+    "kermany": {
+      "total": 5827,
+      "correct": 5544,
+      "accuracy": 0.9514329843830445,
+      "accuracyCi": {
+        "low": 0.9456099506561325,
+        "high": 0.9566611726067596
+      }
+    },
+    "cohen": {
+      "total": 142,
+      "correct": 140,
+      "accuracy": 0.9859154929577465,
+      "accuracyCi": {
+        "low": 0.9501030115661628,
+        "high": 0.996129064878418
+      }
+    },
+    "figure1": {
+      "total": 35,
+      "correct": 34,
+      "accuracy": 0.9714285714285714,
+      "accuracyCi": {
+        "low": 0.8546659090672868,
+        "high": 0.9949386386341466
+      }
+    }
+  },
+  "byClassSource": {
+    "normal x kermany": {
+      "trueClass": "normal",
+      "source": "kermany",
+      "total": 1582,
+      "correct": 1522,
+      "accuracy": 0.9620733249051833,
+      "accuracyCi": {
+        "low": 0.9514859637225602,
+        "high": 0.9704219998470675
+      }
+    },
+    "pneumonia x kermany": {
+      "trueClass": "pneumonia",
+      "source": "kermany",
+      "total": 4245,
+      "correct": 4022,
+      "accuracy": 0.9474676089517079,
+      "accuracyCi": {
+        "low": 0.9403424778963865,
+        "high": 0.953783582251396
+      }
+    },
+    "covid19 x cohen": {
+      "trueClass": "covid19",
+      "source": "cohen",
+      "total": 142,
+      "correct": 140,
+      "accuracy": 0.9859154929577465,
+      "accuracyCi": {
+        "low": 0.9501030115661628,
+        "high": 0.996129064878418
+      }
+    },
+    "covid19 x figure1": {
+      "trueClass": "covid19",
+      "source": "figure1",
+      "total": 35,
+      "correct": 34,
+      "accuracy": 0.9714285714285714,
+      "accuracyCi": {
+        "low": 0.8546659090672868,
+        "high": 0.9949386386341466
+      }
+    }
+  },
+  "classShareBySource": {
+    "covid19": {
+      "total": 177,
+      "sources": {
+        "cohen": {
+          "count": 142,
+          "share": 0.8022598870056498
+        },
+        "figure1": {
+          "count": 35,
+          "share": 0.1977401129943503
+        }
+      }
+    },
+    "pneumonia": {
+      "total": 4245,
+      "sources": {
+        "kermany": {
+          "count": 4245,
+          "share": 1
+        }
+      }
+    },
+    "normal": {
+      "total": 1582,
+      "sources": {
+        "kermany": {
+          "count": 1582,
+          "share": 1
+        }
+      }
+    }
+  },
+  "bucketBySource": {
+    "kermany": {
+      "easy": 5440,
+      "medium": 180,
+      "hard": 207,
+      "unknown": 0
+    },
+    "cohen": {
+      "easy": 139,
+      "medium": 1,
+      "hard": 2,
+      "unknown": 0
+    },
+    "figure1": {
+      "easy": 33,
+      "medium": 1,
+      "hard": 1,
+      "unknown": 0
+    }
+  }
+}

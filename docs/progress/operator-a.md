@@ -8,9 +8,47 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T09c: Resident Education and Instructor Catalog pages (branch `feat/T09c-education-catalog`).
+- T10: Evaluation & Reproducible Report (branch `feat/T10-evaluation`).
 
 ## Done (newest first)
+
+- Completed T10: Empirical evaluation pipeline, pure statistical helpers, and reproducible report generator:
+  - Authored pure statistical helpers in `@radiology/engine`:
+    - `wilsonInterval(k, n, z=1.96)` returning `{ p, low, high }` (clamped to [0,1], nulls for n=0).
+    - `cohenKappa(table)` accepting 2D matrix or object-of-objects confusion tables, returning `{ kappa, po, pe }` (nulls for n=0).
+    - Re-exported from `@radiology/engine` root.
+    - Verified by 10 unit tests in `packages/engine/src/__tests__/stats.test.js`.
+  - Implemented E1: Adaptive engine simulation evaluation (`scripts/eval-simulation.js`, `npm run eval:simulation`):
+    - Runs 50 paired resident seeds comparing `adaptive`, `random`, and `fixed` policies.
+    - Computes mastery rate with Wilson 95% CI, mean ± SD, median [min-max] sessions, and per-class FPR/FNR.
+    - Generates `docs/evaluation/simulation.json` and formatted markdown table.
+  - Fixed empty denominator formatting across API status scripts:
+    - Updated `getAnalysisStatusSummary` in `apps/api/src/modules/analysis/portable.js` to return `null` instead of `1.0` or `0` when totals are zero.
+    - Updated `analysis-status.js` and `questions-status.js` to print `N/A` for empty denominators.
+    - Verified by unit tests in `apps/api/scripts/__tests__/status-scripts.test.js`.
+  - Implemented E2: LLM multimodal image analysis evaluation (`scripts/eval-analysis.js`, `npm run eval:analysis`):
+    - Reads portable `apps/api/seed/image-analyses.json` and `ml/artifacts/difficulty.json` without requiring live MongoDB.
+    - Evaluates schema validity, auto-validation pass rate, Run A vs Run B agreement and Cohen's kappa.
+    - Computes per-class recall, precision, and 3x3 confusion matrix vs trueClass with Wilson CIs.
+    - Evaluates DenseNet-121 baseline on the identical subset of images.
+    - Breaks down diagnostic accuracy by image source and difficulty bucket.
+    - Verified by 3 unit tests in `apps/api/scripts/__tests__/eval-analysis.test.js`.
+  - Implemented E3: Question bank quality, rubric export & scoring (`scripts/eval-questions.js`, `npm run eval:questions`):
+    - `export-rubric`: Deterministic stratified sampling of up to 24 questions (8 per type) with fixed seed 42 into RFC 4180 CSV `docs/evaluation/question-rubric.csv`.
+    - `score`: Aggregates human ratings (scientific OK, clarity, distractor plausibility, leak-free) with Wilson CIs and mandatory disclaimer notice.
+    - Pipeline stats: Tracks bank status (approved, pending, rejected, edited), edit rate, counts by type and pair, and automatic generation rejection reasons.
+    - Verified by 4 unit tests in `apps/api/scripts/__tests__/eval-questions.test.js`.
+  - Implemented E4: ML per-source performance and confounder evaluation (`scripts/eval-ml.js`, `npm run eval:ml`):
+    - Analyzes DenseNet-121 out-of-fold predictions on all 6,004 images and 1,177 catalog images.
+    - Computes OOF accuracy with Wilson CIs overall, per-source, and per class × source.
+    - Discloses source confounders: 100% of normal (1,582) and pneumonia (4,245) originate from Kermany; COVID-19 (177) is split between Cohen (80.2%) and Figure1 (19.8%).
+    - Evaluates bucket distribution per source.
+    - Verified by 2 unit tests in `apps/api/scripts/__tests__/eval-ml.test.js`.
+  - Implemented master evaluation orchestrator (`scripts/eval-all.js`, `npm run eval:all`):
+    - Executes E1, E2, E3, and E4 sequentially and injects generated markdown between marker comments in `docs/EVALUATION.md`.
+    - Preserves external sections including the qualitative "Interpretation and Limitations" section containing TODO bullets.
+    - Verified deterministic reproducibility across consecutive runs.
+  - Monorepo quality gates: 85 test files, 650 passing tests, 0 lint warnings, green builds.
 
 - Completed T09c: Resident Education page, Instructor Catalog monitoring, and complete elimination of placeholder routes:
   - Built resident education guide in `apps/web/src/pages/resident/EducationPage.jsx`:
