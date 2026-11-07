@@ -8,7 +8,7 @@ Accepted
 
 ## Context
 
-The system trains radiology residents on chest X-rays across three classes (`covid19`, `pneumonia`, `normal`). Both operators (A and B) are frontend React/JavaScript developers with limited ML/backend experience. Each student is evaluated separately and must be capable of defending and explaining every line of code. The execution environment consists of two individual Windows machines without virtualization or Docker support. Furthermore, internet access to external APIs like Gemini may be subject to network constraints/VPN requirements in Iran.
+The system trains radiology residents on chest X-rays across three classes (`covid19`, `pneumonia`, `normal`). The developer is a React/JavaScript developer with limited ML/backend experience and must be capable of defending and explaining every line of code. The execution environment consists of a Windows machine without virtualization or Docker support. Furthermore, internet access to external APIs like Gemini may be subject to network constraints/VPN requirements in Iran.
 
 ## Decision
 

@@ -1,6 +1,6 @@
 # ADR 0009 — Web Architecture, RTL Enforcement, and Routing
 
-Status: accepted (2026-11-01, Operator A)
+Status: accepted (2026-11-01, Mahdi Moradi)
 
 ## Context
 The frontend application (`apps/web`) provides the user interface for both radiology residents and instructors. Building a bilingual (Persian RTL default, English LTR secondary) medical educational application on Windows requires precise architectural boundaries: avoiding layout shifts, enforcing accessible forms, preventing diagnostic image inversion, and cleanly managing authentication state without local storage token vulnerabilities.
@@ -8,7 +8,7 @@ The frontend application (`apps/web`) provides the user interface for both radio
 ## Decisions
 
 ### 1. Framework, Tooling, and Library-Mode Router
-- **React 19 + Vite 8 (ES Modules, Plain JavaScript):** Uses pure JavaScript JSX without TypeScript, ensuring both operators can read, maintain, and defend every line.
+- **React 19 + Vite 8 (ES Modules, Plain JavaScript):** Uses pure JavaScript JSX without TypeScript, ensuring complete code clarity and defensibility.
 - **React Router 7 (`react-router`):** Configured via `createBrowserRouter` and `<RouterProvider>` from the `react-router` package in library mode. All routes exist from day one, using structured placeholder components for features slated for T06 and T08.
 - **Root Redirection:** An authenticated resident landing on `/` is automatically routed to `/app`; an instructor to `/instructor`; unauthenticated visitors are sent to `/login`.
 

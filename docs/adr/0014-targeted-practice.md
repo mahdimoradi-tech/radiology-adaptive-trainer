@@ -2,8 +2,8 @@
 
 - **Status:** Accepted
 - **Date:** 2026-11-07
-- **Driver:** Operator A (solo)
-- **Reviewer:** none (solo) -> AI Review per `docs/SOLO-MODE.md`
+- **Developer:** Mahdi Moradi
+- **Review:** AI Review per `docs/WORKFLOW.md`
 - **Context Task:** T09b (Targeted Practice API + UI)
 
 ---

@@ -1,6 +1,6 @@
 # ADR 0010 — Training Session Lifecycle, Adaptive Flow, and Evaluation Metrics
 
-Status: accepted (2026-11-02, Operator A)
+Status: accepted (2026-11-02, Mahdi Moradi)
 
 ## Context
 The Radiology Adaptive Training Platform requires server-side orchestration for resident training sessions: baseline and adaptive test creation, answering questions without diagnostic leakage, session completion, comprehensive metrics calculation, performance reporting, and progress tracking. We needed architectural decisions on session lifecycle state machines, feedback timing, access control, and mathematical evaluation.
