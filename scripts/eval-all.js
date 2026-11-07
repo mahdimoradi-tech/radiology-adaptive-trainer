@@ -59,7 +59,7 @@ export async function runAllEvaluations({
   }
 
   console.log('====================================================');
-  console.log('       Radiology Adaptive Trainer — Evaluation      ');
+  console.log('       Radiology Adaptive Trainer - Evaluation      ');
   console.log('====================================================\n');
 
   // 1. E1 Simulation
@@ -192,7 +192,7 @@ export async function runAllEvaluations({
   }
 
   fs.writeFileSync(targetDocPath, fullDoc, 'utf8');
-  console.log(`\n✔ Successfully generated evaluation report at ${targetDocPath}\n`);
+  console.log(`\n[OK] Successfully generated evaluation report at ${targetDocPath}\n`);
 }
 
 if (process.argv[1]?.endsWith('eval-all.js')) {

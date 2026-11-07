@@ -51,7 +51,7 @@ export async function run() {
       const key = `${e.trueClass}:${e.bucket}:${e.source}`;
       tally[key] = (tally[key] || 0) + 1;
     }
-    console.log('\n--- Analysis Set: class × bucket × source ---');
+    console.log('\n--- Analysis Set: class x bucket x source ---');
     console.table(tally);
 
     const classCounts = {};

@@ -32,7 +32,7 @@ export async function run() {
 
   try {
     const result = await importImageAnalyses({ inputPath });
-    console.log(`✓ Imported ${result.importedCount} entries from ${result.inputPath}`);
+    console.log(`[OK] Imported ${result.importedCount} entries from ${result.inputPath}`);
   } finally {
     await disconnectDb();
   }

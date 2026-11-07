@@ -17,7 +17,7 @@ export function getSessionCookieOptions(config) {
   return {
     httpOnly: true,
     sameSite: 'lax',
-    secure: config.COOKIE_SECURE,
+    secure: Boolean(config.COOKIE_SECURE || config.NODE_ENV === 'production'),
     maxAge: config.JWT_TTL_HOURS * 3600 * 1000,
     path: '/',
   };

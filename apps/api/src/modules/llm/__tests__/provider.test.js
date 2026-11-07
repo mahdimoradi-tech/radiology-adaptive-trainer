@@ -130,4 +130,12 @@ describe('LLM Provider Contract & Prompts', () => {
       expect(serializedPrompt).toContain('S3');
     });
   });
+
+  describe('LLM_MODE=cache-only Network Isolation (Step 3 - Hardening)', () => {
+    it('createProvider returns null in cache-only mode', async () => {
+      const { createProvider } = await import('../llm.service.js');
+      const provider = createProvider({ LLM_MODE: 'cache-only' });
+      expect(provider).toBeNull();
+    });
+  });
 });

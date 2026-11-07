@@ -60,17 +60,17 @@ export async function run() {
     console.table(result.stats.bySource);
 
     if (result.warnings.length > 0) {
-      console.log('\n⚠️  Pool Health Warnings:');
+      console.log('\n[WARN] Pool Health Warnings:');
       for (const warning of result.warnings) {
         console.warn(`  - ${warning}`);
       }
     } else {
-      console.log('\n✅ All pool buckets have sufficient image capacity (>= 6 per bucket).');
+      console.log('\n[OK] All pool buckets have sufficient image capacity (>= 6 per bucket).');
     }
 
     console.log('\nCatalog seeding completed successfully.');
   } catch (err) {
-    console.error('\n❌ Seeding failed:', err.message);
+    console.error('\n[ERROR] Seeding failed:', err.message);
     process.exitCode = 1;
   } finally {
     await disconnectDb();

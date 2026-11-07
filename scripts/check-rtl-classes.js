@@ -108,7 +108,7 @@ if (isMain) {
 
   if (violations.length > 0) {
     console.error(
-      `\n✖ RTL Violation Check Failed: Found ${violations.length} prohibited physical utility usage(s):\n`,
+      `\n[FAIL] RTL Violation Check Failed: Found ${violations.length} prohibited physical utility usage(s):\n`,
     );
     for (const v of violations) {
       console.error(`  ${v.file}:${v.line}`);
@@ -118,7 +118,7 @@ if (isMain) {
     process.exit(1);
   } else {
     console.log(
-      `✔ RTL Violation Check Passed: All files in ${targetDir} use logical RTL utilities.`,
+      `[OK] RTL Violation Check Passed: All files in ${targetDir} use logical RTL utilities.`,
     );
     process.exit(0);
   }
