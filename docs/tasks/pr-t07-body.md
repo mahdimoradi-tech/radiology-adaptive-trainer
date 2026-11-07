@@ -1,8 +1,8 @@
-## Task & Team
+## Task
 
 - **Task ID:** T07
-- **Driver:** Operator A (solo)
-- **Reviewer:** none (solo) -> AI review per `docs/SOLO-MODE.md`
+- **Branch:** feat/T07-llm-core
+- **Review:** AI review per `docs/WORKFLOW.md`
 
 ## Summary
 
@@ -71,7 +71,7 @@
 
 ---
 
-## Review Checklist (Self-Review / AI Review per SOLO-MODE)
+## Review Checklist (Self-Review / AI Review per WORKFLOW)
 
 - [x] Acceptance criteria met with concrete command evidence.
 - [x] Zero network calls in tests or CI (`fake` provider fixtures throughout).

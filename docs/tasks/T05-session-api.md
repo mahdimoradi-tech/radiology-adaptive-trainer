@@ -1,6 +1,6 @@
 # T05 — Session API (baseline and adaptive tests, answers, finish, metrics, report, progress)
 
-Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T05-session-api` · Skills: `api-conventions`, `adaptive-engine`, `git-workflow`, `team-collaboration` · Estimate: 6-7 h · Folders: `packages/contracts`, `apps/api`, `docs/`.
+Developer: Mahdi · Branch: `feat/T05-session-api` · Skills: `api-conventions`, `adaptive-engine`, `git-workflow`, `review-workflow` · Estimate: 6-7 h · Folders: `packages/contracts`, `apps/api`, `docs/`.
 
 If this task and a skill disagree, THIS TASK WINS (for example the answer route below differs from the one in `api-conventions`). Record deviations in ADR 0010 and sync the skill at the end.
 
@@ -27,7 +27,7 @@ None. (Have the real catalog seeded; the numbers you saw in T03's seed summary m
 | Finish | allowed with unanswered questions; sets metrics once; second call -> 409 `SESSION_ALREADY_FINISHED` |
 | Not found vs forbidden | another user's session -> 404 (do not reveal existence) |
 
-## Contract changes (`packages/contracts/src/session.js`; Operator A approves in the PR)
+## Contract changes (`packages/contracts/src/session.js`; justified in the PR)
 Append to `API_ERROR_CODES`: `SESSION_IN_PROGRESS`, `SESSION_NOT_IN_PROGRESS`, `SESSION_NOT_FINISHED`, `SESSION_ALREADY_FINISHED`, `POOL_EXHAUSTED`, `QUESTION_NOT_FOUND`. Schemas:
 - `CreateSessionBodySchema { size: int 45..120, default 60 }`; `AnswerBodySchema { answer: ClassIdSchema, timeMs: int 0..600000 optional }`.
 - `QuestionPublicSchema { no, imageUrl, answered: boolean, answer: ClassId|null }`; `SessionPublicSchema { id, index, kind: 'baseline'|'adaptive', status: 'in_progress'|'finished', size, startedAt, finishedAt|null, answeredCount, questions: QuestionPublic[] }`; `SessionSummarySchema` (same without `questions`, plus `overallAccuracy|null`).
@@ -89,7 +89,7 @@ From the answered responses of one session: confusion matrix; per class TP/FP/FN
 8. Progress: after two finished sessions the series has two points and `topConfusions[0]` is `covid19 -> pneumonia`.
 
 ## Steps (commit after each, push after every 1-3)
-0. (no commit) Signatures note in the PR description + operator log.
+0. (no commit) Signatures note in the PR description + developer log.
 1. `feat(contracts): add session, report and progress schemas` (+ tests).
 2. `feat(api): add session and response models with indexes`.
 3. `feat(api): add engine adapter and pure metrics with tests` (hand-computed metrics test first).
@@ -98,7 +98,7 @@ From the answered responses of one session: confusion matrix; per class TP/FP/FN
 6. `feat(api): add finish and report endpoints` (+ test 4).
 7. `feat(api): add adaptive next-test flow and progress endpoint` (+ tests 5, 8).
 8. `feat(api): add instructor user and progress endpoints and image ownership check` (+ test 7). If time is short this step is the first to cut; T09 can add it.
-9. `docs(api): update postman collection, readme, ADR 0010 and sync api skill` — one request per new endpoint; ADR 0010 documents the binding decisions above and the known limitation; board and operator log.
+9. `docs(api): update postman collection, readme, ADR 0010 and sync api skill` — one request per new endpoint; ADR 0010 documents the binding decisions above and the known limitation; board and developer log.
 
 ## Verification (show real outputs)
 `npm run lint`, `npm test`, `npm run build`. Manual PowerShell run with the REAL catalog: register a resident, `POST /api/sessions` (baseline), answer 10 questions in a loop (`1..10 | ForEach-Object { Invoke-RestMethod -Method Put -Uri "http://127.0.0.1:4000/api/sessions/$sid/questions/$_/answer" -ContentType 'application/json' -Body '{"answer":"normal"}' -WebSession $s }`), `finish`, read the report, create the next session and print the `plan.classCounts`/`plan.shortfalls` from the instructor view or from the database via `mongosh` (never to the resident response). Paste the report summary and the second plan into the PR. **Report what the shortfalls say about the small COVID-19 pool** — do not hide it.

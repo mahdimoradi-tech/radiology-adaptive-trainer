@@ -2,8 +2,8 @@
 
 - **Status:** Accepted
 - **Date:** 2026-11-05
-- **Driver:** Operator A (solo)
-- **Reviewer:** none (solo) -> AI Review per `docs/SOLO-MODE.md`
+- **Developer:** Mahdi Moradi
+- **Review:** AI Review per `docs/WORKFLOW.md`
 - **Context Task:** T07 (LLM Core)
 
 ---

@@ -31,7 +31,7 @@ The system dynamically models each trainee's individual diagnostic error pattern
 - [Empirical Evaluation & Metrics](#empirical-evaluation--metrics)
 - [Known Issues & Limitations](#known-issues--limitations)
 - [Datasets & Licenses](#datasets--licenses)
-- [Team & Solo Mode](#team--solo-mode)
+- [Project Author & Development](#project-author--development)
 - [Screenshots](#screenshots)
 
 ---
@@ -375,12 +375,9 @@ For licensing terms, attribution notices, and demographic distribution analyses:
 
 ---
 
-## Team & Solo Mode
+## Project Author & Development
 
-This project is a B.Sc. capstone project developed by a two-person engineering team. In accordance with **[Solo Mode Protocol (`docs/SOLO-MODE.md`)](docs/SOLO-MODE.md)**, Operator A (Mahdi Moradi, repository owner) authored and drove the system implementation under isolated, rigorous self-review and automated CI quality gates.
-
-- **Operator A:** Mahdi Moradi ([@mahdimoradi-tech](https://github.com/mahdimoradi-tech))
-- **Operator B:** Abolfazl Rahmati
+This project is a B.Sc. capstone project designed and implemented by **Mahdi Moradi** ([@mahdimoradi-tech](https://github.com/mahdimoradi-tech)), assisted by an AI coding agent. All architecture, implementation, verification, and documentation follow the development workflow defined in **[Development Workflow (`docs/WORKFLOW.md`)](docs/WORKFLOW.md)**.
 
 ---
 

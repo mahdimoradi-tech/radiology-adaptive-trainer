@@ -42,7 +42,7 @@ Verified on 2026-10-21 unless marked "verify". Versions move fast: the agent MUS
 8. npm scripts must work on Windows PowerShell and Unix (no `rm -rf`, no bash-only syntax; use Node scripts or cross-platform packages). Windows PowerShell 5.1 has no `&&`.
 
 ## 3. Tools the agent will work with
-**Environment (per operator, Windows):** Google Antigravity (IDE + agent, Gemini 3.8 Flash, Google AI Pro) · Node.js + npm · Git for Windows · GitHub CLI `gh` · MongoDB Community + `mongosh` (+ Compass optional) · Postman (collection kept in `docs/postman/`) · Python + `uv` (from T01) · Chrome (Antigravity's browser agent can open `http://127.0.0.1:5173`). NO Docker (CI uses a MongoDB service container on GitHub's Linux runner only).
-**Online services:** GitHub (repo, PRs, Actions) · Google AI Studio (each operator's own Gemini API key; VPN access is available) · Kaggle / Mendeley / GitHub (datasets, downloaded by the operator) · Google Colab (optional GPU) · a shared drive or USB for the catalog image zip.
+**Environment (Windows):** Google Antigravity (IDE + agent, Gemini 3.8 Flash, Google AI Pro) · Node.js + npm · Git for Windows · GitHub CLI `gh` · MongoDB Community + `mongosh` (+ Compass optional) · Postman (collection kept in `docs/postman/`) · Python + `uv` (from T01) · Chrome (Antigravity's browser agent can open `http://127.0.0.1:5173`). NO Docker (CI uses a MongoDB service container on GitHub's Linux runner only).
+**Online services:** GitHub (repo, PRs, Actions) · Google AI Studio (Gemini API key; VPN access is available) · Kaggle / Mendeley / GitHub (datasets, downloaded by the developer) · Google Colab (optional GPU).
 **MCP servers (see `KIT-README-FA.md`):** Context7 (current library docs). GitHub is used through `gh`, not an MCP server (no token in config). A read-only MongoDB MCP is optional.
 **Docs tooling:** Markdown + Mermaid in `docs/`.

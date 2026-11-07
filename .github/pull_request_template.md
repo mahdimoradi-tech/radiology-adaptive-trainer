@@ -1,8 +1,7 @@
-## Task & Team
+## Task
 
 - **Task ID:** <!-- e.g. T00 -->
-- **Driver:** <!-- Operator A (Mahdi) or Operator B (Abolfazl) -->
-- **Reviewer:** <!-- The other operator -->
+- **Branch:** <!-- e.g. feat/T03-api-foundation -->
 
 ## Summary
 
@@ -27,7 +26,7 @@ npm run build
 ## Contract Changes
 
 - **Contract changed?** [ ] Yes / [ ] No
-- _Note:_ If yes, both operators must explicitly approve before merging.
+- _Note:_ If yes, list the changed schemas in `packages/contracts` and add or update an ADR.
 
 ## Dependencies Added
 
@@ -35,9 +34,9 @@ npm run build
 | --------------------- | ---------------- | -------------------- |
 | <!-- none or name --> | <!-- version --> | <!-- explanation --> |
 
-## What the Reviewer Must Understand
+## Review & Architecture Notes
 
-<!-- Explain the architecture/design decisions so the reviewer can defend this in the defense -->
+<!-- Explain key architecture/design decisions and verification details -->
 
 ## Screenshots (UI tasks only)
 
@@ -49,6 +48,6 @@ npm run build
 - [ ] `npm test` passes
 - [ ] `npm run build` passes
 - [ ] `docs/PROGRESS.md` board row updated
-- [ ] Operator log updated in `docs/progress/`
+- [ ] Developer log updated in `docs/progress/developer-log.md`
 - [ ] No secrets (`.env`), datasets, images, or large binary files committed
 - [ ] Commit history follows Conventional Commits

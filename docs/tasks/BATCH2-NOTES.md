@@ -10,4 +10,4 @@ T06 (UI, no quota) -> T07 (LLM core, 2-3 requests) -> T08a (gate day, then run d
 T07: smoke 1 + pregeneration 1. T08a: gate 2, then about 38 over 3 days. T08b: about 8-13 in 1 day. Daily budget in env: 16 (20 minus a reserve of 4).
 
 ## Rules that did not change
-Solo mode, JavaScript only, no label leakage to residents, no secrets in chat or git, merge commits only, AI review in a fresh chat before every merge.
+Single developer, JavaScript only, no label leakage to residents, no secrets in chat or git, merge commits only, AI review in a fresh chat before every merge.

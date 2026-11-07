@@ -9,7 +9,7 @@
 
 | Time | Phase | Target Screen & Action | Key Message / Narrative |
 |---|---|---|---|
-| **00:00 - 01:30** | **Introduction** | Terminal & Architecture diagram in README | Project scope: Adaptive chest X-ray training for residents across COVID-19, Pneumonia, and Normal. Solo Mode capstone. |
+| **00:00 - 01:30** | **Introduction** | Terminal & Architecture diagram in README | Project scope: Adaptive chest X-ray training for residents across COVID-19, Pneumonia, and Normal. Single developer capstone. |
 | **01:30 - 04:00** | **Resident: Baseline & Report** | Login as Resident -> Resident Home -> View Finished Session 4 Report | Display 3x3 confusion matrix, FPR/FNR trends, and personalized Gemini narrative feedback + per-error radiological explanations. |
 | **04:00 - 06:00** | **Resident: Progress & Trajectory** | Navigate to `/app/progress` | Show diagnostic accuracy improvement from Session 1 (46.7%) to Session 4 (77.8%). Explain mastery criteria (80% threshold). |
 | **06:00 - 08:30** | **Resident: Targeted Practice** | Navigate to `/app/practice` -> Create Set -> Answer 1 Question | Demonstrate targeted practice on the resident's weakest confusion pair (COVID-19 vs Pneumonia). Immediate rationale reveal and zero label leakage. |
@@ -102,7 +102,7 @@ Be prepared to answer committee and professor questions directly and honestly ba
 
 ### Q4: "Who reviewed the question bank and validated the medical accuracy?"
 > **Answer:**  
-> The questions were synthesized using Google Gemini with structured JSON schemas grounded in clinical knowledge bases (`apps/api/src/modules/llm/kb/`), followed by automated consistency checks (verifying the correct class key and distractor plausibility). In our current prototype, approval in the instructor queue was performed by the engineering operators. In a hospital deployment, board-certified radiologists would serve as the authorized instructors.
+> The questions were synthesized using Google Gemini with structured JSON schemas grounded in clinical knowledge bases (`apps/api/src/modules/llm/kb/`), followed by automated consistency checks (verifying the correct class key and distractor plausibility). In our current prototype, approval in the instructor queue was performed by the system developer. In a hospital deployment, board-certified radiologists would serve as the authorized instructors.
 
 ### Q5: "How does the platform handle Google Gemini free-tier rate limits and internet outages?"
 > **Answer:**  

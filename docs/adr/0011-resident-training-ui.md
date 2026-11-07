@@ -1,6 +1,6 @@
 # ADR 0011 — Resident Training UI: Autosave, Information Hiding, and Evaluation Review
 
-Status: accepted (2026-11-05, Operator A)
+Status: accepted (2026-11-05, Mahdi Moradi)
 
 ## Context
 In T06, we implemented the frontend user experience in `apps/web` for resident trainees to undergo diagnostic exams on chest radiographs according to the reference paper (figures 5, 6, and 7). Key requirements involved designing the quiz interaction, answer persistence, exam completion dialogs, comprehensive diagnostic reporting, and question-by-question review while strictly enforcing educational privacy and RTL layout standards.

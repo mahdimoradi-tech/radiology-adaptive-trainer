@@ -2,8 +2,8 @@
 
 - **Status:** Accepted
 - **Date:** 2026-11-05
-- **Driver:** Operator A (solo)
-- **Reviewer:** none (solo) -> AI Review per `docs/SOLO-MODE.md`
+- **Developer:** Mahdi Moradi
+- **Review:** AI Review per `docs/WORKFLOW.md`
 - **Context Task:** T08a (Image Analysis Pipeline)
 
 ---
@@ -109,5 +109,5 @@ The original skill specification assumed processing ~600 images individually twi
 - **Keyboard Shortcuts:** `A` (approve), `R` (reject), `J` (next), `K` (previous) for rapid reviewer flow.
 
 ### 4.5 Academic Limitation: Non-Clinical Reviewer
-- Because the reviewer is Operator A (a computer science undergraduate, not a licensed radiologist or clinician), questions are approved solely based on alignment with ground-truth catalog labels, consensus VLM pattern agreement, and verified KB texts.
+- Because the reviewer is the developer (a computer science undergraduate, not a licensed radiologist or clinician), questions are approved solely based on alignment with ground-truth catalog labels, consensus VLM pattern agreement, and verified KB texts.
 - All approved items carry the honest labeling marker «بازبینی توسط مدرس (غیر بالینی)» in the UI and database metadata. This is formally documented as a study limitation for the thesis defense.

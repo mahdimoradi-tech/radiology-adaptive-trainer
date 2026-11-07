@@ -1,6 +1,6 @@
 # T08a — Image analysis pipeline (offline, quota-aware, resumable)
 
-Driver: **A (solo)** · Reviewer: none (solo) -> AI review per `docs/SOLO-MODE.md` · Branch: `feat/T08a-image-analysis` · Skills: `question-generation`, `llm-feedback`, `api-conventions`, `git-workflow`, `team-collaboration` · Estimate: 6 h of coding + about 3 calendar days of quota-limited runs · Folders: `packages/contracts`, `apps/api`, `docs/`.
+Developer: Mahdi · Branch: `feat/T08a-image-analysis` · Skills: `question-generation`, `llm-feedback`, `api-conventions`, `git-workflow`, `review-workflow` · Estimate: 6 h of coding + about 3 calendar days of quota-limited runs · Folders: `packages/contracts`, `apps/api`, `docs/`.
 
 If this task and a skill disagree, THIS TASK WINS (the skill assumes about 600 images and 1200 calls, impossible with 20 requests/day). Record deviations in ADR 0013.
 
@@ -46,7 +46,7 @@ T07 merged (provider, budget guard, throttle, fake provider, `docs/GEMINI-NOTES.
 | `analysis:run` | options `--max-requests N`, `--max-batches N`, `--runs A|B|A,B`, `--delay-ms` (default from env), `--dry-run` (uses the fake provider, no network, no budget) |
 | `analysis:validate` | (re)computes `AnalysisValidation` for all images having both runs |
 | `analysis:status` | batches done/pending/failed; images with both runs; schema-valid rate; run A and run B accuracy versus the dataset label (overall and per class); A-B agreement; auto_passed/auto_rejected per class x bucket and the top reject reasons; today's budget used/remaining |
-| `analysis:export` / `analysis:import` | text-only `apps/api/seed/image-analyses.json` (both runs + validation + model + prompt version; committed after the runs finish) so T10 and the other operator do not need the API |
+| `analysis:export` / `analysis:import` | text-only `apps/api/seed/image-analyses.json` (both runs + validation + model + prompt version; committed after the runs finish) so T10 and offline evaluation do not need the API |
 
 ## Tests (Vitest, real local MongoDB for models, fake provider for the pipeline)
 1. Sampling: counts per stratum, deterministic with the same seed, largest remainder by source, error when a stratum is too small.
@@ -66,7 +66,7 @@ T07 merged (provider, budget guard, throttle, fake provider, `docs/GEMINI-NOTES.
 4. `feat(api): add analysis validation rules` (+ test 5).
 5. `feat(api): add resumable analysis run script` (+ tests 4, 6, 7; `--dry-run` works end to end with fixtures).
 6. `feat(api): add analysis status and export scripts` (+ test 8).
-7. `docs(api): add ADR 0013, data sources note and sync question-generation skill` — ADR 0013: quota math, batching of 6, fixed set composition and why hard/medium are over-sampled, mixed-class batches, original JPEG bytes, the burned-in-text caveat, that strict label agreement will drop many hard images. `docs/DATA-SOURCES.md`: dataset names and links taken from the repo's `ml/` documents; write licenses as «to be verified by the operator» — do NOT invent license text; README: note that free-tier terms may allow Google to use submitted content (operator to verify the current terms). Board and log.
+7. `docs(api): add ADR 0013, data sources note and sync question-generation skill` — ADR 0013: quota math, batching of 6, fixed set composition and why hard/medium are over-sampled, mixed-class batches, original JPEG bytes, the burned-in-text caveat, that strict label agreement will drop many hard images. `docs/DATA-SOURCES.md`: dataset names and links taken from the repo's `ml/` documents; write licenses as «to be verified by the developer» — do NOT invent license text; README: note that free-tier terms may allow Google to use submitted content (developer to verify the current terms). Board and log.
 Then the human steps (gate day, daily runs).
 
 ## Verification (show real outputs)

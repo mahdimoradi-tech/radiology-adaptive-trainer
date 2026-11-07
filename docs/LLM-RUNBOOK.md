@@ -33,21 +33,21 @@ The following table catalogs all 14 offline data, analysis, and LLM scripts loca
 
 | Script Name | Purpose | Exact Execution Command | Calls Gemini? | Requests per Invocation | Reads | Writes | Source File & Line |
 | :--- | :--- | :--- | :---: | :---: | :--- | :--- | :--- |
-| `analysis:select` | Stratified deterministic selection of 120 images (40/class) | `npm run analysis:select -w @radiology/api -- [--seed analysis-v1] [--per-class 40]` | **No** | 0 | MongoDB `images` (`ImageModel`), `.env` | `apps/api/seed/analysis-set.json` | [analysis-select.js:22](file:///d:/university/pamphlet/bachelor-project/radiology-adaptive-trainer/apps/api/scripts/analysis-select.js#L22) |
-| `analysis:plan` | Slices 120 images into 40 mixed-class batches (20 for Run A, 20 for Run B) | `npm run analysis:plan -w @radiology/api -- [--seed analysis-v1] [--batch-size 6] [--prompt-version v1]` | **No** | 0 | `apps/api/seed/analysis-set.json`, `.env` | MongoDB `analysis_batches` (`AnalysisBatchModel`) | [analysis-plan.js:21](file:///d:/university/pamphlet/bachelor-project/radiology-adaptive-trainer/apps/api/scripts/analysis-plan.js#L21) |
-| `analysis:run` | Executes multimodal batch image analysis with Gemini | `npm run analysis:run -w @radiology/api -- [--max-requests N] [--max-batches N] [--runs A\|B] [--delay-ms N] [--dry-run]` | **Yes** (unless `--dry-run`) | $\le \text{maxRequests}$ (1 per batch; retries on 429 RPM consume +1) | Disk images (`data/catalog/images`), MongoDB `analysis_batches`, `images`, `llm_usage` | MongoDB `image_analyses`, `analysis_batches`, `llm_usage` | [analysis-run.js:32](file:///d:/university/pamphlet/bachelor-project/radiology-adaptive-trainer/apps/api/scripts/analysis-run.js#L32) |
-| `analysis:validate` | Evaluates 9-rule cross-run consensus ($A \cap B$) and ground-truth agreement | `npm run analysis:validate -w @radiology/api -- [--prompt-version v1]` | **No** | 0 | MongoDB `image_analyses`, `images` | MongoDB `analysis_validations` (`AnalysisValidationModel`) | [analysis-validate.js:12](file:///d:/university/pamphlet/bachelor-project/radiology-adaptive-trainer/apps/api/scripts/analysis-validate.js#L12) |
-| `analysis:status` | Reports batch completion, coverage, agreement, auto-pass counts, and budget | `npm run analysis:status -w @radiology/api -- [--prompt-version v1]` | **No** | 0 | MongoDB `analysis_batches`, `image_analyses`, `analysis_validations`, `llm_usage` | None (terminal output) | [analysis-status.js:12](file:///d:/university/pamphlet/bachelor-project/radiology-adaptive-trainer/apps/api/scripts/analysis-status.js#L12) |
-| `analysis:export` | Exports completed analyses and validations to portable JSON | `npm run analysis:export -w @radiology/api -- [--output <path>] [--prompt-version v1]` | **No** | 0 | MongoDB `image_analyses`, `analysis_validations` | `apps/api/seed/image-analyses.json` | [analysis-export.js:15](file:///d:/university/pamphlet/bachelor-project/radiology-adaptive-trainer/apps/api/scripts/analysis-export.js#L15) |
-| `analysis:import` | Imports portable analyses and validations into MongoDB | `npm run analysis:import -w @radiology/api -- [--input <path>]` | **No** | 0 | `apps/api/seed/image-analyses.json` | MongoDB `image_analyses`, `analysis_validations` | [analysis-import.js:15](file:///d:/university/pamphlet/bachelor-project/radiology-adaptive-trainer/apps/api/scripts/analysis-import.js#L15) |
-| `questions:generate` | Generates candidate MCQs from consensus findings and KB snippets | `npm run questions:generate -w @radiology/api -- [--max-requests 12] [--batch-size 8] [--dry-run] [--limit N]` | **Yes** (unless `--dry-run`) | $\le \text{maxRequests}$ (1 per 8-image batch; skips existing stable IDs at 0 cost) | MongoDB `analysis_validations`, `images`, `question_bank`, KB markdown files, `llm_usage` | MongoDB `question_bank`, `question_gen_attempts`, `llm_usage` | [questions-generate.js:8](file:///d:/university/pamphlet/bachelor-project/radiology-adaptive-trainer/apps/api/scripts/questions-generate.js#L8) |
-| `questions:status` | Displays question bank inventory, review states, type breakdown, and rejection reasons | `npm run questions:status -w @radiology/api` | **No** | 0 | MongoDB `question_bank`, `question_gen_attempts`, `llm_usage` | None (terminal output) | [questions-status.js:6](file:///d:/university/pamphlet/bachelor-project/radiology-adaptive-trainer/apps/api/scripts/questions-status.js#L6) |
-| `bank:export` | Exports instructor-approved questions to portable seed JSON | `npm run bank:export -w @radiology/api` | **No** | 0 | MongoDB `question_bank` (`status: 'approved'`) | `apps/api/seed/question-bank.approved.json` | [bank-export.js:5](file:///d:/university/pamphlet/bachelor-project/radiology-adaptive-trainer/apps/api/scripts/bank-export.js#L5) |
-| `bank:import` | Imports portable approved questions with upsert by stable ID | `npm run bank:import -w @radiology/api` | **No** | 0 | `apps/api/seed/question-bank.approved.json` | MongoDB `question_bank` | [bank-import.js:5](file:///d:/university/pamphlet/bachelor-project/radiology-adaptive-trainer/apps/api/scripts/bank-import.js#L5) |
-| `llm:smoke` | Validates live Gemini Interactions API connectivity and budget reservation | `npm run llm:smoke -w @radiology/api` | **Yes** | Exactly 1 | `.env`, MongoDB `llm_usage` | MongoDB `llm_usage` (+1 reservation) | [llm-smoke.js:15](file:///d:/university/pamphlet/bachelor-project/radiology-adaptive-trainer/apps/api/scripts/llm-smoke.js#L15) |
-| `llm:pregenerate` | Pre-generates 6 canonical confusion-pair explanations for portable cache | `npm run llm:pregenerate -w @radiology/api -- [--lang fa\|en] [--dry-run]` | **Yes** (unless `--dry-run` or cached) | 1 per language missing from cache (0 if already cached) | MongoDB `llm_cache`, `llm_usage`, KB files | MongoDB `llm_cache` (`portable: true`), `llm_usage` | [pregenerate-explanations.js:14](file:///d:/university/pamphlet/bachelor-project/radiology-adaptive-trainer/apps/api/scripts/pregenerate-explanations.js#L14) |
-| `llm:cache:export` | Exports portable explanation cache entries to seed JSON | `npm run llm:cache:export -w @radiology/api` | **No** | 0 | MongoDB `llm_cache` (`portable: true`) | `apps/api/seed/llm-cache.portable.json` | [export-llm-cache.js:11](file:///d:/university/pamphlet/bachelor-project/radiology-adaptive-trainer/apps/api/scripts/export-llm-cache.js#L11) |
-| `llm:cache:import` | Imports portable explanation entries into MongoDB cache | `npm run llm:cache:import -w @radiology/api` | **No** | 0 | `apps/api/seed/llm-cache.portable.json` | MongoDB `llm_cache` | [import-llm-cache.js:11](file:///d:/university/pamphlet/bachelor-project/radiology-adaptive-trainer/apps/api/scripts/import-llm-cache.js#L11) |
+| `analysis:select` | Stratified deterministic selection of 120 images (40/class) | `npm run analysis:select -w @radiology/api -- [--seed analysis-v1] [--per-class 40]` | **No** | 0 | MongoDB `images` (`ImageModel`), `.env` | `apps/api/seed/analysis-set.json` | `apps/api/scripts/analysis-select.js:22` |
+| `analysis:plan` | Slices 120 images into 40 mixed-class batches (20 for Run A, 20 for Run B) | `npm run analysis:plan -w @radiology/api -- [--seed analysis-v1] [--batch-size 6] [--prompt-version v1]` | **No** | 0 | `apps/api/seed/analysis-set.json`, `.env` | MongoDB `analysis_batches` (`AnalysisBatchModel`) | `apps/api/scripts/analysis-plan.js:21` |
+| `analysis:run` | Executes multimodal batch image analysis with Gemini | `npm run analysis:run -w @radiology/api -- [--max-requests N] [--max-batches N] [--runs A\|B] [--delay-ms N] [--dry-run]` | **Yes** (unless `--dry-run`) | $\le \text{maxRequests}$ (1 per batch; retries on 429 RPM consume +1) | Disk images (`data/catalog/images`), MongoDB `analysis_batches`, `images`, `llm_usage` | MongoDB `image_analyses`, `analysis_batches`, `llm_usage` | `apps/api/scripts/analysis-run.js:32` |
+| `analysis:validate` | Evaluates 9-rule cross-run consensus ($A \cap B$) and ground-truth agreement | `npm run analysis:validate -w @radiology/api -- [--prompt-version v1]` | **No** | 0 | MongoDB `image_analyses`, `images` | MongoDB `analysis_validations` (`AnalysisValidationModel`) | `apps/api/scripts/analysis-validate.js:12` |
+| `analysis:status` | Reports batch completion, coverage, agreement, auto-pass counts, and budget | `npm run analysis:status -w @radiology/api -- [--prompt-version v1]` | **No** | 0 | MongoDB `analysis_batches`, `image_analyses`, `analysis_validations`, `llm_usage` | None (terminal output) | `apps/api/scripts/analysis-status.js:12` |
+| `analysis:export` | Exports completed analyses and validations to portable JSON | `npm run analysis:export -w @radiology/api -- [--output <path>] [--prompt-version v1]` | **No** | 0 | MongoDB `image_analyses`, `analysis_validations` | `apps/api/seed/image-analyses.json` | `apps/api/scripts/analysis-export.js:15` |
+| `analysis:import` | Imports portable analyses and validations into MongoDB | `npm run analysis:import -w @radiology/api -- [--input <path>]` | **No** | 0 | `apps/api/seed/image-analyses.json` | MongoDB `image_analyses`, `analysis_validations` | `apps/api/scripts/analysis-import.js:15` |
+| `questions:generate` | Generates candidate MCQs from consensus findings and KB snippets | `npm run questions:generate -w @radiology/api -- [--max-requests 12] [--batch-size 8] [--dry-run] [--limit N]` | **Yes** (unless `--dry-run`) | $\le \text{maxRequests}$ (1 per 8-image batch; skips existing stable IDs at 0 cost) | MongoDB `analysis_validations`, `images`, `question_bank`, KB markdown files, `llm_usage` | MongoDB `question_bank`, `question_gen_attempts`, `llm_usage` | `apps/api/scripts/questions-generate.js:8` |
+| `questions:status` | Displays question bank inventory, review states, type breakdown, and rejection reasons | `npm run questions:status -w @radiology/api` | **No** | 0 | MongoDB `question_bank`, `question_gen_attempts`, `llm_usage` | None (terminal output) | `apps/api/scripts/questions-status.js:6` |
+| `bank:export` | Exports instructor-approved questions to portable seed JSON | `npm run bank:export -w @radiology/api` | **No** | 0 | MongoDB `question_bank` (`status: 'approved'`) | `apps/api/seed/question-bank.approved.json` | `apps/api/scripts/bank-export.js:5` |
+| `bank:import` | Imports portable approved questions with upsert by stable ID | `npm run bank:import -w @radiology/api` | **No** | 0 | `apps/api/seed/question-bank.approved.json` | MongoDB `question_bank` | `apps/api/scripts/bank-import.js:5` |
+| `llm:smoke` | Validates live Gemini Interactions API connectivity and budget reservation | `npm run llm:smoke -w @radiology/api` | **Yes** | Exactly 1 | `.env`, MongoDB `llm_usage` | MongoDB `llm_usage` (+1 reservation) | `apps/api/scripts/llm-smoke.js:15` |
+| `llm:pregenerate` | Pre-generates 6 canonical confusion-pair explanations for portable cache | `npm run llm:pregenerate -w @radiology/api -- [--lang fa\|en] [--dry-run]` | **Yes** (unless `--dry-run` or cached) | 1 per language missing from cache (0 if already cached) | MongoDB `llm_cache`, `llm_usage`, KB files | MongoDB `llm_cache` (`portable: true`), `llm_usage` | `apps/api/scripts/pregenerate-explanations.js:14` |
+| `llm:cache:export` | Exports portable explanation cache entries to seed JSON | `npm run llm:cache:export -w @radiology/api` | **No** | 0 | MongoDB `llm_cache` (`portable: true`) | `apps/api/seed/llm-cache.portable.json` | `apps/api/scripts/export-llm-cache.js:11` |
+| `llm:cache:import` | Imports portable explanation entries into MongoDB cache | `npm run llm:cache:import -w @radiology/api` | **No** | 0 | `apps/api/seed/llm-cache.portable.json` | MongoDB `llm_cache` | `apps/api/scripts/import-llm-cache.js:11` |
 
 ---
 
@@ -189,7 +189,7 @@ flowchart TD
 
 ---
 
-## 6. Failure Modes, Auto-Recovery & Operator Actions
+## 6. Failure Modes, Auto-Recovery & Developer Actions
 
 ### 6.1 HTTP 429: Per-Minute Rate Limit Exceeded
 - **Trigger:** More than 5 requests sent within 60 seconds (or transient provider backpressure).
@@ -197,7 +197,7 @@ flowchart TD
   - `runner.js` parses the error message for `"per minute"` or `"retry in Xs"`.
   - Backs off dynamically for $X + 20$ seconds (or default 45–65s) and retries the batch **once**.
   - If the retry fails with a second per-minute error, the runner logs `RATE_LIMIT_PAUSE` and cleanly terminates with exit code 0 to prevent lockouts.
-- **Operator Action:**
+- **Developer Action:**
   - Wait 2–3 minutes.
   - Verify that no other process or background tool is using the API key.
   - Re-run the command; the runner automatically resumes from the unfinished batch.
@@ -208,7 +208,7 @@ flowchart TD
   - The system detects `"per day"` in the error message.
   - Immediately invokes `markExhausted()`, atomically updating MongoDB collection `llm_usage` with `exhausted: true` for the current Pacific day.
   - The script terminates cleanly with exit code 0 (`exitReason: 'QUOTA_429'`).
-- **Operator Action:**
+- **Developer Action:**
   - **Do NOT attempt further live runs today.**
   - Check `analysis:status` or `questions:status` to observe the current Pacific date and count.
   - Resume the following day after midnight Pacific (~11:30 AM Tehran time).
@@ -218,7 +218,7 @@ flowchart TD
 - **System Behavior:**
   - The runner catches the error, increments `attempts` on the current batch document, logs the stack trace in `lastError`, and marks status as `failed` if attempts reach `MAX_ATTEMPTS = 2`.
   - The runner proceeds to eligible batches or pauses if repeated.
-- **Operator Action:**
+- **Developer Action:**
   - Check Google AI Studio status.
   - Re-run the script once service recovers; pending and failed batches with attempts $< 2$ will be processed automatically.
 
@@ -227,7 +227,7 @@ flowchart TD
 - **System Behavior:**
   - **Analysis:** `validateBatchResponse` enforces array length of exactly 6 and unique indices $1..6$. Bad responses increment batch attempts.
   - **Questions:** `validateQuestionCandidate` executes 10 pure validation checks (zero numbers, zero %, Persian ratio $\ge 60\%$, tied keys). Rejections are safely written to `question_gen_attempts` for evaluation analysis (T10) while valid questions are stored in `question_bank`.
-- **Operator Action:**
+- **Developer Action:**
   - No manual database editing is required. Rejections are natural and expected. If candidate yield is lower than desired, simply execute another batch on the next quota day.
 
 ### 6.5 Network / VPN Disconnection
@@ -235,7 +235,7 @@ flowchart TD
 - **System Behavior:**
   - Node fetch throws `FetchError` / `ETIMEDOUT` / `ECONNRESET`.
   - Caught cleanly by provider timeout/retry handler; batch status remains recoverable.
-- **Operator Action:**
+- **Developer Action:**
   - Reconnect the VPN and confirm internet access.
   - Run `npm run llm:smoke -w @radiology/api` to verify connectivity, then resume the interrupted script.
 
@@ -261,7 +261,7 @@ All statements in this document have been verified against the underlying source
 2. **`UNKNOWN: VLM Auto-Validation Pass Rate on Hard Images`**  
    Per ADR 0013, high-difficulty images ($d \ge 0.68$) were misclassified by the out-of-fold DenseNet-121 model. Because auto-validation strictly requires agreement with the true dataset label, the consensus pass rate on hard images may be low. This outcome is an evaluated scientific property (T10), not a software defect.
 3. **`UNKNOWN: Real-World Latency under VPN Proxy`**  
-   Multimodal requests carrying 6 raw base64 JPEG images (~1.5 MB payload) have an execution timeout of 180,000 ms. The exact network latency per batch depends on the operator's VPN tunnel performance and is measured empirically during execution.
+   Multimodal requests carrying 6 raw base64 JPEG images (~1.5 MB payload) have an execution timeout of 180,000 ms. The exact network latency per batch depends on the developer's VPN tunnel performance and is measured empirically during execution.
 
 ---
 

@@ -1,8 +1,8 @@
-## Task & Team
+## Task
 
 - **Task ID:** T08a
-- **Driver:** Operator A (Mahdi) (solo per `docs/SOLO-MODE.md`)
-- **Reviewer:** none (solo) -> AI Review per `docs/SOLO-MODE.md`
+- **Branch:** feat/T08a-image-analysis
+- **Review:** AI Review per `docs/WORKFLOW.md`
 
 ## Summary
 
@@ -41,7 +41,7 @@ npm run analysis:import -w @radiology/api
 ## Contract Changes
 
 - **Contract changed?** [x] Yes / [ ] No
-- _Note:_ Added `packages/contracts/src/vocabulary.js` and `packages/contracts/src/analysis.js`. Fully backward-compatible; does not break existing contracts. Approved by Operator A in solo mode.
+- _Note:_ Added `packages/contracts/src/vocabulary.js` and `packages/contracts/src/analysis.js`. Fully backward-compatible; does not break existing contracts. Approved by Mahdi.
 
 ## Dependencies Added
 
@@ -67,6 +67,6 @@ N/A (CLI and pipeline scripts only).
 - [x] `npm test` passes (453/453 tests green across monorepo)
 - [x] `npm run build` passes
 - [x] `docs/PROGRESS.md` board row updated
-- [x] Operator log updated in `docs/progress/`
+- [x] Developer log updated in `docs/progress/developer-log.md`
 - [x] No secrets (`.env`), datasets, images, or large binary files committed
 - [x] Commit history follows Conventional Commits

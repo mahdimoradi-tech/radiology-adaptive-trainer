@@ -1,6 +1,6 @@
 # ADR 0007 — API Architecture, Authentication, CSRF Stance, and Dev Proxy Topology
 
-Status: accepted (2026-10-31, Operator A)
+Status: accepted (2026-10-31, Mahdi Moradi)
 
 ## Context
 The Radiology Adaptive Training Platform backend (`apps/api`) provides REST endpoints for residents and instructors. We needed architectural decisions on framework selection, authentication session mechanics, CSRF mitigation, and local development networking topology.

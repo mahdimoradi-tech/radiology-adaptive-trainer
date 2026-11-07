@@ -17,7 +17,7 @@ description: Core spec for all LLM (Gemini) usage in the platform (plain JavaScr
 - npm `@google/genai` >= 2.3.0; use the **Interactions API** (default since June 2026; `generateContent` is legacy). Do NOT use the old `@google/generative-ai` package. Client: `new GoogleGenAI({})` reads `GEMINI_API_KEY` from the environment.
 - Model id from env `GEMINI_MODEL` (default `gemini-3.8-flash`). Do NOT send `temperature`, `top_p`, `top_k` or prefilled model turns for Gemini 3.x.
 - Structured outputs: build the JSON Schema from Zod (`z.toJSONSchema`, Zod 4).
-- Before writing call code, read the current Interactions + structured-output pages on ai.google.dev (Context7 or fetch) and copy the exact request shape. Optional official skill: `npx skills add google-gemini/gemini-skills --skill gemini-interactions-api` (ask the operator before installing any third-party skill).
+- Before writing call code, read the current Interactions + structured-output pages on ai.google.dev (Context7 or fetch) and copy the exact request shape. Optional official skill: `npx skills add google-gemini/gemini-skills --skill gemini-interactions-api` (ask the developer before installing any third-party skill).
 - The team has VPN access to the API. Free-tier quotas are limited: throttle, retry with backoff on 429, resume interrupted batches.
 
 ## Modes (`LLM_MODE`)
@@ -56,4 +56,4 @@ Env: `LLM_MODE`, `LLM_ENABLED`, `GEMINI_API_KEY`, `GEMINI_MODEL`, `LLM_RATE_LIMI
 "You are a teaching assistant for radiology residents using a training tool. Write in {lang}. Use ONLY the provided knowledge-base snippets and statistics. Do not invent findings, numbers, percentages or references. Do not give medical advice or diagnose real patients. Be concise and concrete. Return JSON that matches the schema exactly." Keep prompts in files, never inline in services.
 
 ## Tests (never hit the real API)
-Fake provider fixtures; schema validation; retry-then-fallback; cache hit/miss; `cache-only` never calls the provider; rate limit; `%`/unknown-digit guard; language switch; KB retrieval for (covid19 vs pneumonia). One manual script `apps/api/scripts/llm-smoke.js` (not in CI) calls the real API once using the operator's `.env`.
+Fake provider fixtures; schema validation; retry-then-fallback; cache hit/miss; `cache-only` never calls the provider; rate limit; `%`/unknown-digit guard; language switch; KB retrieval for (covid19 vs pneumonia). One manual script `apps/api/scripts/llm-smoke.js` (not in CI) calls the real API once using the developer's `.env`.

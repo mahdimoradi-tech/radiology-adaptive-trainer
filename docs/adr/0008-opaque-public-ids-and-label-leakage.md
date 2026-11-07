@@ -1,6 +1,6 @@
 # ADR 0008 — Opaque Public IDs and Label Leakage Prevention
 
-Status: accepted (2026-10-31, Operator A)
+Status: accepted (2026-10-31, Mahdi Moradi)
 
 ## Context
 In our multi-source dataset merger (T01), internal image identifiers carry dataset prefixes (e.g. `cohen_100_1`, `figure1_covid_42`, `kermany_f9ddce356c7b`). Because the Cohen and Figure1 datasets exclusively contain COVID-19 X-rays, any exposure of internal IDs or metadata directly reveals the true disease label to trainees.

@@ -124,7 +124,7 @@ npm run lint -w @radiology/api
 
 Batch-oriented, resumable closed-vocabulary analysis using Google Gemini (`gemini-3.8-flash`).
 
-> **Privacy & Terms Notice:** Catalog images are submitted to Google's Gemini API. The operator must verify Google AI Studio free-tier terms regarding content usage. No trainee, user, or patient identifiable information is transmitted.
+> **Privacy & Terms Notice:** Catalog images are submitted to Google's Gemini API. The developer must verify Google AI Studio free-tier terms regarding content usage. No trainee, user, or patient identifiable information is transmitted.
 
 ```powershell
 # 1. Deterministically sample 120-image analysis set (seed/analysis-set.json)

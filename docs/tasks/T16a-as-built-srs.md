@@ -43,7 +43,7 @@ Step 7 - `npm run lint`, `npm test`, `npm run build` (docs only; must still pass
 ## Verification
 ```powershell
 git diff --stat main
-git grep -n -i -E "operator|partner|collaborat" -- docs/as-built
+git grep -n -i -E "team-workflow|two-person" -- docs/as-built
 (Import-Csv docs\as-built\traceability.csv | Measure-Object).Count
 Import-Csv docs\as-built\traceability.csv | Where-Object { -not $_.test_ref -and -not $_.manual_test } | Measure-Object | Select-Object Count
 ```
