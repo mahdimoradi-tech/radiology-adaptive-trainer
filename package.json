@@ -19,6 +19,7 @@
     "test": "vitest run",
     "test:workspaces": "npm run test --workspaces --if-present",
     "build": "npm run build --workspaces --if-present",
+    "eval:simulation": "node scripts/eval-simulation.js",
     "prepare": "husky"
   },
   "devDependencies": {
