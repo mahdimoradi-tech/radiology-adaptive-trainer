@@ -12,3 +12,4 @@ export * from './llm.js';
 export * from './vocabulary.js';
 export * from './analysis.js';
 export * from './questionBank.js';
+export * from './practice.js';

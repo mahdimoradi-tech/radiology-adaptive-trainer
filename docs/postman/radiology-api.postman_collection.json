@@ -19,6 +19,11 @@
       "key": "questionId",
       "value": "65f000000000000000000001",
       "type": "string"
+    },
+    {
+      "key": "practiceSetId",
+      "value": "65f000000000000000000099",
+      "type": "string"
     }
   ],
   "item": [
@@ -538,6 +543,87 @@
               "raw": "{{baseUrl}}/admin/questions/{{questionId}}",
               "host": ["{{baseUrl}}"],
               "path": ["admin", "questions", "{{questionId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Targeted Practice",
+      "item": [
+        {
+          "name": "Create Practice Set",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"size\": 10\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/practice",
+              "host": ["{{baseUrl}}"],
+              "path": ["practice"]
+            }
+          }
+        },
+        {
+          "name": "List Practice Sets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/practice?page=1&pageSize=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["practice"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Practice Set",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/practice/{{practiceSetId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["practice", "{{practiceSetId}}"]
+            }
+          }
+        },
+        {
+          "name": "Answer Practice Question",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"selectedIndex\": 0,\n  \"timeMs\": 2500\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/practice/{{practiceSetId}}/questions/1/answer",
+              "host": ["{{baseUrl}}"],
+              "path": ["practice", "{{practiceSetId}}", "questions", "1", "answer"]
             }
           }
         }

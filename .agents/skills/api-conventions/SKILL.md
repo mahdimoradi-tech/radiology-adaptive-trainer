@@ -60,10 +60,11 @@ Routes only wire; controllers parse (Zod from `packages/contracts`) and call ser
 ## Endpoints (`/api`)
 - Health: `GET /api/health` (status, db ping, version).
 - Auth: `POST /api/auth/register`, `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/me`.
-- Images: `GET /api/images/:publicId/file` (cookie auth required; resident limited to own session images, instructor global).
+- Images: `GET /api/images/:publicId/file` (cookie auth required; resident limited to own session or practice set images, instructor global).
 - Sessions: `POST /api/sessions`, `GET /api/sessions`, `GET /api/sessions/:id`, `PUT /api/sessions/:id/questions/:no/answer`, `POST /api/sessions/:id/finish`, `GET /api/sessions/:id/report`.
+- Practice: `POST /api/practice`, `GET /api/practice`, `GET /api/practice/:id`, `PUT /api/practice/:id/questions/:no/answer`.
 - Progress: `GET /api/progress`.
-- Instructor admin: `GET /api/catalog/stats`, `GET /api/catalog/images`, `GET /api/admin/users`, `GET /api/admin/users/:userId/progress`, `GET /api/admin/sessions/:id/report`.
+- Instructor admin: `GET /api/catalog/stats`, `GET /api/catalog/images`, `GET /api/admin/users`, `GET /api/admin/users/:userId/progress`, `GET /api/admin/sessions/:id/report`, `GET /api/admin/questions`, `GET /api/admin/questions/stats`, `GET /api/admin/questions/:id`, `POST /api/admin/questions/:id/approve`, `POST /api/admin/questions/:id/reject`, `PUT /api/admin/questions/:id`.
 
 ## Testing and Postman
 - Vitest 4 workspaces project (`vitest run`).

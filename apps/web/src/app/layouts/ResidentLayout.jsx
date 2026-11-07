@@ -16,9 +16,7 @@ export function ResidentLayout() {
 
   const navLinkClass = ({ isActive }) =>
     `px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-      isActive
-        ? 'bg-sky-50 text-sky-700'
-        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+      isActive ? 'bg-sky-50 text-sky-700' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
     }`;
 
   return (
@@ -33,6 +31,9 @@ export function ResidentLayout() {
               </NavLink>
               <NavLink to="/app/tests" className={navLinkClass}>
                 {t('nav.tests')}
+              </NavLink>
+              <NavLink to="/app/practice" className={navLinkClass}>
+                {t('nav.practice')}
               </NavLink>
               <NavLink to="/app/progress" className={navLinkClass}>
                 {t('nav.progress')}
@@ -51,12 +52,7 @@ export function ResidentLayout() {
                 <Badge variant="secondary">{t('common.roleResident')}</Badge>
               </div>
             )}
-            <Button
-              variant="outline"
-              size="sm"
-              isLoading={logout.isPending}
-              onClick={handleLogout}
-            >
+            <Button variant="outline" size="sm" isLoading={logout.isPending} onClick={handleLogout}>
               {t('nav.logout')}
             </Button>
           </div>

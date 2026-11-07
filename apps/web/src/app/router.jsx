@@ -13,6 +13,8 @@ import { QuizPage } from '../pages/resident/QuizPage.jsx';
 import { ReportPage } from '../pages/resident/ReportPage.jsx';
 import { ReviewPage } from '../pages/resident/ReviewPage.jsx';
 import { ProgressPage } from '../pages/resident/ProgressPage.jsx';
+import { PracticeHomePage } from '../pages/resident/PracticeHomePage.jsx';
+import { PracticeSetPage } from '../pages/resident/PracticeSetPage.jsx';
 import { InstructorHomePage } from '../pages/instructor/InstructorHomePage.jsx';
 import { InstructorReviewPage } from '../pages/instructor/InstructorReviewPage.jsx';
 import { InstructorResidentsPage } from '../pages/instructor/InstructorResidentsPage.jsx';
@@ -76,6 +78,8 @@ export const router = createBrowserRouter([
             path: 'reports/:sessionId/review',
             element: <ReviewPage />,
           },
+          { path: 'practice', element: <PracticeHomePage /> },
+          { path: 'practice/:setId', element: <PracticeSetPage /> },
           { path: 'progress', element: <ProgressPage /> },
           { path: 'education', element: <PlaceholderPage titleKey="nav.education" task="T06" /> },
         ],
