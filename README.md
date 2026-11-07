@@ -154,10 +154,10 @@ npm run seed:catalog -w @radiology/api
 
 ### 5. Create the Initial Instructor Account
 
-Provisions the administrator/instructor account:
+Provisions the administrator/instructor account (interactive prompt, or pass `--defaults` for default demo credentials):
 
 ```powershell
-npm run create-instructor -w @radiology/api
+npm run create-instructor -w @radiology/api -- --defaults
 ```
 
 ### 6. Import the Question Bank
@@ -201,7 +201,7 @@ Navigate to `http://127.0.0.1:5173` in your browser.
 | Role                 | Email                          | Password                 | Purpose                                                     |
 | -------------------- | ------------------------------ | ------------------------ | ----------------------------------------------------------- |
 | **Instructor**       | `instructor@hospital.test`     | `InstructorPassword123!` | Question review, resident roster, catalog monitor           |
-| **Resident (Demo)**  | `resident.demo@hospital.test`  | `DemoResident123!`       | Has completed sessions, report analytics, targeted practice |
+| **Resident (Demo)**  | `demo.resident@example.com`    | `DemoResident123!`       | Has completed sessions, report analytics, targeted practice |
 | **Resident (Fresh)** | `resident.fresh@hospital.test` | `FreshResident123!`      | Brand new trainee starting Session 1 baseline               |
 
 ---

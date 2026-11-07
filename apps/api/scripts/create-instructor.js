@@ -7,19 +7,30 @@ import { connectDb, disconnectDb } from '../src/lib/db.js';
 import { createOrPromoteInstructor } from '../src/modules/auth/service.js';
 import { EmailSchema, PasswordSchema } from '@radiology/contracts';
 
+function getArg(flag) {
+  const idx = process.argv.indexOf(flag);
+  return idx !== -1 && idx + 1 < process.argv.length ? process.argv[idx + 1] : null;
+}
+
 /**
  * CLI script to create or promote an instructor account
  */
 export async function run() {
   const config = loadEnv();
-  const rl = readline.createInterface({ input, output });
+  let rl = null;
+  const getRl = () => {
+    if (!rl) rl = readline.createInterface({ input, output });
+    return rl;
+  };
 
   try {
     console.log('=== Radiology Adaptive Trainer - Create / Promote Instructor ===\n');
 
-    let email = '';
+    const useDefaults = process.argv.includes('--defaults');
+
+    let email = getArg('--email') || (useDefaults ? 'instructor@hospital.test' : '');
     while (!email) {
-      const rawEmail = await rl.question('Enter instructor email: ');
+      const rawEmail = await getRl().question('Enter instructor email: ');
       const parsed = EmailSchema.safeParse(rawEmail);
       if (parsed.success) {
         email = parsed.data;
@@ -28,9 +39,9 @@ export async function run() {
       }
     }
 
-    let displayName = '';
+    let displayName = getArg('--displayName') || (useDefaults ? 'Dr. Instructor' : '');
     while (!displayName) {
-      const rawName = (await rl.question('Enter instructor display name: ')).trim();
+      const rawName = (await getRl().question('Enter instructor display name: ')).trim();
       if (rawName.length >= 2 && rawName.length <= 60) {
         displayName = rawName;
       } else {
@@ -38,9 +49,9 @@ export async function run() {
       }
     }
 
-    let password = '';
+    let password = getArg('--password') || (useDefaults ? 'InstructorPassword123!' : '');
     while (!password) {
-      const rawPassword = await rl.question('Enter instructor password (8-72 bytes): ');
+      const rawPassword = await getRl().question('Enter instructor password (8-72 bytes): ');
       const parsed = PasswordSchema.safeParse(rawPassword);
       if (parsed.success) {
         password = rawPassword;
@@ -62,7 +73,7 @@ export async function run() {
     console.error('\nError configuring instructor:', err.message);
     process.exitCode = 1;
   } finally {
-    rl.close();
+    if (rl) rl.close();
     await disconnectDb();
   }
 }
