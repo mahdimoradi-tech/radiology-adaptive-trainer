@@ -1,6 +1,6 @@
-# Operator A log (repo owner)
+# Developer log
 
-Name (as in git): Mahdi Moradi · GitHub: mahdimoradi-tech · Daily sync time: TBD
+Name (as in git): Mahdi Moradi · GitHub: mahdimoradi-tech
 
 ## Environment (no secrets)
 
@@ -190,7 +190,7 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
   - Authored ADR 0013 Addendum, updated Postman collection with 6 new endpoints, updated `apps/api/README.md`, and synced `.agents/skills/question-generation/SKILL.md`.
   - Expanded automated test coverage across contracts, API validation, generator, portable import/export, admin endpoints, and frontend components, reaching 520 / 520 tests passing across 69 test files (100% green).
 
-- Merged PR #12 (`feat(api,contracts): offline quota-aware image analysis pipeline (T08a)`) into `main` with merge commit after all quality gates, green CI, and operator approval.
+- Merged PR #12 (`feat(api,contracts): offline quota-aware image analysis pipeline (T08a)`) into `main` with merge commit after all quality gates, green CI, and verification.
 
 - Completed T08a code and test suite: built offline, quota-aware, resumable chest X-ray image analysis pipeline with closed vocabulary and automatic cross-run validation.
 - Defined shared closed vocabulary in `packages/contracts/src/vocabulary.js` (`laterality`, `zones`, `patterns`, `distribution`, `predictedClass`, `certainty`, `imageQuality`) and analysis contracts in `packages/contracts/src/analysis.js` (`AnalysisBatchSchema`, `ImageAnalysisSchema`, `AnalysisValidationSchema`).
@@ -203,7 +203,7 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 - Authored ADR 0013, updated `docs/DATA-SOURCES.md` and `apps/api/README.md`, and synced `question-generation` skill.
 - Expanded automated test coverage with 49 new unit and integration tests across 5 new test files (106 analysis-related tests passing).
 
-- Merged PR #11 (`feat(api,web): llm core, quota guard, cache, kb and feedback panels (T07)`) into `main` with merge commit after all quality gates, green CI, and operator approval.
+- Merged PR #11 (`feat(api,web): llm core, quota guard, cache, kb and feedback panels (T07)`) into `main` with merge commit after all quality gates, green CI, and verification.
 
 - Completed T07: built comprehensive, quota-safe LLM core, provider abstraction, daily budget guard, anti-hallucination verification, knowledge base, explanations, and narrative feedback panels.
 - Defined shared LLM schemas in `packages/contracts/src/llm.js` (`LLM_MODES`, `LangSchema`, `LlmSourceSchema`, `ExplanationPairSchema`, `ExplanationItemSchema`, `ExplanationsResponseSchema`, `NarrativeSchema`, `NarrativeResponseSchema`, `AdminLlmStatusSchema`).
@@ -313,8 +313,8 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Decisions and why
 
-- Temporary exception: solo mode (Date: 2026-10-24, Reason: Operator B is temporarily unavailable; Operator A switches to solo mode through at least T03 per `docs/SOLO-MODE.md` to keep project moving forward without stalling).
-- Stack: Pure JavaScript ESM (no TypeScript) so both operators can fully understand and defend every line.
+- Development workflow (Date: 2026-10-24, All design, implementation, and verification driven by Mahdi Moradi with AI coding agent per `docs/WORKFLOW.md`).
+- Stack: Pure JavaScript ESM (no TypeScript) for complete inspectability and defensibility of every line.
 - Native Windows installation (no Docker) with local MongoDB service.
 - Prevent pushes to `main` branch via pre-push hook to enforce PR review workflow.
 
@@ -343,5 +343,4 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Open questions
 
-- Daily sync schedule with Operator B (Abolfazl).
 - Professor meeting agenda and delivery expectations.

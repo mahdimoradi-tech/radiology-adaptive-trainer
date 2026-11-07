@@ -125,6 +125,6 @@ powershell -ExecutionPolicy Bypass -File scripts/verify-session-flow.ps1
 - [x] `npm test` passes (241 tests across 39 files)
 - [x] `npm run build` passes
 - [x] `docs/PROGRESS.md` board row updated
-- [x] Operator log updated in `docs/progress/operator-a.md`
+- [x] Developer log updated in `docs/progress/developer-log.md`
 - [x] No secrets (`.env`), datasets, images, or large binary files committed
 - [x] Commit history follows Conventional Commits

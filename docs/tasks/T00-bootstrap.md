@@ -6,7 +6,7 @@ Operators: **Part 1 = Operator A** (repo owner) · **Part 2 = Operator B** · **
 A green, versioned monorepo on GitHub that both operators can clone, run, and contribute to with the review workflow - before any product code. Nothing product-related is built here.
 
 ## Step 0 — Intake (each operator, on their own machine; STOP and ask; no git command before this)
-Ask the questions in `git-workflow` section 1 and also: (a) Which operator are you? (b) GitHub username of A and of B (needed for the invitation). (c) Windows PowerShell 5.1 or PowerShell 7? (d) Is MongoDB Community installed? Is `mongosh` installed? (e) Do you already have a Gemini API key from Google AI Studio? (f) Antigravity version and whether skills in `.agents/skills` and workflows (`/start-task`) are visible to you. (g) Is `docs/reference/paper.pdf` in place? Write the answers (NO secrets) into your operator log `docs/progress/operator-<a|b>.md` under "Environment".
+Ask the questions in `git-workflow` section 1 and also: (a) Which operator are you? (b) GitHub username of A and of B (needed for the invitation). (c) Windows PowerShell 5.1 or PowerShell 7? (d) Is MongoDB Community installed? Is `mongosh` installed? (e) Do you already have a Gemini API key from Google AI Studio? (f) Antigravity version and whether skills in `.agents/skills` and workflows (`/start-task`) are visible to you. (g) Is `docs/reference/paper.pdf` in place? Write the answers (NO secrets) into the developer log `docs/progress/developer-log.md` under "Environment".
 
 ## Step 1 — Verify the machine (read-only) = run the `/setup-check` workflow
 Required now: Node 24.x, npm, git, `gh` (logged in), MongoDB + `mongosh` ping OK. Needed from T01 (report only): Python 3.12, uv.
@@ -46,7 +46,7 @@ Install Husky 9.x, `@commitlint/cli`, `@commitlint/config-conventional`, `lint-s
 - Commit: `ci(repo): add GitHub Actions workflow and pull request template`.
 
 ### Step 8 — Docs skeleton
-Update/create: `docs/PROGRESS.md` (board is prefilled; keep it), `docs/progress/operator-a.md` and `operator-b.md` (from the kit), `docs/adr/0001-record-architecture-decisions.md`, `0002-technology-stack.md` (JavaScript only because both operators are React/JS developers and must defend every line; local MongoDB, no Docker; modular monolith; difficulty precomputed offline; LLM content pre-generated and cached so demos work without VPN), `0003-development-workflow.md` (development workflow, board, contracts first), `docs/DATA-SOURCES.md` (empty table), `.env.example` with: `PORT`, `MONGODB_URI=mongodb://127.0.0.1:27017/radiology`, `MONGODB_URI_TEST=mongodb://127.0.0.1:27017/radiology_test`, `JWT_SECRET=change-me`, `CORS_ORIGIN=http://127.0.0.1:5173`, `LLM_MODE=fake`, `LLM_ENABLED=true`, `GEMINI_API_KEY=`, `GEMINI_MODEL=gemini-3.8-flash`, `LLM_RATE_LIMIT_PER_USER_PER_HOUR=30`; `.vscode/extensions.json` (ESLint, Prettier, Tailwind CSS IntelliSense - recommendations only). Commit: `docs(repo): add ADRs, board, operator logs and env template`.
+Update/create: `docs/PROGRESS.md` (board is prefilled; keep it), `docs/progress/developer-log.md`, `docs/adr/0001-record-architecture-decisions.md`, `0002-technology-stack.md` (JavaScript only because both operators are React/JS developers and must defend every line; local MongoDB, no Docker; modular monolith; difficulty precomputed offline; LLM content pre-generated and cached so demos work without VPN), `0003-development-workflow.md` (development workflow, board, contracts first), `docs/DATA-SOURCES.md` (empty table), `.env.example` with: `PORT`, `MONGODB_URI=mongodb://127.0.0.1:27017/radiology`, `MONGODB_URI_TEST=mongodb://127.0.0.1:27017/radiology_test`, `JWT_SECRET=change-me`, `CORS_ORIGIN=http://127.0.0.1:5173`, `LLM_MODE=fake`, `LLM_ENABLED=true`, `GEMINI_API_KEY=`, `GEMINI_MODEL=gemini-3.8-flash`, `LLM_RATE_LIMIT_PER_USER_PER_HOUR=30`; `.vscode/extensions.json` (ESLint, Prettier, Tailwind CSS IntelliSense - recommendations only). Commit: `docs(repo): add ADRs, board, operator logs and env template`.
 
 ### Step 9 — Invite Operator B
 Ask for B's GitHub username (intake). `gh api --method PUT repos/<owner>/<repo>/collaborators/<B-username> -f permission=push` (or Settings -> Collaborators in the web UI). Try branch protection for `main` (require PR + passing CI) with `gh api`; free private repos may refuse it - if so skip it (the `pre-push` hook and the team agreement protect `main`). Tell A to tell B to accept the invitation.
@@ -58,12 +58,8 @@ Fresh-clone test in a temp folder: `git clone <repo>`, `cd` into it, `git switch
 1. Accept the invitation. `git clone <repo>`. Local git identity (B's own name/email).
 2. Run Step 0 and `/setup-check` on B's machine; fix gaps.
 3. `npm ci`, `npm run lint`, `npm test`, `npm run build` on A's branch - all must pass. Review A's PR with the checklist in `team-collaboration` (B's agent explains the diff in Persian; B must be able to explain it back). Approve or request changes.
-4. After A merges: `/sync`, then branch `chore/T00-operator-b`: fill `docs/progress/operator-b.md` and claim the T02 row in the board (status `claimed`, branch name). Commit `docs(repo): add operator B log and claim T02`, push, open a PR (Driver B, Reviewer A). A approves; B merges. This rehearses the full workflow.
-
-## PART 3 — Both operators
-- Copy `.env.example` to `.env` (not committed). Put your OWN Gemini API key (Google AI Studio) in `GEMINI_API_KEY` only when T07 starts; never paste it into chat.
-- Context7 MCP (see `KIT-README-FA.md`) configured in your Antigravity.
-- Agree on the daily sync time and the chat channel; write them in `docs/progress/operator-<a|b>.md`.
+4. After merge: `/sync`, then update `docs/progress/developer-log.md` and the board.
+- Environment notes recorded in `docs/progress/developer-log.md`.
 
 ## Acceptance criteria
 - [ ] `/setup-check` is all-green on BOTH machines (Python/uv may be pending until T01).

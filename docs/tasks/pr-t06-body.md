@@ -123,6 +123,6 @@ Inspected `mongodb://127.0.0.1:27017/radiology`:
 - [x] `npm test` passes
 - [x] `npm run build` passes
 - [x] `docs/PROGRESS.md` board row updated
-- [x] Operator log updated in `docs/progress/operator-a.md`
+- [x] Developer log updated in `docs/progress/developer-log.md`
 - [x] No secrets (`.env`), datasets, images, or large binary files committed
 - [x] Commit history follows Conventional Commits
