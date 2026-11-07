@@ -48,9 +48,13 @@ export async function run() {
     console.log('====================================================');
     console.log('\n--- Question Bank Summary ---');
     console.log(`Total questions:   ${totalQuestions}`);
+    const approvalRateStr =
+      totalQuestions > 0 ? `${((approvedCount / totalQuestions) * 100).toFixed(1)}%` : 'N/A';
+    const rejectionRateStr =
+      totalQuestions > 0 ? `${((rejectedCount / totalQuestions) * 100).toFixed(1)}%` : 'N/A';
     console.log(`  - Pending:       ${pendingCount}`);
-    console.log(`  - Approved:      ${approvedCount}`);
-    console.log(`  - Rejected:      ${rejectedCount}`);
+    console.log(`  - Approved:      ${approvedCount} (${approvalRateStr})`);
+    console.log(`  - Rejected:      ${rejectedCount} (${rejectionRateStr})`);
 
     console.log('\n--- Types Breakdown ---');
     console.log(`  - Finding:       ${findingCount}`);

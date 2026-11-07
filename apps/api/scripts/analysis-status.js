@@ -49,26 +49,39 @@ export async function run() {
     console.log(`Run B only:            ${status.images.runBOnly}\n`);
 
     console.log('--- Schema Validity & Reliability ---');
-    console.log(`Schema valid rate:     ${(status.schemaValidRate * 100).toFixed(1)}%`);
+    const validRateStr =
+      status.schemaValidRate !== null && !Number.isNaN(status.schemaValidRate)
+        ? `${(status.schemaValidRate * 100).toFixed(1)}%`
+        : 'N/A';
+    console.log(`Schema valid rate:     ${validRateStr}`);
+
+    const agreementRateStr =
+      status.agreement.rate !== null && !Number.isNaN(status.agreement.rate)
+        ? `${(status.agreement.rate * 100).toFixed(1)}%`
+        : 'N/A';
     console.log(
-      `Run A vs B agreement:  ${(status.agreement.rate * 100).toFixed(1)}% (${status.agreement.total} paired images)\n`,
+      `Run A vs B agreement:  ${agreementRateStr} (${status.agreement.total} paired images)\n`,
     );
 
     console.log('--- Accuracy vs Dataset Ground Truth ---');
-    console.log(
-      `Run A overall: ${(status.runA.accuracy * 100).toFixed(1)}% (${status.runA.total} images)`,
-    );
+    const runAOverallStr =
+      status.runA.accuracy !== null && !Number.isNaN(status.runA.accuracy)
+        ? `${(status.runA.accuracy * 100).toFixed(1)}%`
+        : 'N/A';
+    console.log(`Run A overall: ${runAOverallStr} (${status.runA.total} images)`);
     for (const [cls, stats] of Object.entries(status.runA.byClass)) {
-      const acc = stats.total > 0 ? ((stats.correct / stats.total) * 100).toFixed(1) : 'N/A';
-      console.log(`  - ${cls.padEnd(10)}: ${acc}% (${stats.correct}/${stats.total})`);
+      const acc = stats.total > 0 ? `${((stats.correct / stats.total) * 100).toFixed(1)}%` : 'N/A';
+      console.log(`  - ${cls.padEnd(10)}: ${acc} (${stats.correct}/${stats.total})`);
     }
 
-    console.log(
-      `\nRun B overall: ${(status.runB.accuracy * 100).toFixed(1)}% (${status.runB.total} images)`,
-    );
+    const runBOverallStr =
+      status.runB.accuracy !== null && !Number.isNaN(status.runB.accuracy)
+        ? `${(status.runB.accuracy * 100).toFixed(1)}%`
+        : 'N/A';
+    console.log(`\nRun B overall: ${runBOverallStr} (${status.runB.total} images)`);
     for (const [cls, stats] of Object.entries(status.runB.byClass)) {
-      const acc = stats.total > 0 ? ((stats.correct / stats.total) * 100).toFixed(1) : 'N/A';
-      console.log(`  - ${cls.padEnd(10)}: ${acc}% (${stats.correct}/${stats.total})`);
+      const acc = stats.total > 0 ? `${((stats.correct / stats.total) * 100).toFixed(1)}%` : 'N/A';
+      console.log(`  - ${cls.padEnd(10)}: ${acc} (${stats.correct}/${stats.total})`);
     }
 
     console.log('\n--- Validations ---');
