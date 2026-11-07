@@ -8,9 +8,21 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T11: Hardening, docs, demo script, release (branch `chore/T11-hardening-release`, in-review).
+- T12: Solo-project documentation cleanup (branch `docs/T12-solo-docs-cleanup`, in-review).
 
 ## Done (newest first)
+
+- Completed T12: Solo-project documentation cleanup and workflow alignment:
+  - Replaced `docs/SOLO-MODE.md` with official `docs/WORKFLOW.md` establishing 5-section development workflow and merge gates.
+  - Renamed ADR 0003 to `docs/adr/0003-development-workflow.md` and updated all links.
+  - Consolidated developer logging into single `docs/progress/developer-log.md` and removed unused template.
+  - Replaced `team-collaboration` skill with `review-workflow` and updated all references.
+  - Aligned `AGENTS.md` and agent workflows (`sync.md`, `start-task.md`, `finish-task.md`, `status.md`) for a unified developer workflow.
+  - Updated progress board `docs/PROGRESS.md` with status `merged` for T11 and added rows T12-T16c.
+  - Simplified pull request template `.github/pull_request_template.md`.
+  - Neutralized legacy multi-operator phrasing across core documentation, historical task files, and ADRs without altering any technical data or test counts.
+  - Replaced all absolute/local `file:///` hyperlinks with repository-relative references.
+  - Zero functional code modified under `apps/`, `packages/`, `ml/`, `scripts/`; all 89 test files and 727 tests pass, lint passes, build passes.
 
 - Completed T11: Hardening, documentation, security review pass, fresh-clone testing, demo script, and release preparation:
   - Authored comprehensive access matrix test in `apps/api/src/__tests__/access-matrix.test.js`:

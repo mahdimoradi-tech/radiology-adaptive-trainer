@@ -22,7 +22,7 @@ Session start: `/sync`, then `/start-task <Txx>`. Notes go to `docs/progress/dev
 | T09c | merged | feat/T09c-education-catalog | #19 | `apps/web`, `docs/` |
 | T10 | merged | feat/T10-evaluation | #20 | `packages/engine`, `apps/api`, `docs/evaluation/` |
 | T11 | merged | chore/T11-hardening-release | #21 | repo root, `apps/api`, `apps/web`, `docs/` |
-| T12 | todo | docs/T12-solo-docs-cleanup | - | `docs/`, `.agents/`, `.github/` |
+| T12 | in-review | docs/T12-solo-docs-cleanup | #23 | `docs/`, `.agents/`, `.github/` |
 | T13 | todo | chore/T13-data-seeds | - | `apps/api/seed/`, `data/`, `docs/` |
 | T14 | todo | chore/T14-qa-security | - | `apps/api/`, `apps/web/`, `docs/qa/` |
 | T15 | todo | style/T15-ui-polish | - | `apps/web/` |
