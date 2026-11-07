@@ -8,9 +8,35 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T10: Evaluation & Reproducible Report (branch `feat/T10-evaluation`).
+- T11: Hardening, docs, demo script, release (branch `chore/T11-hardening-release`, in-review).
 
 ## Done (newest first)
+
+- Completed T11: Hardening, documentation, security review pass, fresh-clone testing, demo script, and release preparation:
+  - Authored comprehensive access matrix test in `apps/api/src/__tests__/access-matrix.test.js`:
+    - Validates all 31 registered Express routes against `ENDPOINT_ACCESS_MATRIX` with strict bidirectional parity.
+    - Proves unauthenticated requests return 401 on all protected endpoints, and public endpoints pass.
+    - Proves resident role cannot access instructor routes (403).
+    - Proves instructor role cannot access resident training routes (403).
+    - Proves foreign resident resource access (sessions, practice sets, private radiograph images) is strictly denied (404).
+    - Verified by 67 passing tests.
+  - Authored global diagnostic label leakage test in `apps/api/src/__tests__/global-leak.test.js`:
+    - Deep recursive scanning for prohibited keys (`trueClass`, `confusedWith`, `bucket`, `difficulty`, `source`, `catalogId`, `imageId`, `filename`, `passwordHash`) across full resident session lifecycle before finish and on all practice endpoints.
+    - Scans for forbidden dataset substrings (`cohen`, `kermany`, `figure1`).
+    - Verified by 8 passing tests.
+  - Completed 11-point security review pass:
+    - Enforced `Secure: true` cookie flag in production (`apps/api/src/modules/auth/service.js`, `controller.js`).
+    - Disallowed wildcard `*` with credentials in `CORS_ORIGIN` (`apps/api/src/config/env.js`).
+    - Verified network isolation in `LLM_MODE=cache-only` with provider error stubs (`provider.test.js`, `endpoints.test.js`).
+    - Validated zero committed Gemini API keys (`git grep -n -I -E "AIza..."` returns nothing).
+    - Verified 0 vulnerabilities in production dependencies via `npm audit --omit=dev`.
+    - Documented all environment variables in `.env.example`.
+  - Replaced non-ASCII characters with clean ASCII output in API scripts and `scripts/check-rtl-classes.js` to ensure clean Windows PowerShell output without mojibake.
+  - Completely rewrote root `README.md` with educational disclaimer, architecture diagram (Mermaid), prerequisites, quickstart, credentials, environment variables, npm scripts, evaluation reference, limitations, and licenses.
+  - Successfully executed fresh-clone test in temp directory outside repo, proving automated setup in 24.9 seconds with zero errors; added `--defaults` flag support to `create-instructor.js` for non-interactive scripting.
+  - Authored `docs/DEMO-SCRIPT.md` (12-15 minute live demo guide, screen expectations, failure recovery steps, and defense Q&A) and `docs/DEMO-CHECKLIST.md` (pre-defense hardware, database, browser, and backup checklist).
+  - Authored `docs/KNOWN-ISSUES.md` documenting technical debt, dataset confounders, and scientific limitations.
+  - Monorepo quality gates: 89 test files, 727 passing unit and integration tests, 0 ESLint warnings, 0 logical RTL utility errors, clean production builds.
 
 - Completed T10: Empirical evaluation pipeline, pure statistical helpers, and reproducible report generator:
   - Authored pure statistical helpers in `@radiology/engine`:
