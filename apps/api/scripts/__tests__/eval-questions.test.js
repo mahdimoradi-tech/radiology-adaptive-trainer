@@ -101,7 +101,7 @@ describe('eval-questions — Question Quality & Rubric Evaluation (T10)', () => 
 
     const md = formatRubricMarkdown(res);
     expect(md).toContain(
-      'Rated by one non-expert reviewer (the system’s builder); results are indicative only.',
+      "Rated by one non-expert reviewer (the system's builder); results are indicative only.",
     );
     expect(md).toContain('OVERALL');
   });

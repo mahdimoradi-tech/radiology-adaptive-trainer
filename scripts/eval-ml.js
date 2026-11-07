@@ -99,7 +99,7 @@ export function evaluateMlArtifacts({
     }
 
     // Class x Source tracking
-    const csKey = `${trueClass} × ${source}`;
+    const csKey = `${trueClass} x ${source}`;
     if (!byClassSource[csKey]) {
       byClassSource[csKey] = { trueClass, source, total: 0, correct: 0 };
     }
@@ -221,7 +221,7 @@ export function evaluateMlArtifacts({
 function fmtRate(p, ci) {
   if (p === null || p === undefined || Number.isNaN(p)) return 'N/A';
   if (!ci || ci.low === null) return `${(p * 100).toFixed(1)}%`;
-  return `${(p * 100).toFixed(1)}% [${(ci.low * 100).toFixed(1)}%–${(ci.high * 100).toFixed(1)}%]`;
+  return `${(p * 100).toFixed(1)}% [${(ci.low * 100).toFixed(1)}%-${(ci.high * 100).toFixed(1)}%]`;
 }
 
 export function formatMlMarkdown(report) {
@@ -236,7 +236,7 @@ export function formatMlMarkdown(report) {
   } = report;
 
   const lines = [
-    `### E4 — ML (DenseNet-121) Out-of-Fold Performance & Confounder Analysis`,
+    `### E4 - ML (DenseNet-121) Out-of-Fold Performance & Confounder Analysis`,
     ``,
     `> Command: \`${metadata.command}\` | Total Images: ${metadata.totalImages} | Catalog Subset: ${metadata.catalogSubsetCount} | SHA: \`${metadata.gitSha}\``,
     ``,
@@ -273,8 +273,8 @@ export function formatMlMarkdown(report) {
   }
 
   lines.push('');
-  lines.push('#### 3. Accuracy by Class × Source');
-  lines.push('| Class × Source | N | Correct | Accuracy (Wilson 95% CI) |');
+  lines.push('#### 3. Accuracy by Class x Source');
+  lines.push('| Class x Source | N | Correct | Accuracy (Wilson 95% CI) |');
   lines.push('|---|---|---|---|');
 
   for (const [csKey, cs] of Object.entries(byClassSource)) {

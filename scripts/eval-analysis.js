@@ -309,7 +309,7 @@ export function evaluateAnalyses({
 function fmtRate(p, ci) {
   if (p === null || p === undefined || Number.isNaN(p)) return 'N/A';
   if (!ci || ci.low === null) return `${(p * 100).toFixed(1)}%`;
-  return `${(p * 100).toFixed(1)}% [${(ci.low * 100).toFixed(1)}%–${(ci.high * 100).toFixed(1)}%]`;
+  return `${(p * 100).toFixed(1)}% [${(ci.low * 100).toFixed(1)}%-${(ci.high * 100).toFixed(1)}%]`;
 }
 
 export function formatAnalysisMarkdown(report) {
@@ -317,7 +317,7 @@ export function formatAnalysisMarkdown(report) {
     report;
 
   const lines = [
-    `### E2 — LLM Image Analysis vs Dataset Ground Truth`,
+    `### E2 - LLM Image Analysis vs Dataset Ground Truth`,
     ``,
     `> Command: \`${metadata.command}\` | Images: ${metadata.nImages} | SHA: \`${metadata.gitSha}\``,
     ``,

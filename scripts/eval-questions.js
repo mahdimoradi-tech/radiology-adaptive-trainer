@@ -161,7 +161,7 @@ export function scoreRubricCsv(csvContent, { date = new Date().toISOString() } =
         command: 'npm run eval:questions score',
         date,
         gitSha: getGitSha(),
-        note: 'Rated by one non-expert reviewer (the system’s builder); results are indicative only.',
+        note: "Rated by one non-expert reviewer (the system's builder); results are indicative only.",
       },
       status: 'pending_review',
       ratedCount: 0,
@@ -211,7 +211,7 @@ export function scoreRubricCsv(csvContent, { date = new Date().toISOString() } =
         command: 'npm run eval:questions score',
         date,
         gitSha: getGitSha(),
-        note: 'Rated by one non-expert reviewer (the system’s builder); results are indicative only.',
+        note: "Rated by one non-expert reviewer (the system's builder); results are indicative only.",
       },
       status: 'pending_review',
       ratedCount: 0,
@@ -277,7 +277,7 @@ export function scoreRubricCsv(csvContent, { date = new Date().toISOString() } =
       command: 'npm run eval:questions score',
       date,
       gitSha: getGitSha(),
-      note: 'Rated by one non-expert reviewer (the system’s builder); results are indicative only.',
+      note: "Rated by one non-expert reviewer (the system's builder); results are indicative only.",
     },
     status: 'scored',
     ratedCount: records.length,
@@ -370,20 +370,20 @@ export function evaluateQuestionPipeline({
 function fmtRate(p, ci) {
   if (p === null || p === undefined || Number.isNaN(p)) return 'N/A';
   if (!ci || ci.low === null) return `${(p * 100).toFixed(1)}%`;
-  return `${(p * 100).toFixed(1)}% [${(ci.low * 100).toFixed(1)}%–${(ci.high * 100).toFixed(1)}%]`;
+  return `${(p * 100).toFixed(1)}% [${(ci.low * 100).toFixed(1)}%-${(ci.high * 100).toFixed(1)}%]`;
 }
 
 function fmtScore(mean, std) {
   if (mean === null || mean === undefined || Number.isNaN(mean)) return 'N/A';
   if (std === null || std === undefined) return mean.toFixed(2);
-  return `${mean.toFixed(2)} ± ${std.toFixed(2)}`;
+  return `${mean.toFixed(2)} +/- ${std.toFixed(2)}`;
 }
 
 export function formatRubricMarkdown(rubricReport) {
   const lines = [
-    `### E3 — Question Bank Quality & Rubric Evaluation`,
+    `### E3 - Question Bank Quality & Rubric Evaluation`,
     ``,
-    `> **Note:** ${rubricReport.metadata?.note || 'Rated by one non-expert reviewer (the system’s builder); results are indicative only.'}`,
+    `> **Note:** ${rubricReport.metadata?.note || "Rated by one non-expert reviewer (the system's builder); results are indicative only."}`,
     `> Command: \`${rubricReport.metadata?.command}\` | Rated: ${rubricReport.ratedCount} | SHA: \`${rubricReport.metadata?.gitSha}\``,
     ``,
   ];
@@ -397,7 +397,7 @@ export function formatRubricMarkdown(rubricReport) {
   }
 
   lines.push(
-    `| Question Type | N | Scientific OK (Wilson 95% CI) | Clarity (1–5) | Distractor Plausibility (1–5) | Leak-Free (Wilson 95% CI) |`,
+    `| Question Type | N | Scientific OK (Wilson 95% CI) | Clarity (1-5) | Distractor Plausibility (1-5) | Leak-Free (Wilson 95% CI) |`,
   );
   lines.push(`|---|---|---|---|---|---|`);
 

@@ -89,8 +89,8 @@ describe('eval-ml — ML Per-Source Accuracy & Confounder Evaluation (T10)', () 
     expect(report.bySource.figure1.correct).toBe(0);
 
     // Class x Source
-    expect(report.byClassSource['covid19 × cohen'].correct).toBe(1);
-    expect(report.byClassSource['covid19 × figure1'].correct).toBe(0);
+    expect(report.byClassSource['covid19 x cohen'].correct).toBe(1);
+    expect(report.byClassSource['covid19 x figure1'].correct).toBe(0);
 
     // Class distribution by source
     expect(report.classShareBySource.covid19.total).toBe(2);
@@ -99,7 +99,7 @@ describe('eval-ml — ML Per-Source Accuracy & Confounder Evaluation (T10)', () 
 
     // Markdown contains formatted sections
     const md = formatMlMarkdown(report);
-    expect(md).toContain('### E4 — ML (DenseNet-121)');
+    expect(md).toContain('### E4 - ML (DenseNet-121)');
     expect(md).toContain('Full Dataset (OOF)');
     expect(md).toContain('App Catalog (500 Cap)');
     expect(md).toContain('Class Distribution by Source');

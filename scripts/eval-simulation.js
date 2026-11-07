@@ -120,12 +120,12 @@ export function evaluateSimulation({
 export function formatSimulationMarkdown(report) {
   const { metadata, results } = report;
   const lines = [
-    `### E1 — Adaptive Engine Simulation Evaluation`,
+    `### E1 - Adaptive Engine Simulation Evaluation`,
     ``,
     `> **Note:** ${metadata.note}`,
     `> Command: \`${metadata.command}\` | Seeds: master=${metadata.seeds.masterSeed}, n=${metadata.seeds.numResidents} | SHA: \`${metadata.gitSha}\``,
     ``,
-    `| Policy | N | Mastery Rate (Wilson 95% CI) | Sessions to Mastery (Mean ± SD) | Sessions (Median [Min–Max]) | Avg FPR (Covid / Pneu / Norm) | Avg FNR (Covid / Pneu / Norm) |`,
+    `| Policy | N | Mastery Rate (Wilson 95% CI) | Sessions to Mastery (Mean +/- SD) | Sessions (Median [Min-Max]) | Avg FPR (Covid / Pneu / Norm) | Avg FNR (Covid / Pneu / Norm) |`,
     `|---|---|---|---|---|---|---|`,
   ];
 
@@ -134,15 +134,15 @@ export function formatSimulationMarkdown(report) {
     if (!r) continue;
     const masteryStr =
       r.masteryRate !== null
-        ? `${(r.masteryRate * 100).toFixed(1)}% [${(r.masteryCi.low * 100).toFixed(1)}%–${(r.masteryCi.high * 100).toFixed(1)}%]`
+        ? `${(r.masteryRate * 100).toFixed(1)}% [${(r.masteryCi.low * 100).toFixed(1)}%-${(r.masteryCi.high * 100).toFixed(1)}%]`
         : 'N/A';
     const meanStdStr =
       r.sessionsToMastery.mean !== null
-        ? `${r.sessionsToMastery.mean.toFixed(2)} ± ${r.sessionsToMastery.std.toFixed(2)}`
+        ? `${r.sessionsToMastery.mean.toFixed(2)} +/- ${r.sessionsToMastery.std.toFixed(2)}`
         : 'N/A';
     const medRangeStr =
       r.sessionsToMastery.median !== null
-        ? `${r.sessionsToMastery.median.toFixed(1)} [${r.sessionsToMastery.min}–${r.sessionsToMastery.max}]`
+        ? `${r.sessionsToMastery.median.toFixed(1)} [${r.sessionsToMastery.min}-${r.sessionsToMastery.max}]`
         : 'N/A';
     const fprStr = `${r.avgFpr.covid19.toFixed(3)} / ${r.avgFpr.pneumonia.toFixed(3)} / ${r.avgFpr.normal.toFixed(3)}`;
     const fnrStr = `${r.avgFnr.covid19.toFixed(3)} / ${r.avgFnr.pneumonia.toFixed(3)} / ${r.avgFnr.normal.toFixed(3)}`;

@@ -1,8 +1,8 @@
 {
   "metadata": {
     "command": "npm run eval:ml",
-    "date": "2026-11-07T12:51:00.888Z",
-    "gitSha": "06fbd77e1fb29855fc7cd740fbc1ef5524596e88",
+    "date": "2026-11-07T12:55:21.461Z",
+    "gitSha": "37b39654b3a5efb874b0437d48daf631dd7f75c0",
     "totalImages": 6004,
     "catalogSubsetCount": 1177,
     "catalogJsonCount": 1177
@@ -183,7 +183,7 @@
     }
   },
   "byClassSource": {
-    "normal × kermany": {
+    "normal x kermany": {
       "trueClass": "normal",
       "source": "kermany",
       "total": 1582,
@@ -194,7 +194,7 @@
         "high": 0.9704219998470675
       }
     },
-    "pneumonia × kermany": {
+    "pneumonia x kermany": {
       "trueClass": "pneumonia",
       "source": "kermany",
       "total": 4245,
@@ -205,7 +205,7 @@
         "high": 0.953783582251396
       }
     },
-    "covid19 × cohen": {
+    "covid19 x cohen": {
       "trueClass": "covid19",
       "source": "cohen",
       "total": 142,
@@ -216,7 +216,7 @@
         "high": 0.996129064878418
       }
     },
-    "covid19 × figure1": {
+    "covid19 x figure1": {
       "trueClass": "covid19",
       "source": "figure1",
       "total": 35,

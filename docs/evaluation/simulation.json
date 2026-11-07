@@ -1,8 +1,8 @@
 {
   "metadata": {
     "command": "npm run eval:simulation",
-    "date": "2026-11-07T12:37:17.450Z",
-    "gitSha": "6ec5de17fdfa1c6fc1a152048141ced001dd9af4",
+    "date": "2026-11-07T12:55:21.461Z",
+    "gitSha": "37b39654b3a5efb874b0437d48daf631dd7f75c0",
     "seeds": {
       "masterSeed": 42,
       "numResidents": 50,
