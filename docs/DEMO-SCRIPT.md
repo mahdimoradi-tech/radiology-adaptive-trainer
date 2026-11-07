@@ -102,7 +102,7 @@ Be prepared to answer committee and professor questions directly and honestly ba
 
 ### Q4: "Who reviewed the question bank and validated the medical accuracy?"
 > **Answer:**  
-> The questions were synthesized using Google Gemini with structured JSON schemas grounded in clinical knowledge bases (`apps/api/src/modules/llm/kb/`), followed by automated consistency checks (verifying the correct class key and distractor plausibility). In our current prototype, approval in the instructor queue was performed by the engineering operators. In a hospital deployment, board-certified radiologists would serve as the authorized instructors.
+> The questions were synthesized using Google Gemini with structured JSON schemas grounded in clinical knowledge bases (`apps/api/src/modules/llm/kb/`), followed by automated consistency checks (verifying the correct class key and distractor plausibility). In our current prototype, approval in the instructor queue was performed by the system developer. In a hospital deployment, board-certified radiologists would serve as the authorized instructors.
 
 ### Q5: "How does the platform handle Google Gemini free-tier rate limits and internet outages?"
 > **Answer:**  

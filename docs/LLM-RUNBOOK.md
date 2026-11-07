@@ -189,7 +189,7 @@ flowchart TD
 
 ---
 
-## 6. Failure Modes, Auto-Recovery & Operator Actions
+## 6. Failure Modes, Auto-Recovery & Developer Actions
 
 ### 6.1 HTTP 429: Per-Minute Rate Limit Exceeded
 - **Trigger:** More than 5 requests sent within 60 seconds (or transient provider backpressure).
@@ -197,7 +197,7 @@ flowchart TD
   - `runner.js` parses the error message for `"per minute"` or `"retry in Xs"`.
   - Backs off dynamically for $X + 20$ seconds (or default 45–65s) and retries the batch **once**.
   - If the retry fails with a second per-minute error, the runner logs `RATE_LIMIT_PAUSE` and cleanly terminates with exit code 0 to prevent lockouts.
-- **Operator Action:**
+- **Developer Action:**
   - Wait 2–3 minutes.
   - Verify that no other process or background tool is using the API key.
   - Re-run the command; the runner automatically resumes from the unfinished batch.
@@ -208,7 +208,7 @@ flowchart TD
   - The system detects `"per day"` in the error message.
   - Immediately invokes `markExhausted()`, atomically updating MongoDB collection `llm_usage` with `exhausted: true` for the current Pacific day.
   - The script terminates cleanly with exit code 0 (`exitReason: 'QUOTA_429'`).
-- **Operator Action:**
+- **Developer Action:**
   - **Do NOT attempt further live runs today.**
   - Check `analysis:status` or `questions:status` to observe the current Pacific date and count.
   - Resume the following day after midnight Pacific (~11:30 AM Tehran time).
@@ -218,7 +218,7 @@ flowchart TD
 - **System Behavior:**
   - The runner catches the error, increments `attempts` on the current batch document, logs the stack trace in `lastError`, and marks status as `failed` if attempts reach `MAX_ATTEMPTS = 2`.
   - The runner proceeds to eligible batches or pauses if repeated.
-- **Operator Action:**
+- **Developer Action:**
   - Check Google AI Studio status.
   - Re-run the script once service recovers; pending and failed batches with attempts $< 2$ will be processed automatically.
 
@@ -227,7 +227,7 @@ flowchart TD
 - **System Behavior:**
   - **Analysis:** `validateBatchResponse` enforces array length of exactly 6 and unique indices $1..6$. Bad responses increment batch attempts.
   - **Questions:** `validateQuestionCandidate` executes 10 pure validation checks (zero numbers, zero %, Persian ratio $\ge 60\%$, tied keys). Rejections are safely written to `question_gen_attempts` for evaluation analysis (T10) while valid questions are stored in `question_bank`.
-- **Operator Action:**
+- **Developer Action:**
   - No manual database editing is required. Rejections are natural and expected. If candidate yield is lower than desired, simply execute another batch on the next quota day.
 
 ### 6.5 Network / VPN Disconnection
@@ -235,7 +235,7 @@ flowchart TD
 - **System Behavior:**
   - Node fetch throws `FetchError` / `ETIMEDOUT` / `ECONNRESET`.
   - Caught cleanly by provider timeout/retry handler; batch status remains recoverable.
-- **Operator Action:**
+- **Developer Action:**
   - Reconnect the VPN and confirm internet access.
   - Run `npm run llm:smoke -w @radiology/api` to verify connectivity, then resume the interrupted script.
 
@@ -261,7 +261,7 @@ All statements in this document have been verified against the underlying source
 2. **`UNKNOWN: VLM Auto-Validation Pass Rate on Hard Images`**  
    Per ADR 0013, high-difficulty images ($d \ge 0.68$) were misclassified by the out-of-fold DenseNet-121 model. Because auto-validation strictly requires agreement with the true dataset label, the consensus pass rate on hard images may be low. This outcome is an evaluated scientific property (T10), not a software defect.
 3. **`UNKNOWN: Real-World Latency under VPN Proxy`**  
-   Multimodal requests carrying 6 raw base64 JPEG images (~1.5 MB payload) have an execution timeout of 180,000 ms. The exact network latency per batch depends on the operator's VPN tunnel performance and is measured empirically during execution.
+   Multimodal requests carrying 6 raw base64 JPEG images (~1.5 MB payload) have an execution timeout of 180,000 ms. The exact network latency per batch depends on the developer's VPN tunnel performance and is measured empirically during execution.
 
 ---
 
