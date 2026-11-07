@@ -88,5 +88,44 @@ describe('Route Guards', () => {
 
       expect(screen.getByText('بخش استاد')).toBeInTheDocument();
     });
+
+    it('blocks resident trainee from accessing /instructor/residents and /instructor/residents/:userId', () => {
+      // 1. Test /instructor/residents
+      const { unmount } = renderWithClient(
+        <Routes>
+          <Route element={<RequireRole allowedRoles={['instructor']} />}>
+            <Route path="/instructor/residents" element={<div>فهرست دستیاران استاد</div>} />
+            <Route path="/instructor/residents/:userId" element={<div>جزئیات دستیار استاد</div>} />
+          </Route>
+          <Route path="/forbidden" element={<div>دسترسی غیرمجاز</div>} />
+        </Routes>,
+        {
+          initialEntries: ['/instructor/residents'],
+          user: { id: 'resident-user-1', role: 'resident' },
+        },
+      );
+
+      expect(screen.queryByText('فهرست دستیاران استاد')).not.toBeInTheDocument();
+      expect(screen.getByText('دسترسی غیرمجاز')).toBeInTheDocument();
+      unmount();
+
+      // 2. Test /instructor/residents/:userId
+      renderWithClient(
+        <Routes>
+          <Route element={<RequireRole allowedRoles={['instructor']} />}>
+            <Route path="/instructor/residents" element={<div>فهرست دستیاران استاد</div>} />
+            <Route path="/instructor/residents/:userId" element={<div>جزئیات دستیار استاد</div>} />
+          </Route>
+          <Route path="/forbidden" element={<div>دسترسی غیرمجاز</div>} />
+        </Routes>,
+        {
+          initialEntries: ['/instructor/residents/target-user-99'],
+          user: { id: 'resident-user-1', role: 'resident' },
+        },
+      );
+
+      expect(screen.queryByText('جزئیات دستیار استاد')).not.toBeInTheDocument();
+      expect(screen.getByText('دسترسی غیرمجاز')).toBeInTheDocument();
+    });
   });
 });

@@ -93,6 +93,23 @@
       "pageOf": "Page {{page}} of {{total}}",
       "prevPage": "Previous",
       "nextPage": "Next"
+    },
+    "residents": {
+      "title": "Resident Trainees",
+      "subtitle": "Track resident progress, diagnostic performance, and learning trajectories",
+      "empty": "No residents found.",
+      "colName": "Resident Name",
+      "colEmail": "Email",
+      "colSessions": "Completed Tests",
+      "colLastAccuracy": "Latest Accuracy",
+      "colLastActive": "Last Active",
+      "detailTitle": "Resident Trainee Report: {{name}}",
+      "backToList": "Back to Residents Roster",
+      "notFound": "Resident not found.",
+      "invalidUserId": "Invalid resident user ID.",
+      "pageOf": "Page {{current}} of {{total}}",
+      "prevPage": "Previous",
+      "nextPage": "Next"
     }
   },
   "errors": {
@@ -261,5 +278,38 @@
     "comingInTask": "This feature will be implemented in task {{task}}.",
     "roleResident": "Resident",
     "roleInstructor": "Instructor"
+  },
+  "charts": {
+    "noData": "No data available to display chart.",
+    "thresholdLabel": "Mastery Threshold ({{pct}})",
+    "sessionCol": "Test"
+  },
+  "progress": {
+    "title": "Learning Progress & Diagnostic Growth",
+    "subtitle": "Accuracy trajectory across sessions, confusion error analysis, and mastery status",
+    "chartTitle": "Diagnostic Accuracy Trajectory by Class",
+    "chartAriaLabel": "Diagnostic accuracy trajectory across finished training sessions for three disease classes",
+    "historyTitle": "Completed Tests History",
+    "sessionNo": "Test {{index}}",
+    "sessionCol": "Test",
+    "dateCol": "Date",
+    "accuracyCol": "Overall Accuracy",
+    "statusCol": "Status",
+    "viewReport": "View Report",
+    "confusionsTitle": "Most Frequent Confusions",
+    "confusionsDesc": "Disease class pairs with the highest frequency of diagnostic misclassifications",
+    "noConfusions": "No persistent diagnostic confusion patterns recorded.",
+    "confusionCount": "{{count}} times",
+    "masteryTitle": "Class Mastery Status (Latest Test)",
+    "mastered": "Mastered",
+    "learning": "In Progress",
+    "allMasteredNotice": "Congratulations! You have reached the mastery threshold (80%) across all diagnostic classes.",
+    "emptyTitle": "No Completed Tests Yet",
+    "emptyDesc": "Complete your first diagnostic test to track learning growth and adaptive error analysis.",
+    "startTest": "Start Diagnostic Test",
+    "instructorEmptyDesc": "This resident trainee has not completed any training tests yet.",
+    "totalsTitle": "Cumulative Performance",
+    "totalSessions": "Completed Tests",
+    "totalAnswered": "Questions Answered"
   }
 }

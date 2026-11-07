@@ -12,8 +12,11 @@ import { TestsPage } from '../pages/resident/TestsPage.jsx';
 import { QuizPage } from '../pages/resident/QuizPage.jsx';
 import { ReportPage } from '../pages/resident/ReportPage.jsx';
 import { ReviewPage } from '../pages/resident/ReviewPage.jsx';
+import { ProgressPage } from '../pages/resident/ProgressPage.jsx';
 import { InstructorHomePage } from '../pages/instructor/InstructorHomePage.jsx';
 import { InstructorReviewPage } from '../pages/instructor/InstructorReviewPage.jsx';
+import { InstructorResidentsPage } from '../pages/instructor/InstructorResidentsPage.jsx';
+import { ResidentDetailPage } from '../pages/instructor/ResidentDetailPage.jsx';
 import { ForbiddenPage } from '../pages/system/ForbiddenPage.jsx';
 import { NotFoundPage } from '../pages/system/NotFoundPage.jsx';
 import { PlaceholderPage } from '../pages/system/PlaceholderPage.jsx';
@@ -73,7 +76,7 @@ export const router = createBrowserRouter([
             path: 'reports/:sessionId/review',
             element: <ReviewPage />,
           },
-          { path: 'progress', element: <PlaceholderPage titleKey="nav.progress" task="T06" /> },
+          { path: 'progress', element: <ProgressPage /> },
           { path: 'education', element: <PlaceholderPage titleKey="nav.education" task="T06" /> },
         ],
       },
@@ -93,7 +96,11 @@ export const router = createBrowserRouter([
           },
           {
             path: 'residents',
-            element: <PlaceholderPage titleKey="instructor.residentsTitle" task="T08" />,
+            element: <InstructorResidentsPage />,
+          },
+          {
+            path: 'residents/:userId',
+            element: <ResidentDetailPage />,
           },
           {
             path: 'catalog',

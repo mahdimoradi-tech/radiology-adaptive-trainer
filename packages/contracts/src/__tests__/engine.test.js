@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   CLASS_IDS,
   BUCKETS,
+  MASTERY_THRESHOLD,
   ClassIdSchema,
   BucketSchema,
   ImageMetaSchema,
@@ -82,6 +83,8 @@ describe('Contracts - Engine Shapes and Schemas', () => {
         mediumMax: 0.68,
       });
       expect(config.masteryThreshold).toBe(0.8);
+      expect(config.masteryThreshold).toBe(MASTERY_THRESHOLD);
+      expect(MASTERY_THRESHOLD).toBe(0.8);
       expect(DEFAULT_ENGINE_CONFIG).toEqual(config);
     });
 
