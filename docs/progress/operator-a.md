@@ -8,9 +8,34 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T09b: Targeted practice API + UI (branch `feat/T09b-targeted-practice`).
+- T09c: Resident Education and Instructor Catalog pages (branch `feat/T09c-education-catalog`).
 
 ## Done (newest first)
+
+- Completed T09c: Resident Education page, Instructor Catalog monitoring, and complete elimination of placeholder routes:
+  - Built resident education guide in `apps/web/src/pages/resident/EducationPage.jsx`:
+    - Strict static page (zero API calls verified by unit tests).
+    - Medical disclaimer banner explicitly establishing the educational-only non-clinical nature of the platform.
+    - 4-step adaptive cycle explanation: 1. Baseline/adaptive testing -> 2. Error pattern extraction (FPR/FNR) -> 3. Intelligent weight reallocation -> 4. Targeted practice & mastery threshold (80%).
+    - Plain-Persian interpretations of confusion metrics (False Positive vs False Negative).
+    - Radiological findings for the 3 disease classes grounded directly and verbatim in approved knowledge base files (`apps/api/src/modules/llm/kb/covid19.md`, `pneumonia.md`, `normal.md`) with explicit source attribution tags.
+    - Verified by 5 unit tests in `EducationPage.test.jsx`.
+  - Built instructor catalog monitoring page in `apps/web/src/pages/instructor/InstructorCatalogPage.jsx` and `features/catalog/`:
+    - Query hooks (`useCatalogStats`, `useCatalogImages`) and API layer connecting to `GET /api/catalog/stats` and `GET /api/catalog/images`.
+    - Prominent ADR 0005 technical notice disclosing source and demographic confounders (adult COVID-19 vs pediatric Kermany) and the 500-image quota cap.
+    - Class x bucket distribution matrix and source distribution breakdown with formatted counts and percentages.
+    - 3-axis filter bar (`trueClass`, `bucket`, `source`) with automatic page reset.
+    - Paginated image records table with lazy-loaded thumbnails (`XrayImage`), true class / bucket / confused-with badges, and difficulty scores.
+    - Handled loading, empty, and network error states with retry actions.
+    - Verified by 6 unit tests in `InstructorCatalogPage.test.jsx`.
+  - Removed `PlaceholderPage.jsx` and all placeholder route references:
+    - Wired `EducationPage` to `/app/education` and `InstructorCatalogPage` to `/instructor/catalog` in `apps/web/src/app/router.jsx`.
+    - Deleted `apps/web/src/pages/system/PlaceholderPage.jsx`.
+    - Verified `Get-ChildItem -Path apps\web\src -Recurse | Select-String -Pattern "PlaceholderPage"` returns zero occurrences across the entire codebase.
+    - Connected active navigation cards in `ResidentHomePage` and `InstructorHomePage`.
+    - Extended route guard tests in `guards.test.jsx` verifying strict 403 Forbidden protection preventing resident trainees from accessing `/instructor/catalog`.
+  - Enforced 100% bilingual key parity between `fa.json` and `en.json` (verified by `i18n.test.js`) and verified logical RTL utilities across all new components (`check-rtl-classes.js`).
+  - Achieved 100% green monorepo test suite (82 test files, 629 passing unit tests) and verified production build.
 
 - Completed T09b: Targeted practice API, option shuffling, zero label leakage guard, and resident practice interface:
   - Authored contracts in `packages/contracts/src/practice.js` and exported from index:
