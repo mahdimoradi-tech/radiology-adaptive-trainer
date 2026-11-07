@@ -35,7 +35,7 @@ export async function run() {
 
   try {
     const result = await exportImageAnalyses({ outputPath, promptVersion });
-    console.log(`✓ Exported ${result.exportedCount} entries to ${result.outputPath}`);
+    console.log(`[OK] Exported ${result.exportedCount} entries to ${result.outputPath}`);
   } finally {
     await disconnectDb();
   }

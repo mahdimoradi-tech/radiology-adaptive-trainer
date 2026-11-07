@@ -31,7 +31,7 @@ export async function run() {
     });
 
     console.log('====================================================');
-    console.log('       Radiology Trainer — Analysis Pipeline Status');
+    console.log('       Radiology Trainer - Analysis Pipeline Status');
     console.log('====================================================\n');
 
     console.log('--- Batches ---');
@@ -90,7 +90,7 @@ export async function run() {
     console.log(`Auto rejected:   ${status.validations.autoRejected}`);
 
     if (Object.keys(status.validations.byClassBucket).length > 0) {
-      console.log('\nClass × Bucket Breakdown:');
+      console.log('\nClass x Bucket Breakdown:');
       console.table(status.validations.byClassBucket);
     }
 

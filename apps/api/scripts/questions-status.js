@@ -44,7 +44,7 @@ export async function run() {
     const budget = config.LLM_DAILY_REQUEST_BUDGET || 16;
 
     console.log('====================================================');
-    console.log('       Radiology Trainer — Question Bank Status     ');
+    console.log('       Radiology Trainer - Question Bank Status     ');
     console.log('====================================================');
     console.log('\n--- Question Bank Summary ---');
     console.log(`Total questions:   ${totalQuestions}`);
