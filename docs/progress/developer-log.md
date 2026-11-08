@@ -8,7 +8,7 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T12: Solo-project documentation cleanup (branch `docs/T12-solo-docs-cleanup`, in-review).
+- T13: Real LLM data run (branch `chore/T13-data-seeds`, in-progress).
 
 ## Done (newest first)
 
