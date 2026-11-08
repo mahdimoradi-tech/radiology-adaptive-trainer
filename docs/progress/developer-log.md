@@ -9,6 +9,12 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 ## Current task
 
 - T13: Real LLM data run (branch `chore/T13-data-seeds`, in-progress).
+  - Executed Day 1 run (2026-11-08 Pacific):
+    - Smoke test: model `gemini-3.5-flash`, latency 16.5s, healthy, 1 request used.
+    - Analysis Run A (13 batches, 78 images): 13 requests, 0 failures, 100% schema validity.
+    - Ground truth accuracy: Run A overall 71.8% (covid19: 47.4% [9/19], pneumonia: 83.3% [25/30], normal: 75.9% [22/29]).
+    - Daily budget used: 14/16 (2 requests buffer preserved).
+    - Next: Day 2 run (remaining 7 batches of Run A + 7 batches of Run B) after next Pacific reset (midnight US Pacific / ~11:30 AM Tehran).
 
 ## Done (newest first)
 
