@@ -42,6 +42,13 @@ describe('Home Page Shells', () => {
       expect(screen.getByRole('heading', { name: 'بازبینی آزمون‌ها' })).toBeInTheDocument();
       expect(screen.getByRole('heading', { name: 'آموزش' })).toBeInTheDocument();
       expect(screen.getByRole('heading', { name: 'اطلاعات کاربری' })).toBeInTheDocument();
+
+      const profileBtn = screen.getByRole('button', { name: 'اطلاعات کاربری' });
+      expect(profileBtn).not.toBeDisabled();
+      expect(screen.getByRole('link', { name: /اطلاعات کاربری/i })).toHaveAttribute(
+        'href',
+        '/app/progress',
+      );
     });
   });
 

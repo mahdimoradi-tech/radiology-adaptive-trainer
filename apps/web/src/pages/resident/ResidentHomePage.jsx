@@ -99,12 +99,14 @@ export function ResidentHomePage() {
             <CardDescription>{t('home.profileDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-xs text-slate-500">{t('common.comingInTask', { task: 'T09' })}</p>
+            <p className="text-xs text-slate-500">{t('progress.subtitle')}</p>
           </CardContent>
           <CardFooter>
-            <Button variant="outline" disabled className="w-full">
-              {t('home.profile')}
-            </Button>
+            <Link to="/app/progress" className="w-full">
+              <Button variant="outline" className="w-full">
+                {t('home.profile')}
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
       </div>
