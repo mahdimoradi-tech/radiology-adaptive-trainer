@@ -14,7 +14,14 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
     - Analysis Run A (13 batches, 78 images): 13 requests, 0 failures, 100% schema validity.
     - Ground truth accuracy: Run A overall 71.8% (covid19: 47.4% [9/19], pneumonia: 83.3% [25/30], normal: 75.9% [22/29]).
     - Daily budget used: 14/16 (2 requests buffer preserved).
-    - Next: Day 2 run (remaining 7 batches of Run A + 7 batches of Run B) after next Pacific reset (midnight US Pacific / ~11:30 AM Tehran).
+  - Executed Day 2 run (2026-11-09 Pacific):
+    - Analysis batches: 13 batches of Run B completed (`v1-g00-B` through `v1-g12-B`, 78 images).
+    - 1 batch (`v1-g13-A`) timed out on network (attempt 1/2, ready for retry next run).
+    - Total batches done: 26/40 (Run A: 13/20, Run B: 13/20).
+    - 78 paired images with both runs available: Run A vs B agreement 85.9%, 100% schema validity.
+    - Ground truth accuracy: Run A 71.8%, Run B 65.4% (covid19: 47.4%, pneumonia: 73.3%, normal: 69.0%).
+    - Daily budget used: 14/16 (2 requests buffer preserved).
+    - Next: Day 3 run (final 14 batches: 7 Run A + 7 Run B) to reach Gate G1 (40/40) after next Pacific reset (midnight US Pacific / ~11:30 AM Tehran).
 
 ## Done (newest first)
 
