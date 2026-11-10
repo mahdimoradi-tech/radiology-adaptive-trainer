@@ -69,18 +69,36 @@ export class GeminiProvider {
 
     let interaction;
     try {
-      // Execute interaction with AbortController timeout
+      // Execute interaction with AbortController and Promise.race timeout
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), effectiveTimeoutMs);
+      let timer;
+      const timeoutPromise = new Promise((_, reject) => {
+        timer = setTimeout(() => {
+          controller.abort();
+          reject(
+            new LlmError(`Gemini interaction timed out after ${effectiveTimeoutMs}ms`, {
+              code: 'LLM_TIMEOUT',
+              retryable: true,
+            }),
+          );
+        }, effectiveTimeoutMs);
+      });
 
       try {
-        interaction = await this.client.interactions.create(requestPayload, {
+        const createPromise = this.client.interactions.create(requestPayload, {
+          timeout: effectiveTimeoutMs,
           signal: controller.signal,
+          fetchOptions: { signal: controller.signal },
         });
+        interaction = await Promise.race([createPromise, timeoutPromise]);
       } finally {
-        clearTimeout(timeoutId);
+        clearTimeout(timer);
       }
     } catch (err) {
+      if (err instanceof LlmError) {
+        throw err;
+      }
+
       // 429 Rate limit / Quota exceeded
       const is429 =
         err?.status === 429 ||

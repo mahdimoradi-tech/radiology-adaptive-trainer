@@ -143,4 +143,28 @@ describe('GeminiProvider', () => {
       }),
     ).rejects.toThrow(LlmError);
   });
+
+  it('enforces timeout with Promise.race when request hangs', async () => {
+    const mockClient = {
+      interactions: {
+        create: vi.fn().mockImplementation(() => new Promise(() => {})), // never resolves
+      },
+    };
+
+    const provider = new GeminiProvider({
+      apiKey: 'test-key',
+      client: mockClient,
+      timeoutMs: 50,
+    });
+
+    await expect(
+      provider.generateJson({
+        promptId: 'test',
+        version: 'v1',
+        system: 'sys',
+        input: {},
+        schema: dummySchema,
+      }),
+    ).rejects.toThrow('Gemini interaction timed out after 50ms');
+  });
 });
