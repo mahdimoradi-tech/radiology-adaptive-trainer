@@ -21,7 +21,12 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
     - 78 paired images with both runs available: Run A vs B agreement 85.9%, 100% schema validity.
     - Ground truth accuracy: Run A 71.8%, Run B 65.4% (covid19: 47.4%, pneumonia: 73.3%, normal: 69.0%).
     - Daily budget used: 14/16 (2 requests buffer preserved).
-    - Next: Day 3 run (final 14 batches: 7 Run A + 7 Run B) to reach Gate G1 (40/40) after next Pacific reset (midnight US Pacific / ~11:30 AM Tehran).
+  - Executed Day 3 run (2026-11-10 Pacific):
+    - Handled transient TCP socket hang in `GeminiProvider`: patched `gemini.provider.js` with `Promise.race` and explicit SDK timeout/fetchOptions signals, verified with 5 unit tests (commit `072f985`).
+    - Completed 8 additional batches across Run A and Run B.
+    - Hit Gemini free-tier daily cap (Google 429 after 20 real requests consumed across retry and timed-out connections); circuit breaker tripped cleanly marking day exhausted.
+    - Total batches done: 34/40 (Run A: 18/20, Run B: 16/20; 108 distinct images seen, 96 paired images with 83.3% agreement).
+    - Next: Day 4 run (final 6 batches to reach Gate G1 40/40 + auto-validation + export + start question generation) after next Pacific reset.
 
 ## Done (newest first)
 
