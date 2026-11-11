@@ -26,7 +26,12 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
     - Completed 8 additional batches across Run A and Run B.
     - Hit Gemini free-tier daily cap (Google 429 after 20 real requests consumed across retry and timed-out connections); circuit breaker tripped cleanly marking day exhausted.
     - Total batches done: 34/40 (Run A: 18/20, Run B: 16/20; 108 distinct images seen, 96 paired images with 83.3% agreement).
-    - Next: Day 4 run (final 6 batches to reach Gate G1 40/40 + auto-validation + export + start question generation) after next Pacific reset.
+  - Day 4 checkpoint (2026-11-11 Pacific):
+    - Gemini returned 503 high demand spikes followed by 429 daily free tier limit ("retry in 14h31m").
+    - Enhanced runner error handling to cleanly catch 429 during 503 retry without burning batch attempts.
+    - Reset attempts for transiently failed batches in MongoDB; exactly 6 clean pending batches remain (`v1-g16-B`, `v1-g17-B`, `v1-g18-A`, `v1-g18-B`, `v1-g19-A`, `v1-g19-B`).
+    - Current progress: 34/40 batches done (85.0%), 108 distinct images analyzed, 83.3% agreement across 96 paired images.
+    - Next: final 6 analysis batches + auto-validation + export + question generation after Gemini resets at 11:30 AM tomorrow (Thursday, Nov 12).
 
 ## Done (newest first)
 
