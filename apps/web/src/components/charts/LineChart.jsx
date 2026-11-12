@@ -340,17 +340,14 @@ export function LineChart({ series = [], yDomain = [0, 1], threshold, ariaLabel,
           <caption className="sr-only">{ariaLabel} - داده‌های جدول</caption>
           <thead className="bg-slate-50 text-slate-700">
             <tr>
-              <th
-                scope="col"
-                className="px-3 py-2 text-start font-semibold border-b border-slate-200"
-              >
+              <th scope="col" className="px-4 py-3 text-start font-bold border-b border-slate-200">
                 {xLabel || t('charts.sessionCol', 'جلسه')}
               </th>
               {series.map((s) => (
                 <th
                   key={s.id}
                   scope="col"
-                  className="px-3 py-2 text-start font-semibold border-b border-slate-200"
+                  className="px-4 py-3 text-start font-bold border-b border-slate-200"
                 >
                   {s.label}
                 </th>
@@ -360,7 +357,7 @@ export function LineChart({ series = [], yDomain = [0, 1], threshold, ariaLabel,
           <tbody className="divide-y divide-slate-100 bg-white">
             {xValues.map((xVal) => (
               <tr key={`row-${xVal}`} className="hover:bg-slate-50/50">
-                <td className="px-3 py-2 text-slate-900 font-medium">
+                <td className="px-4 py-2.5 text-slate-900 font-semibold">
                   {typeof xVal === 'number' ? fmt.number(xVal, lang) : String(xVal)}
                 </td>
                 {series.map((s) => {
@@ -368,7 +365,7 @@ export function LineChart({ series = [], yDomain = [0, 1], threshold, ariaLabel,
                   return (
                     <td
                       key={`cell-${s.id}-${xVal}`}
-                      className="px-3 py-2 font-mono text-slate-800 font-medium"
+                      className="px-4 py-2.5 text-slate-800 font-bold"
                     >
                       {pt && typeof pt.y === 'number' ? fmt.percent(pt.y, lang, 1) : '—'}
                     </td>

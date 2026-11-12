@@ -4,8 +4,14 @@
   color-scheme: light;
 }
 
+html,
+body {
+  font-family: var(--font-sans);
+}
+
 @theme {
   --font-sans: "Vazirmatn Variable", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-mono: "Vazirmatn Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Accessible Color Tokens (WCAG 2.1 AA >= 4.5:1 against light surfaces) */
   --color-app-body: #0f172a;        /* slate-900 (17.6:1 contrast against white) */
