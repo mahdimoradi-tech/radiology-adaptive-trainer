@@ -23,7 +23,7 @@ export function CatalogStatsGrid({ stats }) {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card className="border-slate-200">
           <CardHeader className="pb-1">
-            <CardTitle className="text-xs text-slate-500 font-medium">
+            <CardTitle className="text-xs text-slate-600 font-medium">
               {t('instructor.catalog.totalImages')}
             </CardTitle>
           </CardHeader>
@@ -37,7 +37,7 @@ export function CatalogStatsGrid({ stats }) {
         {classes.map((cls) => (
           <Card key={cls} className="border-slate-200">
             <CardHeader className="pb-1">
-              <CardTitle className="text-xs text-slate-500 font-medium">
+              <CardTitle className="text-xs text-slate-600 font-medium">
                 {t(`classes.${cls}`)}
               </CardTitle>
             </CardHeader>
@@ -62,16 +62,16 @@ export function CatalogStatsGrid({ stats }) {
             <div className="overflow-x-auto">
               <table className="w-full text-sm text-start">
                 <thead>
-                  <tr className="border-b border-slate-200 text-xs text-slate-500">
-                    <th className="py-2.5 px-3 text-start font-medium">
+                  <tr className="border-b border-slate-200 text-xs text-slate-600">
+                    <th className="py-2.5 px-3 text-start font-semibold">
                       {t('instructor.catalog.classCol')}
                     </th>
                     {buckets.map((b) => (
-                      <th key={b} className="py-2.5 px-3 text-center font-medium">
+                      <th key={b} className="py-2.5 px-3 text-center font-semibold">
                         {t(`buckets.${b}`)}
                       </th>
                     ))}
-                    <th className="py-2.5 px-3 text-center font-medium">
+                    <th className="py-2.5 px-3 text-center font-semibold">
                       {t('instructor.catalog.countCol')}
                     </th>
                   </tr>
@@ -130,14 +130,14 @@ export function CatalogStatsGrid({ stats }) {
             <div className="overflow-x-auto">
               <table className="w-full text-sm text-start">
                 <thead>
-                  <tr className="border-b border-slate-200 text-xs text-slate-500">
-                    <th className="py-2.5 px-3 text-start font-medium">
+                  <tr className="border-b border-slate-200 text-xs text-slate-600">
+                    <th className="py-2.5 px-3 text-start font-semibold">
                       {t('instructor.catalog.sourceCol')}
                     </th>
-                    <th className="py-2.5 px-3 text-center font-medium">
+                    <th className="py-2.5 px-3 text-center font-semibold">
                       {t('instructor.catalog.countCol')}
                     </th>
-                    <th className="py-2.5 px-3 text-center font-medium">
+                    <th className="py-2.5 px-3 text-center font-semibold">
                       {t('instructor.catalog.percentageCol')}
                     </th>
                   </tr>
@@ -147,13 +147,13 @@ export function CatalogStatsGrid({ stats }) {
                     const pct = stats?.total ? count / stats.total : 0;
                     return (
                       <tr key={sourceName} className="hover:bg-slate-50/60">
-                        <td className="py-2.5 px-3 font-mono text-xs text-slate-700">
+                        <td className="py-2.5 px-3 font-mono text-xs text-slate-800">
                           <bdi>{sourceName}</bdi>
                         </td>
-                        <td className="py-2.5 px-3 text-center text-slate-600 font-medium">
+                        <td className="py-2.5 px-3 text-center text-slate-700 font-medium">
                           {fmt.number(count, lang)}
                         </td>
-                        <td className="py-2.5 px-3 text-center text-slate-500 text-xs">
+                        <td className="py-2.5 px-3 text-center text-slate-600 text-xs font-medium">
                           {fmt.percent(pct, lang)}
                         </td>
                       </tr>

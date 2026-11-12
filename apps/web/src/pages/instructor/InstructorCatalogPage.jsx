@@ -55,7 +55,7 @@ export function InstructorCatalogPage() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-slate-900">{t('instructor.catalog.title')}</h1>
-        <p className="text-sm text-slate-500 mt-1">{t('instructor.catalog.subtitle')}</p>
+        <p className="text-sm text-slate-600 mt-1">{t('instructor.catalog.subtitle')}</p>
       </div>
 
       {/* ADR 0005 Technical Note on Source/Age Confounding */}
