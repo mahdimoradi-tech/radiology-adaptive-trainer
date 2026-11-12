@@ -13,7 +13,8 @@
     "residents": "Residents",
     "catalog": "Image Catalog",
     "logout": "Logout",
-    "language": "Language"
+    "language": "Language",
+    "toggleMenu": "Toggle navigation menu"
   },
   "auth": {
     "login": "Login",

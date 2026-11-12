@@ -13,7 +13,8 @@
     "residents": "رزیدنت‌ها",
     "catalog": "کاتالوگ تصاویر",
     "logout": "خروج",
-    "language": "زبان"
+    "language": "زبان",
+    "toggleMenu": "منوی ناوبری"
   },
   "auth": {
     "login": "ورود",
