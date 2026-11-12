@@ -8,7 +8,6 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-  Badge,
   Button,
 } from '../../components/ui/index.js';
 
@@ -22,21 +21,18 @@ export function InstructorHomePage() {
         <h1 className="text-2xl font-bold text-slate-900">
           {t('instructor.title')} — {user?.displayName}
         </h1>
-        <p className="text-sm text-slate-500 mt-1">{t('instructor.subtitle')}</p>
+        <p className="text-sm text-slate-600 mt-1">{t('instructor.subtitle')}</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* 1. Review AI Questions Card */}
         <Card className="flex flex-col justify-between">
           <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle>{t('instructor.reviewTitle')}</CardTitle>
-              <Badge variant="secondary">T08</Badge>
-            </div>
+            <CardTitle>{t('instructor.reviewTitle')}</CardTitle>
             <CardDescription>{t('instructor.reviewDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-xs text-slate-500">{t('instructor.review.title')}</p>
+            <p className="text-xs text-slate-600 font-medium">{t('instructor.review.title')}</p>
           </CardContent>
           <CardFooter>
             <Link to="/instructor/review" className="w-full">
@@ -50,14 +46,13 @@ export function InstructorHomePage() {
         {/* 2. Resident Progress Card */}
         <Card className="flex flex-col justify-between">
           <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle>{t('instructor.residentsTitle')}</CardTitle>
-              <Badge variant="secondary">T09</Badge>
-            </div>
+            <CardTitle>{t('instructor.residentsTitle')}</CardTitle>
             <CardDescription>{t('instructor.residentsDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-xs text-slate-500">{t('instructor.residents.subtitle')}</p>
+            <p className="text-xs text-slate-600 font-medium">
+              {t('instructor.residents.subtitle')}
+            </p>
           </CardContent>
           <CardFooter>
             <Link to="/instructor/residents" className="w-full">
@@ -71,14 +66,11 @@ export function InstructorHomePage() {
         {/* 3. Catalog Strata Card */}
         <Card className="flex flex-col justify-between">
           <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle>{t('instructor.catalogTitle')}</CardTitle>
-              <Badge variant="secondary">T09</Badge>
-            </div>
+            <CardTitle>{t('instructor.catalogTitle')}</CardTitle>
             <CardDescription>{t('instructor.catalogDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-xs text-slate-500">{t('instructor.catalog.subtitle')}</p>
+            <p className="text-xs text-slate-600 font-medium">{t('instructor.catalog.subtitle')}</p>
           </CardContent>
           <CardFooter>
             <Link to="/instructor/catalog" className="w-full">
