@@ -224,14 +224,14 @@ export function QuizPage() {
           )}
 
           <Card className="shadow-xs border-slate-200 overflow-hidden">
-            <CardHeader className="border-b border-slate-100 bg-slate-50/60 pb-3">
+            <CardHeader className="border-b border-slate-200 bg-slate-50/60 pb-3">
               <div className="flex items-center justify-between gap-4">
                 <CardTitle className="text-base text-slate-900">
                   {t('quiz.questionPrompt', {
                     no: fmt.number(currentNo, i18n.language),
                   })}
                 </CardTitle>
-                <span className="text-xs text-slate-500 font-medium shrink-0">
+                <span className="text-xs text-slate-600 font-semibold shrink-0">
                   {fmt.number(currentNo, i18n.language)} /{' '}
                   {fmt.number(totalQuestions, i18n.language)}
                 </span>
@@ -315,7 +315,7 @@ export function QuizPage() {
             </CardContent>
 
             {/* Navigation & Action Footer */}
-            <CardFooter className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 bg-slate-50/40 p-4">
+            <CardFooter className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 bg-slate-50/40 p-4">
               <div className="flex items-center gap-2">
                 <Button
                   variant="outline"
