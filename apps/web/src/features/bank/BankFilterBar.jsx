@@ -86,10 +86,13 @@ export function BankFilterBar({ filters, onFilterChange }) {
       </div>
 
       {/* Dropdowns */}
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-4">
         {/* Type Filter */}
-        <div className="flex items-center gap-1.5">
-          <label htmlFor="filter-type" className="text-xs font-semibold text-slate-700">
+        <div className="flex items-center gap-2">
+          <label
+            htmlFor="filter-type"
+            className="text-xs font-semibold text-slate-700 whitespace-nowrap shrink-0"
+          >
             {t('instructor.review.filterType')}:
           </label>
           <Select
@@ -107,8 +110,11 @@ export function BankFilterBar({ filters, onFilterChange }) {
         </div>
 
         {/* Class Filter */}
-        <div className="flex items-center gap-1.5">
-          <label htmlFor="filter-class" className="text-xs font-semibold text-slate-700">
+        <div className="flex items-center gap-2">
+          <label
+            htmlFor="filter-class"
+            className="text-xs font-semibold text-slate-700 whitespace-nowrap shrink-0"
+          >
             {t('instructor.review.trueClass')}:
           </label>
           <Select

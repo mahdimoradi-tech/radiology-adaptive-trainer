@@ -46,13 +46,16 @@ export function CatalogFilterBar({
 
   return (
     <div className="flex flex-wrap items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-lg">
-      <span className="text-xs font-bold text-slate-700">
+      <span className="text-xs font-bold text-slate-700 whitespace-nowrap shrink-0">
         {t('instructor.catalog.filtersTitle')}:
       </span>
 
       {/* Class filter */}
       <div className="flex items-center gap-2">
-        <label htmlFor="filter-class" className="text-xs text-slate-700 font-semibold">
+        <label
+          htmlFor="filter-class"
+          className="text-xs text-slate-700 font-semibold whitespace-nowrap shrink-0"
+        >
           {t('instructor.catalog.filterClass')}:
         </label>
         <Select
@@ -71,7 +74,10 @@ export function CatalogFilterBar({
 
       {/* Bucket filter */}
       <div className="flex items-center gap-2">
-        <label htmlFor="filter-bucket" className="text-xs text-slate-700 font-semibold">
+        <label
+          htmlFor="filter-bucket"
+          className="text-xs text-slate-700 font-semibold whitespace-nowrap shrink-0"
+        >
           {t('instructor.catalog.filterBucket')}:
         </label>
         <Select
@@ -90,7 +96,10 @@ export function CatalogFilterBar({
 
       {/* Source filter */}
       <div className="flex items-center gap-2">
-        <label htmlFor="filter-source" className="text-xs text-slate-700 font-semibold">
+        <label
+          htmlFor="filter-source"
+          className="text-xs text-slate-700 font-semibold whitespace-nowrap shrink-0"
+        >
           {t('instructor.catalog.filterSource')}:
         </label>
         <Select
