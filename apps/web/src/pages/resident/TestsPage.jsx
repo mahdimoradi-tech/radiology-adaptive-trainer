@@ -120,9 +120,12 @@ export function TestsPage() {
               </Button>
             </div>
           ) : (
-            <div className="flex flex-wrap items-center gap-4">
-              <div className="flex items-center gap-2">
-                <label htmlFor={selectId} className="text-sm font-medium text-slate-700">
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="flex items-center gap-3 shrink-0">
+                <label
+                  htmlFor={selectId}
+                  className="text-sm font-semibold text-slate-700 whitespace-nowrap shrink-0"
+                >
                   {t('sessions.sizeLabel')}:
                 </label>
                 <Select
@@ -130,7 +133,7 @@ export function TestsPage() {
                   value={selectedSize}
                   onChange={(e) => setSelectedSize(Number(e.target.value))}
                   disabled={createMutation.isPending}
-                  className="w-32"
+                  className="w-36 shrink-0"
                 >
                   {SIZES.map((size) => (
                     <option key={size} value={size}>
@@ -144,6 +147,7 @@ export function TestsPage() {
                 variant="primary"
                 isLoading={createMutation.isPending}
                 onClick={handleStartSession}
+                className="shrink-0"
               >
                 {createMutation.isPending ? t('sessions.starting') : t('sessions.startNew')}
               </Button>

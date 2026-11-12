@@ -41,10 +41,10 @@ export function ProgressPage() {
     <div className="space-y-6" data-testid="resident-progress-page">
       {/* Page Header */}
       <div>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+        <h1 className="text-2xl font-bold text-slate-900">
           {t('progress.title', 'روند رشد و تحلیل مهارت')}
         </h1>
-        <p className="text-sm text-slate-700 dark:text-slate-200 mt-1">
+        <p className="text-sm text-slate-600 mt-1">
           {t('progress.subtitle', 'نمودار دقت در طول زمان، تحلیل الگوهای خطا و وضعیت تسلط تشخیصی')}
         </p>
       </div>

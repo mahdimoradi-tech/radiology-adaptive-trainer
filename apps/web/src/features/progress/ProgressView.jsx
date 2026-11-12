@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { MASTERY_THRESHOLD } from '@radiology/contracts';
-import { LineChart } from '../../components/charts/LineChart.jsx';
+import { LineChart, SERIES_STYLES } from '../../components/charts/LineChart.jsx';
 import {
   Card,
   CardHeader,
@@ -36,7 +36,7 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
     return (
       <Card className="text-center py-12 px-6">
         <CardContent className="space-y-4 max-w-md mx-auto">
-          <div className="w-16 h-16 mx-auto rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+          <div className="w-16 h-16 mx-auto rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
             <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
@@ -46,10 +46,10 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
               />
             </svg>
           </div>
-          <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">
+          <h2 className="text-xl font-bold text-slate-900">
             {t('progress.emptyTitle', 'هنوز آزمونی تکمیل نشده است')}
           </h2>
-          <p className="text-sm text-slate-700 dark:text-slate-200">
+          <p className="text-sm text-slate-600">
             {isInstructor
               ? t('progress.instructorEmptyDesc', 'این دستیار هنوز هیچ آزمونی را تکمیل نکرده است.')
               : t(
@@ -91,7 +91,7 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
           <Alert variant="success">
             <div className="flex items-center gap-2">
               <svg
-                className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0"
+                className="w-5 h-5 text-emerald-600 shrink-0"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -103,7 +103,7 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
                   d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              <span className="font-semibold text-emerald-900 dark:text-emerald-100">
+              <span className="font-semibold text-emerald-900">
                 {t(
                   'progress.allMasteredNotice',
                   'تبریک! به آستانه تسلط (۸۰٪) در تمام کلاس‌های تشخیصی دست یافتید.',
@@ -116,17 +116,23 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
 
       {/* Class Mastery Status (Latest Session) & Summary Strip */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {CLASS_IDS.map((c) => {
+        {CLASS_IDS.map((c, idx) => {
           const acc = latestSession?.perClass?.[c]?.accuracy ?? 0;
           const isClassMastered = acc >= MASTERY_THRESHOLD;
+          const style = SERIES_STYLES[idx % SERIES_STYLES.length];
           return (
-            <Card key={c} data-testid={`mastery-card-${c}`}>
+            <Card key={c} data-testid={`mastery-card-${c}`} className="border-slate-200 shadow-2xs">
               <CardContent className="p-4 flex items-center justify-between">
                 <div>
-                  <div className="text-xs font-semibold text-slate-700 dark:text-slate-200">
-                    {t(`classes.${c}`)}
+                  <div className="flex items-center gap-2">
+                    <span
+                      className="w-2.5 h-2.5 rounded-full shrink-0"
+                      style={{ backgroundColor: style.stroke }}
+                      aria-hidden="true"
+                    />
+                    <span className="text-xs font-bold text-slate-700">{t(`classes.${c}`)}</span>
                   </div>
-                  <div className="text-2xl font-bold font-mono text-slate-900 dark:text-slate-100 mt-1">
+                  <div className="text-2xl font-bold font-mono text-slate-900 mt-1.5">
                     {fmt.percent(acc, lang)}
                   </div>
                 </div>
@@ -149,9 +155,9 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
         <CardHeader>
           <div className="flex flex-wrap items-center justify-between gap-2">
             <CardTitle>{t('progress.chartTitle', 'روند دقت تشخیصی به تفکیک بیماری')}</CardTitle>
-            <div className="text-xs font-semibold text-slate-700 dark:text-slate-200">
+            <div className="text-xs font-semibold text-slate-700">
               {t('progress.totalSessions', 'جلسات تکمیل‌شده')}:{' '}
-              <span className="font-mono font-bold">
+              <span className="font-mono font-bold text-slate-900">
                 {fmt.number(totals.sessionsFinished || sessions.length, lang)}
               </span>
             </div>
@@ -176,7 +182,7 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
             <CardTitle className="text-base">
               {t('progress.confusionsTitle', 'شایع‌ترین خطاهای تشخیصی')}
             </CardTitle>
-            <p className="text-xs text-slate-700 dark:text-slate-200">
+            <p className="text-xs text-slate-600">
               {t(
                 'progress.confusionsDesc',
                 'جفت کلاس‌هایی که بیشترین میزان اشتباه بین آن‌ها ثبت شده است',
@@ -185,14 +191,11 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
           </CardHeader>
           <CardContent>
             {topConfusions.length === 0 ? (
-              <p className="text-xs text-slate-600 dark:text-slate-200 py-4 text-center font-medium">
+              <p className="text-xs text-slate-600 py-4 text-center font-medium">
                 {t('progress.noConfusions', 'هیچ خطای تشخیصی مکرری ثبت نشده است.')}
               </p>
             ) : (
-              <ul
-                className="divide-y divide-slate-100 dark:divide-slate-800"
-                data-testid="top-confusions-list"
-              >
+              <ul className="divide-y divide-slate-100" data-testid="top-confusions-list">
                 {topConfusions.map((item, idx) => (
                   <li
                     key={`${item.trueClass}-${item.predicted}-${idx}`}
@@ -200,16 +203,14 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
                     data-testid="confusion-item"
                   >
                     <div className="space-y-0.5">
-                      <div className="font-semibold text-slate-900 dark:text-slate-100">
+                      <div className="font-semibold text-slate-900">
                         {t(`classes.${item.trueClass}`)}
-                        <span className="text-slate-600 dark:text-slate-200 mx-1.5 font-bold font-sans">
-                          ←
-                        </span>
-                        <span className="text-rose-700 dark:text-rose-300 font-bold">
+                        <span className="text-slate-500 mx-1.5 font-bold font-sans">←</span>
+                        <span className="text-rose-700 font-bold">
                           {t(`classes.${item.predicted}`)}
                         </span>
                       </div>
-                      <div className="text-xs text-slate-600 dark:text-slate-200 font-medium">
+                      <div className="text-xs text-slate-600 font-medium">
                         {t('report.matrixHeader', 'کلاس واقعی / پاسخ')}
                       </div>
                     </div>
@@ -238,54 +239,54 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
                 className="w-full text-xs text-start border-collapse"
                 data-testid="history-table"
               >
-                <thead className="bg-slate-50 dark:bg-slate-800/60 text-slate-800 dark:text-slate-100">
+                <thead className="bg-slate-50 text-slate-800">
                   <tr>
                     <th
                       scope="col"
-                      className="px-3 py-2 text-start font-semibold border-b border-slate-200 dark:border-slate-800"
+                      className="px-3 py-2 text-start font-semibold border-b border-slate-200"
                     >
                       {t('progress.sessionCol', 'آزمون')}
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-2 text-start font-semibold border-b border-slate-200 dark:border-slate-800"
+                      className="px-3 py-2 text-start font-semibold border-b border-slate-200"
                     >
                       {t('progress.dateCol', 'تاریخ')}
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-2 text-start font-semibold border-b border-slate-200 dark:border-slate-800"
+                      className="px-3 py-2 text-start font-semibold border-b border-slate-200"
                     >
                       {t('progress.accuracyCol', 'دقت کل')}
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-2 text-start font-semibold border-b border-slate-200 dark:border-slate-800"
+                      className="px-3 py-2 text-start font-semibold border-b border-slate-200"
                     >
                       {t('progress.statusCol', 'وضعیت')}
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-2 text-end font-semibold border-b border-slate-200 dark:border-slate-800"
+                      className="px-3 py-2 text-end font-semibold border-b border-slate-200"
                     >
                       <span className="sr-only">{t('progress.viewReport', 'مشاهده کارنامه')}</span>
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                <tbody className="divide-y divide-slate-100">
                   {sessions.map((s) => {
                     const reportLink = isInstructor ? null : `/app/reports/${s.id}`;
                     return (
-                      <tr key={s.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
-                        <td className="px-3 py-2.5 font-medium text-slate-900 dark:text-slate-100">
+                      <tr key={s.id} className="hover:bg-slate-50/50">
+                        <td className="px-3 py-2.5 font-medium text-slate-900">
                           {t('progress.sessionNo', 'جلسه {{index}}', {
                             index: fmt.number(s.index, lang),
                           })}
                         </td>
-                        <td className="px-3 py-2.5 text-slate-700 dark:text-slate-200 font-medium">
+                        <td className="px-3 py-2.5 text-slate-700 font-medium">
                           {fmt.date(s.finishedAt, lang)}
                         </td>
-                        <td className="px-3 py-2.5 font-mono font-semibold text-slate-900 dark:text-slate-100">
+                        <td className="px-3 py-2.5 font-mono font-semibold text-slate-900">
                           {fmt.percent(s.overallAccuracy, lang)}
                         </td>
                         <td className="px-3 py-2.5">
@@ -299,7 +300,7 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
                           {reportLink && (
                             <Link
                               to={reportLink}
-                              className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
+                              className="text-blue-600 hover:text-blue-700 font-medium"
                             >
                               {t('progress.viewReport', 'کارنامه')}
                             </Link>
@@ -317,7 +318,7 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
 
       {/* Educational Disclaimer Banner */}
       <div className="pt-2">
-        <p className="text-xs text-center text-slate-600 dark:text-slate-200 font-medium">
+        <p className="text-xs text-center text-slate-600 font-medium">
           {t(
             'disclaimer.educational',
             'این سامانه صرفاً یک ابزار کمک‌آموزشی است و خروجی‌های آن تحت هیچ شرایطی نباید به عنوان تشخیص بالینی یا توصیه پزشکی استفاده شوند.',

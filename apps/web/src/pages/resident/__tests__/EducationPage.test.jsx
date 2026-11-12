@@ -66,7 +66,7 @@ describe('EducationPage', () => {
     expect(screen.getByText(/ندیدن ارتشاح ذات‌الریه و طبیعی دانستن کلیشه/)).toBeInTheDocument();
   });
 
-  it('renders grounded radiological findings for the three diagnostic classes with KB source tags', () => {
+  it('renders grounded radiological findings for the three diagnostic classes without leaking codebase paths', () => {
     renderPage();
 
     expect(
@@ -91,9 +91,7 @@ describe('EducationPage', () => {
       screen.getByText(/زوایای دنده‌ای-دیافراگمی \(کوستوفرنیک\) تیز و مشخص/),
     ).toBeInTheDocument();
 
-    // Source tags
-    expect(screen.getByText('apps/api/src/modules/llm/kb/covid19.md')).toBeInTheDocument();
-    expect(screen.getByText('apps/api/src/modules/llm/kb/pneumonia.md')).toBeInTheDocument();
-    expect(screen.getByText('apps/api/src/modules/llm/kb/normal.md')).toBeInTheDocument();
+    // Codebase file paths should not be displayed to users
+    expect(screen.queryByText(/apps\/api\/src\/modules/)).not.toBeInTheDocument();
   });
 });

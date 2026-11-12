@@ -47,21 +47,18 @@ export function EducationPage() {
       key: 'covid19',
       title: t('education.covid19Title'),
       desc: t('education.covid19Desc'),
-      source: 'apps/api/src/modules/llm/kb/covid19.md',
       badgeVariant: 'warning',
     },
     {
       key: 'pneumonia',
       title: t('education.pneumoniaTitle'),
       desc: t('education.pneumoniaDesc'),
-      source: 'apps/api/src/modules/llm/kb/pneumonia.md',
       badgeVariant: 'primary',
     },
     {
       key: 'normal',
       title: t('education.normalTitle'),
       desc: t('education.normalDesc'),
-      source: 'apps/api/src/modules/llm/kb/normal.md',
       badgeVariant: 'secondary',
     },
   ];
@@ -168,17 +165,8 @@ export function EducationPage() {
                   <Badge variant={item.badgeVariant}>{t(`classes.${item.key}`)}</Badge>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-3">
+              <CardContent>
                 <p className="text-sm text-slate-700 leading-7 text-justify">{item.desc}</p>
-                <div className="pt-4 border-t border-slate-200 flex items-center justify-between text-xs text-slate-600">
-                  <span>{t('education.kbSourceLabel')}</span>
-                  <code
-                    dir="ltr"
-                    className="font-mono text-xs text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded"
-                  >
-                    {item.source}
-                  </code>
-                </div>
               </CardContent>
             </Card>
           ))}

@@ -53,14 +53,14 @@ export function ResidentDetailPage() {
       {/* Header and Back Link */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-200 mb-1">
+          <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 mb-1">
             <Link to="/instructor/residents" className="hover:text-blue-600 transition-colors">
               {t('instructor.residents.title', 'فهرست دستیاران')}
             </Link>
             <span>/</span>
-            <span className="font-mono">{userId}</span>
+            <span className="font-mono text-slate-900">{userId}</span>
           </div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+          <h1 className="text-2xl font-bold text-slate-900">
             {t('instructor.residents.detailTitle', 'کارنامه تفصیلی دستیار', {
               name: userId,
             })}
