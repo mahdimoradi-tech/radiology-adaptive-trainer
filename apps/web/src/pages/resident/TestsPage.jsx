@@ -178,7 +178,7 @@ export function TestsPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-start text-sm border-collapse">
                 <thead>
-                  <tr className="border-b border-slate-200 text-slate-500 font-medium text-xs">
+                  <tr className="border-b border-slate-200 text-slate-700 font-semibold text-xs bg-slate-50/50">
                     <th className="py-3 px-3 text-start">{t('sessions.colIndex')}</th>
                     <th className="py-3 px-3 text-start">{t('sessions.colKind')}</th>
                     <th className="py-3 px-3 text-start">{t('sessions.colDate')}</th>
@@ -229,8 +229,8 @@ export function TestsPage() {
         </CardContent>
 
         {meta.totalPages > 1 && (
-          <CardFooter className="flex items-center justify-between border-t border-slate-100 pt-4">
-            <span className="text-xs text-slate-500">
+          <CardFooter className="flex items-center justify-between border-t border-slate-200 pt-4">
+            <span className="text-xs text-slate-600 font-medium">
               {t('sessions.pageInfo', {
                 current: fmt.number(meta.page, i18n.language),
                 total: fmt.number(meta.totalPages, i18n.language),
