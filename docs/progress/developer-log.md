@@ -23,6 +23,12 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
   - Standardized UI components: added `danger` variant to `Alert.jsx`, `primary`/`neutral` to `Badge.jsx`, created `EmptyState.jsx`, and standardized button minimum height to 40px (`h-10`).
   - Implemented responsive mobile drawer navigation menu and standard padding (`px-4 md:px-6`) in `ResidentLayout.jsx` and `InstructorLayout.jsx` for 390x844 mobile viewport support.
   - Polished all 19 screens across 10 logical commits without altering any backend logic, contracts, or engine code.
+  - User review follow-up pass (PR #28):
+    - Removed stray `dark:` classes and forced light color scheme (`:root { color-scheme: light; }`) in `index.css`, fixing invisible/white text on white cards across progress and instructor pages.
+    - Added colored indicator dots to mastery status cards matching chart lines (`covid19` blue, `pneumonia` amber, `normal` emerald).
+    - Polished `LineChart` legend with matching colored badges, line markers, and Persian pattern names (`پیوسته`, `خط‌چین`, `نقطه‌چین`).
+    - Added `whitespace-nowrap shrink-0` to question count label in `TestsPage.jsx` preventing multiline word breaks.
+    - Removed internal repository source code paths (`apps/api/src/modules/llm/kb/...`) from `EducationPage.jsx` and i18n subtitles.
   - Monorepo tests expanded to 785 passing tests across 96 files. Lint, build, and RTL checks pass cleanly.
 
 
