@@ -31,7 +31,12 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
     - Enhanced runner error handling to cleanly catch 429 during 503 retry without burning batch attempts.
     - Reset attempts for transiently failed batches in MongoDB; exactly 6 clean pending batches remain (`v1-g16-B`, `v1-g17-B`, `v1-g18-A`, `v1-g18-B`, `v1-g19-A`, `v1-g19-B`).
     - Current progress: 34/40 batches done (85.0%), 108 distinct images analyzed, 83.3% agreement across 96 paired images.
-    - Next: final 6 analysis batches + auto-validation + export + question generation after Gemini resets at 11:30 AM tomorrow (Thursday, Nov 12).
+  - Day 5 checkpoint (2026-11-12 Pacific):
+    - Processed batch `v1-g17-B` successfully (6 images), bringing total to 35/40 batches done (87.5%).
+    - Encountered 503 high demand spike and 429 daily cap ("retry in 19h22m").
+    - Reset attempts for transiently failed batches; exactly 5 pending batches remain (`v1-g16-B`, `v1-g18-A`, `v1-g18-B`, `v1-g19-A`, `v1-g19-B`).
+    - Current metrics: 108 distinct images analyzed, 102 paired images with 82.4% agreement, 100% schema validity, Run A accuracy 68.5%, Run B accuracy 65.7%.
+    - Next: final 5 batches to achieve Gate G1 40/40 + auto-validation + export + question generation after Gemini resets at 11:30 AM tomorrow (Friday, Nov 13).
 
 ## Done (newest first)
 
