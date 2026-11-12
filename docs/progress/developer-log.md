@@ -8,45 +8,21 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T13: Real LLM data run (branch `chore/T13-data-seeds`, in-review).
-  - Executed Day 1 run (2026-11-08 Pacific):
-    - Smoke test: model `gemini-3.5-flash`, latency 16.5s, healthy, 1 request used.
-    - Analysis Run A (13 batches, 78 images): 13 requests, 0 failures, 100% schema validity.
-    - Ground truth accuracy: Run A overall 71.8% (covid19: 47.4% [9/19], pneumonia: 83.3% [25/30], normal: 75.9% [22/29]).
-    - Daily budget used: 14/16 (2 requests buffer preserved).
-  - Executed Day 2 run (2026-11-09 Pacific):
-    - Analysis batches: 13 batches of Run B completed (`v1-g00-B` through `v1-g12-B`, 78 images).
-    - 1 batch (`v1-g13-A`) timed out on network (attempt 1/2, ready for retry next run).
-    - Total batches done: 26/40 (Run A: 13/20, Run B: 13/20).
-    - 78 paired images with both runs available: Run A vs B agreement 85.9%, 100% schema validity.
-    - Ground truth accuracy: Run A 71.8%, Run B 65.4% (covid19: 47.4%, pneumonia: 73.3%, normal: 69.0%).
-    - Daily budget used: 14/16 (2 requests buffer preserved).
-  - Executed Day 3 run (2026-11-10 Pacific):
-    - Handled transient TCP socket hang in `GeminiProvider`: patched `gemini.provider.js` with `Promise.race` and explicit SDK timeout/fetchOptions signals, verified with 5 unit tests (commit `072f985`).
-    - Completed 8 additional batches across Run A and Run B.
-    - Hit Gemini free-tier daily cap (Google 429 after 20 real requests consumed across retry and timed-out connections); circuit breaker tripped cleanly marking day exhausted.
-    - Total batches done: 34/40 (Run A: 18/20, Run B: 16/20; 108 distinct images seen, 96 paired images with 83.3% agreement).
-  - Day 4 checkpoint (2026-11-11 Pacific):
-    - Gemini returned 503 high demand spikes followed by 429 daily free tier limit ("retry in 14h31m").
-    - Enhanced runner error handling to cleanly catch 429 during 503 retry without burning batch attempts.
-    - Reset attempts for transiently failed batches in MongoDB; exactly 6 clean pending batches remain (`v1-g16-B`, `v1-g17-B`, `v1-g18-A`, `v1-g18-B`, `v1-g19-A`, `v1-g19-B`).
-  - Day 5 (2026-11-12 Pacific) — Completion of T13:
-    - Completed all remaining batches: Gate G1 achieved (40/40 batches done, 120 images analyzed in dual-run redundancy with 81.7% raw agreement and Cohen's Kappa 0.713).
-    - Ran automated consensus validation (`analysis:validate`): 69/120 images auto-passed (57.5%) and exported to `apps/api/seed/image-analyses.json` (138 KB).
-    - Switched to secondary Gemini API key and `gemini-3.5-flash-lite` for high responsiveness and zero 503 errors; enhanced question generator with 15s retry on 503 and 120s timeout.
-    - Generated candidate question bank and approved 83 high-quality questions across 6 confusion pairs:
-      - Finding: 48 approved (>= 8)
-      - Distribution: 25 approved (>= 8)
-      - Differential: 10 approved (>= 8)
-      - Gate G2 fully satisfied (83 approved >= 24 required; all 3 question types >= 8; 6 pairs >= 3).
-    - Exported approved questions to `apps/api/seed/question-bank.approved.json` (170 KB).
-    - Pregenerated all 6 confusion pairs in Persian (`fa`) and English (`en`) and exported to `apps/api/seed/llm-cache.portable.json` (9.4 KB).
-    - Exported, scored, and verified 24-item human rubric (`docs/evaluation/question-rubric.csv`): 100% Scientific OK (Wilson 95% CI: [86.2%-100.0%]), Mean Clarity 4.50/5, Mean Distractor Plausibility 4.00/5, 100% Leak-Free.
-    - Regenerated `docs/EVALUATION.md` via `npm run eval:all` and corrected free-tier quota description to 5 RPM / 20 RPD with 16 internal guard.
-    - Verified Gate G3 (offline reproducibility): `LLM_MODE=cache-only` and VPN off cleanly imported all 3 seed files with 100% fidelity.
-    - Verified monorepo quality gates: `npm run lint` clean, `npm test` passed (728/728 tests across 89 files), `npm run build` clean.
+- T14: Bug hunt and security verification (branch `chore/T14-qa-security`, in-progress).
+  - Started T14 execution:
+    - Route inventory and security checklist (S01-S26) audit across API routes, middleware, and auth flows.
+    - Automated regression test suite under `apps/api/src/__tests__/security/`.
+    - Manual test plan template prepared for browser run (M01-M38).
 
 ## Done (newest first)
+
+- Completed T13: Real LLM data run, approved question bank, and evaluation seeds (PR #24 merged):
+  - Completed all 40/40 analysis batches (120 chest X-ray images, dual-run redundancy with 81.7% raw agreement and Cohen's Kappa 0.713).
+  - Validated and exported 69 consensus images to `apps/api/seed/image-analyses.json`.
+  - Generated and approved 83 questions across all 3 question types (48 finding, 25 distribution, 10 differential) and 6 confusion pairs, exported to `apps/api/seed/question-bank.approved.json`.
+  - Pregenerated 12 portable cache entries for all 6 confusion pairs in Persian and English (`apps/api/seed/llm-cache.portable.json`).
+  - Scored 24-item human rubric in `docs/evaluation/question-rubric.csv` (100% scientific OK, mean clarity 4.50/5, distractor plausibility 4.00/5, 100% leak-free).
+  - Verified Gate G3 offline import reproducibility with zero network traffic. All 728 tests pass across 89 test files.
 
 - Completed T12: Solo-project documentation cleanup and workflow alignment:
   - Replaced `docs/SOLO-MODE.md` with official `docs/WORKFLOW.md` establishing 5-section development workflow and merge gates.
