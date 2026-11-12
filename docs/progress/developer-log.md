@@ -8,22 +8,23 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T14: Bug hunt and security verification (branch `chore/T14-qa-security`, in-review, PR #25).
-  - Completed Part B execution (zero application code changes):
-    - Authored API route inventory `docs/qa/ROUTE-INVENTORY.md` covering all 31 Express 5 routes.
-    - Executed 26-point security audit (`docs/qa/SECURITY-REPORT.md`): 23 PASS, 3 PARTIAL (S06, S16, S22), 0 FAIL.
-    - Authored 43 new automated security regression tests across 5 test suites under `apps/api/src/__tests__/security/`:
-      - `auth.security.test.js` (12 tests)
-      - `authz.security.test.js` (11 tests)
-      - `input.security.test.js` (10 tests)
-      - `headers.security.test.js` (4 tests)
-      - `lifecycle.security.test.js` (6 tests)
-    - Logged all findings in `docs/qa/BUG-LOG.md` (BUG-001 through BUG-004) with reproduction commands and proposed severities.
-    - Initialized Part A manual browser test run matrix in `docs/qa/manual-run-2026-11-12.md` (M01-M38).
-    - Monorepo quality gates verified: `npm run lint` clean, `npm test` passed (771/771 tests across 94 files), `npm run build` clean.
-    - Opened PR #25: `chore(qa): security verification report, route inventory, and regression tests (T14)`.
+- None (T14 completed and merged, ready for T15).
 
 ## Done (newest first)
+
+- Completed T14: Bug hunt, security verification, route inventory, regression tests, and triage fixes (PR #25, PR #26 merged):
+  - Completed Part A (Manual browser run M01-M38 by Mahdi): 35 PASS, 3 FAIL/noted (M23 auto-baseline UX, M33/M34 deferred to T15 UI Polish), 0 Blockers. Recorded in `docs/qa/manual-run-2026-11-12.md`.
+  - Completed Part B (Security audit & regression tests):
+    - Cataloged all 31 Express 5 routes in `docs/qa/ROUTE-INVENTORY.md`.
+    - Executed 26-point security audit (`docs/qa/SECURITY-REPORT.md`): 23 PASS, 3 PARTIAL (S06, S16, S22), 0 FAIL.
+    - Authored 43 automated security regression tests under `apps/api/src/__tests__/security/` across 5 test suites (auth, authz, input, headers, lifecycle).
+    - Monorepo test suite expanded to 775 passing tests across 95 files.
+    - Zero application code changed in audit branch (PR #25).
+  - Completed Part C (Triage & targeted fixes):
+    - Resolved BUG-001 (Major): Handled Mongoose `CastError` in `errorHandler.js` returning 404 instead of 500 on malformed ObjectIds, verified by regression test in `input.security.test.js`.
+    - Resolved BUG-005 (Minor): Fixed back button in `ForbiddenPage.jsx` to navigate instructors to `/instructor` instead of redirect loop, verified by 3 unit tests.
+    - Zero open Blockers and zero open Majors remain in `docs/qa/BUG-LOG.md`.
+    - Merged fix PR #26. Quality gates pass: lint clean, 775/775 tests pass, build clean.
 
 - Completed T13: Real LLM data run, approved question bank, and evaluation seeds (PR #24 merged):
   - Completed all 40/40 analysis batches (120 chest X-ray images, dual-run redundancy with 81.7% raw agreement and Cohen's Kappa 0.713).
