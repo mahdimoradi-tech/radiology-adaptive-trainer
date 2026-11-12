@@ -1,1 +1,4712 @@
-[]
+[
+  {
+    "imageId": "cohen_04819091c13c",
+    "datasetLabel": "covid19",
+    "bucket": "hard",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_DISEASE_NEEDS_PATTERN"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.739Z"
+    }
+  },
+  {
+    "imageId": "cohen_09e0483a0391",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "ground_glass", "consolidation"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.750Z"
+    }
+  },
+  {
+    "imageId": "cohen_0ffc08867ba2",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "right",
+      "zones": ["upper", "middle"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH"],
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": null,
+        "laterality": null,
+        "zones": ["upper", "middle"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.754Z"
+    }
+  },
+  {
+    "imageId": "cohen_15864ed6ed5d",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "peripheral"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "peripheral"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "peripheral",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.758Z"
+    }
+  },
+  {
+    "imageId": "cohen_17419b8e04fd",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.763Z"
+    }
+  },
+  {
+    "imageId": "cohen_1d23f9b648f8",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash-lite",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["lower", "middle"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH"],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": null,
+        "laterality": "bilateral",
+        "zones": ["lower", "middle"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.766Z"
+    }
+  },
+  {
+    "imageId": "cohen_2691e407ec4c",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH"],
+      "consensus": {
+        "patterns": ["opacity", "interstitial"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.770Z"
+    }
+  },
+  {
+    "imageId": "cohen_36c8beb23ce8",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_DISEASE_NEEDS_PATTERN"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.772Z"
+    }
+  },
+  {
+    "imageId": "cohen_39e65f02035e",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash-lite",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass", "air_bronchograms"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.777Z"
+    }
+  },
+  {
+    "imageId": "cohen_3b6af5806033",
+    "datasetLabel": "covid19",
+    "bucket": "hard",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_DISEASE_NEEDS_PATTERN"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.781Z"
+    }
+  },
+  {
+    "imageId": "cohen_3c176b54f4d3",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_DISEASE_NEEDS_PATTERN"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.784Z"
+    }
+  },
+  {
+    "imageId": "cohen_3fde12107816",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash-lite",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_DISEASE_NEEDS_PATTERN"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.787Z"
+    }
+  },
+  {
+    "imageId": "cohen_4c18a8e06199",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.791Z"
+    }
+  },
+  {
+    "imageId": "cohen_4ee0dc3abb90",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.793Z"
+    }
+  },
+  {
+    "imageId": "cohen_6e4af6a34efc",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH"],
+      "consensus": {
+        "patterns": ["opacity", "interstitial"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.797Z"
+    }
+  },
+  {
+    "imageId": "cohen_7d68fcce652c",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation", "ground_glass"],
+      "distribution": "peripheral"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": null,
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.800Z"
+    }
+  },
+  {
+    "imageId": "cohen_81efbbd4f54f",
+    "datasetLabel": "covid19",
+    "bucket": "medium",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_DISEASE_NEEDS_PATTERN"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.804Z"
+    }
+  },
+  {
+    "imageId": "cohen_8391f4ff6731",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_DISEASE_NEEDS_PATTERN"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.807Z"
+    }
+  },
+  {
+    "imageId": "cohen_923678e4f442",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "peripheral"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "peripheral"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "peripheral",
+        "laterality": "bilateral",
+        "zones": ["upper", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.812Z"
+    }
+  },
+  {
+    "imageId": "cohen_94429b286561",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash-lite",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["lower", "middle"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "peripheral"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": [
+        "RUNS_DISAGREE",
+        "LABEL_MISMATCH",
+        "RULE_DISEASE_NEEDS_PATTERN",
+        "NO_CONSENSUS_PATTERN"
+      ],
+      "consensus": {
+        "patterns": [],
+        "distribution": null,
+        "laterality": null,
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.814Z"
+    }
+  },
+  {
+    "imageId": "cohen_9f43d7fb945f",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": [
+        "RUNS_DISAGREE",
+        "LABEL_MISMATCH",
+        "RULE_DISEASE_NEEDS_PATTERN",
+        "NO_CONSENSUS_PATTERN"
+      ],
+      "consensus": {
+        "patterns": [],
+        "distribution": null,
+        "laterality": null,
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.818Z"
+    }
+  },
+  {
+    "imageId": "cohen_a320d544fb26",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_DISEASE_NEEDS_PATTERN"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.821Z"
+    }
+  },
+  {
+    "imageId": "cohen_a5eb82134592",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["RUNS_DISAGREE"],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.825Z"
+    }
+  },
+  {
+    "imageId": "cohen_cb3a1b8e176a",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH"],
+      "consensus": {
+        "patterns": ["opacity", "interstitial"],
+        "distribution": "central_perihilar",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.828Z"
+    }
+  },
+  {
+    "imageId": "cohen_d4441e030c98",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "left",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH"],
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "focal_lobar",
+        "laterality": null,
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.832Z"
+    }
+  },
+  {
+    "imageId": "cohen_d6d1acd58043",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash-lite",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "peripheral"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "peripheral"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "peripheral",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.835Z"
+    }
+  },
+  {
+    "imageId": "cohen_db42364c86f8",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "consolidation", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.839Z"
+    }
+  },
+  {
+    "imageId": "cohen_e0459a273e41",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "poor",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "poor",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["QUALITY_NOT_OK", "LABEL_MISMATCH"],
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.842Z"
+    }
+  },
+  {
+    "imageId": "cohen_e4a51aa0e239",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "left",
+      "zones": ["lower"],
+      "patterns": ["opacity"],
+      "distribution": "focal_lobar"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH"],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": null,
+        "laterality": null,
+        "zones": ["lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.846Z"
+    }
+  },
+  {
+    "imageId": "cohen_e63182002f41",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash-lite",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.849Z"
+    }
+  },
+  {
+    "imageId": "cohen_ff583f614574",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "cohen",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "poor",
+      "predictedClass": "normal",
+      "certainty": "medium",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "poor",
+      "predictedClass": "normal",
+      "certainty": "medium",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["QUALITY_NOT_OK", "LABEL_MISMATCH", "RULE_DISEASE_NEEDS_PATTERN"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.853Z"
+    }
+  },
+  {
+    "imageId": "figure1_2b58d3e56064",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "figure1",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.856Z"
+    }
+  },
+  {
+    "imageId": "figure1_5008d0599b0a",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "figure1",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "ground_glass", "interstitial"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.860Z"
+    }
+  },
+  {
+    "imageId": "figure1_5ec6291b214d",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "figure1",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "peripheral"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass", "interstitial"],
+      "distribution": "peripheral"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "peripheral",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.863Z"
+    }
+  },
+  {
+    "imageId": "figure1_82ac3a2cd19a",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "figure1",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["RUNS_DISAGREE", "LABEL_MISMATCH"],
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.868Z"
+    }
+  },
+  {
+    "imageId": "figure1_83945123ceb8",
+    "datasetLabel": "covid19",
+    "bucket": "medium",
+    "source": "figure1",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash-lite",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH"],
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "focal_lobar",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.870Z"
+    }
+  },
+  {
+    "imageId": "figure1_942c339e035c",
+    "datasetLabel": "covid19",
+    "bucket": "hard",
+    "source": "figure1",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH"],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": null,
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.874Z"
+    }
+  },
+  {
+    "imageId": "figure1_ab8ebc97d663",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "figure1",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "peripheral"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "peripheral"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "peripheral",
+        "laterality": "bilateral",
+        "zones": ["middle"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.877Z"
+    }
+  },
+  {
+    "imageId": "figure1_e11edc40504b",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "figure1",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.881Z"
+    }
+  },
+  {
+    "imageId": "figure1_fa40fc3e9f43",
+    "datasetLabel": "covid19",
+    "bucket": "easy",
+    "source": "figure1",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["RUNS_DISAGREE"],
+      "consensus": {
+        "patterns": ["opacity", "interstitial"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.883Z"
+    }
+  },
+  {
+    "imageId": "kermany_018b2a4f622b",
+    "datasetLabel": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.885Z"
+    }
+  },
+  {
+    "imageId": "kermany_0371451b49cd",
+    "datasetLabel": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.887Z"
+    }
+  },
+  {
+    "imageId": "kermany_06c078db11cb",
+    "datasetLabel": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_NORMAL_PATTERNS"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": null,
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.890Z"
+    }
+  },
+  {
+    "imageId": "kermany_0af95ae084eb",
+    "datasetLabel": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "left",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "left",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": null,
+        "laterality": "left",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.891Z"
+    }
+  },
+  {
+    "imageId": "kermany_13bd089c2562",
+    "datasetLabel": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.894Z"
+    }
+  },
+  {
+    "imageId": "kermany_1b3ed9c43d43",
+    "datasetLabel": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.896Z"
+    }
+  },
+  {
+    "imageId": "kermany_1e054ed36680",
+    "datasetLabel": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.898Z"
+    }
+  },
+  {
+    "imageId": "kermany_1ece9b7cedb1",
+    "datasetLabel": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.900Z"
+    }
+  },
+  {
+    "imageId": "kermany_216a30c1cf24",
+    "datasetLabel": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "central_perihilar",
+        "laterality": "bilateral",
+        "zones": ["middle"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.902Z"
+    }
+  },
+  {
+    "imageId": "kermany_26ebbeba031c",
+    "datasetLabel": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["RUNS_DISAGREE", "LABEL_MISMATCH"],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.904Z"
+    }
+  },
+  {
+    "imageId": "kermany_29710462699d",
+    "datasetLabel": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "right",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": [
+        "RUNS_DISAGREE",
+        "LABEL_MISMATCH",
+        "RULE_DISEASE_NEEDS_PATTERN",
+        "NO_CONSENSUS_PATTERN"
+      ],
+      "consensus": {
+        "patterns": [],
+        "distribution": null,
+        "laterality": null,
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.907Z"
+    }
+  },
+  {
+    "imageId": "kermany_321329ff10ad",
+    "datasetLabel": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "interstitial"],
+        "distribution": "central_perihilar",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.909Z"
+    }
+  },
+  {
+    "imageId": "kermany_34d75d9243ef",
+    "datasetLabel": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash-lite",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "peripheral"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "low",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["RUNS_DISAGREE", "LABEL_MISMATCH"],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": null,
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.911Z"
+    }
+  },
+  {
+    "imageId": "kermany_37806d92cd47",
+    "datasetLabel": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.912Z"
+    }
+  },
+  {
+    "imageId": "kermany_3853a4552e0b",
+    "datasetLabel": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.915Z"
+    }
+  },
+  {
+    "imageId": "kermany_3f2f24eb4c7b",
+    "datasetLabel": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.917Z"
+    }
+  },
+  {
+    "imageId": "kermany_3ff940fdef00",
+    "datasetLabel": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.919Z"
+    }
+  },
+  {
+    "imageId": "kermany_462097a224b7",
+    "datasetLabel": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.921Z"
+    }
+  },
+  {
+    "imageId": "kermany_49b008fb5f9f",
+    "datasetLabel": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "central_perihilar",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.924Z"
+    }
+  },
+  {
+    "imageId": "kermany_51af744d17c5",
+    "datasetLabel": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.926Z"
+    }
+  },
+  {
+    "imageId": "kermany_52eefbcae1f5",
+    "datasetLabel": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["RUNS_DISAGREE"],
+      "consensus": {
+        "patterns": ["opacity", "interstitial"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.929Z"
+    }
+  },
+  {
+    "imageId": "kermany_56004f026d78",
+    "datasetLabel": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.931Z"
+    }
+  },
+  {
+    "imageId": "kermany_57bafb2909db",
+    "datasetLabel": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.932Z"
+    }
+  },
+  {
+    "imageId": "kermany_5b54ec4420fd",
+    "datasetLabel": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.935Z"
+    }
+  },
+  {
+    "imageId": "kermany_5d6a73a87115",
+    "datasetLabel": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_DISEASE_NEEDS_PATTERN"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.937Z"
+    }
+  },
+  {
+    "imageId": "kermany_5d8327386c4d",
+    "datasetLabel": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.939Z"
+    }
+  },
+  {
+    "imageId": "kermany_5dbccab7075e",
+    "datasetLabel": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_NORMAL_PATTERNS"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "central_perihilar",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.941Z"
+    }
+  },
+  {
+    "imageId": "kermany_6007c3945a45",
+    "datasetLabel": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": null,
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.943Z"
+    }
+  },
+  {
+    "imageId": "kermany_688989c6884e",
+    "datasetLabel": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle"],
+      "patterns": ["opacity"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle"],
+      "patterns": ["opacity"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_NORMAL_PATTERNS"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "central_perihilar",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.945Z"
+    }
+  },
+  {
+    "imageId": "kermany_696eea445b9d",
+    "datasetLabel": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash-lite",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.947Z"
+    }
+  },
+  {
+    "imageId": "kermany_6a945c12b3a6",
+    "datasetLabel": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.949Z"
+    }
+  },
+  {
+    "imageId": "kermany_6ae5f2350d08",
+    "datasetLabel": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_NORMAL_PATTERNS"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "central_perihilar",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.951Z"
+    }
+  },
+  {
+    "imageId": "kermany_6cceb3bfc4a8",
+    "datasetLabel": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "right",
+      "zones": ["upper", "middle"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "right",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "focal_lobar",
+        "laterality": "right",
+        "zones": ["middle"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.953Z"
+    }
+  },
+  {
+    "imageId": "kermany_6e56e8560597",
+    "datasetLabel": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.956Z"
+    }
+  },
+  {
+    "imageId": "kermany_73fcf020e783",
+    "datasetLabel": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": null,
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.958Z"
+    }
+  },
+  {
+    "imageId": "kermany_77a9eaa89eda",
+    "datasetLabel": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["RUNS_DISAGREE", "RULE_NORMAL_PATTERNS"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": null,
+        "laterality": null,
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.960Z"
+    }
+  },
+  {
+    "imageId": "kermany_7e2cebb068c0",
+    "datasetLabel": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": [
+        "RUNS_DISAGREE",
+        "LABEL_MISMATCH",
+        "RULE_DISEASE_NEEDS_PATTERN",
+        "NO_CONSENSUS_PATTERN"
+      ],
+      "consensus": {
+        "patterns": [],
+        "distribution": null,
+        "laterality": null,
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.961Z"
+    }
+  },
+  {
+    "imageId": "kermany_7f0eda89dd7c",
+    "datasetLabel": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["RUNS_DISAGREE", "RULE_DISEASE_NEEDS_PATTERN", "NO_CONSENSUS_PATTERN"],
+      "consensus": {
+        "patterns": [],
+        "distribution": null,
+        "laterality": null,
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.963Z"
+    }
+  },
+  {
+    "imageId": "kermany_835746a7f8e7",
+    "datasetLabel": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["RUNS_DISAGREE", "RULE_NORMAL_PATTERNS"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": null,
+        "laterality": null,
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.965Z"
+    }
+  },
+  {
+    "imageId": "kermany_8a019be070b3",
+    "datasetLabel": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "right",
+      "zones": ["upper", "middle"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "right",
+      "zones": ["upper", "middle"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "focal_lobar",
+        "laterality": "right",
+        "zones": ["upper", "middle"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.967Z"
+    }
+  },
+  {
+    "imageId": "kermany_947183fb9bac",
+    "datasetLabel": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "central_perihilar",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.969Z"
+    }
+  },
+  {
+    "imageId": "kermany_95ba63d717b7",
+    "datasetLabel": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["RUNS_DISAGREE", "RULE_DISEASE_NEEDS_PATTERN", "NO_CONSENSUS_PATTERN"],
+      "consensus": {
+        "patterns": [],
+        "distribution": null,
+        "laterality": null,
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.971Z"
+    }
+  },
+  {
+    "imageId": "kermany_96baa5bdb545",
+    "datasetLabel": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.972Z"
+    }
+  },
+  {
+    "imageId": "kermany_97441a3bc45e",
+    "datasetLabel": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.974Z"
+    }
+  },
+  {
+    "imageId": "kermany_9e85206347b7",
+    "datasetLabel": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "left",
+      "zones": ["lower"],
+      "patterns": ["opacity"],
+      "distribution": "focal_lobar"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "left",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "focal_lobar",
+        "laterality": "left",
+        "zones": ["lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.976Z"
+    }
+  },
+  {
+    "imageId": "kermany_a27b104db725",
+    "datasetLabel": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["RUNS_DISAGREE", "LABEL_MISMATCH", "RULE_NORMAL_PATTERNS"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": null,
+        "laterality": null,
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.978Z"
+    }
+  },
+  {
+    "imageId": "kermany_a322ab2f81c7",
+    "datasetLabel": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "central_perihilar",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.980Z"
+    }
+  },
+  {
+    "imageId": "kermany_a74d37ba395a",
+    "datasetLabel": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": [
+        "RUNS_DISAGREE",
+        "LABEL_MISMATCH",
+        "RULE_DISEASE_NEEDS_PATTERN",
+        "NO_CONSENSUS_PATTERN"
+      ],
+      "consensus": {
+        "patterns": [],
+        "distribution": null,
+        "laterality": null,
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.982Z"
+    }
+  },
+  {
+    "imageId": "kermany_a95b063ca0e3",
+    "datasetLabel": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.984Z"
+    }
+  },
+  {
+    "imageId": "kermany_a9c469bdfdde",
+    "datasetLabel": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.986Z"
+    }
+  },
+  {
+    "imageId": "kermany_aa95355c6134",
+    "datasetLabel": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash-lite",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.988Z"
+    }
+  },
+  {
+    "imageId": "kermany_ada765f9f37e",
+    "datasetLabel": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["RUNS_DISAGREE", "RULE_NORMAL_PATTERNS"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": null,
+        "laterality": null,
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.990Z"
+    }
+  },
+  {
+    "imageId": "kermany_b34e96fcb8a3",
+    "datasetLabel": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["RUNS_DISAGREE", "RULE_NORMAL_PATTERNS"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": null,
+        "laterality": null,
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.992Z"
+    }
+  },
+  {
+    "imageId": "kermany_b4829fa1a3bb",
+    "datasetLabel": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": [
+        "RUNS_DISAGREE",
+        "LABEL_MISMATCH",
+        "RULE_DISEASE_NEEDS_PATTERN",
+        "NO_CONSENSUS_PATTERN"
+      ],
+      "consensus": {
+        "patterns": [],
+        "distribution": null,
+        "laterality": null,
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.994Z"
+    }
+  },
+  {
+    "imageId": "kermany_b6d03c9f3329",
+    "datasetLabel": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["RUNS_DISAGREE", "RULE_DISEASE_NEEDS_PATTERN", "NO_CONSENSUS_PATTERN"],
+      "consensus": {
+        "patterns": [],
+        "distribution": null,
+        "laterality": null,
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.995Z"
+    }
+  },
+  {
+    "imageId": "kermany_b6d68f1c3f25",
+    "datasetLabel": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:37.997Z"
+    }
+  },
+  {
+    "imageId": "kermany_b99f11175096",
+    "datasetLabel": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "right",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "covid19",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "peripheral"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["RUNS_DISAGREE"],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": null,
+        "laterality": null,
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:37.999Z"
+    }
+  },
+  {
+    "imageId": "kermany_bce64afb70da",
+    "datasetLabel": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:38.001Z"
+    }
+  },
+  {
+    "imageId": "kermany_bf01d2ebf5f9",
+    "datasetLabel": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_DISEASE_NEEDS_PATTERN"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:38.004Z"
+    }
+  },
+  {
+    "imageId": "kermany_c1bf9f0b857a",
+    "datasetLabel": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash-lite",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": null,
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:38.006Z"
+    }
+  },
+  {
+    "imageId": "kermany_c534e711c18f",
+    "datasetLabel": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "central_perihilar"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": null,
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:38.008Z"
+    }
+  },
+  {
+    "imageId": "kermany_c7719fdc45f9",
+    "datasetLabel": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash-lite",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["lower", "middle"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "interstitial"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["lower", "middle"]
+      },
+      "validatedAt": "2026-11-12T13:16:38.010Z"
+    }
+  },
+  {
+    "imageId": "kermany_c88d24ecb5fe",
+    "datasetLabel": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "left",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_NORMAL_PATTERNS"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": null,
+        "laterality": null,
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:38.012Z"
+    }
+  },
+  {
+    "imageId": "kermany_cc02b7d293a5",
+    "datasetLabel": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:38.014Z"
+    }
+  },
+  {
+    "imageId": "kermany_cedf1a08a387",
+    "datasetLabel": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:38.016Z"
+    }
+  },
+  {
+    "imageId": "kermany_d45c9ed8961a",
+    "datasetLabel": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:38.018Z"
+    }
+  },
+  {
+    "imageId": "kermany_d987833373c0",
+    "datasetLabel": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:38.019Z"
+    }
+  },
+  {
+    "imageId": "kermany_da9441f2f668",
+    "datasetLabel": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_DISEASE_NEEDS_PATTERN"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:38.021Z"
+    }
+  },
+  {
+    "imageId": "kermany_dec5d857674e",
+    "datasetLabel": "pneumonia",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "right",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "right",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": null,
+        "laterality": "right",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:38.022Z"
+    }
+  },
+  {
+    "imageId": "kermany_e2743ee327e3",
+    "datasetLabel": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle"],
+      "patterns": ["opacity", "ground_glass"],
+      "distribution": "diffuse"
+    },
+    "runB": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle"]
+      },
+      "validatedAt": "2026-11-12T13:16:38.024Z"
+    }
+  },
+  {
+    "imageId": "kermany_e557f9b883d4",
+    "datasetLabel": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:38.026Z"
+    }
+  },
+  {
+    "imageId": "kermany_eb95a6fdfc3e",
+    "datasetLabel": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 6,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:38.028Z"
+    }
+  },
+  {
+    "imageId": "kermany_f14236763d14",
+    "datasetLabel": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 3,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:38.029Z"
+    }
+  },
+  {
+    "imageId": "kermany_f36c19cc40ef",
+    "datasetLabel": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "left",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "left",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "focal_lobar",
+        "laterality": "left",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:38.031Z"
+    }
+  },
+  {
+    "imageId": "kermany_f3e7ed222ac8",
+    "datasetLabel": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:38.033Z"
+    }
+  },
+  {
+    "imageId": "kermany_f751c0926046",
+    "datasetLabel": "normal",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "ground_glass", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_NORMAL_PATTERNS"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": null,
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:38.035Z"
+    }
+  },
+  {
+    "imageId": "kermany_f8e8ed116b0d",
+    "datasetLabel": "pneumonia",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["RUNS_DISAGREE", "RULE_DISEASE_NEEDS_PATTERN", "NO_CONSENSUS_PATTERN"],
+      "consensus": {
+        "patterns": [],
+        "distribution": null,
+        "laterality": null,
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:38.037Z"
+    }
+  },
+  {
+    "imageId": "kermany_f90cf048b355",
+    "datasetLabel": "normal",
+    "bucket": "easy",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 5,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "runB": {
+      "index": 1,
+      "imageQuality": "ok",
+      "predictedClass": "normal",
+      "certainty": "high",
+      "laterality": "none",
+      "zones": [],
+      "patterns": ["clear_lungs"],
+      "distribution": "none"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      },
+      "validatedAt": "2026-11-12T13:16:38.039Z"
+    }
+  },
+  {
+    "imageId": "kermany_fed1e2897a5c",
+    "datasetLabel": "normal",
+    "bucket": "medium",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["middle", "lower"],
+      "patterns": ["opacity"],
+      "distribution": "central_perihilar"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "bilateral",
+      "zones": ["upper", "middle", "lower"],
+      "patterns": ["opacity", "interstitial"],
+      "distribution": "diffuse"
+    },
+    "validation": {
+      "status": "auto_rejected",
+      "reasons": ["LABEL_MISMATCH", "RULE_NORMAL_PATTERNS"],
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": null,
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:38.041Z"
+    }
+  },
+  {
+    "imageId": "kermany_ff2ada893876",
+    "datasetLabel": "pneumonia",
+    "bucket": "hard",
+    "source": "kermany",
+    "promptVersion": "v1",
+    "model": "gemini-3.5-flash",
+    "runA": {
+      "index": 4,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "medium",
+      "laterality": "left",
+      "zones": ["lower"],
+      "patterns": ["opacity"],
+      "distribution": "focal_lobar"
+    },
+    "runB": {
+      "index": 2,
+      "imageQuality": "ok",
+      "predictedClass": "pneumonia",
+      "certainty": "high",
+      "laterality": "left",
+      "zones": ["lower"],
+      "patterns": ["opacity", "consolidation"],
+      "distribution": "focal_lobar"
+    },
+    "validation": {
+      "status": "auto_passed",
+      "reasons": [],
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "focal_lobar",
+        "laterality": "left",
+        "zones": ["lower"]
+      },
+      "validatedAt": "2026-11-12T13:16:38.043Z"
+    }
+  }
+]
