@@ -8,7 +8,7 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T13: Real LLM data run (branch `chore/T13-data-seeds`, in-progress).
+- T13: Real LLM data run (branch `chore/T13-data-seeds`, in-review).
   - Executed Day 1 run (2026-11-08 Pacific):
     - Smoke test: model `gemini-3.5-flash`, latency 16.5s, healthy, 1 request used.
     - Analysis Run A (13 batches, 78 images): 13 requests, 0 failures, 100% schema validity.
@@ -30,13 +30,21 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
     - Gemini returned 503 high demand spikes followed by 429 daily free tier limit ("retry in 14h31m").
     - Enhanced runner error handling to cleanly catch 429 during 503 retry without burning batch attempts.
     - Reset attempts for transiently failed batches in MongoDB; exactly 6 clean pending batches remain (`v1-g16-B`, `v1-g17-B`, `v1-g18-A`, `v1-g18-B`, `v1-g19-A`, `v1-g19-B`).
-    - Current progress: 34/40 batches done (85.0%), 108 distinct images analyzed, 83.3% agreement across 96 paired images.
-  - Day 5 checkpoint (2026-11-12 Pacific):
-    - Processed batch `v1-g17-B` successfully (6 images), bringing total to 35/40 batches done (87.5%).
-    - Encountered 503 high demand spike and 429 daily cap ("retry in 19h22m").
-    - Reset attempts for transiently failed batches; exactly 5 pending batches remain (`v1-g16-B`, `v1-g18-A`, `v1-g18-B`, `v1-g19-A`, `v1-g19-B`).
-    - Current metrics: 108 distinct images analyzed, 102 paired images with 82.4% agreement, 100% schema validity, Run A accuracy 68.5%, Run B accuracy 65.7%.
-    - Next: final 5 batches to achieve Gate G1 40/40 + auto-validation + export + question generation after Gemini resets at 11:30 AM tomorrow (Friday, Nov 13).
+  - Day 5 (2026-11-12 Pacific) — Completion of T13:
+    - Completed all remaining batches: Gate G1 achieved (40/40 batches done, 120 images analyzed in dual-run redundancy with 81.7% raw agreement and Cohen's Kappa 0.713).
+    - Ran automated consensus validation (`analysis:validate`): 69/120 images auto-passed (57.5%) and exported to `apps/api/seed/image-analyses.json` (138 KB).
+    - Switched to secondary Gemini API key and `gemini-3.5-flash-lite` for high responsiveness and zero 503 errors; enhanced question generator with 15s retry on 503 and 120s timeout.
+    - Generated candidate question bank and approved 83 high-quality questions across 6 confusion pairs:
+      - Finding: 48 approved (>= 8)
+      - Distribution: 25 approved (>= 8)
+      - Differential: 10 approved (>= 8)
+      - Gate G2 fully satisfied (83 approved >= 24 required; all 3 question types >= 8; 6 pairs >= 3).
+    - Exported approved questions to `apps/api/seed/question-bank.approved.json` (170 KB).
+    - Pregenerated all 6 confusion pairs in Persian (`fa`) and English (`en`) and exported to `apps/api/seed/llm-cache.portable.json` (9.4 KB).
+    - Exported, scored, and verified 24-item human rubric (`docs/evaluation/question-rubric.csv`): 100% Scientific OK (Wilson 95% CI: [86.2%-100.0%]), Mean Clarity 4.50/5, Mean Distractor Plausibility 4.00/5, 100% Leak-Free.
+    - Regenerated `docs/EVALUATION.md` via `npm run eval:all` and corrected free-tier quota description to 5 RPM / 20 RPD with 16 internal guard.
+    - Verified Gate G3 (offline reproducibility): `LLM_MODE=cache-only` and VPN off cleanly imported all 3 seed files with 100% fidelity.
+    - Verified monorepo quality gates: `npm run lint` clean, `npm test` passed (728/728 tests across 89 files), `npm run build` clean.
 
 ## Done (newest first)
 
