@@ -154,7 +154,7 @@ export function ReportPage() {
               <span className="text-2xl font-bold text-sky-700">
                 {isZeroAnswered ? '—' : fmt.percent(overall.accuracy, i18n.language)}
               </span>
-              <span className="text-xs text-slate-400 block mt-1">
+              <span className="text-xs text-slate-600 block mt-1">
                 {t('report.correctVsTotal', {
                   correct: fmt.number(overall.correct, i18n.language),
                   total: fmt.number(overall.total, i18n.language),
@@ -166,7 +166,7 @@ export function ReportPage() {
               <span className="text-xs text-slate-500 block mb-1">{t('sessions.colAnswered')}</span>
               <span className="text-2xl font-bold text-slate-800">
                 {fmt.number(answeredCount, i18n.language)}{' '}
-                <span className="text-sm text-slate-400 font-normal">
+                <span className="text-sm text-slate-600 font-normal">
                   / {fmt.number(size, i18n.language)}
                 </span>
               </span>
@@ -297,7 +297,7 @@ export function ReportPage() {
                                   ? 'bg-emerald-50 text-emerald-800 font-bold border-2 border-emerald-200'
                                   : count > 0
                                     ? 'bg-rose-50/50 text-rose-700 font-medium'
-                                    : 'text-slate-400'
+                                    : 'text-slate-600'
                               }`}
                             >
                               {fmt.number(count, i18n.language)}
@@ -379,7 +379,7 @@ export function ReportPage() {
                 </table>
               </div>
             </CardContent>
-            <CardFooter className="text-xs text-slate-400 border-t border-slate-100 pt-3">
+            <CardFooter className="text-xs text-slate-600 border-t border-slate-200 pt-4">
               <p>{t('report.metricsFootnote')}</p>
             </CardFooter>
           </Card>

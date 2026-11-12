@@ -78,11 +78,12 @@ Issues are categorized according to the rules in `docs/qa/UI-CHECKLIST.md`:
 
 ## 2. Found by Mahdi
 
-*(Mahdi will append any additional visual roughness, contrast, or alignment issues discovered during browser inspections below)*
+*(Mahdi reviewed the UI and reported these additional requirements)*
 
 | # | file:line | problem | proposed fix | screen |
 |---|---|---|---|---|
-| M1 | | | | |
+| M1 | `ResidentHomePage.jsx:34,55,76,97` & `InstructorHomePage.jsx:34,55,76` | Developer task badges (T06, T08, T09) displayed on production cards | Remove task badge tags from all dashboard cards | Resident Home, Instructor Home |
+| M2 | `ProgressView.jsx` & `LineChart.jsx` & `ResidentDetailPage.jsx` | Chart labels, table text, and metrics in progress views are barely visible / low contrast | Overhaul text colors to high-contrast tokens, fix sizing and dark-mode readability | Resident Progress, Instructor Resident Detail |
 
 ---
 

@@ -247,7 +247,7 @@ export function QuizPage() {
               >
                 {imageError ? (
                   <div className="p-8 text-center space-y-3">
-                    <p className="text-slate-400 text-sm">{t('quiz.imageError')}</p>
+                    <p className="text-slate-200 text-sm">{t('quiz.imageError')}</p>
                     <Button
                       variant="outline"
                       size="sm"
@@ -304,13 +304,13 @@ export function QuizPage() {
                           <span className="font-medium text-sm text-slate-800">
                             {t(opt.labelKey)}
                           </span>
-                          <span className="text-xs text-slate-400 font-mono">[{index + 1}]</span>
+                          <span className="text-xs text-slate-600 font-mono">[{index + 1}]</span>
                         </div>
                       </label>
                     );
                   })}
                 </div>
-                <p className="text-xs text-slate-400 text-start">{t('quiz.keyboardTip')}</p>
+                <p className="text-xs text-slate-600 text-start">{t('quiz.keyboardTip')}</p>
               </div>
             </CardContent>
 

@@ -291,7 +291,7 @@ export function LineChart({ series = [], yDomain = [0, 1], threshold, ariaLabel,
       </div>
 
       {/* Accessible Text Legend (Color + Dash Pattern + Symbol + Label) */}
-      <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-700 dark:text-slate-300">
+      <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-800 dark:text-slate-100">
         {series.map((s, idx) => {
           const style = SERIES_STYLES[idx % SERIES_STYLES.length];
           return (
@@ -312,8 +312,10 @@ export function LineChart({ series = [], yDomain = [0, 1], threshold, ariaLabel,
                 />
                 {renderMarker(style.marker, 12, 6, style.stroke, `legend-marker-${s.id}`)}
               </svg>
-              <span className="font-medium">{s.label}</span>
-              <span className="text-[10px] text-slate-400">({style.dashName})</span>
+              <span className="font-semibold">{s.label}</span>
+              <span className="text-[11px] text-slate-600 dark:text-slate-200 font-medium">
+                ({style.dashName})
+              </span>
             </div>
           );
         })}
@@ -353,7 +355,7 @@ export function LineChart({ series = [], yDomain = [0, 1], threshold, ariaLabel,
                   return (
                     <td
                       key={`cell-${s.id}-${xVal}`}
-                      className="px-3 py-2 font-mono text-slate-700 dark:text-slate-300"
+                      className="px-3 py-2 font-mono text-slate-800 dark:text-slate-100 font-medium"
                     >
                       {pt && typeof pt.y === 'number' ? fmt.percent(pt.y, lang, 1) : '—'}
                     </td>

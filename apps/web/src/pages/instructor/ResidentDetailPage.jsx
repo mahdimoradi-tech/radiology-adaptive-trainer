@@ -53,7 +53,7 @@ export function ResidentDetailPage() {
       {/* Header and Back Link */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-1">
+          <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-200 mb-1">
             <Link to="/instructor/residents" className="hover:text-blue-600 transition-colors">
               {t('instructor.residents.title', 'فهرست دستیاران')}
             </Link>

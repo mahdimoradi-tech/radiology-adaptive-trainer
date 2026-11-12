@@ -17,7 +17,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
 
   if (!question) {
     return (
-      <div className="flex items-center justify-center h-full min-h-[400px] border border-dashed border-slate-200 rounded-2xl bg-white p-8 text-center text-slate-400 text-xs">
+      <div className="flex items-center justify-center h-full min-h-[400px] border border-dashed border-slate-200 rounded-2xl bg-white p-8 text-center text-slate-600 text-xs">
         {t('instructor.review.noSelection')}
       </div>
     );
@@ -171,7 +171,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
                     required
                   />
                   {question.options[idx]?.key && (
-                    <span className="text-[10px] text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded font-mono">
+                    <span className="text-[10px] text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded font-mono">
                       {question.options[idx].key}
                     </span>
                   )}
@@ -191,7 +191,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
                 className="w-full text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500"
                 required
               />
-              <span className="text-[10px] text-slate-400 text-end block">
+              <span className="text-[10px] text-slate-600 text-end block">
                 {editRationale.length}/300
               </span>
             </div>
@@ -346,7 +346,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
                         <span className="font-medium text-slate-700">{h.by}</span>
                         {h.note && <span className="text-slate-500 italic">({h.note})</span>}
                       </div>
-                      <span className="text-slate-400 text-[10px]">
+                      <span className="text-slate-600 text-[10px]">
                         {new Date(h.at).toLocaleDateString('fa-IR')}
                       </span>
                     </div>

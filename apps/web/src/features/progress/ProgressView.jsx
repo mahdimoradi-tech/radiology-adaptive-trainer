@@ -49,7 +49,7 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
           <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">
             {t('progress.emptyTitle', 'هنوز آزمونی تکمیل نشده است')}
           </h2>
-          <p className="text-sm text-slate-600 dark:text-slate-400">
+          <p className="text-sm text-slate-700 dark:text-slate-200">
             {isInstructor
               ? t('progress.instructorEmptyDesc', 'این دستیار هنوز هیچ آزمونی را تکمیل نکرده است.')
               : t(
@@ -123,7 +123,7 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
             <Card key={c} data-testid={`mastery-card-${c}`}>
               <CardContent className="p-4 flex items-center justify-between">
                 <div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400">
+                  <div className="text-xs font-semibold text-slate-700 dark:text-slate-200">
                     {t(`classes.${c}`)}
                   </div>
                   <div className="text-2xl font-bold font-mono text-slate-900 dark:text-slate-100 mt-1">
@@ -149,9 +149,9 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
         <CardHeader>
           <div className="flex flex-wrap items-center justify-between gap-2">
             <CardTitle>{t('progress.chartTitle', 'روند دقت تشخیصی به تفکیک بیماری')}</CardTitle>
-            <div className="text-xs text-slate-500 dark:text-slate-400">
+            <div className="text-xs font-semibold text-slate-700 dark:text-slate-200">
               {t('progress.totalSessions', 'جلسات تکمیل‌شده')}:{' '}
-              <span className="font-mono font-semibold">
+              <span className="font-mono font-bold">
                 {fmt.number(totals.sessionsFinished || sessions.length, lang)}
               </span>
             </div>
@@ -176,7 +176,7 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
             <CardTitle className="text-base">
               {t('progress.confusionsTitle', 'شایع‌ترین خطاهای تشخیصی')}
             </CardTitle>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-xs text-slate-700 dark:text-slate-200">
               {t(
                 'progress.confusionsDesc',
                 'جفت کلاس‌هایی که بیشترین میزان اشتباه بین آن‌ها ثبت شده است',
@@ -185,7 +185,7 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
           </CardHeader>
           <CardContent>
             {topConfusions.length === 0 ? (
-              <p className="text-xs text-slate-500 py-4 text-center">
+              <p className="text-xs text-slate-600 dark:text-slate-200 py-4 text-center font-medium">
                 {t('progress.noConfusions', 'هیچ خطای تشخیصی مکرری ثبت نشده است.')}
               </p>
             ) : (
@@ -200,14 +200,16 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
                     data-testid="confusion-item"
                   >
                     <div className="space-y-0.5">
-                      <div className="font-medium text-slate-900 dark:text-slate-100">
+                      <div className="font-semibold text-slate-900 dark:text-slate-100">
                         {t(`classes.${item.trueClass}`)}
-                        <span className="text-slate-400 mx-1.5 font-sans">←</span>
-                        <span className="text-rose-600 dark:text-rose-400">
+                        <span className="text-slate-600 dark:text-slate-200 mx-1.5 font-bold font-sans">
+                          ←
+                        </span>
+                        <span className="text-rose-700 dark:text-rose-300 font-bold">
                           {t(`classes.${item.predicted}`)}
                         </span>
                       </div>
-                      <div className="text-[10px] text-slate-400">
+                      <div className="text-xs text-slate-600 dark:text-slate-200 font-medium">
                         {t('report.matrixHeader', 'کلاس واقعی / پاسخ')}
                       </div>
                     </div>
@@ -236,7 +238,7 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
                 className="w-full text-xs text-start border-collapse"
                 data-testid="history-table"
               >
-                <thead className="bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300">
+                <thead className="bg-slate-50 dark:bg-slate-800/60 text-slate-800 dark:text-slate-100">
                   <tr>
                     <th
                       scope="col"
@@ -280,7 +282,7 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
                             index: fmt.number(s.index, lang),
                           })}
                         </td>
-                        <td className="px-3 py-2.5 text-slate-600 dark:text-slate-400">
+                        <td className="px-3 py-2.5 text-slate-700 dark:text-slate-200 font-medium">
                           {fmt.date(s.finishedAt, lang)}
                         </td>
                         <td className="px-3 py-2.5 font-mono font-semibold text-slate-900 dark:text-slate-100">
@@ -315,7 +317,7 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
 
       {/* Educational Disclaimer Banner */}
       <div className="pt-2">
-        <p className="text-xs text-center text-slate-500 dark:text-slate-400">
+        <p className="text-xs text-center text-slate-600 dark:text-slate-200 font-medium">
           {t(
             'disclaimer.educational',
             'این سامانه صرفاً یک ابزار کمک‌آموزشی است و خروجی‌های آن تحت هیچ شرایطی نباید به عنوان تشخیص بالینی یا توصیه پزشکی استفاده شوند.',

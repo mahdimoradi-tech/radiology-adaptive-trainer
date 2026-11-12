@@ -87,9 +87,9 @@ export function LlmPanel({
           children
         )}
 
-        <div className="text-xs text-slate-400 pt-3 border-t border-slate-100 flex items-center gap-1.5 select-none">
+        <div className="text-xs text-slate-600 pt-3 border-t border-slate-200 flex items-center gap-1.5 select-none">
           <svg
-            className="w-3.5 h-3.5 text-slate-400 shrink-0"
+            className="w-3.5 h-3.5 text-slate-600 shrink-0"
             viewBox="0 0 20 20"
             fill="currentColor"
             aria-hidden="true"

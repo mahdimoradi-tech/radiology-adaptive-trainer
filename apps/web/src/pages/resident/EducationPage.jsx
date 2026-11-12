@@ -164,7 +164,7 @@ export function EducationPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <p className="text-xs text-slate-600 leading-relaxed text-justify">{item.desc}</p>
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+                <div className="pt-4 border-t border-slate-200 flex items-center justify-between text-xs text-slate-600">
                   <span>{t('education.kbSourceLabel')}</span>
                   <code
                     dir="ltr"

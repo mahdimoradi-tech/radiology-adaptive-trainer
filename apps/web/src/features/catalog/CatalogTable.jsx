@@ -106,7 +106,7 @@ export function CatalogTable({ items = [], meta, isLoading = false, onPageChange
                   <div className="font-mono text-xs text-slate-800 break-all">
                     <bdi>{item.filename}</bdi>
                   </div>
-                  <div className="text-[11px] text-slate-400 font-mono mt-0.5">
+                  <div className="text-[11px] text-slate-600 font-mono mt-0.5">
                     <bdi>{item.id}</bdi>
                   </div>
                 </td>

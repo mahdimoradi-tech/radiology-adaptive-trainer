@@ -67,7 +67,7 @@ export function InstructorResidentsPage() {
         <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
           {t('instructor.residents.title', 'فهرست دستیاران')}
         </h1>
-        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+        <p className="text-sm text-slate-700 dark:text-slate-200 mt-1">
           {t(
             'instructor.residents.subtitle',
             'مشاهده پیشرفت، پایش عملکرد و ارزیابی تشخیصی کارآموزان',
@@ -81,9 +81,9 @@ export function InstructorResidentsPage() {
             <CardTitle className="text-base">
               {t('instructor.residentsTitle', 'کارنامه رزیدنت‌ها')}
             </CardTitle>
-            <div className="text-xs text-slate-500 dark:text-slate-400">
+            <div className="text-xs font-semibold text-slate-700 dark:text-slate-200">
               {t('progress.totalSessions', 'مجموع')}:{' '}
-              <span className="font-mono font-semibold">{fmt.number(meta.total, lang)}</span>
+              <span className="font-mono font-bold">{fmt.number(meta.total, lang)}</span>
             </div>
           </div>
         </CardHeader>
@@ -98,7 +98,7 @@ export function InstructorResidentsPage() {
                 className="w-full text-xs text-start border-collapse"
                 data-testid="residents-table"
               >
-                <thead className="bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300">
+                <thead className="bg-slate-50 dark:bg-slate-800/60 text-slate-800 dark:text-slate-100 font-semibold">
                   <tr>
                     <th
                       scope="col"
@@ -151,7 +151,7 @@ export function InstructorResidentsPage() {
                       <td className="px-4 py-3 font-semibold text-slate-900 dark:text-slate-100">
                         {resident.displayName}
                       </td>
-                      <td className="px-4 py-3 text-slate-600 dark:text-slate-400 font-mono">
+                      <td className="px-4 py-3 text-slate-700 dark:text-slate-200 font-mono font-medium">
                         {resident.email}
                       </td>
                       <td className="px-4 py-3 font-mono">
@@ -162,7 +162,7 @@ export function InstructorResidentsPage() {
                           ? fmt.percent(resident.lastAccuracy, lang)
                           : '—'}
                       </td>
-                      <td className="px-4 py-3 text-slate-600 dark:text-slate-400">
+                      <td className="px-4 py-3 text-slate-700 dark:text-slate-200">
                         {resident.lastActiveAt ? fmt.date(resident.lastActiveAt, lang) : '—'}
                       </td>
                     </tr>
@@ -175,7 +175,7 @@ export function InstructorResidentsPage() {
           {/* Pagination Controls */}
           {meta.totalPages > 1 && (
             <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-xs">
-              <span className="text-slate-500 dark:text-slate-400">
+              <span className="text-slate-600 dark:text-slate-200 font-medium">
                 {t('instructor.residents.pageOf', 'صفحه {{current}} از {{total}}', {
                   current: fmt.number(page, lang),
                   total: fmt.number(meta.totalPages, lang),
