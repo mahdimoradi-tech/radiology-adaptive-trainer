@@ -327,14 +327,43 @@ export async function generateQuestions(options) {
           parsedOutput = JSON.parse(result.rawText);
         }
       } catch (err) {
-        requestsMade++;
         if (err instanceof LlmError && err.status === 429) {
           await markExhausted();
           exitReason = 'QUOTA_429';
           break;
         }
-        console.error(`[Question Generation Error] Batch failed: ${err.message}`);
-        continue;
+        if (err instanceof LlmError && (err.status === 503 || err.code === 'LLM_UNAVAILABLE')) {
+          console.log('  [503 High Demand] Waiting 15s before retrying question generation...');
+          await new Promise((resolve) => setTimeout(resolve, 15000));
+          try {
+            const retryResult = await provider.generateJson({
+              promptId: 'generate-questions',
+              version: promptVersion,
+              system: SYSTEM_INSTRUCTION,
+              input: promptText,
+              schema: GenerationOutputSchema,
+            });
+            requestsMade++;
+            if (retryResult && retryResult.data) {
+              parsedOutput = retryResult.data;
+            } else if (retryResult && retryResult.rawText) {
+              parsedOutput = JSON.parse(retryResult.rawText);
+            }
+          } catch (retryErr) {
+            requestsMade++;
+            if (retryErr instanceof LlmError && retryErr.status === 429) {
+              await markExhausted();
+              exitReason = 'QUOTA_429';
+              break;
+            }
+            console.error(`[Question Generation Error] Retry failed: ${retryErr.message}`);
+            continue;
+          }
+        } else {
+          requestsMade++;
+          console.error(`[Question Generation Error] Batch failed: ${err.message}`);
+          continue;
+        }
       }
     }
 

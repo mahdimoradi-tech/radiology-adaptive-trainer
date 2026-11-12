@@ -1,39 +1,5 @@
 [
   {
-    "key": "384f71a9f000f3bf7ae050ccba02e684d0c2e7e786ca6e81925340767cab9264",
-    "promptId": "explain-pairs",
-    "version": "v1",
-    "lang": "fa",
-    "portable": true,
-    "input": {
-      "lang": "fa",
-      "trueClass": "covid19",
-      "userAnswer": "pneumonia"
-    },
-    "response": {
-      "whatToLookFor": ["کدورت‌های دوطرفه، محیطی و شیشه‌مات در نواحی تحتانی ریه"],
-      "whyConfused": "تداخل و شباهت ظاهری زیاد بین درگیری‌های ریوی ویروسی و پنومونی",
-      "tip": "تثبیت فوکال لوبار با برونکوگرام هوایی بیشتر شاخص پنومونی باکتریال است"
-    }
-  },
-  {
-    "key": "e6b56c6e28d2d7f34bd1c3e5e70c3ec76673c82d58b75d06301373b4a664e1b5",
-    "promptId": "explain-pairs",
-    "version": "v1",
-    "lang": "fa",
-    "portable": true,
-    "input": {
-      "lang": "fa",
-      "trueClass": "covid19",
-      "userAnswer": "normal"
-    },
-    "response": {
-      "whatToLookFor": ["مات‌شدگی‌های بسیار خفیف در حاشیه‌ها یا قاعده ریه‌ها"],
-      "whyConfused": "در مراحل اولیه بیماری کووید-۱۹ رادیوگرافی می‌تواند طبیعی باشد",
-      "tip": "رادیوگرافی نرمال به هیچ عنوان ردکننده عفونت فعال کووید-۱۹ نیست"
-    }
-  },
-  {
     "key": "02e4c36b9dc279d2c47f45ab56d6a5ff034d5c8f63b1f589773cb23efc10baa9",
     "promptId": "explain-pairs",
     "version": "v1",
@@ -45,26 +11,13 @@
       "userAnswer": "covid19"
     },
     "response": {
-      "whatToLookFor": ["تثبیت فوکال لوبار یا سگمنتال همراه با برونکوگرام هوایی"],
-      "whyConfused": "الگوی بینابینی پنومونی ویروسی شباهت زیادی به کووید-۱۹ دارد",
-      "tip": "به دنبال تثبیت‌های موضعی یک‌طرفه با برونکوگرام هوایی بگردید"
-    }
-  },
-  {
-    "key": "f0eff487aa1caa5126df60f63d309acdb7da32a36d5fca16d3cfee84a988a922",
-    "promptId": "explain-pairs",
-    "version": "v1",
-    "lang": "fa",
-    "portable": true,
-    "input": {
-      "lang": "fa",
-      "trueClass": "pneumonia",
-      "userAnswer": "normal"
-    },
-    "response": {
-      "whatToLookFor": ["کدورت‌های ظریف رتروکاردیال، پری‌هیلار یا پشت دیافراگم"],
-      "whyConfused": "پنومونی خفیف در مراحل اول می‌تواند با بافت طبیعی اشتباه شود",
-      "tip": "زوایای کوستوفرنیک و نواحی مخفی پشت قلب را به دقت وارسی کنید"
+      "whatToLookFor": [
+        "تثبیت فوکال لوبار یا سگمنتال",
+        "برونکوگرام هوایی اغلب یک‌طرفه",
+        "بررسی افیوژن پاراپنومونیک"
+      ],
+      "whyConfused": "کدورت‌های ریوی در هر دو بیماری می‌توانند شبیه به هم دیده شوند.",
+      "tip": "پنومونی باکتریال بیشتر با تثبیت فوکال لوبار همراه با برونکوگرام هوایی تظاهر می‌یابد."
     }
   },
   {
@@ -79,9 +32,97 @@
       "userAnswer": "covid19"
     },
     "response": {
-      "whatToLookFor": ["فیلدهای ریوی شفاف و عدم وجود کدورت‌های محیطی و قاعده‌ای"],
-      "whyConfused": "مارکینگ‌های برونکووواسکولار طبیعی ممکن است شبیه کدورت به نظر برسند",
-      "tip": "به تقارن عروق ریوی و شفافیت زاویه‌های قفسه سینه توجه فرمایید"
+      "whatToLookFor": [
+        "فیلدهای ریوی کاملاً شفاف",
+        "زوایای دنده‌ای دیافراگمی تیز",
+        "عدم وجود کدورت فوکال یا GGO"
+      ],
+      "whyConfused": "خطای تفکیک عروق ریوی یا آرتیفکت‌های تکنیکی با مات‌شدگی خفیف اولیه.",
+      "tip": "در رادیوگرافی طبیعی، فیلد ریوی شفاف و کانتور قلبی متناسب است."
+    }
+  },
+  {
+    "key": "384f71a9f000f3bf7ae050ccba02e684d0c2e7e786ca6e81925340767cab9264",
+    "promptId": "explain-pairs",
+    "version": "v1",
+    "lang": "fa",
+    "portable": true,
+    "input": {
+      "lang": "fa",
+      "trueClass": "covid19",
+      "userAnswer": "pneumonia"
+    },
+    "response": {
+      "whatToLookFor": [
+        "کدورت‌های دوطرفه، محیطی و شیشه‌مات",
+        "بررسی نواحی تحتانی ریه",
+        "تثبیت فوکال لوبار در پنومونی باکتریال"
+      ],
+      "whyConfused": "تداخل و شباهت ظاهری بین پنومونی ویروسی و کووید-۱۹ بسیار زیاد است.",
+      "tip": "تصویر قفسه سینه به تنهایی برای تفکیک قطعی کووید-۱۹ از پنومونی کافی نیست."
+    }
+  },
+  {
+    "key": "57738cc5afa1029f9d380fa7db1e25c82d1e6f2c06668f0aa6d152323381029b",
+    "promptId": "explain-pairs",
+    "version": "v1",
+    "lang": "en",
+    "portable": true,
+    "input": {
+      "lang": "en",
+      "trueClass": "pneumonia",
+      "userAnswer": "normal"
+    },
+    "response": {
+      "whatToLookFor": [
+        "Subtle retrocardiac opacities",
+        "Infiltrates hidden behind the diaphragmatic dome",
+        "Changes in perihilar and costophrenic angles"
+      ],
+      "whyConfused": "Mild pneumonia or early infection can be very subtle and overlooked in hidden anatomical areas.",
+      "tip": "Carefully inspect retrocardiac regions, perihilar areas, and behind the diaphragm for subtle infiltrates."
+    }
+  },
+  {
+    "key": "5d3653aafe3e72063e40862146a8a7403208b0cb9ab6ee2285c59e7326ef4d0c",
+    "promptId": "explain-pairs",
+    "version": "v1",
+    "lang": "en",
+    "portable": true,
+    "input": {
+      "lang": "en",
+      "trueClass": "normal",
+      "userAnswer": "covid19"
+    },
+    "response": {
+      "whatToLookFor": [
+        "Clear lung fields without focal opacities",
+        "Sharp and well-defined costophrenic angles",
+        "Normal age-appropriate cardiomediastinal contour"
+      ],
+      "whyConfused": "Technical factors, patient rotation, or poor inspiration can mimic interstitial opacities or ground-glass findings.",
+      "tip": "Ensure proper inspiration and patient positioning to avoid mistaking artifacts for COVID-19 GGOs."
+    }
+  },
+  {
+    "key": "6ad54e7f2efe8ac8b1892cfd86f975d179233120e471517ce06f2c4053cf51d6",
+    "promptId": "explain-pairs",
+    "version": "v1",
+    "lang": "en",
+    "portable": true,
+    "input": {
+      "lang": "en",
+      "trueClass": "covid19",
+      "userAnswer": "normal"
+    },
+    "response": {
+      "whatToLookFor": [
+        "Very subtle hazy opacities at the lung bases",
+        "Peripheral lung zone subtle changes",
+        "Early mild interstitial markings"
+      ],
+      "whyConfused": "In early stages of COVID-19 infection, the chest radiograph can appear completely normal.",
+      "tip": "A normal chest radiograph does not rule out active COVID-19 infection; clinical correlation is needed."
     }
   },
   {
@@ -96,9 +137,118 @@
       "userAnswer": "pneumonia"
     },
     "response": {
-      "whatToLookFor": ["زوایای تیز دنده‌ای-دیافراگمی و کانتور شفاف مدیاستن و قلب"],
-      "whyConfused": "دم ناکافی یا چرخش بیمار می‌تواند کدورت کاذب ریوی ایجاد کند",
-      "tip": "تکنیک دم عمیق و تقارن استخوان‌های ترقوه را پیش از قضاوت بررسی کنید"
+      "whatToLookFor": [
+        "شفافیت کامل فیلدهای ریوی",
+        "وضوح زوایای کوستوفرنیک",
+        "بررسی عدم وجود تثبیت فوکال"
+      ],
+      "whyConfused": "تکنیک تصویربرداری ضعیف یا سایه‌های پستان و دنده‌ها ممکن است با پنومونی اشتباه شوند.",
+      "tip": "رادیوگرافی نرمال بدون افیوژن پلور و هرگونه کدورت فوکال است."
+    }
+  },
+  {
+    "key": "ce95f3339602acad5eb31391a44a0186c430219a3a084191da56a2941ab5bc37",
+    "promptId": "explain-pairs",
+    "version": "v1",
+    "lang": "en",
+    "portable": true,
+    "input": {
+      "lang": "en",
+      "trueClass": "normal",
+      "userAnswer": "pneumonia"
+    },
+    "response": {
+      "whatToLookFor": [
+        "Clear, unobstructed lung parenchyma",
+        "No focal lobar or segmental consolidation",
+        "Absence of parapneumonic effusion"
+      ],
+      "whyConfused": "Poor technique, patient rotation, or under-inspiration can create artifactual densities resembling pneumonia.",
+      "tip": "Check for clear lung fields and sharp costophrenic angles to confirm a truly normal chest radiograph."
+    }
+  },
+  {
+    "key": "d51515c339a77b3020c7e00c33ec26bb72f17f7935226bdeef7bf73425bd78b8",
+    "promptId": "explain-pairs",
+    "version": "v1",
+    "lang": "en",
+    "portable": true,
+    "input": {
+      "lang": "en",
+      "trueClass": "covid19",
+      "userAnswer": "pneumonia"
+    },
+    "response": {
+      "whatToLookFor": [
+        "Bilateral and peripheral ground-glass opacities",
+        "Lower lung zone predominance",
+        "Absence of lobar focal consolidation with air bronchograms"
+      ],
+      "whyConfused": "Both COVID-19 and bacterial pneumonia present with parenchymal opacities and pulmonary infiltrates.",
+      "tip": "Look for bilateral peripheral distribution in COVID-19 versus focal lobar consolidation in bacterial pneumonia."
+    }
+  },
+  {
+    "key": "e46fe02e769a15c4405124a27ac82bc8dd1662695618f0d3be605c0911a9e7f7",
+    "promptId": "explain-pairs",
+    "version": "v1",
+    "lang": "en",
+    "portable": true,
+    "input": {
+      "lang": "en",
+      "trueClass": "pneumonia",
+      "userAnswer": "covid19"
+    },
+    "response": {
+      "whatToLookFor": [
+        "Focal lobar or segmental consolidation",
+        "Presence of air bronchograms",
+        "Unilateral involvement typical of bacterial pneumonia"
+      ],
+      "whyConfused": "Viral pneumonias and COVID-19 overlap significantly with patchy opacities.",
+      "tip": "Focal lobar consolidation with air bronchograms strongly favors bacterial pneumonia over COVID-19."
+    }
+  },
+  {
+    "key": "e6b56c6e28d2d7f34bd1c3e5e70c3ec76673c82d58b75d06301373b4a664e1b5",
+    "promptId": "explain-pairs",
+    "version": "v1",
+    "lang": "fa",
+    "portable": true,
+    "input": {
+      "lang": "fa",
+      "trueClass": "covid19",
+      "userAnswer": "normal"
+    },
+    "response": {
+      "whatToLookFor": [
+        "مات‌شدگی‌های بسیار خفیف در حاشیه‌ها",
+        "بررسی قاعده ریه‌ها",
+        "توجه به طبیعی بودن تصویر در مراحل ابتدایی"
+      ],
+      "whyConfused": "در مراحل ابتدایی درگیری با کووید-۱۹، تصویر قفسه سینه می‌تواند کاملاً طبیعی به نظر برسد.",
+      "tip": "رادیوگرافی نرمال به هیچ عنوان ردکننده عفونت فعال کووید-۱۹ نیست."
+    }
+  },
+  {
+    "key": "f0eff487aa1caa5126df60f63d309acdb7da32a36d5fca16d3cfee84a988a922",
+    "promptId": "explain-pairs",
+    "version": "v1",
+    "lang": "fa",
+    "portable": true,
+    "input": {
+      "lang": "fa",
+      "trueClass": "pneumonia",
+      "userAnswer": "normal"
+    },
+    "response": {
+      "whatToLookFor": [
+        "بررسی مناطق پشت قلب و رتوکاردیال",
+        "بررسی نواحی ناف ریه و پری‌هیلار",
+        "دقت به پشت تحدب دیافراگم"
+      ],
+      "whyConfused": "پنومونی خفیف یا مراحل اولیه عفونت می‌تواند بسیار ظریف و کم‌واضح باشد.",
+      "tip": "چرخش بیمار یا دم ناکافی ممکن است کدورت‌های کاذب ایجاد کند یا یافته‌ها را پنهان سازد."
     }
   }
 ]
