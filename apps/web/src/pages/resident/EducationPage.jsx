@@ -71,7 +71,7 @@ export function EducationPage() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-slate-900">{t('education.title')}</h1>
-        <p className="text-sm text-slate-500 mt-1">{t('education.subtitle')}</p>
+        <p className="text-sm text-slate-600 mt-1">{t('education.subtitle')}</p>
       </div>
 
       {/* Section (a): Purpose & Educational Disclaimer */}
@@ -85,7 +85,9 @@ export function EducationPage() {
           <h2 id="adaptive-cycle-heading" className="text-lg font-bold text-slate-900">
             {t('education.cycleTitle')}
           </h2>
-          <p className="text-xs text-slate-500 mt-0.5">{t('education.cycleSubtitle')}</p>
+          <p className="text-xs text-slate-600 font-medium mt-0.5">
+            {t('education.cycleSubtitle')}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -101,7 +103,7 @@ export function EducationPage() {
                 <CardTitle className="text-base">{step.title}</CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <p className="text-xs text-slate-600 leading-relaxed">{step.desc}</p>
+                <p className="text-sm text-slate-700 leading-7">{step.desc}</p>
               </CardContent>
             </Card>
           ))}
@@ -114,7 +116,9 @@ export function EducationPage() {
           <h2 id="metrics-guide-heading" className="text-lg font-bold text-slate-900">
             {t('education.metricsTitle')}
           </h2>
-          <p className="text-xs text-slate-500 mt-0.5">{t('education.metricsSubtitle')}</p>
+          <p className="text-xs text-slate-600 font-medium mt-0.5">
+            {t('education.metricsSubtitle')}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -126,7 +130,7 @@ export function EducationPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <p className="text-xs text-slate-700 leading-relaxed">{t('education.fpDesc')}</p>
+              <p className="text-sm text-slate-700 leading-7">{t('education.fpDesc')}</p>
             </CardContent>
           </Card>
 
@@ -138,7 +142,7 @@ export function EducationPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <p className="text-xs text-slate-700 leading-relaxed">{t('education.fnDesc')}</p>
+              <p className="text-sm text-slate-700 leading-7">{t('education.fnDesc')}</p>
             </CardContent>
           </Card>
         </div>
@@ -150,7 +154,9 @@ export function EducationPage() {
           <h2 id="radiological-classes-heading" className="text-lg font-bold text-slate-900">
             {t('education.classesTitle')}
           </h2>
-          <p className="text-xs text-slate-500 mt-0.5">{t('education.classesSubtitle')}</p>
+          <p className="text-xs text-slate-600 font-medium mt-0.5">
+            {t('education.classesSubtitle')}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -163,12 +169,12 @@ export function EducationPage() {
                 </div>
               </CardHeader>
               <CardContent className="space-y-3">
-                <p className="text-xs text-slate-600 leading-relaxed text-justify">{item.desc}</p>
+                <p className="text-sm text-slate-700 leading-7 text-justify">{item.desc}</p>
                 <div className="pt-4 border-t border-slate-200 flex items-center justify-between text-xs text-slate-600">
                   <span>{t('education.kbSourceLabel')}</span>
                   <code
                     dir="ltr"
-                    className="font-mono text-[10px] text-slate-500 bg-slate-100 px-1 py-0.5 rounded"
+                    className="font-mono text-xs text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded"
                   >
                     {item.source}
                   </code>
