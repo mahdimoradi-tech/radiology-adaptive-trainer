@@ -30,6 +30,10 @@ export function errorHandler(err, req, res, _next) {
     statusCode = 400;
     code = 'VALIDATION_ERROR';
     message = 'Malformed JSON in request body';
+  } else if (err?.name === 'CastError') {
+    statusCode = 404;
+    code = 'NOT_FOUND';
+    message = 'Resource not found';
   } else {
     log.error({ err }, 'Unhandled server error');
   }
