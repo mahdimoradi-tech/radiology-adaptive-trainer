@@ -30,7 +30,7 @@ export function Input({
       disabled={disabled}
       aria-invalid={Boolean(error)}
       aria-describedby={error && id ? `${id}-error` : undefined}
-      className={`w-full px-3 py-2 text-sm bg-white border rounded-lg shadow-xs transition-colors focus:outline-none focus:ring-3 disabled:bg-slate-50 disabled:text-slate-500 disabled:cursor-not-allowed text-start ${borderState} ${className}`}
+      className={`w-full px-3 py-2 h-10 min-h-[40px] text-sm bg-white border rounded-lg shadow-xs transition-colors focus:outline-none focus:ring-2 disabled:bg-slate-50 disabled:text-slate-500 disabled:cursor-not-allowed text-start ${borderState} ${className}`}
       {...rest}
     />
   );
