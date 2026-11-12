@@ -119,7 +119,7 @@ export function LoginPage() {
           <span>{t('auth.noAccount')}</span>
           <Link
             to="/register"
-            className="text-sky-600 hover:text-sky-700 font-medium hover:underline"
+            className="text-sky-700 hover:text-sky-800 font-semibold hover:underline"
           >
             {t('auth.register')}
           </Link>

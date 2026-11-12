@@ -10,7 +10,7 @@ export function ForbiddenPage() {
 
   return (
     <div className="min-h-[60vh] flex flex-col items-center justify-center p-6 text-center">
-      <div className="w-16 h-16 mb-4 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-2xl font-bold">
+      <div className="w-16 h-16 mb-4 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center text-2xl font-bold">
         !
       </div>
       <h1 className="text-2xl font-bold text-slate-900 mb-2">{t('common.forbidden')}</h1>
