@@ -86,8 +86,8 @@ describe('InstructorCatalogPage', () => {
       screen.getByRole('heading', { level: 1, name: 'پایش کاتالوگ تصاویر و درجه سختی' }),
     ).toBeInTheDocument();
 
-    // ADR 0005 Technical Note
-    expect(screen.getByText('یادداشت فنی سوگیری داده و منابع (ADR 0005)')).toBeInTheDocument();
+    // Technical Note on Data Bias
+    expect(screen.getByText('یادداشت فنی سوگیری داده و منابع')).toBeInTheDocument();
     expect(
       screen.getByText(/تمامی ۱۷۷ تصویر کووید-۱۹ از مجموعه‌های بزرگسالان/),
     ).toBeInTheDocument();

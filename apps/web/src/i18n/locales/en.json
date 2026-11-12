@@ -117,7 +117,7 @@
     "catalog": {
       "title": "Image Catalog & Difficulty Monitoring",
       "subtitle": "Statistical distribution analysis, data sources, and model difficulty tiers",
-      "biasAlertTitle": "Technical Note on Data and Source Confounding (ADR 0005)",
+      "biasAlertTitle": "Technical Note on Data and Source Confounding",
       "biasAlertText": "All 177 COVID-19 radiographs originate from adult cohorts (Cohen and Figure1), while pneumonia and normal images originate from pediatric cohorts (Kermany). Consequently, computed difficulty partly reflects demographic and imaging equipment domain shift. A quota cap of up to 500 images per class is enforced to prevent bucket starvation.",
       "statsTitle": "Catalog Statistical Distribution",
       "totalImages": "Total Catalog Images",
