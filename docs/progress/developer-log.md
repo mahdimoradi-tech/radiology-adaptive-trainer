@@ -8,11 +8,20 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T14: Bug hunt and security verification (branch `chore/T14-qa-security`, in-progress).
-  - Started T14 execution:
-    - Route inventory and security checklist (S01-S26) audit across API routes, middleware, and auth flows.
-    - Automated regression test suite under `apps/api/src/__tests__/security/`.
-    - Manual test plan template prepared for browser run (M01-M38).
+- T14: Bug hunt and security verification (branch `chore/T14-qa-security`, in-review, PR #25).
+  - Completed Part B execution (zero application code changes):
+    - Authored API route inventory `docs/qa/ROUTE-INVENTORY.md` covering all 31 Express 5 routes.
+    - Executed 26-point security audit (`docs/qa/SECURITY-REPORT.md`): 23 PASS, 3 PARTIAL (S06, S16, S22), 0 FAIL.
+    - Authored 43 new automated security regression tests across 5 test suites under `apps/api/src/__tests__/security/`:
+      - `auth.security.test.js` (12 tests)
+      - `authz.security.test.js` (11 tests)
+      - `input.security.test.js` (10 tests)
+      - `headers.security.test.js` (4 tests)
+      - `lifecycle.security.test.js` (6 tests)
+    - Logged all findings in `docs/qa/BUG-LOG.md` (BUG-001 through BUG-004) with reproduction commands and proposed severities.
+    - Initialized Part A manual browser test run matrix in `docs/qa/manual-run-2026-11-12.md` (M01-M38).
+    - Monorepo quality gates verified: `npm run lint` clean, `npm test` passed (771/771 tests across 94 files), `npm run build` clean.
+    - Opened PR #25: `chore(qa): security verification report, route inventory, and regression tests (T14)`.
 
 ## Done (newest first)
 
