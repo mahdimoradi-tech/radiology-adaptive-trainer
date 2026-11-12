@@ -24,7 +24,7 @@ Session start: `/sync`, then `/start-task <Txx>`. Notes go to `docs/progress/dev
 | T11 | merged | chore/T11-hardening-release | #21 | repo root, `apps/api`, `apps/web`, `docs/` |
 | T12 | merged | docs/T12-solo-docs-cleanup | #23 | `docs/`, `.agents/`, `.github/` |
 | T13 | merged | chore/T13-data-seeds | #24 | `apps/api/seed/`, `data/`, `docs/` |
-| T14 | in-review | chore/T14-qa-security | #25 | `apps/api/`, `apps/web/`, `docs/qa/` |
+| T14 | merged | chore/T14-qa-security | #25, #26 | `apps/api/`, `apps/web/`, `docs/qa/` |
 | T15 | todo | style/T15-ui-polish | - | `apps/web/` |
 | T16a | todo | docs/T16a-srs | - | `docs/` |
 | T16b | todo | docs/T16b-sdd | - | `docs/` |
