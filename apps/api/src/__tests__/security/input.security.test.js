@@ -158,6 +158,15 @@ describe('Input Validation & Injection Resistance Regression Tests (S07, S15, S1
       expect(res.body.error.code).toBe('VALIDATION_ERROR');
       expect(res.body.error.message).toContain('Payload too large');
     });
+
+    it('returns 404 NOT_FOUND instead of 500 when requesting a resource with a malformed ObjectId', async () => {
+      const res = await request(app)
+        .get('/api/sessions/invalid-not-an-objectid')
+        .set('Cookie', residentCookie);
+
+      expect(res.status).toBe(404);
+      expect(res.body.error.code).toBe('NOT_FOUND');
+    });
   });
 
   describe('S17 - Mass Assignment Protection', () => {
