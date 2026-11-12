@@ -30,10 +30,7 @@
     "correctIndex": 0,
     "rationale": "تصویر فاقد یافته پاتولوژیک است و فیلدهای ریوی شفاف دیده می‌شوند.",
     "kbRef": null,
-    "tags": [
-      "تفسیر_پایه",
-      "یافته_ریوی"
-    ],
+    "tags": ["تفسیر_پایه", "یافته_ریوی"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -63,9 +60,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -103,10 +98,7 @@
     "correctIndex": 0,
     "rationale": "در موارد نرمال، ضایعات بسیار ظریف در مناطق پشت قلب یا پری‌هیلار ممکن است نادیده گرفته شوند.",
     "kbRef": "pneumonia-vs-normal",
-    "tags": [
-      "افتراقی",
-      "پنومونی_پنهان"
-    ],
+    "tags": ["افتراقی", "پنومونی_پنهان"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -136,9 +128,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -176,10 +166,7 @@
     "correctIndex": 0,
     "rationale": "در مراحل اولیه درگیری با کووید نوزده تصویر رادیوگرافی می‌تواند نرمال باشد.",
     "kbRef": "covid19-vs-normal",
-    "tags": [
-      "افتراقی",
-      "کووید"
-    ],
+    "tags": ["افتراقی", "کووید"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -209,9 +196,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -249,11 +234,7 @@
     "correctIndex": 0,
     "rationale": "درگیری ریوی به شکل انتشاریافته و diffuse در تمام زون های ریه گسترش یافته است.",
     "kbRef": "covid19",
-    "tags": [
-      "CXR",
-      "distribution",
-      "COVID-19"
-    ],
+    "tags": ["CXR", "distribution", "COVID-19"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -283,18 +264,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass",
-          "interstitial"
-        ],
+        "patterns": ["opacity", "ground_glass", "interstitial"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -329,10 +302,7 @@
     "correctIndex": 0,
     "rationale": "ریه‌ها از نظر شفافیت طبیعی بوده و فاقد هرگونه کدورت یا افیوژن هستند.",
     "kbRef": null,
-    "tags": [
-      "تفسیر_پایه",
-      "نرمال"
-    ],
+    "tags": ["تفسیر_پایه", "نرمال"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -362,9 +332,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -402,9 +370,7 @@
     "correctIndex": 0,
     "rationale": "کدورت ریوی یافته اصلی است.",
     "kbRef": null,
-    "tags": [
-      "finding"
-    ],
+    "tags": ["finding"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -434,15 +400,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity"
-        ],
+        "patterns": ["opacity"],
         "distribution": "central_perihilar",
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -477,10 +438,7 @@
     "correctIndex": 0,
     "rationale": "مشاهده کدورت‌های ریوی دوطرفه در این نما بارزترین یافته پاتولوژیک است.",
     "kbRef": null,
-    "tags": [
-      "finding",
-      "opacity"
-    ],
+    "tags": ["finding", "opacity"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -510,15 +468,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity"
-        ],
+        "patterns": ["opacity"],
         "distribution": null,
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -553,11 +506,7 @@
     "correctIndex": 0,
     "rationale": "انتشار ضایعات به صورت منتشر در پارانشیم ریه دیده می‌شود.",
     "kbRef": "pneumonia",
-    "tags": [
-      "distribution",
-      "pneumonia",
-      "cxr"
-    ],
+    "tags": ["distribution", "pneumonia", "cxr"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -587,15 +536,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity"
-        ],
+        "patterns": ["opacity"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -630,10 +574,7 @@
     "correctIndex": 0,
     "rationale": "کدورت‌های شیشه‌مات دوطرفه در پارانشیم ریه دیده می‌شود.",
     "kbRef": "covid19",
-    "tags": [
-      "finding",
-      "opacity"
-    ],
+    "tags": ["finding", "opacity"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -663,17 +604,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -708,11 +642,7 @@
     "correctIndex": 1,
     "rationale": "کدورت‌های متعدد در سطح ریه‌های بیمار قابل مشاهده است.",
     "kbRef": "pneumonia",
-    "tags": [
-      "finding",
-      "pneumonia",
-      "cxr"
-    ],
+    "tags": ["finding", "pneumonia", "cxr"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -742,15 +672,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity"
-        ],
+        "patterns": ["opacity"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -785,10 +710,7 @@
     "correctIndex": 0,
     "rationale": "توزیع ضایعات به صورت منتشر در سرتاسر ریه‌ها است.",
     "kbRef": "covid19",
-    "tags": [
-      "distribution",
-      "diffuse"
-    ],
+    "tags": ["distribution", "diffuse"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -818,17 +740,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -863,10 +778,7 @@
     "correctIndex": 0,
     "rationale": "توزیع ضایعات به صورت منتشر در سرتاسر فیلدهای ریوی دوطرفه دیده می‌شود.",
     "kbRef": "covid19",
-    "tags": [
-      "distribution",
-      "diffuse"
-    ],
+    "tags": ["distribution", "diffuse"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -896,18 +808,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass",
-          "consolidation"
-        ],
+        "patterns": ["opacity", "ground_glass", "consolidation"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -942,10 +846,7 @@
     "correctIndex": 0,
     "rationale": "ضایعات گراند گلس و کدورت ها تمایل بارزی به توزیع محیطی دارند.",
     "kbRef": "covid19",
-    "tags": [
-      "CXR",
-      "distribution"
-    ],
+    "tags": ["CXR", "distribution"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -975,16 +876,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "peripheral",
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -1019,9 +914,7 @@
     "correctIndex": 0,
     "rationale": "توزیع ضایعه به صورت فوکال و لوبار است.",
     "kbRef": null,
-    "tags": [
-      "distribution"
-    ],
+    "tags": ["distribution"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -1051,16 +944,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "consolidation"
-        ],
+        "patterns": ["opacity", "consolidation"],
         "distribution": "focal_lobar",
         "laterality": "right",
-        "zones": [
-          "upper",
-          "middle"
-        ]
+        "zones": ["upper", "middle"]
       }
     }
   },
@@ -1095,11 +982,7 @@
     "correctIndex": 0,
     "rationale": "کدورت‌های ریوی عمدتاً در نواحی مرکزی و اطراف ناف ریه قرار گرفته‌اند.",
     "kbRef": "pneumonia",
-    "tags": [
-      "distribution",
-      "pneumonia",
-      "cxr"
-    ],
+    "tags": ["distribution", "pneumonia", "cxr"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -1129,15 +1012,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity"
-        ],
+        "patterns": ["opacity"],
         "distribution": "central_perihilar",
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -1172,10 +1050,7 @@
     "correctIndex": 0,
     "rationale": "توزیع ضایعات بیشتر به صورت حاشیه ای و محیطی است.",
     "kbRef": "covid19",
-    "tags": [
-      "CXR",
-      "distribution"
-    ],
+    "tags": ["CXR", "distribution"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -1205,15 +1080,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "peripheral",
         "laterality": "bilateral",
-        "zones": [
-          "middle"
-        ]
+        "zones": ["middle"]
       }
     }
   },
@@ -1248,10 +1118,7 @@
     "correctIndex": 0,
     "rationale": "کدورت‌ها و نواحی تثبیت بافتی همراه با شیشه‌مات دیده می‌شوند.",
     "kbRef": "covid19",
-    "tags": [
-      "finding",
-      "opacity"
-    ],
+    "tags": ["finding", "opacity"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -1281,18 +1148,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "consolidation",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "consolidation", "ground_glass"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -1327,11 +1186,7 @@
     "correctIndex": 0,
     "rationale": "وجود کدورت های شیشه مات و بینابینی دوطرفه از یافته های بارز این تصویر است.",
     "kbRef": "covid19",
-    "tags": [
-      "CXR",
-      "finding",
-      "COVID-19"
-    ],
+    "tags": ["CXR", "finding", "COVID-19"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -1361,18 +1216,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass",
-          "interstitial"
-        ],
+        "patterns": ["opacity", "ground_glass", "interstitial"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -1407,10 +1254,7 @@
     "correctIndex": 0,
     "rationale": "درگیری به صورت منتشر در بخش‌های فوقانی، میانی و تحتانی ریه دیده می‌شود.",
     "kbRef": "covid19",
-    "tags": [
-      "distribution",
-      "diffuse"
-    ],
+    "tags": ["distribution", "diffuse"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -1440,17 +1284,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -1485,10 +1322,7 @@
     "correctIndex": 0,
     "rationale": "توزیع کدورت‌ها به صورت انتشار یافته است.",
     "kbRef": null,
-    "tags": [
-      "distribution",
-      "pneumonia"
-    ],
+    "tags": ["distribution", "pneumonia"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -1518,16 +1352,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "consolidation"
-        ],
+        "patterns": ["opacity", "consolidation"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -1562,11 +1390,7 @@
     "correctIndex": 0,
     "rationale": "ریه‌ها فاقد هرگونه کدورت یا یافته پاتولوژیک هستند.",
     "kbRef": "normal",
-    "tags": [
-      "finding",
-      "normal",
-      "cxr"
-    ],
+    "tags": ["finding", "normal", "cxr"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -1596,9 +1420,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -1636,10 +1458,7 @@
     "correctIndex": 0,
     "rationale": "ضایعات به طور منتشر در تمام نواحی ریه گسترش یافته‌اند.",
     "kbRef": "covid19",
-    "tags": [
-      "distribution",
-      "diffuse"
-    ],
+    "tags": ["distribution", "diffuse"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -1669,18 +1488,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "consolidation",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "consolidation", "ground_glass"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -1715,10 +1526,7 @@
     "correctIndex": 0,
     "rationale": "کدورت‌های شیشه‌مات مشخصه اصلی این تصویر است.",
     "kbRef": "covid19",
-    "tags": [
-      "finding",
-      "opacity"
-    ],
+    "tags": ["finding", "opacity"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -1748,16 +1556,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "peripheral",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "lower"
-        ]
+        "zones": ["upper", "lower"]
       }
     }
   },
@@ -1792,10 +1594,7 @@
     "correctIndex": 0,
     "rationale": "تصویر با حضور کدورت‌های پارانشیمی مشخص می‌شود.",
     "kbRef": null,
-    "tags": [
-      "یافته",
-      "کدورت"
-    ],
+    "tags": ["یافته", "کدورت"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -1825,14 +1624,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity"
-        ],
+        "patterns": ["opacity"],
         "distribution": "central_perihilar",
         "laterality": "bilateral",
-        "zones": [
-          "middle"
-        ]
+        "zones": ["middle"]
       }
     }
   },
@@ -1867,10 +1662,7 @@
     "correctIndex": 0,
     "rationale": "کدورت‌های شیشه‌مات دوطرفه مشخصه اصلی این تصویر است.",
     "kbRef": "covid19",
-    "tags": [
-      "finding",
-      "opacity"
-    ],
+    "tags": ["finding", "opacity"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -1900,17 +1692,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -1945,10 +1730,7 @@
     "correctIndex": 0,
     "rationale": "انتشار ضایعات به صورت دیفیوز و سراسری دیده می شود.",
     "kbRef": "covid19",
-    "tags": [
-      "CXR",
-      "distribution"
-    ],
+    "tags": ["CXR", "distribution"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -1978,17 +1760,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -2023,10 +1798,7 @@
     "correctIndex": 0,
     "rationale": "تصویر با تثبیت و کنسولیداسیون ریوی مشخص می شود.",
     "kbRef": "pneumonia",
-    "tags": [
-      "CXR",
-      "finding"
-    ],
+    "tags": ["CXR", "finding"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -2056,17 +1828,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "consolidation"
-        ],
+        "patterns": ["opacity", "consolidation"],
         "distribution": null,
         "laterality": "left",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -2101,11 +1866,7 @@
     "correctIndex": 0,
     "rationale": "فیلدهای ریوی فاقد کدورت بوده و نرمال هستند.",
     "kbRef": "normal",
-    "tags": [
-      "finding",
-      "normal",
-      "cxr"
-    ],
+    "tags": ["finding", "normal", "cxr"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -2135,9 +1896,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -2175,10 +1934,7 @@
     "correctIndex": 0,
     "rationale": "در موارد خفیف پنومونی، بررسی دقیق مناطق پشت قلب و زوایای دنده‌ای دیافراگمی اهمیت دارد.",
     "kbRef": "pneumonia-vs-normal",
-    "tags": [
-      "CXR",
-      "differential"
-    ],
+    "tags": ["CXR", "differential"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -2208,9 +1964,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -2248,9 +2002,7 @@
     "correctIndex": 0,
     "rationale": "عفونت‌های خفیف ممکن است در مناطق رتوکاردیال پنهان بمانند.",
     "kbRef": "pneumonia-vs-normal",
-    "tags": [
-      "differential"
-    ],
+    "tags": ["differential"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -2280,15 +2032,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity"
-        ],
+        "patterns": ["opacity"],
         "distribution": null,
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -2323,10 +2070,7 @@
     "correctIndex": 0,
     "rationale": "کدورت‌های پارانشیمی در تصویر قابل مشاهده است.",
     "kbRef": null,
-    "tags": [
-      "finding",
-      "pneumonia"
-    ],
+    "tags": ["finding", "pneumonia"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -2356,15 +2100,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity"
-        ],
+        "patterns": ["opacity"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle"
-        ]
+        "zones": ["upper", "middle"]
       }
     }
   },
@@ -2399,10 +2138,7 @@
     "correctIndex": 0,
     "rationale": "تصویر فاقد شواهد عفونت یا ضایعه است.",
     "kbRef": null,
-    "tags": [
-      "finding",
-      "normal"
-    ],
+    "tags": ["finding", "normal"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -2432,9 +2168,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -2472,10 +2206,7 @@
     "correctIndex": 0,
     "rationale": "درگیری پارانشیمی به شکل منتشر در تمام مناطق ریه دیده می‌شود.",
     "kbRef": null,
-    "tags": [
-      "توزیع",
-      "منتشر"
-    ],
+    "tags": ["توزیع", "منتشر"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -2505,17 +2236,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "consolidation"
-        ],
+        "patterns": ["opacity", "consolidation"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -2550,10 +2274,7 @@
     "correctIndex": 0,
     "rationale": "رادیوگرافی نرمال در مراحل ابتدایی عفونت فعال را رد نمی‌کند.",
     "kbRef": "pneumonia-vs-normal",
-    "tags": [
-      "افتراقی",
-      "تفسیر"
-    ],
+    "tags": ["افتراقی", "تفسیر"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -2583,9 +2304,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -2623,10 +2342,7 @@
     "correctIndex": 0,
     "rationale": "وجود کدورت و تثبیت آلوئولار مشخصه این تصویر است.",
     "kbRef": null,
-    "tags": [
-      "یافته",
-      "تثبیت_ریوی"
-    ],
+    "tags": ["یافته", "تثبیت_ریوی"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -2656,17 +2372,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "consolidation"
-        ],
+        "patterns": ["opacity", "consolidation"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -2701,9 +2410,7 @@
     "correctIndex": 0,
     "rationale": "ترکیبی از کدورت و نمای شیشه‌مات مشخصه این گرافی است.",
     "kbRef": null,
-    "tags": [
-      "finding"
-    ],
+    "tags": ["finding"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -2733,17 +2440,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -2778,9 +2478,7 @@
     "correctIndex": 0,
     "rationale": "کدورت‌های ریوی دوطرفه در این تصویر قابل مشاهده است.",
     "kbRef": null,
-    "tags": [
-      "finding"
-    ],
+    "tags": ["finding"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -2810,15 +2508,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity"
-        ],
+        "patterns": ["opacity"],
         "distribution": null,
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -2853,11 +2546,7 @@
     "correctIndex": 0,
     "rationale": "فیلدهای ریوی کاملا شفاف و فاقد هرگونه ضایعه یا کدورت پاتولوژیک هستند.",
     "kbRef": "normal",
-    "tags": [
-      "CXR",
-      "finding",
-      "normal"
-    ],
+    "tags": ["CXR", "finding", "normal"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -2887,9 +2576,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -2927,9 +2614,7 @@
     "correctIndex": 0,
     "rationale": "مراحل اولیه عفونت ممکن است تظاهر رادیوگرافیک نداشته باشد.",
     "kbRef": "covid19-vs-normal",
-    "tags": [
-      "differential"
-    ],
+    "tags": ["differential"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -2959,9 +2644,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -2999,10 +2682,7 @@
     "correctIndex": 0,
     "rationale": "درگیری‌ها بیشتر در نواحی مرکزی و پری‌هیلار دیده می‌شوند.",
     "kbRef": null,
-    "tags": [
-      "توزیع",
-      "مرکزی"
-    ],
+    "tags": ["توزیع", "مرکزی"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -3032,16 +2712,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "interstitial"
-        ],
+        "patterns": ["opacity", "interstitial"],
         "distribution": "central_perihilar",
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -3076,10 +2750,7 @@
     "correctIndex": 0,
     "rationale": "توزیع ضایعات به صورت منتشر در سرتاسر ریه مشاهده می‌شود.",
     "kbRef": "covid19",
-    "tags": [
-      "distribution",
-      "diffuse"
-    ],
+    "tags": ["distribution", "diffuse"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -3109,17 +2780,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -3154,10 +2818,7 @@
     "correctIndex": 0,
     "rationale": "تصویر نشان‌دهنده کانسولیدیشن و کدورت آلوئولار است.",
     "kbRef": null,
-    "tags": [
-      "finding",
-      "pneumonia"
-    ],
+    "tags": ["finding", "pneumonia"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -3187,17 +2848,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "consolidation"
-        ],
+        "patterns": ["opacity", "consolidation"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -3232,10 +2886,7 @@
     "correctIndex": 0,
     "rationale": "ضایعات رتوکاردیال ممکن است در نگاه اول پنهان بمانند و نیازمند دقتند.",
     "kbRef": "pneumonia-vs-normal",
-    "tags": [
-      "افتراقی",
-      "نکات_کلیدی"
-    ],
+    "tags": ["افتراقی", "نکات_کلیدی"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -3265,9 +2916,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -3305,10 +2954,7 @@
     "correctIndex": 0,
     "rationale": "مشاهده کدورت های شیشه مات بدون تثبیت عمده از یافته های این تصویر است.",
     "kbRef": "covid19",
-    "tags": [
-      "CXR",
-      "finding"
-    ],
+    "tags": ["CXR", "finding"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -3338,16 +2984,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "peripheral",
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -3382,10 +3022,7 @@
     "correctIndex": 0,
     "rationale": "تصویر رادیوگرافی هیچ‌گونه شواهدی از درگیری پارانشیمی نشان نمی‌دهد.",
     "kbRef": null,
-    "tags": [
-      "یافته",
-      "ریه_شفاف"
-    ],
+    "tags": ["یافته", "ریه_شفاف"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -3415,9 +3052,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -3455,10 +3090,7 @@
     "correctIndex": 0,
     "rationale": "الگوی بینابینی همراه با کدورت‌های خفیف مشخصه اصلی است.",
     "kbRef": null,
-    "tags": [
-      "یافته",
-      "بینابینی"
-    ],
+    "tags": ["یافته", "بینابینی"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -3488,16 +3120,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "interstitial"
-        ],
+        "patterns": ["opacity", "interstitial"],
         "distribution": "central_perihilar",
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -3532,10 +3158,7 @@
     "correctIndex": 0,
     "rationale": "نمای شایع شامل تیرگی‌ها و کدورت‌های شیشه‌مات دوطرفه است.",
     "kbRef": "covid19",
-    "tags": [
-      "finding",
-      "opacity"
-    ],
+    "tags": ["finding", "opacity"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -3565,16 +3188,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "peripheral",
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -3609,11 +3226,7 @@
     "correctIndex": 0,
     "rationale": "ریه‌ها کاملاً شفاف بوده و بدون یافته غیرطبیعی هستند.",
     "kbRef": "normal",
-    "tags": [
-      "finding",
-      "normal",
-      "cxr"
-    ],
+    "tags": ["finding", "normal", "cxr"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -3643,9 +3256,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -3683,10 +3294,7 @@
     "correctIndex": 0,
     "rationale": "تصویر رادیوگرافی نرمال و بدون یافته پاتولوژیک است.",
     "kbRef": null,
-    "tags": [
-      "finding",
-      "normal"
-    ],
+    "tags": ["finding", "normal"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -3716,9 +3324,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -3756,10 +3362,7 @@
     "correctIndex": 0,
     "rationale": "در این تصویر کدورت‌های منتشر و تثبیت بافتی شیشه‌مات به چشم می‌خورد که یافته اصلی است.",
     "kbRef": "covid19",
-    "tags": [
-      "finding",
-      "opacity"
-    ],
+    "tags": ["finding", "opacity"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -3789,18 +3392,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass",
-          "consolidation"
-        ],
+        "patterns": ["opacity", "ground_glass", "consolidation"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -3835,10 +3430,7 @@
     "correctIndex": 0,
     "rationale": "پراکندگی ضایعات به صورت منتشر است.",
     "kbRef": null,
-    "tags": [
-      "distribution",
-      "pneumonia"
-    ],
+    "tags": ["distribution", "pneumonia"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -3868,15 +3460,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity"
-        ],
+        "patterns": ["opacity"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle"
-        ]
+        "zones": ["upper", "middle"]
       }
     }
   },
@@ -3911,10 +3498,7 @@
     "correctIndex": 0,
     "rationale": "فیلدهای ریوی شفاف و زوایای کوستوفرنیک کاملا باز و طبیعی هستند.",
     "kbRef": "normal",
-    "tags": [
-      "CXR",
-      "finding"
-    ],
+    "tags": ["CXR", "finding"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -3944,9 +3528,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -3984,10 +3566,7 @@
     "correctIndex": 0,
     "rationale": "یافته‌ها بیشتر در نواحی نافی و مرکزی ریه‌ها متمرکز شده‌اند.",
     "kbRef": null,
-    "tags": [
-      "توزیع",
-      "پری_هیلار"
-    ],
+    "tags": ["توزیع", "پری_هیلار"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -4017,14 +3596,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity"
-        ],
+        "patterns": ["opacity"],
         "distribution": "central_perihilar",
         "laterality": "bilateral",
-        "zones": [
-          "middle"
-        ]
+        "zones": ["middle"]
       }
     }
   },
@@ -4059,10 +3634,7 @@
     "correctIndex": 0,
     "rationale": "ضایعات تمایل زیادی به قرارگیری در حاشیه‌ها و بخش‌های محیطی ریه دارند.",
     "kbRef": "covid19",
-    "tags": [
-      "distribution",
-      "peripheral"
-    ],
+    "tags": ["distribution", "peripheral"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -4092,16 +3664,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "peripheral",
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -4136,9 +3702,7 @@
     "correctIndex": 0,
     "rationale": "تثبیت و کدورت فوکال لوبار بارزترین یافته است.",
     "kbRef": null,
-    "tags": [
-      "finding"
-    ],
+    "tags": ["finding"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -4168,15 +3732,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "consolidation"
-        ],
+        "patterns": ["opacity", "consolidation"],
         "distribution": "focal_lobar",
         "laterality": "right",
-        "zones": [
-          "middle"
-        ]
+        "zones": ["middle"]
       }
     }
   },
@@ -4211,10 +3770,7 @@
     "correctIndex": 0,
     "rationale": "پنومونی خفیف در مراحل اولیه می‌تواند بسیار ظریف و غیرقابل افتراق باشد.",
     "kbRef": "pneumonia-vs-normal",
-    "tags": [
-      "افتراقی",
-      "محدودیت_CXR"
-    ],
+    "tags": ["افتراقی", "محدودیت_CXR"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -4244,9 +3800,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -4284,9 +3838,7 @@
     "correctIndex": 0,
     "rationale": "کدورت‌های ریوی یافته غالب است.",
     "kbRef": null,
-    "tags": [
-      "finding"
-    ],
+    "tags": ["finding"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -4316,15 +3868,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity"
-        ],
+        "patterns": ["opacity"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -4359,10 +3906,7 @@
     "correctIndex": 0,
     "rationale": "رادیوگرافی طبیعی است و زوایای کوستوفرنیک تیز و باز هستند.",
     "kbRef": null,
-    "tags": [
-      "یافته",
-      "نرمال"
-    ],
+    "tags": ["یافته", "نرمال"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -4392,9 +3936,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -4432,11 +3974,7 @@
     "correctIndex": 0,
     "rationale": "تصویر رادیوگرافی دارای فیلدهای ریوی کاملاً شفاف و عاری از هرگونه کدورت پاتولوژیک است.",
     "kbRef": "normal",
-    "tags": [
-      "finding",
-      "normal",
-      "cxr"
-    ],
+    "tags": ["finding", "normal", "cxr"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -4466,9 +4004,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -4506,10 +4042,7 @@
     "correctIndex": 0,
     "rationale": "کدورت های گسترده شیشه مات از مشخصه های اصلی در این نوع تصاویر است.",
     "kbRef": "covid19",
-    "tags": [
-      "CXR",
-      "finding"
-    ],
+    "tags": ["CXR", "finding"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -4539,17 +4072,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -4584,10 +4110,7 @@
     "correctIndex": 0,
     "rationale": "این کلیشه نمای کاملا نرمال با ریه های شفاف دارد.",
     "kbRef": "normal",
-    "tags": [
-      "CXR",
-      "finding"
-    ],
+    "tags": ["CXR", "finding"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -4617,9 +4140,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -4657,10 +4178,7 @@
     "correctIndex": 0,
     "rationale": "ریه‌ها کاملاً شفاف بوده و ساختار مدیاستینال و دیافراگم طبیعی است.",
     "kbRef": null,
-    "tags": [
-      "یافته",
-      "نرمال"
-    ],
+    "tags": ["یافته", "نرمال"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -4690,9 +4208,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -4730,10 +4246,7 @@
     "correctIndex": 0,
     "rationale": "ضایعات بیشتر در بخش‌های محیطی و حاشیه‌ای ریه قرار دارند.",
     "kbRef": "covid19",
-    "tags": [
-      "distribution",
-      "peripheral"
-    ],
+    "tags": ["distribution", "peripheral"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -4763,16 +4276,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "peripheral",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "lower"
-        ]
+        "zones": ["upper", "lower"]
       }
     }
   },
@@ -4807,10 +4314,7 @@
     "correctIndex": 0,
     "rationale": "این تصویر نمونه‌ای از یک رادیوگرافی طبیعی است.",
     "kbRef": null,
-    "tags": [
-      "finding",
-      "normal"
-    ],
+    "tags": ["finding", "normal"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -4840,9 +4344,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -4880,9 +4382,7 @@
     "correctIndex": 0,
     "rationale": "تثبیت ریوی مشخصه بارز این تصویر است.",
     "kbRef": null,
-    "tags": [
-      "finding"
-    ],
+    "tags": ["finding"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -4912,16 +4412,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "consolidation"
-        ],
+        "patterns": ["opacity", "consolidation"],
         "distribution": "focal_lobar",
         "laterality": "right",
-        "zones": [
-          "upper",
-          "middle"
-        ]
+        "zones": ["upper", "middle"]
       }
     }
   },
@@ -4956,10 +4450,7 @@
     "correctIndex": 0,
     "rationale": "یافته اصلی کدورت پارانشیمی ریوی است.",
     "kbRef": null,
-    "tags": [
-      "finding",
-      "pneumonia"
-    ],
+    "tags": ["finding", "pneumonia"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -4989,16 +4480,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "consolidation"
-        ],
+        "patterns": ["opacity", "consolidation"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -5033,11 +4518,7 @@
     "correctIndex": 1,
     "rationale": "تصویر نشان‌دهنده نواحی کدورت پاتولوژیک در پارانشیم ریه است.",
     "kbRef": "pneumonia",
-    "tags": [
-      "finding",
-      "pneumonia",
-      "cxr"
-    ],
+    "tags": ["finding", "pneumonia", "cxr"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -5067,15 +4548,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity"
-        ],
+        "patterns": ["opacity"],
         "distribution": "central_perihilar",
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -5110,11 +4586,7 @@
     "correctIndex": 0,
     "rationale": "فیلدهای ریوی شفاف بوده و هیچ‌گونه شواهدی از درگیری پاتولوژیک یا الگوی بینابینی مشاهده نمی‌شود.",
     "kbRef": "normal",
-    "tags": [
-      "finding",
-      "normal",
-      "cxr"
-    ],
+    "tags": ["finding", "normal", "cxr"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -5144,9 +4616,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -5184,10 +4654,7 @@
     "correctIndex": 0,
     "rationale": "کدورت‌های شیشه‌مات دوطرفه مشخصه اصلی این تصویر است.",
     "kbRef": "covid19",
-    "tags": [
-      "finding",
-      "opacity"
-    ],
+    "tags": ["finding", "opacity"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -5217,17 +4684,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -5262,10 +4722,7 @@
     "correctIndex": 0,
     "rationale": "درگیری ریوی به شکل منتشر در تمام زون‌ها گسترش یافته است.",
     "kbRef": "covid19",
-    "tags": [
-      "distribution",
-      "diffuse"
-    ],
+    "tags": ["distribution", "diffuse"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -5295,17 +4752,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -5340,9 +4790,7 @@
     "correctIndex": 0,
     "rationale": "انتشار ضایعات به صورت گسترده و منتشر است.",
     "kbRef": null,
-    "tags": [
-      "distribution"
-    ],
+    "tags": ["distribution"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -5372,15 +4820,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity"
-        ],
+        "patterns": ["opacity"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -5415,10 +4858,7 @@
     "correctIndex": 0,
     "rationale": "تصویر نرمال ردکننده کامل عفونت های اولیه ریوی نیست و پیگیری بالینی لازم است.",
     "kbRef": "pneumonia-vs-normal",
-    "tags": [
-      "CXR",
-      "differential"
-    ],
+    "tags": ["CXR", "differential"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -5448,9 +4888,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -5488,9 +4926,7 @@
     "correctIndex": 0,
     "rationale": "دقت در نواحی پنهان ریه مانع از خطای تشخیصی می‌شود.",
     "kbRef": "pneumonia-vs-normal",
-    "tags": [
-      "differential"
-    ],
+    "tags": ["differential"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -5520,15 +4956,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity"
-        ],
+        "patterns": ["opacity"],
         "distribution": null,
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -5563,10 +4994,7 @@
     "correctIndex": 0,
     "rationale": "توزیع ضایعات در این رادیوگرافی به صورت منتشر است.",
     "kbRef": null,
-    "tags": [
-      "distribution",
-      "pneumonia"
-    ],
+    "tags": ["distribution", "pneumonia"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -5596,17 +5024,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "consolidation"
-        ],
+        "patterns": ["opacity", "consolidation"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -5641,9 +5062,7 @@
     "correctIndex": 0,
     "rationale": "ضایعات عمدتاً در ناحیه ناف ریه و مرکزی قرار دارند.",
     "kbRef": null,
-    "tags": [
-      "distribution"
-    ],
+    "tags": ["distribution"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -5673,15 +5092,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity"
-        ],
+        "patterns": ["opacity"],
         "distribution": "central_perihilar",
         "laterality": "bilateral",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -5716,9 +5130,7 @@
     "correctIndex": 0,
     "rationale": "فیلدهای ریوی شفاف بدون شواهد کدورت یا پاتولوژی هستند.",
     "kbRef": null,
-    "tags": [
-      "finding"
-    ],
+    "tags": ["finding"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -5748,9 +5160,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -5788,9 +5198,7 @@
     "correctIndex": 0,
     "rationale": "انتشار ضایعات در کل فیلدهای ریوی به صورت منتشر دیده می‌شود.",
     "kbRef": null,
-    "tags": [
-      "distribution"
-    ],
+    "tags": ["distribution"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -5820,17 +5228,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -5865,9 +5266,7 @@
     "correctIndex": 0,
     "rationale": "ضایعه به صورت محدود در یک لوب قرار دارد.",
     "kbRef": null,
-    "tags": [
-      "distribution"
-    ],
+    "tags": ["distribution"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -5897,15 +5296,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "consolidation"
-        ],
+        "patterns": ["opacity", "consolidation"],
         "distribution": "focal_lobar",
         "laterality": "right",
-        "zones": [
-          "middle"
-        ]
+        "zones": ["middle"]
       }
     }
   },
@@ -5940,10 +5334,7 @@
     "correctIndex": 0,
     "rationale": "نمای کنسولیدیشن در ریه راست مشهود است.",
     "kbRef": null,
-    "tags": [
-      "finding",
-      "pneumonia"
-    ],
+    "tags": ["finding", "pneumonia"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -5973,16 +5364,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "consolidation"
-        ],
+        "patterns": ["opacity", "consolidation"],
         "distribution": null,
         "laterality": "right",
-        "zones": [
-          "middle",
-          "lower"
-        ]
+        "zones": ["middle", "lower"]
       }
     }
   },
@@ -6017,10 +5402,7 @@
     "correctIndex": 0,
     "rationale": "تغییرات اصلی شامل کدورت های مات و شیشه ای بدون تبلور عمده تراکم است.",
     "kbRef": "covid19",
-    "tags": [
-      "CXR",
-      "finding"
-    ],
+    "tags": ["CXR", "finding"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -6050,15 +5432,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "peripheral",
         "laterality": "bilateral",
-        "zones": [
-          "middle"
-        ]
+        "zones": ["middle"]
       }
     }
   },
@@ -6093,11 +5470,7 @@
     "correctIndex": 0,
     "rationale": "تصویر نرمال بوده و هیچ‌گونه کدرشدگی یا ضایعه‌ای دیده نمی‌شود.",
     "kbRef": "normal",
-    "tags": [
-      "finding",
-      "normal",
-      "cxr"
-    ],
+    "tags": ["finding", "normal", "cxr"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -6127,9 +5500,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
@@ -6167,10 +5538,7 @@
     "correctIndex": 0,
     "rationale": "کدورت‌های شیشه‌مات مشخصه بارز در این تصویر هستند.",
     "kbRef": "covid19",
-    "tags": [
-      "finding",
-      "opacity"
-    ],
+    "tags": ["finding", "opacity"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -6200,17 +5568,10 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "opacity",
-          "ground_glass"
-        ],
+        "patterns": ["opacity", "ground_glass"],
         "distribution": "diffuse",
         "laterality": "bilateral",
-        "zones": [
-          "upper",
-          "middle",
-          "lower"
-        ]
+        "zones": ["upper", "middle", "lower"]
       }
     }
   },
@@ -6245,10 +5606,7 @@
     "correctIndex": 0,
     "rationale": "رادیوگرافی کاملاً طبیعی و بدون پاتولوژی است.",
     "kbRef": null,
-    "tags": [
-      "finding",
-      "normal"
-    ],
+    "tags": ["finding", "normal"],
     "status": "approved",
     "edited": false,
     "source": {
@@ -6278,9 +5636,7 @@
     ],
     "analysisSummary": {
       "consensus": {
-        "patterns": [
-          "clear_lungs"
-        ],
+        "patterns": ["clear_lungs"],
         "distribution": "none",
         "laterality": "none",
         "zones": []
