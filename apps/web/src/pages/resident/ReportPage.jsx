@@ -112,7 +112,7 @@ export function ReportPage() {
               {t('sessions.kind' + (kind === 'adaptive' ? 'Adaptive' : 'Baseline'))}
             </Badge>
           </div>
-          <p className="text-sm text-slate-500 mt-1">{t('report.subtitle')}</p>
+          <p className="text-sm text-slate-600 mt-1">{t('report.subtitle')}</p>
         </div>
 
         <div className="flex items-center gap-3">
@@ -148,7 +148,7 @@ export function ReportPage() {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-              <span className="text-xs text-slate-500 block mb-1">
+              <span className="text-xs text-slate-600 font-medium block mb-1">
                 {t('report.overallAccuracy')}
               </span>
               <span className="text-2xl font-bold text-sky-700">
@@ -163,7 +163,9 @@ export function ReportPage() {
             </div>
 
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-              <span className="text-xs text-slate-500 block mb-1">{t('sessions.colAnswered')}</span>
+              <span className="text-xs text-slate-600 font-medium block mb-1">
+                {t('sessions.colAnswered')}
+              </span>
               <span className="text-2xl font-bold text-slate-800">
                 {fmt.number(answeredCount, i18n.language)}{' '}
                 <span className="text-sm text-slate-600 font-normal">
@@ -180,7 +182,9 @@ export function ReportPage() {
             </div>
 
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-100 flex flex-col justify-between">
-              <span className="text-xs text-slate-500 block mb-1">{t('report.masteryBanner')}</span>
+              <span className="text-xs text-slate-600 font-medium block mb-1">
+                {t('report.masteryBanner')}
+              </span>
               <div>
                 <Badge variant={mastered ? 'success' : 'secondary'} className="text-xs px-2.5 py-1">
                   {mastered ? t('report.masteryBand') : t('report.mediumBand')}
@@ -332,7 +336,7 @@ export function ReportPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-start text-sm border-collapse">
                   <thead>
-                    <tr className="border-b border-slate-200 text-slate-500 font-medium text-xs">
+                    <tr className="border-b border-slate-200 text-slate-700 font-semibold text-xs bg-slate-50/50">
                       <th className="py-2.5 px-3 text-start">{t('report.colClass')}</th>
                       <th className="py-2.5 px-3 text-center">{t('report.colTP')}</th>
                       <th className="py-2.5 px-3 text-center">{t('report.colFP')}</th>
