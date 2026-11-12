@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Select } from '../../components/ui/index.js';
 
 /**
  * Filter bar for catalog image table
@@ -51,50 +52,53 @@ export function CatalogFilterBar({
 
       {/* Class filter */}
       <div className="flex items-center gap-2">
-        <label htmlFor="filter-class" className="text-xs text-slate-600 font-medium">
+        <label htmlFor="filter-class" className="text-xs text-slate-700 font-semibold">
           {t('instructor.catalog.filterClass')}:
         </label>
-        <select
+        <Select
           id="filter-class"
+          size="sm"
           value={trueClass}
           onChange={handleClassChange}
-          className="text-xs bg-white border border-slate-200 rounded-md px-2.5 py-1.5 text-slate-800 focus:outline-none focus:ring-1 focus:ring-sky-500"
+          className="w-32"
         >
           <option value="">{t('instructor.catalog.filterAll')}</option>
           <option value="covid19">{t('classes.covid19')}</option>
           <option value="pneumonia">{t('classes.pneumonia')}</option>
           <option value="normal">{t('classes.normal')}</option>
-        </select>
+        </Select>
       </div>
 
       {/* Bucket filter */}
       <div className="flex items-center gap-2">
-        <label htmlFor="filter-bucket" className="text-xs text-slate-600 font-medium">
+        <label htmlFor="filter-bucket" className="text-xs text-slate-700 font-semibold">
           {t('instructor.catalog.filterBucket')}:
         </label>
-        <select
+        <Select
           id="filter-bucket"
+          size="sm"
           value={bucket}
           onChange={handleBucketChange}
-          className="text-xs bg-white border border-slate-200 rounded-md px-2.5 py-1.5 text-slate-800 focus:outline-none focus:ring-1 focus:ring-sky-500"
+          className="w-32"
         >
           <option value="">{t('instructor.catalog.filterAll')}</option>
           <option value="easy">{t('buckets.easy')}</option>
           <option value="medium">{t('buckets.medium')}</option>
           <option value="hard">{t('buckets.hard')}</option>
-        </select>
+        </Select>
       </div>
 
       {/* Source filter */}
       <div className="flex items-center gap-2">
-        <label htmlFor="filter-source" className="text-xs text-slate-600 font-medium">
+        <label htmlFor="filter-source" className="text-xs text-slate-700 font-semibold">
           {t('instructor.catalog.filterSource')}:
         </label>
-        <select
+        <Select
           id="filter-source"
+          size="sm"
           value={source}
           onChange={handleSourceChange}
-          className="text-xs bg-white border border-slate-200 rounded-md px-2.5 py-1.5 text-slate-800 focus:outline-none focus:ring-1 focus:ring-sky-500"
+          className="w-36"
         >
           <option value="">{t('instructor.catalog.filterAll')}</option>
           {sourceOptions.map((src) => (
@@ -102,7 +106,7 @@ export function CatalogFilterBar({
               {src}
             </option>
           ))}
-        </select>
+        </Select>
       </div>
     </div>
   );

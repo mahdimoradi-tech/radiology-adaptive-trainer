@@ -10,6 +10,7 @@ import {
   CardContent,
   CardFooter,
   Button,
+  Select,
   Badge,
   Alert,
   Spinner,
@@ -124,19 +125,19 @@ export function TestsPage() {
                 <label htmlFor={selectId} className="text-sm font-medium text-slate-700">
                   {t('sessions.sizeLabel')}:
                 </label>
-                <select
+                <Select
                   id={selectId}
                   value={selectedSize}
                   onChange={(e) => setSelectedSize(Number(e.target.value))}
                   disabled={createMutation.isPending}
-                  className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 shadow-2xs focus:border-sky-500 focus:outline-hidden focus:ring-2 focus:ring-sky-500/20"
+                  className="w-32"
                 >
                   {SIZES.map((size) => (
                     <option key={size} value={size}>
                       {t('sessions.sizeOption', { count: fmt.number(size, i18n.language) })}
                     </option>
                   ))}
-                </select>
+                </Select>
               </div>
 
               <Button

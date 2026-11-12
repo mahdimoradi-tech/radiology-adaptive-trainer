@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import {
   Button,
   Input,
+  Select,
   Field,
   Card,
   CardHeader,
@@ -48,6 +49,35 @@ describe('UI Kit Components', () => {
       expect(input).toHaveAttribute('aria-invalid', 'true');
       expect(input).toHaveAttribute('aria-describedby', 'test-pwd-error');
       expect(input.className).toContain('border-rose-400');
+    });
+  });
+
+  describe('Select', () => {
+    it('renders select with options and handles selection change', () => {
+      const handleChange = vi.fn();
+      render(
+        <Select id="test-select" value="opt1" onChange={handleChange}>
+          <option value="opt1">گزینه یک</option>
+          <option value="opt2">گزینه دو</option>
+        </Select>,
+      );
+      const select = screen.getByRole('combobox');
+      expect(select).toBeInTheDocument();
+      expect(select.className).toContain('appearance-none');
+      expect(select.className).toContain('pe-10');
+      fireEvent.change(select, { target: { value: 'opt2' } });
+      expect(handleChange).toHaveBeenCalledTimes(1);
+    });
+
+    it('renders select with error styling and aria attributes', () => {
+      render(
+        <Select id="test-select-err" error="انتخاب نامعتبر">
+          <option value="1">یک</option>
+        </Select>,
+      );
+      const select = screen.getByRole('combobox');
+      expect(select).toHaveAttribute('aria-invalid', 'true');
+      expect(select.className).toContain('border-rose-400');
     });
   });
 
