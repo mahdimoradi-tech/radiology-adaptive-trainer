@@ -124,32 +124,32 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
             <Card
               key={c}
               data-testid={`mastery-card-${c}`}
-              className="border-slate-200/80 shadow-xs hover:border-slate-300 transition-colors"
+              className="border-slate-200/80 shadow-xs hover:border-slate-300 hover:shadow-sm transition-all"
             >
-              <CardContent className="p-5 flex items-center justify-between">
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-2">
+              <div className="p-5 sm:p-6 flex items-center justify-between">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2.5">
                     <span
-                      className="w-3 h-3 rounded-full shrink-0 shadow-2xs"
+                      className="w-3 h-3 rounded-full shrink-0 ring-4 ring-slate-100"
                       style={{ backgroundColor: style.stroke }}
                       aria-hidden="true"
                     />
                     <span className="text-sm font-bold text-slate-800">{t(`classes.${c}`)}</span>
                   </div>
-                  <div className="text-3xl font-extrabold text-slate-900 tracking-tight">
+                  <div className="text-3xl font-extrabold text-slate-900 tracking-tight ps-0.5">
                     {fmt.percent(acc, lang)}
                   </div>
                 </div>
                 <Badge
                   variant={isClassMastered ? 'success' : 'default'}
                   data-testid={`mastery-badge-${c}`}
-                  className="px-3 py-1 text-xs"
+                  className="px-3 py-1.5 text-xs font-semibold"
                 >
                   {isClassMastered
                     ? t('progress.mastered', 'تسلط حاصل شد')
                     : t('progress.learning', 'در حال یادگیری')}
                 </Badge>
-              </CardContent>
+              </div>
             </Card>
           );
         })}
