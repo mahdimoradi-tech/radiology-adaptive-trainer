@@ -1,1 +1,5646 @@
-[]
+[
+  {
+    "stableId": "002d43b202c17dc0c2e907f9002815de7bca2fc8",
+    "imageId": "kermany_1e054ed36680",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "hard",
+    "stem": "یافته غالب در ارزیابی ساختارهای داخل قفسه سینه این بیمار چیست؟",
+    "options": [
+      {
+        "text": "شفافیت طبیعی پارانشیم ریه",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "مات‌شدگی شیشه‌مات دوطرفه",
+        "key": "ground_glass"
+      },
+      {
+        "text": "ضخیم‌شدگی پلورال اپیکال",
+        "key": "pleural_thickening"
+      },
+      {
+        "text": "افیوژن پلور حاد",
+        "key": "pleural_effusion"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "تصویر فاقد یافته پاتولوژیک است و فیلدهای ریوی شفاف دیده می‌شوند.",
+    "kbRef": null,
+    "tags": ["تفسیر_پایه", "یافته_ریوی"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.570Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:46:35.409Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.570Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "0662ae5cb8a801644daf59928b4558c67469b2d7",
+    "imageId": "kermany_1b3ed9c43d43",
+    "type": "differential",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "با توجه به تصویر طبیعی، کدام مورد چالش تشخیصی با پنومونی اولیه است؟",
+    "options": [
+      {
+        "text": "بررسی دقیق مناطق پشت قلب و نواحی نافی برای رد ضایعات ظریف",
+        "key": null
+      },
+      {
+        "text": "وجود برونکوگرام هوایی وسیع در لوب فوقانی راست",
+        "key": null
+      },
+      {
+        "text": "تجمع مایع پلور شدید در هر دو طرف",
+        "key": null
+      },
+      {
+        "text": "کاردیومگالی درجه سه",
+        "key": null
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "در موارد نرمال، ضایعات بسیار ظریف در مناطق پشت قلب یا پری‌هیلار ممکن است نادیده گرفته شوند.",
+    "kbRef": "pneumonia-vs-normal",
+    "tags": ["افتراقی", "پنومونی_پنهان"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.568Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:46:35.405Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.568Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "0810ddfdde044466fc5b3026693686fe1bfa5824",
+    "imageId": "kermany_3853a4552e0b",
+    "type": "differential",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "covid19"
+    },
+    "bucket": "hard",
+    "stem": "با توجه به احتمال درگیری با کووید نوزده، نمای نرمال این تصویر چه مفهومی دارد؟",
+    "options": [
+      {
+        "text": "رادیوگرافی اولیه نرمال امکان وجود بیماری را رد نمی‌کند.",
+        "key": null
+      },
+      {
+        "text": "وجود تصویر نرمال قطعاً نشانه عدم ابتلا به کووید است.",
+        "key": null
+      },
+      {
+        "text": "کووید نوزده همیشه با افیوژن پلورال تظاهر می‌یابد.",
+        "key": null
+      },
+      {
+        "text": "لنفادنوپاتی مدیاستن یافته ثابت در این بیماران است.",
+        "key": null
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "در مراحل اولیه درگیری با کووید نوزده تصویر رادیوگرافی می‌تواند نرمال باشد.",
+    "kbRef": "covid19-vs-normal",
+    "tags": ["افتراقی", "کووید"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.586Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:46:35.438Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.586Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "0b6357507fc8bd74500275db4f937e46b2d420b6",
+    "imageId": "figure1_5008d0599b0a",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "توزیع کدورت های مشاهده شده در میدان های ریوی این بیمار به چه صورت است؟",
+    "options": [
+      {
+        "text": "پراکنده و انتشار یافته در سطح ریه",
+        "key": "diffuse"
+      },
+      {
+        "text": "محدود به حواشی و نواحی محیطی",
+        "key": "peripheral"
+      },
+      {
+        "text": "متمرکز در نواحی نافی و مرکزی ریه",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "محدود به یک لوب یا سگمان خاص",
+        "key": "focal_lobar"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "درگیری ریوی به شکل انتشاریافته و diffuse در تمام زون های ریه گسترش یافته است.",
+    "kbRef": "covid19",
+    "tags": ["CXR", "distribution", "COVID-19"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.550Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:36:16.918Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.551Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass", "interstitial"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "0be966de8b84384f2abc80bd6c65cc73766f9656",
+    "imageId": "kermany_1b3ed9c43d43",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "نمای رادیوگرافی قفسه سینه این بیمار چگونه گزارش می‌شود؟",
+    "options": [
+      {
+        "text": "فیلدهای ریوی شفاف و بدون ضایعه",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کدورت فوکال آلوئولار",
+        "key": "opacity"
+      },
+      {
+        "text": "تثبیت لوبار ریه",
+        "key": "consolidation"
+      },
+      {
+        "text": "الگوی بینابینی منتشر",
+        "key": "interstitial"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "ریه‌ها از نظر شفافیت طبیعی بوده و فاقد هرگونه کدورت یا افیوژن هستند.",
+    "kbRef": null,
+    "tags": ["تفسیر_پایه", "نرمال"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.567Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:46:35.390Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.567Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "0caaafcd6dcd76b488daa9a60e9997eb77d0ec11",
+    "imageId": "kermany_947183fb9bac",
+    "type": "finding",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "hard",
+    "stem": "مشخص‌ترین یافته پاتولوژیک در این گرافی کدام است؟",
+    "options": [
+      {
+        "text": "کدورت ریوی",
+        "key": "opacity"
+      },
+      {
+        "text": "ریه‌های شفاف",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "تثبیت آلوئولار وسیع",
+        "key": "consolidation"
+      },
+      {
+        "text": "افیوژن پلور دوطرفه",
+        "key": "pleural_effusion"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "کدورت ریوی یافته اصلی است.",
+    "kbRef": null,
+    "tags": ["finding"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.615Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:47:18.201Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.615Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "central_perihilar",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "113619b6f9665609590be34d2071c79241e2d133",
+    "imageId": "kermany_6007c3945a45",
+    "type": "finding",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "medium",
+    "stem": "در بررسی این گرافی قفسه سینه، نمای غالب پاتولوژیک قابل مشاهده کدام است؟",
+    "options": [
+      {
+        "text": "کدورت ریوی",
+        "key": "opacity"
+      },
+      {
+        "text": "ریه‌های شفاف",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "تثبیت ریوی",
+        "key": "consolidation"
+      },
+      {
+        "text": "نمای شیشه‌مات",
+        "key": "ground_glass"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "مشاهده کدورت‌های ریوی دوطرفه در این نما بارزترین یافته پاتولوژیک است.",
+    "kbRef": null,
+    "tags": ["finding", "opacity"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.592Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:47:18.143Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.592Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": null,
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "15b9f534f2a67032c88edc1da874462e04e0d3af",
+    "imageId": "kermany_51af744d17c5",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "الگوی پراکندگی ضایعات این بیمار چگونه است؟",
+    "options": [
+      {
+        "text": "انتشار منتشر در دو طرف",
+        "key": "diffuse"
+      },
+      {
+        "text": "تمرکز در مناطق محیطی",
+        "key": "peripheral"
+      },
+      {
+        "text": "منطقه مرکزی و ناف ریه",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "بدون الگوی خاص",
+        "key": "none"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "انتشار ضایعات به صورت منتشر در پارانشیم ریه دیده می‌شود.",
+    "kbRef": "pneumonia",
+    "tags": ["distribution", "pneumonia", "cxr"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.505Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:20:54.077Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.505Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "1c85f3a3398fcdfe53eef547e34fb27e12a5cf7d",
+    "imageId": "cohen_4ee0dc3abb90",
+    "type": "finding",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "یافته عمده قابل تشخیص در تصویربرداری قفسه سینه چه می‌باشد؟",
+    "options": [
+      {
+        "text": "کدورت‌های شیشه‌مات و تیرگی پارانشیم",
+        "key": "opacity"
+      },
+      {
+        "text": "فیلدهای ریوی کاملاً طبیعی و شفاف",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "برونکوگرام هوایی وسیع",
+        "key": "air_bronchograms"
+      },
+      {
+        "text": "افزایش فضای هوایی و هایپراینفلاسیون",
+        "key": "hyperinflation"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "کدورت‌های شیشه‌مات دوطرفه در پارانشیم ریه دیده می‌شود.",
+    "kbRef": "covid19",
+    "tags": ["finding", "opacity"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.539Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:26:24.193Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.539Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "1df5629d67f612d9689b516007322178c1d1a96c",
+    "imageId": "kermany_51af744d17c5",
+    "type": "finding",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "چه یافته‌ای در بررسی پارانشیمی ریه دیده می‌شود؟",
+    "options": [
+      {
+        "text": "ریه پاک و شفاف",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کدورت پارانشیمی",
+        "key": "opacity"
+      },
+      {
+        "text": "افیوژن پلور",
+        "key": "pleural_effusion"
+      },
+      {
+        "text": "کنسولیدیشن خالص",
+        "key": "consolidation"
+      }
+    ],
+    "correctIndex": 1,
+    "rationale": "کدورت‌های متعدد در سطح ریه‌های بیمار قابل مشاهده است.",
+    "kbRef": "pneumonia",
+    "tags": ["finding", "pneumonia", "cxr"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.503Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:20:54.073Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.503Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "1ead27d4f147b0ec83e1376e6cf24910d1ee52e9",
+    "imageId": "cohen_4ee0dc3abb90",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "نحوه توزیع و گسترش ضایعات در تصویر ریه چیست؟",
+    "options": [
+      {
+        "text": "گسترش منتشر در دو طرف",
+        "key": "diffuse"
+      },
+      {
+        "text": "منحصراً در نواحی محیطی",
+        "key": "peripheral"
+      },
+      {
+        "text": "در برگیرنده مناطق مرکزی و ناف ریه",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "به صورت تکه‌ای و محدود",
+        "key": "focal_lobar"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "توزیع ضایعات به صورت منتشر در سرتاسر ریه‌ها است.",
+    "kbRef": "covid19",
+    "tags": ["distribution", "diffuse"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.540Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:26:24.197Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.540Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "20533ad6767822a6b642d7e6d17162f06bb3cd40",
+    "imageId": "cohen_09e0483a0391",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "پراکندگی و توزیع ضایعات مشهود در تصویر قفسه سینه چگونه است؟",
+    "options": [
+      {
+        "text": "توزیع منتشر در تمام مناطق ریوی",
+        "key": "diffuse"
+      },
+      {
+        "text": "محدود به حاشیه‌های خارجی و محیط ریه",
+        "key": "peripheral"
+      },
+      {
+        "text": "تمرکز مرکزی در اطراف ناف ریه",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "به صورت کانونی و محدود به یک لوب",
+        "key": "focal_lobar"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "توزیع ضایعات به صورت منتشر در سرتاسر فیلدهای ریوی دوطرفه دیده می‌شود.",
+    "kbRef": "covid19",
+    "tags": ["distribution", "diffuse"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.530Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:26:24.175Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.530Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass", "consolidation"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "258f1c1b2cfe7b5e7f90133f870c6df6815f7684",
+    "imageId": "figure1_5ec6291b214d",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "الگوی انتشار این ضایعات در میدان ریوی چگونه توصیف می شود؟",
+    "options": [
+      {
+        "text": "محیطی و حاشیه ای",
+        "key": "peripheral"
+      },
+      {
+        "text": "پری هیلار و مرکزی",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "انتشار یافته و منتشر",
+        "key": "diffuse"
+      },
+      {
+        "text": "بدون الگوی مشخص توزیع",
+        "key": "none"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "ضایعات گراند گلس و کدورت ها تمایل بارزی به توزیع محیطی دارند.",
+    "kbRef": "covid19",
+    "tags": ["CXR", "distribution"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.553Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:36:16.924Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.553Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "peripheral",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "259dc23b994fb7d48fee2a9951068b0585a815f3",
+    "imageId": "kermany_8a019be070b3",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "covid19"
+    },
+    "bucket": "easy",
+    "stem": "توزیع ضایعات در این رادیوگرافی چگونه توصیف می‌شود؟",
+    "options": [
+      {
+        "text": "فوکال و لوبار",
+        "key": "focal_lobar"
+      },
+      {
+        "text": "انتشار منتشر در دو طرف",
+        "key": "diffuse"
+      },
+      {
+        "text": "محدود به حاشیه‌ها",
+        "key": "peripheral"
+      },
+      {
+        "text": "بدون الگوی مشخص",
+        "key": "none"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "توزیع ضایعه به صورت فوکال و لوبار است.",
+    "kbRef": null,
+    "tags": ["distribution"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.613Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:47:18.199Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.613Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "focal_lobar",
+        "laterality": "right",
+        "zones": ["upper", "middle"]
+      }
+    }
+  },
+  {
+    "stableId": "2a47bcd2c9f5ce2b6ba1177ae70f6d7e1caeeb56",
+    "imageId": "kermany_49b008fb5f9f",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "توزیع این کدورت‌ها در ریه‌های بیمار به چه شکلی است؟",
+    "options": [
+      {
+        "text": "مرکزی و اطراف ناف ریه",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "محیطی",
+        "key": "peripheral"
+      },
+      {
+        "text": "انتشار منتشر",
+        "key": "diffuse"
+      },
+      {
+        "text": "بدون توزیع مشخص",
+        "key": "none"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "کدورت‌های ریوی عمدتاً در نواحی مرکزی و اطراف ناف ریه قرار گرفته‌اند.",
+    "kbRef": "pneumonia",
+    "tags": ["distribution", "pneumonia", "cxr"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.501Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:20:54.071Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.501Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "central_perihilar",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "2c3de830128293ee64d6523aa4f5169a6dd249b9",
+    "imageId": "figure1_ab8ebc97d663",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "نحوه توزیع کانون های بیماری در این تصویر رادیوگرافی چگونه است؟",
+    "options": [
+      {
+        "text": "محیطی",
+        "key": "peripheral"
+      },
+      {
+        "text": "پری هیلار",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "دستیابی انتشار یافته",
+        "key": "diffuse"
+      },
+      {
+        "text": "فاقد توزیع مشخص",
+        "key": "none"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "توزیع ضایعات بیشتر به صورت حاشیه ای و محیطی است.",
+    "kbRef": "covid19",
+    "tags": ["CXR", "distribution"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.555Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:36:16.930Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.556Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "peripheral",
+        "laterality": "bilateral",
+        "zones": ["middle"]
+      }
+    }
+  },
+  {
+    "stableId": "2d4506eebdba1a04dda4dbc95a21acf5b278d39e",
+    "imageId": "cohen_db42364c86f8",
+    "type": "finding",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "کدام یافته رادیولوژیک در بررسی تصویر قفسه سینه بارز است؟",
+    "options": [
+      {
+        "text": "تیرگی‌ها، تثبیت بافتی و کدورت شیشه‌مات",
+        "key": "opacity"
+      },
+      {
+        "text": "شفافیت نرمال و عدم وجود ضایعه",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "وجود برونکوگرام هوایی بارز",
+        "key": "air_bronchograms"
+      },
+      {
+        "text": "افزایش حجم شدید فیلدهای ریوی",
+        "key": "hyperinflation"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "کدورت‌ها و نواحی تثبیت بافتی همراه با شیشه‌مات دیده می‌شوند.",
+    "kbRef": "covid19",
+    "tags": ["finding", "opacity"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.544Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:26:24.205Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.544Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "consolidation", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "2ee09e3a37c1101d355fed800f111b9595dba5b9",
+    "imageId": "figure1_5008d0599b0a",
+    "type": "finding",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "کدام الگوی رادیولوژیک اصلی در این نمای رادیوگرافی قفسه سینه مشاهده می شود؟",
+    "options": [
+      {
+        "text": "کدورت شیشه مات",
+        "key": "ground_glass"
+      },
+      {
+        "text": "ریه های کاملا شفاف",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "تثبیت ریوی لایه ای",
+        "key": "consolidation"
+      },
+      {
+        "text": "برونکوگرام هوایی واضح",
+        "key": "air_bronchograms"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "وجود کدورت های شیشه مات و بینابینی دوطرفه از یافته های بارز این تصویر است.",
+    "kbRef": "covid19",
+    "tags": ["CXR", "finding", "COVID-19"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.549Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:36:16.904Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.549Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass", "interstitial"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "346665fac6583915b7202a553e98ccb18a641364",
+    "imageId": "cohen_17419b8e04fd",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "الگوی غالب توزیع کدورت‌های ریوی در این نما چیست؟",
+    "options": [
+      {
+        "text": "توزیع منتشر در تمام زون‌ها",
+        "key": "diffuse"
+      },
+      {
+        "text": "رعایت الگوی حاشیه‌ای و محیطی",
+        "key": "peripheral"
+      },
+      {
+        "text": "نمای مرکزی اطراف ناف",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "بروز به صورت توده لوبار منفرد",
+        "key": "focal_lobar"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "درگیری به صورت منتشر در بخش‌های فوقانی، میانی و تحتانی ریه دیده می‌شود.",
+    "kbRef": "covid19",
+    "tags": ["distribution", "diffuse"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.535Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:26:24.186Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.535Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "378107d8c02e6ae7548c677c19fbe3c178b781d1",
+    "imageId": "kermany_cedf1a08a387",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "medium",
+    "stem": "الگوی پراکندگی ضایعات در تصویر چگونه ارزیابی می‌شود؟",
+    "options": [
+      {
+        "text": "پراکندگی منتشر در ریه‌ها",
+        "key": "diffuse"
+      },
+      {
+        "text": "محدود به حواشی ریه",
+        "key": "peripheral"
+      },
+      {
+        "text": "متمرکز در ناحیه ناف ریه",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "به صورت محدود و لوبار",
+        "key": "focal_lobar"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "توزیع کدورت‌ها به صورت انتشار یافته است.",
+    "kbRef": null,
+    "tags": ["distribution", "pneumonia"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.518Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:23:47.084Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.518Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "3e7af6dc25670fa657b64b6568ef54b7ca1c5917",
+    "imageId": "kermany_5b54ec4420fd",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "medium",
+    "stem": "در این رادیوگرافی قفسه سینه، پارانشیم ریه چه وضعیتی دارد؟",
+    "options": [
+      {
+        "text": "شفافیت کامل فیلدهای ریوی",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کدورت‌های تکه‌ای",
+        "key": "opacity"
+      },
+      {
+        "text": "کنسولیدیشن لوبار",
+        "key": "consolidation"
+      },
+      {
+        "text": "افزایش علامت اینترستیشیال",
+        "key": "interstitial"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "ریه‌ها فاقد هرگونه کدورت یا یافته پاتولوژیک هستند.",
+    "kbRef": "normal",
+    "tags": ["finding", "normal", "cxr"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.510Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:20:54.086Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.510Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "44d2e96345246f631e232eecc3e0429bbfcf69d8",
+    "imageId": "cohen_db42364c86f8",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "توزیع و الگوی پخش ضایعات در ریه‌ها به چه صورت است؟",
+    "options": [
+      {
+        "text": "توزیع منتشر در دو طرف ریه",
+        "key": "diffuse"
+      },
+      {
+        "text": "محدود به حاشیه‌های خارجی",
+        "key": "peripheral"
+      },
+      {
+        "text": "تمرکز مرکزی در اطراف ناف ریه",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "به شکل کانونی و محدود",
+        "key": "focal_lobar"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "ضایعات به طور منتشر در تمام نواحی ریه گسترش یافته‌اند.",
+    "kbRef": "covid19",
+    "tags": ["distribution", "diffuse"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.546Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:26:24.206Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.546Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "consolidation", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "466fbc6eb7489d35ad76304a692e594cec2f5cea",
+    "imageId": "cohen_923678e4f442",
+    "type": "finding",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "مهم‌ترین یافته غیرطبیعی در رادیوگرافی این بیمار چیست؟",
+    "options": [
+      {
+        "text": "کدورت‌های شیشه‌مات پارانشیمی",
+        "key": "opacity"
+      },
+      {
+        "text": "ریه‌های شفاف بدون ضایعه",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "افیوژن مایع در فضای پلور",
+        "key": "pleural_effusion"
+      },
+      {
+        "text": "تراکم و تثبیت بافتی وسیع لوبار",
+        "key": "consolidation"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "کدورت‌های شیشه‌مات مشخصه اصلی این تصویر است.",
+    "kbRef": "covid19",
+    "tags": ["finding", "opacity"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.542Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:26:24.199Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.542Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "peripheral",
+        "laterality": "bilateral",
+        "zones": ["upper", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "473d7109b8dcf4d94d5bd039396a00de8b2ef348",
+    "imageId": "kermany_216a30c1cf24",
+    "type": "finding",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "کدام یافته غیرطبیعی در پارانشیم ریه این بیمار بارزتر است؟",
+    "options": [
+      {
+        "text": "کدورت‌های ریوی قابل توجه",
+        "key": "opacity"
+      },
+      {
+        "text": "شفافیت کامل فیلدهای ریوی",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "شواهد بارز افیوژن پلور",
+        "key": "pleural_effusion"
+      },
+      {
+        "text": "تغییرات بینابینی شدید",
+        "key": "interstitial"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "تصویر با حضور کدورت‌های پارانشیمی مشخص می‌شود.",
+    "kbRef": null,
+    "tags": ["یافته", "کدورت"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.575Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:46:35.420Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.575Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "central_perihilar",
+        "laterality": "bilateral",
+        "zones": ["middle"]
+      }
+    }
+  },
+  {
+    "stableId": "529f9137dd89bdaad480a0d3fce6045d9a22d93e",
+    "imageId": "cohen_4c18a8e06199",
+    "type": "finding",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "کدام یافته رادیولوژیک در ارزیابی فیلدهای ریوی دیده می‌شود؟",
+    "options": [
+      {
+        "text": "تیرگی‌ها و کدورت‌های شیشه‌مات ریوی",
+        "key": "opacity"
+      },
+      {
+        "text": "شفافیت کامل بدون ضایعه فوکال",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "الگوی بینابینی برجسته خطی",
+        "key": "interstitial"
+      },
+      {
+        "text": "وجود پلورال افیوژن وسیع",
+        "key": "pleural_effusion"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "کدورت‌های شیشه‌مات دوطرفه مشخصه اصلی این تصویر است.",
+    "kbRef": "covid19",
+    "tags": ["finding", "opacity"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.536Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:26:24.189Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.536Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "540ef71b1428a82f8695ad685236be9bac4527bc",
+    "imageId": "figure1_e11edc40504b",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "گسترش و توزیع درگیری ریوی در این کلیشه به چه شکل است؟",
+    "options": [
+      {
+        "text": "پراکنده و انتشار یافته",
+        "key": "diffuse"
+      },
+      {
+        "text": "محدود به نواحی محیطی",
+        "key": "peripheral"
+      },
+      {
+        "text": "مرکزی و اطراف ناف",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "کانونی و محدود",
+        "key": "focal_lobar"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "انتشار ضایعات به صورت دیفیوز و سراسری دیده می شود.",
+    "kbRef": "covid19",
+    "tags": ["CXR", "distribution"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.559Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:36:16.934Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.559Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "5553557ef03431e6d4d323f4b1f4d691a6c79406",
+    "imageId": "kermany_0af95ae084eb",
+    "type": "finding",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "medium",
+    "stem": "کدام یافته غیرطبیعی در رادیوگرافی این بیمار مشهود است؟",
+    "options": [
+      {
+        "text": "تثبیت و کنسولیداسیون ریوی",
+        "key": "consolidation"
+      },
+      {
+        "text": "ریه های شفاف",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کدورت شیشه مات خالص",
+        "key": "ground_glass"
+      },
+      {
+        "text": "اتساع و افزایش هوادهی ریه",
+        "key": "hyperinflation"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "تصویر با تثبیت و کنسولیداسیون ریوی مشخص می شود.",
+    "kbRef": "pneumonia",
+    "tags": ["CXR", "finding"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.564Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:36:16.957Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.564Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": null,
+        "laterality": "left",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "558e0044715d763d6ff3287591fb3f3b25b6f7a9",
+    "imageId": "kermany_5d8327386c4d",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "ویژگی ساختاری ریه در این تصویر چگونه ارزیابی می‌شود؟",
+    "options": [
+      {
+        "text": "ریه‌های کاملاً شفاف و بدون ضایعه",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کدورت پارانشیمی",
+        "key": "opacity"
+      },
+      {
+        "text": "برونکوگرام هوایی",
+        "key": "air_bronchograms"
+      },
+      {
+        "text": "تغییرات پلورال",
+        "key": "pleural_thickening"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "فیلدهای ریوی فاقد کدورت بوده و نرمال هستند.",
+    "kbRef": "normal",
+    "tags": ["finding", "normal", "cxr"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.511Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:20:54.089Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.511Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "5958bfceaf96ee40e6a01344fdedba2d383cb014",
+    "imageId": "kermany_0371451b49cd",
+    "type": "differential",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "medium",
+    "stem": "جهت مقایسه بین این رادیوگرافی نرمال و موارد خفیف پنومونی، کدام نکته تشخیصی دارای اهمیت است؟",
+    "options": [
+      {
+        "text": "پنومونی خفیف ممکن است بسیار ظریف باشد و بررسی دقیق نواحی رتوکاردیال و پشت دیافراگم ضروری است.",
+        "key": null
+      },
+      {
+        "text": "پنومونی خفیف هرگز در نواحی پشت قلب پنهان نمی شود.",
+        "key": null
+      },
+      {
+        "text": "کیفیت تصویربرداری تاثیری در دیدن پنومونی ندارد.",
+        "key": null
+      },
+      {
+        "text": "رادیوگرافی قفسه سینه در تشخیص پنومونی باکتریال کاملا بی ارزش است.",
+        "key": null
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "در موارد خفیف پنومونی، بررسی دقیق مناطق پشت قلب و زوایای دنده‌ای دیافراگمی اهمیت دارد.",
+    "kbRef": "pneumonia-vs-normal",
+    "tags": ["CXR", "differential"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.562Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:36:16.954Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.562Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "59686cbe318f2cb277fdfde8914064cfc2e841fc",
+    "imageId": "kermany_6007c3945a45",
+    "type": "differential",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "medium",
+    "stem": "کدام گزینه افتراق دقیق‌تری میان این گرافی و یک مورد نرمال بیان می‌کند؟",
+    "options": [
+      {
+        "text": "بررسی دقیق مناطق پشت قلب و نواحی ناف ریه برای تشخیص ضایعات ظریف پاتولوژیک اهمیت دارد.",
+        "key": null
+      },
+      {
+        "text": "تصویر نرمال همیشه دارای افیوژن است.",
+        "key": null
+      },
+      {
+        "text": "وجود کدورت همیشه نشان‌دهنده تومور مدیاستن است.",
+        "key": null
+      },
+      {
+        "text": "نمای طبیعی مانع از هرگونه عفونت تنفسی می‌شود.",
+        "key": null
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "عفونت‌های خفیف ممکن است در مناطق رتوکاردیال پنهان بمانند.",
+    "kbRef": "pneumonia-vs-normal",
+    "tags": ["differential"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.594Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:47:18.162Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.594Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": null,
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "5bae495401285a10b3c9326cab50de3333570d72",
+    "imageId": "kermany_e2743ee327e3",
+    "type": "finding",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "hard",
+    "stem": "کدام ویژگی پاتولوژیک در بررسی این تصویر دیده می‌شود؟",
+    "options": [
+      {
+        "text": "وجود کدورت در پارانشیم",
+        "key": "opacity"
+      },
+      {
+        "text": "شفافیت طبیعی ریه‌ها",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "تراکم لوبار مشخص",
+        "key": "consolidation"
+      },
+      {
+        "text": "افیوژن شدید پلور",
+        "key": "pleural_effusion"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "کدورت‌های پارانشیمی در تصویر قابل مشاهده است.",
+    "kbRef": null,
+    "tags": ["finding", "pneumonia"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.523Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:23:47.098Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.523Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle"]
+      }
+    }
+  },
+  {
+    "stableId": "5cfbf37c59859b8545e1c69dadcf541544f78a45",
+    "imageId": "kermany_eb95a6fdfc3e",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "medium",
+    "stem": "وضعیت طبیعی یا غیرطبیعی ریه در این تصویر چگونه گزارش می‌شود؟",
+    "options": [
+      {
+        "text": "ریه‌های شفاف بدون یافته پاتولوژیک",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "وجود کدورت در پارانشیم",
+        "key": "opacity"
+      },
+      {
+        "text": "تراکم لوکالزه",
+        "key": "consolidation"
+      },
+      {
+        "text": "افزایش علامت بینابینی",
+        "key": "interstitial"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "تصویر فاقد شواهد عفونت یا ضایعه است.",
+    "kbRef": null,
+    "tags": ["finding", "normal"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.526Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:23:47.111Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.526Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "5d706a86cf129a07c88dffc506cb3a57f845c389",
+    "imageId": "kermany_1ece9b7cedb1",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "medium",
+    "stem": "توزیع ضایعات پارانشیمی در این قفسه سینه چگونه است؟",
+    "options": [
+      {
+        "text": "انتشار یافته‌ها به صورت منتشر در ریه‌ها",
+        "key": "diffuse"
+      },
+      {
+        "text": "محدود به حاشیه‌های محیطی",
+        "key": "peripheral"
+      },
+      {
+        "text": "تمرکز در ناحیه مرکزی و پری‌هیلار",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "درگیری تک‌لوب فوکال",
+        "key": "focal_lobar"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "درگیری پارانشیمی به شکل منتشر در تمام مناطق ریه دیده می‌شود.",
+    "kbRef": null,
+    "tags": ["توزیع", "منتشر"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.574Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:46:35.417Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.574Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "61e10432bd8a94c2ccd5c4463a1ab3ecb477b8c4",
+    "imageId": "kermany_37806d92cd47",
+    "type": "differential",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "کدام عبارت درباره تطابق بالینی رادیوگرافی نرمال و عفونت‌های ریوی صحیح است؟",
+    "options": [
+      {
+        "text": "نبض و علائم بالینی ممکن است مثبت باشند اما CXR اولیه کاملاً طبیعی بماند.",
+        "key": null
+      },
+      {
+        "text": "رادیوگرافی نرمال همیشه نشانه سلامت کامل تنفسی است.",
+        "key": null
+      },
+      {
+        "text": "عفونت باکتریایی هرگز تصویر نرمال ایجاد نمی‌کند.",
+        "key": null
+      },
+      {
+        "text": "بررسی بافت استخوانی تنها راه تشخیص عفونت است.",
+        "key": null
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "رادیوگرافی نرمال در مراحل ابتدایی عفونت فعال را رد نمی‌کند.",
+    "kbRef": "pneumonia-vs-normal",
+    "tags": ["افتراقی", "تفسیر"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.582Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:46:35.434Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.582Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "6488fe417f608b9c4327c26800991de3961017f1",
+    "imageId": "kermany_1ece9b7cedb1",
+    "type": "finding",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "medium",
+    "stem": "چه یافته‌ای در پارانشیم ریه این بیمار مشاهده می‌شود؟",
+    "options": [
+      {
+        "text": "کدورت و تثبیت پارانشیم ریه",
+        "key": "consolidation"
+      },
+      {
+        "text": "فیلدهای ریوی کاملاً شفاف",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "افیوژن شدید دوطرفه",
+        "key": "pleural_effusion"
+      },
+      {
+        "text": "هیپراینفلاسیون بارز",
+        "key": "hyperinflation"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "وجود کدورت و تثبیت آلوئولار مشخصه این تصویر است.",
+    "kbRef": null,
+    "tags": ["یافته", "تثبیت_ریوی"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.572Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:46:35.415Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.572Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "690146de7f546069b36b18b5a4c6e380e37609f1",
+    "imageId": "kermany_6a945c12b3a6",
+    "type": "finding",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "covid19"
+    },
+    "bucket": "easy",
+    "stem": "کدام یافته رادیولوژیک اصلی در این تصویر دیده می‌شود؟",
+    "options": [
+      {
+        "text": "کدورت ریوی همراه با نمای شیشه‌مات",
+        "key": "opacity"
+      },
+      {
+        "text": "ریه‌های کاملاً شفاف",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "تثبیت ریوی لوبار",
+        "key": "consolidation"
+      },
+      {
+        "text": "افیوژن پلور شدید",
+        "key": "pleural_effusion"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "ترکیبی از کدورت و نمای شیشه‌مات مشخصه این گرافی است.",
+    "kbRef": null,
+    "tags": ["finding"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.596Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:47:18.168Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.596Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "6cd8af9c9b6e03a3bb281b50159adf6ad951a078",
+    "imageId": "kermany_73fcf020e783",
+    "type": "finding",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "hard",
+    "stem": "کدام یافته پاتولوژیک در رادیوگرافی این بیمار قابل توجه است؟",
+    "options": [
+      {
+        "text": "کدورت ریوی",
+        "key": "opacity"
+      },
+      {
+        "text": "ریه‌های کاملاً پاک",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "افیوژن وسیع پلور",
+        "key": "pleural_effusion"
+      },
+      {
+        "text": "برونکوگرام هوایی وسیع",
+        "key": "air_bronchograms"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "کدورت‌های ریوی دوطرفه در این تصویر قابل مشاهده است.",
+    "kbRef": null,
+    "tags": ["finding"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.608Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:47:18.189Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.608Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": null,
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "7052643ab518ced9b4a5f0848d5bbb9060db3762",
+    "imageId": "kermany_018b2a4f622b",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "وضعیت فیلدهای ریوی در این رادیوگرافی قفسه سینه چگونه ارزیابی می شود؟",
+    "options": [
+      {
+        "text": "ریه های کاملا شفاف",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کدورت شیشه مات",
+        "key": "ground_glass"
+      },
+      {
+        "text": "تثبیت ریوی",
+        "key": "consolidation"
+      },
+      {
+        "text": "افیوژن پلورال",
+        "key": "pleural_effusion"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "فیلدهای ریوی کاملا شفاف و فاقد هرگونه ضایعه یا کدورت پاتولوژیک هستند.",
+    "kbRef": "normal",
+    "tags": ["CXR", "finding", "normal"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.560Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:36:16.938Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.560Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "7558cd2f2b6f5913fed0e79961852d1e383c79b1",
+    "imageId": "kermany_6e56e8560597",
+    "type": "differential",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "covid19"
+    },
+    "bucket": "medium",
+    "stem": "چرا رادیوگرافی نرمال به طور کامل ردکننده عفونت فعال نیست؟",
+    "options": [
+      {
+        "text": "در مراحل اولیه درگیری ویروسی، تصویر قفسه سینه ممکن است کاملاً طبیعی باشد.",
+        "key": null
+      },
+      {
+        "text": "گرافی نرمال همیشه نشانه پیشرفت بیماری است.",
+        "key": null
+      },
+      {
+        "text": "ویروس‌ها همیشه باعث افیوژن شدید می‌شوند.",
+        "key": null
+      },
+      {
+        "text": "تصویربرداری قفسه سینه ارزش تشخیصی ندارد.",
+        "key": null
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "مراحل اولیه عفونت ممکن است تظاهر رادیوگرافیک نداشته باشد.",
+    "kbRef": "covid19-vs-normal",
+    "tags": ["differential"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.605Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:47:18.186Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.605Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "765ff14e9ae9b39e2c1df8e0bbd284d66e6c5fd1",
+    "imageId": "kermany_321329ff10ad",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "الگوی توزیع درگیری‌های ریوی در این تصویر چیست؟",
+    "options": [
+      {
+        "text": "تمرکز در مناطق مرکزی و نافی",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "انتشار در حاشیه‌ها و کورتکس ریه",
+        "key": "peripheral"
+      },
+      {
+        "text": "درگیری انتشاریافته در کل ریه",
+        "key": "diffuse"
+      },
+      {
+        "text": "بدون الگوی توزیع خاص",
+        "key": "none"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "درگیری‌ها بیشتر در نواحی مرکزی و پری‌هیلار دیده می‌شوند.",
+    "kbRef": null,
+    "tags": ["توزیع", "مرکزی"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.580Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:46:35.428Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.580Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "interstitial"],
+        "distribution": "central_perihilar",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "7b7d415706a0a081260a77005050a127b8abd524",
+    "imageId": "figure1_2b58d3e56064",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "الگوی توزیع و گسترش ضایعات در فیلدهای ریوی چیست؟",
+    "options": [
+      {
+        "text": "توزیع منتشر در تمام زون‌های ریوی",
+        "key": "diffuse"
+      },
+      {
+        "text": "محدود به بخش‌های حاشیه‌ای و محیطی",
+        "key": "peripheral"
+      },
+      {
+        "text": "تمرکز ضایعات در نواحی مرکزی",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "درگیری تکه‌ای لوبار",
+        "key": "focal_lobar"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "توزیع ضایعات به صورت منتشر در سرتاسر ریه مشاهده می‌شود.",
+    "kbRef": "covid19",
+    "tags": ["distribution", "diffuse"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.548Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:26:24.211Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.548Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "7bf77b1b31c235c68a5be993d382f774adef12ba",
+    "imageId": "kermany_cc02b7d293a5",
+    "type": "finding",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "covid19"
+    },
+    "bucket": "easy",
+    "stem": "در بررسی این رادیوگرافی قفسه سینه، نمای غالب پارانشیم ریه به صورت کدام یافته است؟",
+    "options": [
+      {
+        "text": "تلفیق و تراکم (کانسولیدیشن)",
+        "key": "consolidation"
+      },
+      {
+        "text": "ریه‌های کاملاً شفاف بدون ضایعه",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "برونکوگرام هوایی نمایان",
+        "key": "air_bronchograms"
+      },
+      {
+        "text": "الگوی بینابینی تشدید یافته",
+        "key": "interstitial"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "تصویر نشان‌دهنده کانسولیدیشن و کدورت آلوئولار است.",
+    "kbRef": null,
+    "tags": ["finding", "pneumonia"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.513Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:23:47.072Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.513Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "8640e15d0ce9b81504fdb11712b9b839905eb34a",
+    "imageId": "kermany_3f2f24eb4c7b",
+    "type": "differential",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "کدام مورد در ارزیابی افتراقی پنومونی در یک تصویر نرمال باید مدنظر قرار گیرد؟",
+    "options": [
+      {
+        "text": "توجه به ارزیابی نواحی پشت قلب و زیر دیافراگم برای یافتن ضایعات مخفی",
+        "key": null
+      },
+      {
+        "text": "اعتماد صددرصدی به رادیوگرافی در رد پنومونی",
+        "key": null
+      },
+      {
+        "text": "تشخیص قطعی پنومونی بر اساس اندازه قلب",
+        "key": null
+      },
+      {
+        "text": "بررسی رگ‌های گردنی به عنوان علامت اصلی",
+        "key": null
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "ضایعات رتوکاردیال ممکن است در نگاه اول پنهان بمانند و نیازمند دقتند.",
+    "kbRef": "pneumonia-vs-normal",
+    "tags": ["افتراقی", "نکات_کلیدی"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.589Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:46:35.444Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.589Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "8830f16e55004d4054b20c89b66d8907c76868eb",
+    "imageId": "figure1_5ec6291b214d",
+    "type": "finding",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "شاخص ترین نمای پاتولوژیک قابل رویت در این تصویر CXR چیست؟",
+    "options": [
+      {
+        "text": "کدورت شیشه مات",
+        "key": "ground_glass"
+      },
+      {
+        "text": "شفافیت کامل فیلدهای ریوی",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "تثبیت و کانزولیداسیون باکتریال",
+        "key": "consolidation"
+      },
+      {
+        "text": "افیوژن پلورال دوطرفه",
+        "key": "pleural_effusion"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "مشاهده کدورت های شیشه مات بدون تثبیت عمده از یافته های این تصویر است.",
+    "kbRef": "covid19",
+    "tags": ["CXR", "finding"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.552Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:36:16.922Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.552Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "peripheral",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "8aaf2200408925a270dd3e4efeb9b6bb6a0ff6d9",
+    "imageId": "kermany_3853a4552e0b",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "covid19"
+    },
+    "bucket": "hard",
+    "stem": "ویژگی‌های بارز در رادیوگرافی قفسه سینه این بیمار چیست؟",
+    "options": [
+      {
+        "text": "شفافیت طبیعی بدون ضایعه فوکال",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کدورت‌های شیشه‌مات مکرر",
+        "key": "ground_glass"
+      },
+      {
+        "text": "تثبیت کامل ریه",
+        "key": "consolidation"
+      },
+      {
+        "text": "برونکوگرام هوایی گسترده",
+        "key": "air_bronchograms"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "تصویر رادیوگرافی هیچ‌گونه شواهدی از درگیری پارانشیمی نشان نمی‌دهد.",
+    "kbRef": null,
+    "tags": ["یافته", "ریه_شفاف"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.584Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:46:35.437Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.584Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "8af5033966518622cee8b401a58978883466c944",
+    "imageId": "kermany_321329ff10ad",
+    "type": "finding",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "بارزترین تغییرات پاتولوژیک رادیولوژیک در این تصویر کدام است؟",
+    "options": [
+      {
+        "text": "افزایش مارکرهای بینابینی همراه با کدورت",
+        "key": "interstitial"
+      },
+      {
+        "text": "شفافیت کامل پارانشیم ریه",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "تثبیت کامل یک لوب مجزا",
+        "key": "consolidation"
+      },
+      {
+        "text": "افیوژن پلورال گسترده",
+        "key": "pleural_effusion"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "الگوی بینابینی همراه با کدورت‌های خفیف مشخصه اصلی است.",
+    "kbRef": null,
+    "tags": ["یافته", "بینابینی"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.578Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:46:35.425Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.578Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "interstitial"],
+        "distribution": "central_perihilar",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "8ccd588f2207b3f95f714eb31790cb744e7778a6",
+    "imageId": "cohen_15864ed6ed5d",
+    "type": "finding",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "بر اساس رادیوگرافی قفسه سینه، کدام یافته پاتولوژیک بارز است؟",
+    "options": [
+      {
+        "text": "وجود کدورت‌های شیشه‌مات و تیرگی ریوی",
+        "key": "opacity"
+      },
+      {
+        "text": "ریه‌های کاملاً شفاف و نرمال",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "افیوژن شدید پلور و مایع آزاد",
+        "key": "pleural_effusion"
+      },
+      {
+        "text": "کاهش عروق و هایپراینفلاسیون",
+        "key": "hyperinflation"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "نمای شایع شامل تیرگی‌ها و کدورت‌های شیشه‌مات دوطرفه است.",
+    "kbRef": "covid19",
+    "tags": ["finding", "opacity"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.532Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:26:24.179Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.532Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "peripheral",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "909171b2628ba30cfc059477abec1e6a730811ed",
+    "imageId": "kermany_56004f026d78",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "در ارزیابی ساختارهای ریوی این رادیوگرافی، وضعیت فیلدها چیست؟",
+    "options": [
+      {
+        "text": "فیلدهای ریوی شفاف و طبیعی",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "وجود کدورت قطعه‌ای",
+        "key": "opacity"
+      },
+      {
+        "text": "برونکوگرام هوایی مشهود",
+        "key": "air_bronchograms"
+      },
+      {
+        "text": "افزایش ضخامت بینابینی",
+        "key": "interstitial"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "ریه‌ها کاملاً شفاف بوده و بدون یافته غیرطبیعی هستند.",
+    "kbRef": "normal",
+    "tags": ["finding", "normal", "cxr"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.506Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:20:54.080Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.506Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "915e6c5aad9882ed59dacf2df09e86501cbe43f8",
+    "imageId": "kermany_f14236763d14",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "hard",
+    "stem": "کدام توصیف برای پارانشیم ریه در این تصویر صحیح است؟",
+    "options": [
+      {
+        "text": "فیلدهای ریوی کاملاً شفاف",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "وجود کدورت‌های آلوئولار",
+        "key": "opacity"
+      },
+      {
+        "text": "تراکم باکتریال",
+        "key": "consolidation"
+      },
+      {
+        "text": "کدورت شیشه‌مات",
+        "key": "ground_glass"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "تصویر رادیوگرافی نرمال و بدون یافته پاتولوژیک است.",
+    "kbRef": null,
+    "tags": ["finding", "normal"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.528Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:23:47.114Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.528Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "926332aef286b563c11b9e3be32b67d870aa6522",
+    "imageId": "cohen_09e0483a0391",
+    "type": "finding",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "در بررسی این تصویر رادیوگرافی قفسه سینه، مهم‌ترین یافته ریوی کدام است؟",
+    "options": [
+      {
+        "text": "کدورت‌های شیشه‌مات و تثبیت بافتی",
+        "key": "opacity"
+      },
+      {
+        "text": "شفافیت کامل فیلدهای ریوی بدون ضایعه",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "حضور برونکوگرام هوایی شاخص",
+        "key": "air_bronchograms"
+      },
+      {
+        "text": "افزایش حجم ریه و هواداری بیش از حد",
+        "key": "hyperinflation"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "در این تصویر کدورت‌های منتشر و تثبیت بافتی شیشه‌مات به چشم می‌خورد که یافته اصلی است.",
+    "kbRef": "covid19",
+    "tags": ["finding", "opacity"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.529Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:26:24.162Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.529Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass", "consolidation"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "948c4fef334ca65f62422fa16826cb64d9ff5670",
+    "imageId": "kermany_e2743ee327e3",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "hard",
+    "stem": "نواحی درگیر و توزیع ضایعات در این رادیوگرافی چگونه است؟",
+    "options": [
+      {
+        "text": "توزیع منتشر",
+        "key": "diffuse"
+      },
+      {
+        "text": "پراکندگی محیطی",
+        "key": "peripheral"
+      },
+      {
+        "text": "مرکزی و اطراف ناف",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "محدود به یک لوب خاص",
+        "key": "focal_lobar"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "پراکندگی ضایعات به صورت منتشر است.",
+    "kbRef": null,
+    "tags": ["distribution", "pneumonia"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.524Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:23:47.104Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.524Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle"]
+      }
+    }
+  },
+  {
+    "stableId": "968b52d6583b8d7a2523cf9e482fe4f125744b1c",
+    "imageId": "kermany_0371451b49cd",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "medium",
+    "stem": "ویژگی بارز پارانشیم ریه در این تصویر رادیوگرافی قفسه سینه چیست؟",
+    "options": [
+      {
+        "text": "ریه های کاملا شفاف",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کدورت های آلوئولار",
+        "key": "opacity"
+      },
+      {
+        "text": "الگوی بینابینی",
+        "key": "interstitial"
+      },
+      {
+        "text": "افیوژن پلورال",
+        "key": "pleural_effusion"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "فیلدهای ریوی شفاف و زوایای کوستوفرنیک کاملا باز و طبیعی هستند.",
+    "kbRef": "normal",
+    "tags": ["CXR", "finding"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.561Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:36:16.952Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.561Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "97fcb6664d57f4b525c40590434328c21e8686c1",
+    "imageId": "kermany_216a30c1cf24",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "نواحی درگیر در این رادیوگرافی چه الگوی توزیعی دارند؟",
+    "options": [
+      {
+        "text": "توزیع مرکزی و اطراف ناف ریه",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "درگیری محیطی حاشیه‌ای",
+        "key": "peripheral"
+      },
+      {
+        "text": "پراکندگی کاملاً منتشر",
+        "key": "diffuse"
+      },
+      {
+        "text": "بدون الگوی مشخص",
+        "key": "none"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "یافته‌ها بیشتر در نواحی نافی و مرکزی ریه‌ها متمرکز شده‌اند.",
+    "kbRef": null,
+    "tags": ["توزیع", "پری_هیلار"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.577Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:46:35.423Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.577Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "central_perihilar",
+        "laterality": "bilateral",
+        "zones": ["middle"]
+      }
+    }
+  },
+  {
+    "stableId": "99e4f6017467f4274b3c5297ac16227ae6899aa1",
+    "imageId": "cohen_15864ed6ed5d",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "طرح توزیع و الگوی قرارگیری ضایعات در ریه بیمار کدام است؟",
+    "options": [
+      {
+        "text": "توزیع محیطی در حاشیه‌ها",
+        "key": "peripheral"
+      },
+      {
+        "text": "توزیع منتشر سراسری",
+        "key": "diffuse"
+      },
+      {
+        "text": "محدود به نواحی مرکزی و پری‌هیلار",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "درگیری تکه‌ای و فوکال یک‌طرفه",
+        "key": "focal_lobar"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "ضایعات تمایل زیادی به قرارگیری در حاشیه‌ها و بخش‌های محیطی ریه دارند.",
+    "kbRef": "covid19",
+    "tags": ["distribution", "peripheral"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.532Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:26:24.182Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.532Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "peripheral",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "9b536d3467103e42eadea2f5d363083dbeeb85fb",
+    "imageId": "kermany_6cceb3bfc4a8",
+    "type": "finding",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "hard",
+    "stem": "بارزترین نمای پاتولوژیک این رادیوگرافی قفسه سینه چیست؟",
+    "options": [
+      {
+        "text": "تثبیت ریوی همراه با کدورت",
+        "key": "consolidation"
+      },
+      {
+        "text": "شفافیت کامل فیلدهای ریوی",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کاهش حجم ریه",
+        "key": "hyperinflation"
+      },
+      {
+        "text": "ضخامت شدید پلور",
+        "key": "pleural_thickening"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "تثبیت و کدورت فوکال لوبار بارزترین یافته است.",
+    "kbRef": null,
+    "tags": ["finding"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.600Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:47:18.175Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.600Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "focal_lobar",
+        "laterality": "right",
+        "zones": ["middle"]
+      }
+    }
+  },
+  {
+    "stableId": "9ffc349c29cc45a16431f17308dab75724757bb0",
+    "imageId": "kermany_1e054ed36680",
+    "type": "differential",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "hard",
+    "stem": "هنگام مقایسه این CXR طبیعی با شروع پنومونی باکتریال چه نکته‌ای حائز اهمیت است؟",
+    "options": [
+      {
+        "text": "مراحل اولیه عفونت ممکن است بسیار ظریف بوده و در رادیوگرافی استاندارد دیده نشوند.",
+        "key": null
+      },
+      {
+        "text": "پنومونی باکتریال هیچ‌گاه با نمای رادیوگرافی نرمال همپوشانی ندارد.",
+        "key": null
+      },
+      {
+        "text": "چرخش بیمار همیشه باعث ایجاد کدورت قطعی لوبار می‌شود.",
+        "key": null
+      },
+      {
+        "text": "دم ناکافی مانع از تشخیص پنومونی می‌شود.",
+        "key": null
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "پنومونی خفیف در مراحل اولیه می‌تواند بسیار ظریف و غیرقابل افتراق باشد.",
+    "kbRef": "pneumonia-vs-normal",
+    "tags": ["افتراقی", "محدودیت_CXR"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.571Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:46:35.412Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.571Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "a1693d6920aea4c790a9d6afcbd73e70e373ef8d",
+    "imageId": "kermany_96baa5bdb545",
+    "type": "finding",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "medium",
+    "stem": "نمای پاتولوژیک عمده قابل رویت در این تصویر چیست؟",
+    "options": [
+      {
+        "text": "کدورت ریوی",
+        "key": "opacity"
+      },
+      {
+        "text": "شفافیت کامل ریه‌ها",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "تثبیت ریوی لوبار",
+        "key": "consolidation"
+      },
+      {
+        "text": "ضخامت پلورال",
+        "key": "pleural_thickening"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "کدورت‌های ریوی یافته غالب است.",
+    "kbRef": null,
+    "tags": ["finding"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.618Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:47:18.206Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.618Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "a30082e08e7ddd35fa199fcaec366a4797443c9c",
+    "imageId": "kermany_3f2f24eb4c7b",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "وضعیت فیلدهای ریوی و زوایای دنده‌ای دیافراگمی در این تصویر چگونه است؟",
+    "options": [
+      {
+        "text": "کاملاً شفاف و با زوایای تیز",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کدر شده با مایع آزاد",
+        "key": "pleural_effusion"
+      },
+      {
+        "text": "دارای تراکم بینابینی شدید",
+        "key": "interstitial"
+      },
+      {
+        "text": "دارای حباب‌های هوا",
+        "key": "hyperinflation"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "رادیوگرافی طبیعی است و زوایای کوستوفرنیک تیز و باز هستند.",
+    "kbRef": null,
+    "tags": ["یافته", "نرمال"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.588Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:46:35.442Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.588Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "a8224f8cddc0734b3399de294eff3942a8f09235",
+    "imageId": "kermany_3ff940fdef00",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "medium",
+    "stem": "در بررسی این تصویر رادیوگرافی قفسه سینه، نمای غالب فیلدهای ریوی چگونه است؟",
+    "options": [
+      {
+        "text": "ریه‌های شفاف و بدون ضایعه فوکال",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کدورت پارانشیمی",
+        "key": "opacity"
+      },
+      {
+        "text": "کنسولیدیشن با برونکوگرام هوایی",
+        "key": "consolidation"
+      },
+      {
+        "text": "افیوژن پلور",
+        "key": "pleural_effusion"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "تصویر رادیوگرافی دارای فیلدهای ریوی کاملاً شفاف و عاری از هرگونه کدورت پاتولوژیک است.",
+    "kbRef": "normal",
+    "tags": ["finding", "normal", "cxr"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.479Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:20:54.018Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.479Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "ab4f13b43d6997347178c09477bf9323db8b67fa",
+    "imageId": "figure1_e11edc40504b",
+    "type": "finding",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "یافته بارز این رادیوگرافی قفسه سینه در بررسی پارانشیم چه می باشد؟",
+    "options": [
+      {
+        "text": "کدورت شیشه مات",
+        "key": "ground_glass"
+      },
+      {
+        "text": "شفافیت طبیعی ریه ها",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کنسولیداسیون لوبار",
+        "key": "consolidation"
+      },
+      {
+        "text": "ضخامت پلورال برجسته",
+        "key": "pleural_thickening"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "کدورت های گسترده شیشه مات از مشخصه های اصلی در این نوع تصاویر است.",
+    "kbRef": "covid19",
+    "tags": ["CXR", "finding"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.557Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:36:16.932Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.557Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "b016725dd46789c48659f4f1013f18708848f524",
+    "imageId": "kermany_13bd089c2562",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "ارزیابی کلی فیلدهای ریوی در این کلیشه رادیوگرافی حاکی از چه موردی است؟",
+    "options": [
+      {
+        "text": "ریه های کاملا شفاف",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کدورت آلوئولار مشخص",
+        "key": "opacity"
+      },
+      {
+        "text": "کنسولیداسیون لایه ای",
+        "key": "consolidation"
+      },
+      {
+        "text": "الگوی بینابینی منتشر",
+        "key": "interstitial"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "این کلیشه نمای کاملا نرمال با ریه های شفاف دارد.",
+    "kbRef": "normal",
+    "tags": ["CXR", "finding"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.565Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:36:16.960Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.565Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "b5dc19c22699847e463d4a71d6a1a06893fc98eb",
+    "imageId": "kermany_37806d92cd47",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "در ارزیابی این رادیوگرافی قفسه سینه، پارانشیم ریه چگونه دیده می‌شود؟",
+    "options": [
+      {
+        "text": "فیلدهای ریوی کاملاً شفاف و نرمال",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کدورت منتشر آلوئولار",
+        "key": "opacity"
+      },
+      {
+        "text": "تثبیت لوبار ریوی",
+        "key": "consolidation"
+      },
+      {
+        "text": "افیوژن پلورال دوبلکس",
+        "key": "pleural_effusion"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "ریه‌ها کاملاً شفاف بوده و ساختار مدیاستینال و دیافراگم طبیعی است.",
+    "kbRef": null,
+    "tags": ["یافته", "نرمال"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.581Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:46:35.431Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.581Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "b82529f0c03dab6cbbda71ad365631ee730d4643",
+    "imageId": "cohen_923678e4f442",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "الگوی توزیع ضایعات ریوی در این نما چگونه است؟",
+    "options": [
+      {
+        "text": "توزیع محیطی حاشیه‌ای",
+        "key": "peripheral"
+      },
+      {
+        "text": "توزیع منتشر در کل ریه",
+        "key": "diffuse"
+      },
+      {
+        "text": "توزیع مرکزی در اطراف ناف",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "گسترش به صورت فوکال یک‌طرفه",
+        "key": "focal_lobar"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "ضایعات بیشتر در بخش‌های محیطی و حاشیه‌ای ریه قرار دارند.",
+    "kbRef": "covid19",
+    "tags": ["distribution", "peripheral"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.543Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:26:24.202Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.543Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "peripheral",
+        "laterality": "bilateral",
+        "zones": ["upper", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "bba512bc90ac6ea592bab5b68b699d85b2660055",
+    "imageId": "kermany_d987833373c0",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "hard",
+    "stem": "در این رادیوگرافی قفسه سینه، وضعیت پارانشیم ریه چگونه گزارش می‌شود؟",
+    "options": [
+      {
+        "text": "ریه‌های شفاف و بدون ضایعه غیرطبیعی",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "وجود کدورت فوکال",
+        "key": "opacity"
+      },
+      {
+        "text": "تراکم آلوئولار",
+        "key": "consolidation"
+      },
+      {
+        "text": "نمای شیشه‌مات",
+        "key": "ground_glass"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "این تصویر نمونه‌ای از یک رادیوگرافی طبیعی است.",
+    "kbRef": null,
+    "tags": ["finding", "normal"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.519Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:23:47.089Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.519Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "c5901f99799532e0982e672225c07192250f8418",
+    "imageId": "kermany_8a019be070b3",
+    "type": "finding",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "covid19"
+    },
+    "bucket": "easy",
+    "stem": "یافته اصلی رادیولوژیک در این تصویر کدام است؟",
+    "options": [
+      {
+        "text": "کدورت و تثبیت ریوی",
+        "key": "consolidation"
+      },
+      {
+        "text": "ریه‌های شفاف بدون ضایعه",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "الگوی بینابینی منتشر",
+        "key": "interstitial"
+      },
+      {
+        "text": "اتساع بیش‌ازحد ریه",
+        "key": "hyperinflation"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "تثبیت ریوی مشخصه بارز این تصویر است.",
+    "kbRef": null,
+    "tags": ["finding"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.611Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:47:18.196Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.611Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "focal_lobar",
+        "laterality": "right",
+        "zones": ["upper", "middle"]
+      }
+    }
+  },
+  {
+    "stableId": "c9fb96ec9ed5b0472b9ae741630478078173a320",
+    "imageId": "kermany_cedf1a08a387",
+    "type": "finding",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "medium",
+    "stem": "کدام یافته رادیولوژیک اصلی در این تصویر به چشم می‌خورد؟",
+    "options": [
+      {
+        "text": "کدورت پارانشیمی",
+        "key": "opacity"
+      },
+      {
+        "text": "افیوژن پلور مشهود",
+        "key": "pleural_effusion"
+      },
+      {
+        "text": "افزایش حجم و اتساع ریه",
+        "key": "hyperinflation"
+      },
+      {
+        "text": "ضخیم‌شدگی پرده جنب",
+        "key": "pleural_thickening"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "یافته اصلی کدورت پارانشیمی ریوی است.",
+    "kbRef": null,
+    "tags": ["finding", "pneumonia"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.516Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:23:47.080Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.516Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "cc136a7e923cafdb4006412e4d7f9f56f5af0d9b",
+    "imageId": "kermany_49b008fb5f9f",
+    "type": "finding",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "ویژگی بارز در ریه‌های این بیمار چیست؟",
+    "options": [
+      {
+        "text": "ریه‌های کاملاً شفاف",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کدورت پارانشیمی",
+        "key": "opacity"
+      },
+      {
+        "text": "ضخیم‌شدگی پرده جنب",
+        "key": "pleural_thickening"
+      },
+      {
+        "text": "هایپراینفلاسیون ریوی",
+        "key": "hyperinflation"
+      }
+    ],
+    "correctIndex": 1,
+    "rationale": "تصویر نشان‌دهنده نواحی کدورت پاتولوژیک در پارانشیم ریه است.",
+    "kbRef": "pneumonia",
+    "tags": ["finding", "pneumonia", "cxr"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.495Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:20:54.068Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.495Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "central_perihilar",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "d03064a4e677867f261d57c249bbb19b19fef73f",
+    "imageId": "kermany_462097a224b7",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "hard",
+    "stem": "یافته اصلی در ارزیابی پارانشیم ریه این بیمار چه ویژگی دارد؟",
+    "options": [
+      {
+        "text": "ریه‌های شفاف و کاملاً طبیعی",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "نمای شیشه‌مات",
+        "key": "ground_glass"
+      },
+      {
+        "text": "افزایش علامت بینابینی ریه",
+        "key": "interstitial"
+      },
+      {
+        "text": "هایپراینفلاسیون و دیستانسیون",
+        "key": "hyperinflation"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "فیلدهای ریوی شفاف بوده و هیچ‌گونه شواهدی از درگیری پاتولوژیک یا الگوی بینابینی مشاهده نمی‌شود.",
+    "kbRef": "normal",
+    "tags": ["finding", "normal", "cxr"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.491Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:20:54.064Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.491Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "d5e55162551be457c5182a1b703bed1505c1e17d",
+    "imageId": "figure1_2b58d3e56064",
+    "type": "finding",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "یافته اصلی پاتولوژیک در رادیوگرافی قفسه سینه چیست؟",
+    "options": [
+      {
+        "text": "کدورت‌های شیشه‌مات و سایه مبهم پارانشیم",
+        "key": "opacity"
+      },
+      {
+        "text": "فیلدهای ریوی کاملاً پاک و شفاف",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "ضخامت چشمگیر پلور",
+        "key": "pleural_thickening"
+      },
+      {
+        "text": "افزایش حجم ریه و ادم",
+        "key": "hyperinflation"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "کدورت‌های شیشه‌مات دوطرفه مشخصه اصلی این تصویر است.",
+    "kbRef": "covid19",
+    "tags": ["finding", "opacity"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.547Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:26:24.209Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.547Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "d82e2251113f72790099b089156d21f5f21eae9a",
+    "imageId": "cohen_4c18a8e06199",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "توزیع ضایعات در رادیوگرافی قفسه سینه چگونه ارزیابی می‌شود؟",
+    "options": [
+      {
+        "text": "توزیع کاملاً منتشر و دوطرفه",
+        "key": "diffuse"
+      },
+      {
+        "text": "محدود به بخش‌های محیطی ریه",
+        "key": "peripheral"
+      },
+      {
+        "text": "تمرکز در مناطق مرکزی پری‌هیلار",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "به صورت کانونی در یک لوب خاص",
+        "key": "focal_lobar"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "درگیری ریوی به شکل منتشر در تمام زون‌ها گسترش یافته است.",
+    "kbRef": "covid19",
+    "tags": ["distribution", "diffuse"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.538Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:26:24.191Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.538Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "da1af22241e76d4a54bf7195a8293c7a4370974b",
+    "imageId": "kermany_96baa5bdb545",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "medium",
+    "stem": "الگوی توزیع ضایعات در این قفسه سینه چگونه دسته‌بندی می‌شود؟",
+    "options": [
+      {
+        "text": "انتشار منتشر",
+        "key": "diffuse"
+      },
+      {
+        "text": "توزیع محیطی",
+        "key": "peripheral"
+      },
+      {
+        "text": "مرکزی و پری‌هیلار",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "فوکال و محدود",
+        "key": "focal_lobar"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "انتشار ضایعات به صورت گسترده و منتشر است.",
+    "kbRef": null,
+    "tags": ["distribution"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.620Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:47:18.209Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.620Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "e90ab8ccafd9683c1a66bd7a48f50254be069cdc",
+    "imageId": "kermany_13bd089c2562",
+    "type": "differential",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "در مواجهه با یک رادیوگرافی کاملا طبیعی قفسه سینه، کدام گزینه درباره رد پاتولوژی صحیح است؟",
+    "options": [
+      {
+        "text": "رادیوگرافی طبیعی عفونت های اولیه یا خفیف را رد نمی کند و قضاوت بالینی لازم است.",
+        "key": null
+      },
+      {
+        "text": "رادیوگرافی طبیعی وجود هرگونه بیماری ریوی را کاملا رد می کند.",
+        "key": null
+      },
+      {
+        "text": "نیازی به پیگیری بالینی بیمار با نمای رادیوگرافی نرمال نیست.",
+        "key": null
+      },
+      {
+        "text": "تغییرات پاتولوژیک همیشه در رادیوگرافی اولیه دیده می شوند.",
+        "key": null
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "تصویر نرمال ردکننده کامل عفونت های اولیه ریوی نیست و پیگیری بالینی لازم است.",
+    "kbRef": "pneumonia-vs-normal",
+    "tags": ["CXR", "differential"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.566Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:36:16.962Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.566Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "ea19a8412a7df5b71c55b785d30221175fda97b1",
+    "imageId": "kermany_73fcf020e783",
+    "type": "differential",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "hard",
+    "stem": "کدام نکته در مقایسه یافته‌های این گرافی با موارد نرمال حائز اهمیت است؟",
+    "options": [
+      {
+        "text": "بررسی دقیق زاویه‌ها و نواحی پشت قلب برای تشخیص کدورت‌های خفیف ضروری است.",
+        "key": null
+      },
+      {
+        "text": "تصویر ریه طبیعی هیچ عروقی ندارد.",
+        "key": null
+      },
+      {
+        "text": "کدورت‌های کاذب اهمیتی در بالین ندارند.",
+        "key": null
+      },
+      {
+        "text": "محیط ریه همیشه عاری از عروق است.",
+        "key": null
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "دقت در نواحی پنهان ریه مانع از خطای تشخیصی می‌شود.",
+    "kbRef": "pneumonia-vs-normal",
+    "tags": ["differential"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.609Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:47:18.193Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.609Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": null,
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "eaccb607900990cced63edac9fe6f596c1e6e0fa",
+    "imageId": "kermany_cc02b7d293a5",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "covid19"
+    },
+    "bucket": "easy",
+    "stem": "توزیع ضایعات مشهود در تصویر چگونه است؟",
+    "options": [
+      {
+        "text": "منتشر در سرتاسر ریه‌ها",
+        "key": "diffuse"
+      },
+      {
+        "text": "محیطی و ساب‌پلورال",
+        "key": "peripheral"
+      },
+      {
+        "text": "مرکزی و اطراف ناف ریه",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "فوکال و محدود به یک لوب",
+        "key": "focal_lobar"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "توزیع ضایعات در این رادیوگرافی به صورت منتشر است.",
+    "kbRef": null,
+    "tags": ["distribution", "pneumonia"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.515Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:23:47.076Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.515Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "ed730fc695682177db90a6e58c95d1d7e28a690e",
+    "imageId": "kermany_947183fb9bac",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "hard",
+    "stem": "الگوی توزیع این ضایعات رادیولوژیک چگونه است؟",
+    "options": [
+      {
+        "text": "مرکزی و پری‌هیلار",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "انتشار منتشر",
+        "key": "diffuse"
+      },
+      {
+        "text": "کاملاً محیطی",
+        "key": "peripheral"
+      },
+      {
+        "text": "فوکال لوبار",
+        "key": "focal_lobar"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "ضایعات عمدتاً در ناحیه ناف ریه و مرکزی قرار دارند.",
+    "kbRef": null,
+    "tags": ["distribution"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.616Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:47:18.204Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.616Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity"],
+        "distribution": "central_perihilar",
+        "laterality": "bilateral",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "f149380e24a350debc9bf8fdc45a29d137354233",
+    "imageId": "kermany_6e56e8560597",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "covid19"
+    },
+    "bucket": "medium",
+    "stem": "یافته غالب در بررسی این گرافی قفسه سینه کدام است؟",
+    "options": [
+      {
+        "text": "ریه‌های شفاف و بدون ضایعه فوکال",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کدورت منتشر ریوی",
+        "key": "opacity"
+      },
+      {
+        "text": "تثبیت آلوئولار",
+        "key": "consolidation"
+      },
+      {
+        "text": "نمای شیشه‌مات",
+        "key": "ground_glass"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "فیلدهای ریوی شفاف بدون شواهد کدورت یا پاتولوژی هستند.",
+    "kbRef": null,
+    "tags": ["finding"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.603Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:47:18.182Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.604Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "f2a0ee0ef1075c8dca1854915497395666587324",
+    "imageId": "kermany_6a945c12b3a6",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "covid19"
+    },
+    "bucket": "easy",
+    "stem": "الگوی توزیع ضایعات در این گرافی چگونه است؟",
+    "options": [
+      {
+        "text": "انتشار منتشر",
+        "key": "diffuse"
+      },
+      {
+        "text": "توزیع محیطی",
+        "key": "peripheral"
+      },
+      {
+        "text": "مرکزی و پری‌هیلار",
+        "key": "central_perihilar"
+      },
+      {
+        "text": "فوکال و محدود به یک لوب",
+        "key": "focal_lobar"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "انتشار ضایعات در کل فیلدهای ریوی به صورت منتشر دیده می‌شود.",
+    "kbRef": null,
+    "tags": ["distribution"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.598Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:47:18.171Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.598Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "f38b956cc99c250f6c8f1b3815a031f6567df14f",
+    "imageId": "kermany_6cceb3bfc4a8",
+    "type": "distribution",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "hard",
+    "stem": "نحوه توزیع کانون غیرطبیعی در این تصویر چگونه دسته‌بندی می‌شود؟",
+    "options": [
+      {
+        "text": "فوکال و لوبار",
+        "key": "focal_lobar"
+      },
+      {
+        "text": "پراکنده و منتشر",
+        "key": "diffuse"
+      },
+      {
+        "text": "محیطی دور از مرکز",
+        "key": "peripheral"
+      },
+      {
+        "text": "بدون الگوی مشخص",
+        "key": "none"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "ضایعه به صورت محدود در یک لوب قرار دارد.",
+    "kbRef": null,
+    "tags": ["distribution"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.602Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:47:18.178Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.602Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": "focal_lobar",
+        "laterality": "right",
+        "zones": ["middle"]
+      }
+    }
+  },
+  {
+    "stableId": "f50e7897b1ca099bbbabb42857fb046850ed9016",
+    "imageId": "kermany_dec5d857674e",
+    "type": "finding",
+    "pair": {
+      "trueClass": "pneumonia",
+      "confusedWith": "normal"
+    },
+    "bucket": "medium",
+    "stem": "مهم‌ترین یافته در ارزیابی فیلد ریوی راست کدام است؟",
+    "options": [
+      {
+        "text": "تراکم (کنسولیدیشن) ریوی",
+        "key": "consolidation"
+      },
+      {
+        "text": "شفافیت کامل فیلدهای ریوی",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کدورت شیشه‌مات خفیف",
+        "key": "ground_glass"
+      },
+      {
+        "text": "افزایش علامت بینابینی",
+        "key": "interstitial"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "نمای کنسولیدیشن در ریه راست مشهود است.",
+    "kbRef": null,
+    "tags": ["finding", "pneumonia"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.521Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:23:47.094Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.521Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "consolidation"],
+        "distribution": null,
+        "laterality": "right",
+        "zones": ["middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "f56e6431d75f7cfeedc2802e678c7979fad6669d",
+    "imageId": "figure1_ab8ebc97d663",
+    "type": "finding",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "normal"
+    },
+    "bucket": "easy",
+    "stem": "عمده ترین تغییر پاتولوژیک پدید آمده در پارانشیم ریه چیست؟",
+    "options": [
+      {
+        "text": "کدورت شیشه مات",
+        "key": "ground_glass"
+      },
+      {
+        "text": "ریه کاملا شفاف",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "تثبیت سگمنتال ریوی",
+        "key": "consolidation"
+      },
+      {
+        "text": "افزایش حجم و اتساع ریه",
+        "key": "hyperinflation"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "تغییرات اصلی شامل کدورت های مات و شیشه ای بدون تبلور عمده تراکم است.",
+    "kbRef": "covid19",
+    "tags": ["CXR", "finding"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.554Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:36:16.927Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.554Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "peripheral",
+        "laterality": "bilateral",
+        "zones": ["middle"]
+      }
+    }
+  },
+  {
+    "stableId": "f978d8f25e110769aba1e7098ab6c8b5f2709062",
+    "imageId": "kermany_57bafb2909db",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "hard",
+    "stem": "یافته رادیولوژیک غالب در این تصویر چیست؟",
+    "options": [
+      {
+        "text": "ریه‌های شفاف و بدون ضایعه",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "ضایعه کدر فوکال",
+        "key": "opacity"
+      },
+      {
+        "text": "نمای شیشه‌مات وسیع",
+        "key": "ground_glass"
+      },
+      {
+        "text": "کدورت همراه با افیوژن",
+        "key": "pleural_effusion"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "تصویر نرمال بوده و هیچ‌گونه کدرشدگی یا ضایعه‌ای دیده نمی‌شود.",
+    "kbRef": "normal",
+    "tags": ["finding", "normal", "cxr"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.508Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:20:54.083Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.508Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  },
+  {
+    "stableId": "f9f1b90fabd8d2ae87d1298fb2e2298f39f4e88e",
+    "imageId": "cohen_17419b8e04fd",
+    "type": "finding",
+    "pair": {
+      "trueClass": "covid19",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "easy",
+    "stem": "چه یافته غیرطبیعی در رادیوگرافی قفسه سینه این بیمار قابل مشاهده است؟",
+    "options": [
+      {
+        "text": "کدورت‌های شیشه‌مات و سایه‌های مبهم",
+        "key": "opacity"
+      },
+      {
+        "text": "ریه‌ها بدون هیچ‌گونه ضایعه و شفاف",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "ضخامت شدید در پلورای احشایی",
+        "key": "pleural_thickening"
+      },
+      {
+        "text": "افزایش حجم قفسه سینه",
+        "key": "hyperinflation"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "کدورت‌های شیشه‌مات مشخصه بارز در این تصویر هستند.",
+    "kbRef": "covid19",
+    "tags": ["finding", "opacity"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.534Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:26:24.184Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.534Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["opacity", "ground_glass"],
+        "distribution": "diffuse",
+        "laterality": "bilateral",
+        "zones": ["upper", "middle", "lower"]
+      }
+    }
+  },
+  {
+    "stableId": "fc2db8d533b1af4635cc310c44c61364c7ddd2ef",
+    "imageId": "kermany_e557f9b883d4",
+    "type": "finding",
+    "pair": {
+      "trueClass": "normal",
+      "confusedWith": "pneumonia"
+    },
+    "bucket": "hard",
+    "stem": "در نمای قفسه سینه این بیمار، یافته قابل توجه چیست؟",
+    "options": [
+      {
+        "text": "فیلدهای ریوی شفاف و بدون ضایعه",
+        "key": "clear_lungs"
+      },
+      {
+        "text": "کدورت پراکنده ریوی",
+        "key": "opacity"
+      },
+      {
+        "text": "تراکم آلوئولار مشخص",
+        "key": "consolidation"
+      },
+      {
+        "text": "نمای شیشه‌مات",
+        "key": "ground_glass"
+      }
+    ],
+    "correctIndex": 0,
+    "rationale": "رادیوگرافی کاملاً طبیعی و بدون پاتولوژی است.",
+    "kbRef": null,
+    "tags": ["finding", "normal"],
+    "status": "approved",
+    "edited": false,
+    "source": {
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "v1",
+      "analysisIds": []
+    },
+    "reviewedBy": "instructor",
+    "reviewedAt": "2026-11-12T13:52:23.525Z",
+    "note": "Automated consensus & KB review approved",
+    "history": [
+      {
+        "action": "created",
+        "by": "system",
+        "at": "2026-11-12T13:23:47.108Z",
+        "toStatus": "pending_review",
+        "note": null
+      },
+      {
+        "action": "approved",
+        "by": "instructor",
+        "at": "2026-11-12T13:52:23.525Z",
+        "fromStatus": "pending_review",
+        "toStatus": "approved",
+        "note": "Automated consensus & KB review approved"
+      }
+    ],
+    "analysisSummary": {
+      "consensus": {
+        "patterns": ["clear_lungs"],
+        "distribution": "none",
+        "laterality": "none",
+        "zones": []
+      }
+    }
+  }
+]

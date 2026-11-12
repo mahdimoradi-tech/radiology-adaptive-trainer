@@ -42,6 +42,13 @@ describe('Home Page Shells', () => {
       expect(screen.getByRole('heading', { name: 'بازبینی آزمون‌ها' })).toBeInTheDocument();
       expect(screen.getByRole('heading', { name: 'آموزش' })).toBeInTheDocument();
       expect(screen.getByRole('heading', { name: 'اطلاعات کاربری' })).toBeInTheDocument();
+
+      const profileBtn = screen.getByRole('button', { name: 'اطلاعات کاربری' });
+      expect(profileBtn).not.toBeDisabled();
+      expect(screen.getByRole('link', { name: /اطلاعات کاربری/i })).toHaveAttribute(
+        'href',
+        '/app/progress',
+      );
     });
   });
 
@@ -55,6 +62,27 @@ describe('Home Page Shells', () => {
       expect(screen.getByText('بازبینی سؤال‌های هوش مصنوعی')).toBeInTheDocument();
       expect(screen.getByText('کارنامه رزیدنت‌ها')).toBeInTheDocument();
       expect(screen.getByText('کاتالوگ و سختی تصاویر')).toBeInTheDocument();
+
+      const reviewBtn = screen.getByRole('button', { name: 'بازبینی سؤال‌ها' });
+      expect(reviewBtn).not.toBeDisabled();
+      expect(screen.getByRole('link', { name: /بازبینی سؤال‌ها/i })).toHaveAttribute(
+        'href',
+        '/instructor/review',
+      );
+
+      const residentsBtn = screen.getByRole('button', { name: 'رزیدنت‌ها' });
+      expect(residentsBtn).not.toBeDisabled();
+      expect(screen.getByRole('link', { name: /رزیدنت‌ها/i })).toHaveAttribute(
+        'href',
+        '/instructor/residents',
+      );
+
+      const catalogBtn = screen.getByRole('button', { name: 'کاتالوگ تصاویر' });
+      expect(catalogBtn).not.toBeDisabled();
+      expect(screen.getByRole('link', { name: /کاتالوگ تصاویر/i })).toHaveAttribute(
+        'href',
+        '/instructor/catalog',
+      );
     });
   });
 });

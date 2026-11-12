@@ -320,6 +320,13 @@ export async function runAnalysis(opts) {
           requestsMade++;
         } catch (retryErr) {
           requestsMade++;
+          if (retryErr instanceof LlmError && retryErr.status === 429) {
+            console.log(
+              `429 quota error on 503 retry — marking day exhausted. ${retryErr.message}`,
+            );
+            if (!dryRun) await markExhausted();
+            return { requestsMade, batchesDone, batchesFailed, exitReason: 'QUOTA_429' };
+          }
           const errMsg = retryErr instanceof Error ? retryErr.message : String(retryErr);
           console.error(`  [ERROR] Batch ${batch.batchId} 503 retry error: ${errMsg}`);
           if (!dryRun) {

@@ -50,7 +50,7 @@ export async function run() {
     provider = new GeminiProvider({
       apiKey: config.GEMINI_API_KEY,
       model: config.GEMINI_MODEL,
-      timeoutMs: Math.max(config.LLM_TIMEOUT_MS, 60000),
+      timeoutMs: Math.max(config.LLM_TIMEOUT_MS, 120000),
     });
   }
 

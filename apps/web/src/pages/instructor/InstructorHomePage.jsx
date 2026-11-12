@@ -36,12 +36,14 @@ export function InstructorHomePage() {
             <CardDescription>{t('instructor.reviewDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-xs text-slate-500">{t('common.comingInTask', { task: 'T08' })}</p>
+            <p className="text-xs text-slate-500">{t('instructor.review.title')}</p>
           </CardContent>
           <CardFooter>
-            <Button variant="outline" disabled className="w-full">
-              {t('nav.review')}
-            </Button>
+            <Link to="/instructor/review" className="w-full">
+              <Button variant="outline" className="w-full">
+                {t('nav.review')}
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
 
@@ -50,17 +52,19 @@ export function InstructorHomePage() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle>{t('instructor.residentsTitle')}</CardTitle>
-              <Badge variant="secondary">T08</Badge>
+              <Badge variant="secondary">T09</Badge>
             </div>
             <CardDescription>{t('instructor.residentsDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-xs text-slate-500">{t('common.comingInTask', { task: 'T08' })}</p>
+            <p className="text-xs text-slate-500">{t('instructor.residents.subtitle')}</p>
           </CardContent>
           <CardFooter>
-            <Button variant="outline" disabled className="w-full">
-              {t('nav.residents')}
-            </Button>
+            <Link to="/instructor/residents" className="w-full">
+              <Button variant="outline" className="w-full">
+                {t('nav.residents')}
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
 
