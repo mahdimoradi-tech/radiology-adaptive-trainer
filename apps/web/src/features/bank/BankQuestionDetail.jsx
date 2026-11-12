@@ -156,7 +156,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
                     onChange={() => setEditCorrectIndex(idx)}
                     className="h-4 w-4 text-amber-600 focus:ring-amber-500"
                   />
-                  <span className="text-xs font-semibold text-slate-500 w-6">
+                  <span className="text-xs font-semibold text-slate-600 w-6">
                     {optionLetters[idx]}
                   </span>
                   <input
@@ -222,7 +222,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
           <>
             {/* Question Stem */}
             <div>
-              <span className="text-[11px] font-bold text-slate-500 block mb-1">
+              <span className="text-[11px] font-bold text-slate-600 block mb-1">
                 {t('instructor.review.stem')}
               </span>
               <p className="text-sm font-semibold text-slate-900 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200/80">
@@ -232,7 +232,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
 
             {/* Options */}
             <div>
-              <span className="text-[11px] font-bold text-slate-500 block mb-2">
+              <span className="text-[11px] font-bold text-slate-600 block mb-2">
                 {t('instructor.review.options')}
               </span>
               <div className="grid grid-cols-1 gap-2">
@@ -248,13 +248,13 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-slate-500 w-5">{optionLetters[idx]}</span>
+                        <span className="font-bold text-slate-600 w-5">{optionLetters[idx]}</span>
                         <span>{opt.text}</span>
                       </div>
 
                       <div className="flex items-center gap-2">
                         {opt.key && (
-                          <span className="text-[10px] text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded font-mono">
+                          <span className="text-[10px] text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded font-mono">
                             {opt.key}
                           </span>
                         )}
@@ -272,7 +272,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
 
             {/* Educational Rationale */}
             <div>
-              <span className="text-[11px] font-bold text-slate-500 block mb-1">
+              <span className="text-[11px] font-bold text-slate-600 block mb-1">
                 {t('instructor.review.rationale')}
               </span>
               <p className="text-xs text-slate-700 leading-relaxed bg-amber-50/40 p-3 rounded-xl border border-amber-200/60">
@@ -330,7 +330,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
             {/* Audit History */}
             {question.history?.length > 0 && (
               <div>
-                <span className="text-[11px] font-bold text-slate-500 block mb-1.5">
+                <span className="text-[11px] font-bold text-slate-600 block mb-1.5">
                   {t('instructor.review.history')}
                 </span>
                 <div className="space-y-1.5">
@@ -344,7 +344,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
                           {h.action}
                         </Badge>
                         <span className="font-medium text-slate-700">{h.by}</span>
-                        {h.note && <span className="text-slate-500 italic">({h.note})</span>}
+                        {h.note && <span className="text-slate-600 italic">({h.note})</span>}
                       </div>
                       <span className="text-slate-600 text-[10px]">
                         {new Date(h.at).toLocaleDateString('fa-IR')}

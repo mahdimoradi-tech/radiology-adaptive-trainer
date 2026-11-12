@@ -22,7 +22,7 @@ export function BankQuestionList({
 
   if (questions.length === 0) {
     return (
-      <div className="text-center py-12 text-slate-500 text-xs">
+      <div className="flex-1 flex items-center justify-center p-6 text-center text-slate-600 text-xs">
         {t('instructor.review.noQuestions')}
       </div>
     );
@@ -75,10 +75,10 @@ export function BankQuestionList({
                   <Badge variant={getTypeBadgeVariant(q.type)} size="sm">
                     {t(`instructor.review.${q.type}`)}
                   </Badge>
-                  <span className="text-[10px] font-semibold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">
+                  <span className="text-[10px] font-semibold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">
                     {q.pair?.trueClass}
                   </span>
-                  <span className="text-[10px] text-slate-500">{q.bucket}</span>
+                  <span className="text-[10px] text-slate-600 font-medium">{q.bucket}</span>
                   {q.edited && (
                     <Badge variant="neutral" size="sm">
                       {t('instructor.review.edited')}
@@ -101,7 +101,7 @@ export function BankQuestionList({
 
       {/* Pagination Footer */}
       {totalPages > 1 && (
-        <div className="pt-3 mt-2 border-t border-slate-200 flex items-center justify-between gap-2 text-xs">
+        <div className="pt-4 mt-4 border-t border-slate-200 flex items-center justify-between gap-2 text-xs">
           <Button
             variant="outline"
             size="sm"
@@ -111,7 +111,7 @@ export function BankQuestionList({
             {t('instructor.review.prevPage')}
           </Button>
 
-          <span className="text-slate-600">
+          <span className="text-slate-700 font-medium">
             {t('instructor.review.pageOf', { page, total: totalPages })}
           </span>
 
