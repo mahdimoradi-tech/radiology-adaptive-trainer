@@ -8,9 +8,23 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- None (T14 completed and merged, ready for T15).
+- T15 (UI polish pass) in review (PR #28).
 
 ## Done (newest first)
+
+- Completed T15: Comprehensive UI polish pass across all 19 screens (PR #28):
+  - Cataloged 58 static audit issues and 2 user-reported items in `docs/qa/UI-AUDIT.md`.
+  - Removed all developer task badges (`T06`, `T08`, `T09`) from dashboard cards (`ResidentHomePage`, `InstructorHomePage`).
+  - Overhauled progress and instructor charts (`ProgressView`, `LineChart`, `ResidentDetailPage`) with high-contrast text and dark-theme tokens.
+  - Defined accessible color and spacing tokens in Tailwind 4 `@theme` (`apps/web/src/index.css`), replacing low-contrast grays with WCAG AA compliant colors (contrast ratio >= 4.5:1).
+  - Authored automated low-contrast scanner `scripts/check-low-contrast.js` and Vitest unit test suite `check-contrast-classes.test.js` (0 violations found).
+  - Enforced 16px border clearance (`pt-4 mt-4`) across all divider borders, card footers, and action buttons (Rule A2).
+  - Created shared accessible `Select.jsx` component with custom chevron and logical RTL padding (`ps-3 pe-10`), replacing raw `<select>` elements in `TestsPage`, `BankFilterBar`, and `CatalogFilterBar` (Rule A4).
+  - Standardized UI components: added `danger` variant to `Alert.jsx`, `primary`/`neutral` to `Badge.jsx`, created `EmptyState.jsx`, and standardized button minimum height to 40px (`h-10`).
+  - Implemented responsive mobile drawer navigation menu and standard padding (`px-4 md:px-6`) in `ResidentLayout.jsx` and `InstructorLayout.jsx` for 390x844 mobile viewport support.
+  - Polished all 19 screens across 10 logical commits without altering any backend logic, contracts, or engine code.
+  - Monorepo tests expanded to 785 passing tests across 96 files. Lint, build, and RTL checks pass cleanly.
+
 
 - Completed T14: Bug hunt, security verification, route inventory, regression tests, and triage fixes (PR #25, PR #26 merged):
   - Completed Part A (Manual browser run M01-M38 by Mahdi): 35 PASS, 3 FAIL/noted (M23 auto-baseline UX, M33/M34 deferred to T15 UI Polish), 0 Blockers. Recorded in `docs/qa/manual-run-2026-11-12.md`.
