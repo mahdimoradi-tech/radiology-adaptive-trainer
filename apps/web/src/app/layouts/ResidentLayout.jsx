@@ -216,8 +216,8 @@ export function ResidentLayout() {
         <Outlet />
       </main>
 
-      <footer className="border-t border-slate-200 py-4 text-center text-xs text-slate-600 bg-white">
-        <p>{t('app.disclaimer')}</p>
+      <footer className="border-t border-slate-200 py-4 px-4 sm:px-6 text-center text-xs text-slate-600 bg-white">
+        <p>{t('disclaimer.educational')}</p>
       </footer>
     </div>
   );

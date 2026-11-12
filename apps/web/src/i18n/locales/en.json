@@ -1,7 +1,8 @@
 {
   "app": {
     "name": "Radiology Adaptive Trainer",
-    "tagline": "Diagnostic practice on chest radiographs"
+    "tagline": "Diagnostic practice on chest radiographs",
+    "disclaimer": "This platform is strictly for education and not for clinical diagnosis."
   },
   "nav": {
     "home": "Home",
