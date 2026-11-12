@@ -87,13 +87,21 @@ Issues are categorized according to the rules in `docs/qa/UI-CHECKLIST.md`:
 
 ---
 
-## 3. Summary of Findings
+## 3. Summary of Findings & Resolution Status
 
-- **Total issues identified by static audit:** 58 items.
-  - Low-contrast text classes & placeholders: 42 items.
-  - Border/divider spacing against buttons: 3 items.
-  - Raw unstyled `<select>` elements: 6 items.
-  - Physical CSS violations: 0 items (clean RTL).
-  - Missing query error/empty states: 2 items.
-  - Component variant mappings & responsive shell padding: 5 items.
-- **Next Step:** Commit this audit as `docs(qa): add UI audit` and await Mahdi's review/additions before proceeding to Step 1 (Tokens).
+- **Total issues identified by static audit:** 58 items + 2 items found by Mahdi (M1, M2).
+  - Low-contrast text classes & placeholders: 42 items -> **ALL RESOLVED** (verified by `scripts/check-low-contrast.js`).
+  - Border/divider spacing against buttons: 3 items -> **ALL RESOLVED** (all dividers have `pt-4` / `mt-4`).
+  - Raw unstyled `<select>` elements: 6 items -> **ALL RESOLVED** (all dropdowns use accessible `Select.jsx` with custom chevron).
+  - Physical CSS violations: 0 items (clean RTL, verified by `scripts/check-rtl-classes.js`).
+  - Missing query error/empty states: 2 items -> **ALL RESOLVED** (structured alerts and friendly empty states).
+  - Component variant mappings & responsive shell padding: 5 items -> **ALL RESOLVED** (Alert danger, Badge primary, responsive mobile drawer navigation).
+  - Developer task badges (T06, T08, T09): **ALL REMOVED** from resident and instructor dashboards.
+  - Progress and instructor chart legibility: **OVERHAULED** with high-contrast text and dark-theme tokens.
+
+- **Automated Verification:**
+  - `scripts/check-low-contrast.js`: PASS (0 violations)
+  - `scripts/check-rtl-classes.js`: PASS (0 physical classes)
+  - `npm run lint`: PASS (0 warnings, 0 errors)
+  - `npm test`: PASS (96 test files, 785 tests)
+  - `npm run build`: PASS (Vite production bundle built cleanly)
