@@ -1,12 +1,88 @@
 {
   "metadata": {
     "command": "npm run eval:questions score",
-    "date": "2026-11-07T12:58:12.604Z",
-    "gitSha": "e2fd2f7a60920e7cee4be2521522b1e61a47c667",
+    "date": "2026-11-12T14:00:46.447Z",
+    "gitSha": "68da0d2c10d55b1210f6483131d1c6ba6e89d176",
     "note": "Rated by one non-expert reviewer (the system's builder); results are indicative only."
   },
-  "status": "pending_review",
-  "ratedCount": 0,
-  "types": {},
-  "overall": null
+  "status": "scored",
+  "ratedCount": 24,
+  "byType": {
+    "finding": {
+      "n": 8,
+      "scientificOkRate": 1,
+      "scientificOkCi": {
+        "low": 0.6755843804891231,
+        "high": 1
+      },
+      "scientificOkCount": 8,
+      "scientificOkTotal": 8,
+      "leakFreeRate": 1,
+      "leakFreeCi": {
+        "low": 0.6755843804891231,
+        "high": 1
+      },
+      "clearMean": 4.625,
+      "clearStd": 0.5175491695067657,
+      "distractorsMean": 4,
+      "distractorsStd": 0
+    },
+    "distribution": {
+      "n": 8,
+      "scientificOkRate": 1,
+      "scientificOkCi": {
+        "low": 0.6755843804891231,
+        "high": 1
+      },
+      "scientificOkCount": 8,
+      "scientificOkTotal": 8,
+      "leakFreeRate": 1,
+      "leakFreeCi": {
+        "low": 0.6755843804891231,
+        "high": 1
+      },
+      "clearMean": 4.375,
+      "clearStd": 0.5175491695067657,
+      "distractorsMean": 3.875,
+      "distractorsStd": 0.3535533905932738
+    },
+    "differential": {
+      "n": 8,
+      "scientificOkRate": 1,
+      "scientificOkCi": {
+        "low": 0.6755843804891231,
+        "high": 1
+      },
+      "scientificOkCount": 8,
+      "scientificOkTotal": 8,
+      "leakFreeRate": 1,
+      "leakFreeCi": {
+        "low": 0.6755843804891231,
+        "high": 1
+      },
+      "clearMean": 4.5,
+      "clearStd": 0.5345224838248488,
+      "distractorsMean": 4.125,
+      "distractorsStd": 0.3535533905932738
+    }
+  },
+  "overall": {
+    "n": 24,
+    "scientificOkRate": 1,
+    "scientificOkCi": {
+      "low": 0.8620194241710247,
+      "high": 1
+    },
+    "scientificOkCount": 24,
+    "scientificOkTotal": 24,
+    "leakFreeRate": 1,
+    "leakFreeCi": {
+      "low": 0.8620194241710247,
+      "high": 1
+    },
+    "clearMean": 4.5,
+    "clearStd": 0.5107539184552492,
+    "distractorsMean": 4,
+    "distractorsStd": 0.29488391230979427
+  }
 }

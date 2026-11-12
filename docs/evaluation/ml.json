@@ -1,8 +1,8 @@
 {
   "metadata": {
     "command": "npm run eval:ml",
-    "date": "2026-11-07T12:58:12.604Z",
-    "gitSha": "e2fd2f7a60920e7cee4be2521522b1e61a47c667",
+    "date": "2026-11-12T14:00:46.447Z",
+    "gitSha": "68da0d2c10d55b1210f6483131d1c6ba6e89d176",
     "totalImages": 6004,
     "catalogSubsetCount": 1177,
     "catalogJsonCount": 1177

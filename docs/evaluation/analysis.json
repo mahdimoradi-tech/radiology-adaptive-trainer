@@ -1,342 +1,422 @@
 {
   "metadata": {
     "command": "npm run eval:analysis",
-    "date": "2026-11-07T12:58:12.604Z",
-    "gitSha": "e2fd2f7a60920e7cee4be2521522b1e61a47c667",
-    "nImages": 0,
-    "totalRunOutputs": 0
+    "date": "2026-11-12T14:00:46.447Z",
+    "gitSha": "68da0d2c10d55b1210f6483131d1c6ba6e89d176",
+    "nImages": 120,
+    "totalRunOutputs": 240
   },
   "quality": {
-    "schemaValidOutputs": 0,
-    "totalRunOutputs": 0,
-    "schemaValidRate": null,
+    "schemaValidOutputs": 240,
+    "totalRunOutputs": 240,
+    "schemaValidRate": 1,
     "schemaValidCi": {
-      "low": null,
-      "high": null
+      "low": 0.9842455102000642,
+      "high": 1
     },
-    "autoPassedCount": 0,
-    "autoRejectedCount": 0,
-    "passRate": null,
+    "autoPassedCount": 69,
+    "autoRejectedCount": 51,
+    "passRate": 0.575,
     "passRateCi": {
-      "low": null,
-      "high": null
+      "low": 0.4855758824815893,
+      "high": 0.6597710768600213
     }
   },
   "agreement": {
     "matrix": {
       "covid19": {
-        "covid19": 0,
-        "pneumonia": 0,
+        "covid19": 16,
+        "pneumonia": 4,
         "normal": 0
       },
       "pneumonia": {
-        "covid19": 0,
-        "pneumonia": 0,
-        "normal": 0
+        "covid19": 3,
+        "pneumonia": 42,
+        "normal": 5
       },
       "normal": {
-        "covid19": 0,
-        "pneumonia": 0,
-        "normal": 0
+        "covid19": 3,
+        "pneumonia": 7,
+        "normal": 40
       }
     },
-    "rawAgreement": null,
-    "cohenKappa": null
+    "rawAgreement": 0.8166666666666667,
+    "cohenKappa": 0.7086092715231788
   },
   "runA": {
-    "total": 0,
-    "correct": 0,
-    "accuracy": null,
+    "total": 120,
+    "correct": 81,
+    "accuracy": 0.675,
     "accuracyCi": {
-      "low": null,
-      "high": null
+      "low": 0.5869001692187791,
+      "high": 0.7522427359116458
     },
     "byClass": {
       "covid19": {
-        "tp": 0,
-        "actualTotal": 0,
-        "predictedTotal": 0,
-        "recall": null,
+        "tp": 18,
+        "actualTotal": 40,
+        "predictedTotal": 20,
+        "recall": 0.45,
         "recallCi": {
-          "low": null,
-          "high": null
+          "low": 0.307050752809447,
+          "high": 0.6017117011155924
         },
-        "precision": null,
+        "precision": 0.9,
         "precisionCi": {
-          "low": null,
-          "high": null
+          "low": 0.6989617935882066,
+          "high": 0.9721341060158468
         }
       },
       "pneumonia": {
-        "tp": 0,
-        "actualTotal": 0,
-        "predictedTotal": 0,
-        "recall": null,
+        "tp": 31,
+        "actualTotal": 40,
+        "predictedTotal": 50,
+        "recall": 0.775,
         "recallCi": {
-          "low": null,
-          "high": null
+          "low": 0.6249660359590695,
+          "high": 0.8768404674532148
         },
-        "precision": null,
+        "precision": 0.62,
         "precisionCi": {
-          "low": null,
-          "high": null
+          "low": 0.4815019502239357,
+          "high": 0.7413740415742278
         }
       },
       "normal": {
-        "tp": 0,
-        "actualTotal": 0,
-        "predictedTotal": 0,
-        "recall": null,
+        "tp": 32,
+        "actualTotal": 40,
+        "predictedTotal": 50,
+        "recall": 0.8,
         "recallCi": {
-          "low": null,
-          "high": null
+          "low": 0.6524239261814333,
+          "high": 0.8950013502683314
         },
-        "precision": null,
+        "precision": 0.64,
         "precisionCi": {
-          "low": null,
-          "high": null
+          "low": 0.5014076201030195,
+          "high": 0.7586143703281711
         }
       }
     },
     "confusion": {
       "covid19": {
-        "covid19": 0,
-        "pneumonia": 0,
-        "normal": 0
+        "covid19": 18,
+        "pneumonia": 11,
+        "normal": 11
       },
       "pneumonia": {
-        "covid19": 0,
-        "pneumonia": 0,
-        "normal": 0
+        "covid19": 2,
+        "pneumonia": 31,
+        "normal": 7
       },
       "normal": {
         "covid19": 0,
-        "pneumonia": 0,
-        "normal": 0
+        "pneumonia": 8,
+        "normal": 32
       }
     }
   },
   "runB": {
-    "total": 0,
-    "correct": 0,
-    "accuracy": null,
+    "total": 120,
+    "correct": 78,
+    "accuracy": 0.65,
     "accuracyCi": {
-      "low": null,
-      "high": null
+      "low": 0.5612115776488139,
+      "high": 0.7294823410344072
     },
     "byClass": {
       "covid19": {
-        "tp": 0,
-        "actualTotal": 0,
-        "predictedTotal": 0,
-        "recall": null,
+        "tp": 19,
+        "actualTotal": 40,
+        "predictedTotal": 22,
+        "recall": 0.475,
         "recallCi": {
-          "low": null,
-          "high": null
+          "low": 0.32935229550181694,
+          "high": 0.6250289314607027
         },
-        "precision": null,
+        "precision": 0.8636363636363636,
         "precisionCi": {
-          "low": null,
-          "high": null
+          "low": 0.6666458812053,
+          "high": 0.9525108273576373
         }
       },
       "pneumonia": {
-        "tp": 0,
-        "actualTotal": 0,
-        "predictedTotal": 0,
-        "recall": null,
+        "tp": 30,
+        "actualTotal": 40,
+        "predictedTotal": 53,
+        "recall": 0.75,
         "recallCi": {
-          "low": null,
-          "high": null
+          "low": 0.598057409330299,
+          "high": 0.8581303210445048
         },
-        "precision": null,
+        "precision": 0.5660377358490566,
         "precisionCi": {
-          "low": null,
-          "high": null
+          "low": 0.4326511497976876,
+          "high": 0.6904980930103964
         }
       },
       "normal": {
-        "tp": 0,
-        "actualTotal": 0,
-        "predictedTotal": 0,
-        "recall": null,
+        "tp": 29,
+        "actualTotal": 40,
+        "predictedTotal": 45,
+        "recall": 0.725,
         "recallCi": {
-          "low": null,
-          "high": null
+          "low": 0.5716474916687543,
+          "high": 0.8389214656685692
         },
-        "precision": null,
+        "precision": 0.6444444444444445,
         "precisionCi": {
-          "low": null,
-          "high": null
+          "low": 0.49835546011952203,
+          "high": 0.7678110864309596
         }
       }
     },
     "confusion": {
       "covid19": {
-        "covid19": 0,
-        "pneumonia": 0,
-        "normal": 0
+        "covid19": 19,
+        "pneumonia": 12,
+        "normal": 9
       },
       "pneumonia": {
-        "covid19": 0,
-        "pneumonia": 0,
-        "normal": 0
+        "covid19": 3,
+        "pneumonia": 30,
+        "normal": 7
       },
       "normal": {
         "covid19": 0,
-        "pneumonia": 0,
-        "normal": 0
+        "pneumonia": 11,
+        "normal": 29
       }
     }
   },
   "consensus": {
-    "total": 0,
-    "correct": 0,
-    "accuracy": null,
+    "total": 98,
+    "correct": 69,
+    "accuracy": 0.7040816326530612,
     "accuracyCi": {
-      "low": null,
-      "high": null
+      "low": 0.6073973002077417,
+      "high": 0.7853695062839081
     },
     "byClass": {
       "covid19": {
-        "tp": 0,
-        "actualTotal": 0,
-        "predictedTotal": 0,
-        "recall": null,
+        "tp": 16,
+        "actualTotal": 35,
+        "predictedTotal": 16,
+        "recall": 0.45714285714285713,
         "recallCi": {
-          "low": null,
-          "high": null
+          "low": 0.3046577363376085,
+          "high": 0.6181054865986247
         },
-        "precision": null,
+        "precision": 1,
         "precisionCi": {
-          "low": null,
-          "high": null
+          "low": 0.8063865817272802,
+          "high": 1
         }
       },
       "pneumonia": {
-        "tp": 0,
-        "actualTotal": 0,
-        "predictedTotal": 0,
-        "recall": null,
+        "tp": 25,
+        "actualTotal": 28,
+        "predictedTotal": 42,
+        "recall": 0.8928571428571429,
         "recallCi": {
-          "low": null,
-          "high": null
+          "low": 0.7280377463234293,
+          "high": 0.9628823079452005
         },
-        "precision": null,
+        "precision": 0.5952380952380952,
         "precisionCi": {
-          "low": null,
-          "high": null
+          "low": 0.44494045528177417,
+          "high": 0.7295735232879093
         }
       },
       "normal": {
-        "tp": 0,
-        "actualTotal": 0,
-        "predictedTotal": 0,
-        "recall": null,
+        "tp": 28,
+        "actualTotal": 35,
+        "predictedTotal": 40,
+        "recall": 0.8,
         "recallCi": {
-          "low": null,
-          "high": null
+          "low": 0.6410806339053748,
+          "high": 0.899576805540992
         },
-        "precision": null,
+        "precision": 0.7,
         "precisionCi": {
-          "low": null,
-          "high": null
+          "low": 0.545696893456796,
+          "high": 0.8192532908430471
         }
       }
     },
     "confusion": {
       "covid19": {
-        "covid19": 0,
-        "pneumonia": 0,
-        "normal": 0
+        "covid19": 16,
+        "pneumonia": 10,
+        "normal": 9
       },
       "pneumonia": {
         "covid19": 0,
-        "pneumonia": 0,
-        "normal": 0
+        "pneumonia": 25,
+        "normal": 3
       },
       "normal": {
         "covid19": 0,
-        "pneumonia": 0,
-        "normal": 0
+        "pneumonia": 7,
+        "normal": 28
       }
     }
   },
   "densenetBaseline": {
-    "total": 0,
-    "correct": 0,
-    "accuracy": null,
+    "total": 120,
+    "correct": 74,
+    "accuracy": 0.6166666666666667,
     "accuracyCi": {
-      "low": null,
-      "high": null
+      "low": 0.5273391477284313,
+      "high": 0.6987561223585186
     },
     "confusion": {
       "covid19": {
-        "covid19": 0,
-        "pneumonia": 0,
-        "normal": 0
+        "covid19": 37,
+        "pneumonia": 2,
+        "normal": 1
       },
       "pneumonia": {
-        "covid19": 0,
-        "pneumonia": 0,
-        "normal": 0
+        "covid19": 2,
+        "pneumonia": 19,
+        "normal": 19
       },
       "normal": {
-        "covid19": 0,
-        "pneumonia": 0,
-        "normal": 0
+        "covid19": 3,
+        "pneumonia": 19,
+        "normal": 18
       }
     },
     "byClass": {
       "covid19": {
-        "tp": 0,
-        "actualTotal": 0,
-        "predictedTotal": 0,
-        "recall": null,
+        "tp": 37,
+        "actualTotal": 40,
+        "predictedTotal": 42,
+        "recall": 0.925,
         "recallCi": {
-          "low": null,
-          "high": null
+          "low": 0.8013546984090248,
+          "high": 0.9741644432281419
         },
-        "precision": null,
+        "precision": 0.8809523809523809,
         "precisionCi": {
-          "low": null,
-          "high": null
+          "low": 0.7499931819289245,
+          "high": 0.9480627323498092
         }
       },
       "pneumonia": {
-        "tp": 0,
-        "actualTotal": 0,
-        "predictedTotal": 0,
-        "recall": null,
+        "tp": 19,
+        "actualTotal": 40,
+        "predictedTotal": 40,
+        "recall": 0.475,
         "recallCi": {
-          "low": null,
-          "high": null
+          "low": 0.32935229550181694,
+          "high": 0.6250289314607027
         },
-        "precision": null,
+        "precision": 0.475,
         "precisionCi": {
-          "low": null,
-          "high": null
+          "low": 0.32935229550181694,
+          "high": 0.6250289314607027
         }
       },
       "normal": {
-        "tp": 0,
-        "actualTotal": 0,
-        "predictedTotal": 0,
-        "recall": null,
+        "tp": 18,
+        "actualTotal": 40,
+        "predictedTotal": 38,
+        "recall": 0.45,
         "recallCi": {
-          "low": null,
-          "high": null
+          "low": 0.307050752809447,
+          "high": 0.6017117011155924
         },
-        "precision": null,
+        "precision": 0.47368421052631576,
         "precisionCi": {
-          "low": null,
-          "high": null
+          "low": 0.3247877880894159,
+          "high": 0.6274128925728913
         }
       }
     }
   },
   "breakdown": {
-    "bySource": {},
-    "byBucket": {}
+    "bySource": {
+      "cohen": {
+        "total": 31,
+        "accuracyA": 0.3870967741935484,
+        "accuracyCiA": {
+          "low": 0.23732875351271562,
+          "high": 0.5617619885886803
+        },
+        "accuracyB": 0.41935483870967744,
+        "accuracyCiB": {
+          "low": 0.26415303073549257,
+          "high": 0.5923403564797902
+        }
+      },
+      "figure1": {
+        "total": 9,
+        "accuracyA": 0.6666666666666666,
+        "accuracyCiA": {
+          "low": 0.3541973474990897,
+          "high": 0.8794184013172571
+        },
+        "accuracyB": 0.6666666666666666,
+        "accuracyCiB": {
+          "low": 0.3541973474990897,
+          "high": 0.8794184013172571
+        }
+      },
+      "kermany": {
+        "total": 80,
+        "accuracyA": 0.7875,
+        "accuracyCiA": {
+          "low": 0.6857763938182242,
+          "high": 0.8628772578296451
+        },
+        "accuracyB": 0.7375,
+        "accuracyCiB": {
+          "low": 0.6318083375343555,
+          "high": 0.8214272877399715
+        }
+      }
+    },
+    "byBucket": {
+      "hard": {
+        "total": 31,
+        "accuracyA": 0.6451612903225806,
+        "accuracyCiA": {
+          "low": 0.469476380428149,
+          "high": 0.7888355225843418
+        },
+        "accuracyB": 0.5161290322580645,
+        "accuracyCiB": {
+          "low": 0.34840118286973176,
+          "high": 0.6803001396872117
+        }
+      },
+      "easy": {
+        "total": 61,
+        "accuracyA": 0.6557377049180327,
+        "accuracyCiA": {
+          "low": 0.5304951542045838,
+          "high": 0.7625266096013678
+        },
+        "accuracyB": 0.7049180327868853,
+        "accuracyCiB": {
+          "low": 0.5811036064161055,
+          "high": 0.8044513459601468
+        }
+      },
+      "medium": {
+        "total": 28,
+        "accuracyA": 0.75,
+        "accuracyCiA": {
+          "low": 0.566439747592954,
+          "high": 0.8732366505779922
+        },
+        "accuracyB": 0.6785714285714286,
+        "accuracyCiB": {
+          "low": 0.4933850455563118,
+          "high": 0.8206695245657927
+        }
+      }
+    }
   }
 }

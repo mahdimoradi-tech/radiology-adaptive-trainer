@@ -1,25 +1,32 @@
 {
   "metadata": {
     "command": "npm run eval:questions",
-    "date": "2026-11-07T12:58:12.604Z",
-    "gitSha": "e2fd2f7a60920e7cee4be2521522b1e61a47c667",
-    "totalQuestions": 0
+    "date": "2026-11-12T14:00:46.447Z",
+    "gitSha": "68da0d2c10d55b1210f6483131d1c6ba6e89d176",
+    "totalQuestions": 83
   },
   "counts": {
-    "total": 0,
+    "total": 83,
     "pending": 0,
-    "approved": 0,
+    "approved": 83,
     "rejected": 0,
     "edited": 0,
-    "editRate": null,
-    "approvalRate": null
+    "editRate": 0,
+    "approvalRate": 1
   },
   "byType": {
-    "finding": 0,
-    "distribution": 0,
-    "differential": 0
+    "finding": 48,
+    "distribution": 25,
+    "differential": 10
   },
-  "byPair": {},
+  "byPair": {
+    "normal -> pneumonia": 23,
+    "normal -> covid19": 4,
+    "covid19 -> pneumonia": 14,
+    "pneumonia -> normal": 26,
+    "covid19 -> normal": 10,
+    "pneumonia -> covid19": 6
+  },
   "generationAttempts": {
     "totalAttempts": 0,
     "rejectionReasons": {}
