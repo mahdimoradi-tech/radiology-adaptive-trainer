@@ -8,11 +8,11 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T16a (As-built SRS) in review (PR pending). Ready for T16b (SDD documentation).
+- T16a (As-built SRS) merged (PR #31). Ready for T16b (SDD documentation).
 
 ## Done (newest first)
 
-- Completed T16a: As-built Software Requirements Specification (SRS), traceability matrix, and domain glossary:
+- Completed T16a: As-built Software Requirements Specification (SRS), traceability matrix, and domain glossary (PR #31 merged):
   - Created `docs/as-built/README.md` establishing document reading order and retrospective status banner baselined on commit `9357ace`.
   - Authored `docs/as-built/GLOSSARY.md` codifying definitions, formulas, and acronyms across clinical, adaptive, and software domains.
   - Authored ISO/IEC/IEEE 29148 tailored `docs/as-built/01-SRS.md` across 9 comprehensive sections:
