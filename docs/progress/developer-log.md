@@ -8,11 +8,11 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T15 (UI polish pass) in review (PR #28).
+- T15 (UI polish pass) merged (PR #28). Ready for T16a (SRS documentation).
 
 ## Done (newest first)
 
-- Completed T15: Comprehensive UI polish pass across all 19 screens (PR #28):
+- Completed T15: Comprehensive UI polish pass across all 19 screens (PR #28 merged):
   - Cataloged 58 static audit issues and 2 user-reported items in `docs/qa/UI-AUDIT.md`.
   - Removed all developer task badges (`T06`, `T08`, `T09`) from dashboard cards (`ResidentHomePage`, `InstructorHomePage`).
   - Overhauled progress and instructor charts (`ProgressView`, `LineChart`, `ResidentDetailPage`) with high-contrast text and dark-theme tokens.
