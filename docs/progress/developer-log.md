@@ -8,9 +8,25 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T15 (UI polish pass) merged (PR #28). Ready for T16a (SRS documentation).
+- T16a (As-built SRS) in review (PR pending). Ready for T16b (SDD documentation).
 
 ## Done (newest first)
+
+- Completed T16a: As-built Software Requirements Specification (SRS), traceability matrix, and domain glossary:
+  - Created `docs/as-built/README.md` establishing document reading order and retrospective status banner baselined on commit `9357ace`.
+  - Authored `docs/as-built/GLOSSARY.md` codifying definitions, formulas, and acronyms across clinical, adaptive, and software domains.
+  - Authored ISO/IEC/IEEE 29148 tailored `docs/as-built/01-SRS.md` across 9 comprehensive sections:
+    - Section 1: Introduction, retrospective baseline declaration, educational boundary, and reference catalog.
+    - Section 2: Overall product perspective with Mermaid architecture diagram, user classes, operating environment, and design constraints.
+    - Section 3: 65 Functional Requirements across 10 modules (`FR-AUTH`, `FR-TEST`, `FR-ADAPT`, `FR-REP`, `FR-PRAC`, `FR-PROG`, `FR-EDU`, `FR-INS`, `FR-LLM`, `FR-DATA`), each specifying ID, statement, priority, task/ADR source, exact test file or manual test ID, and status.
+    - Section 4: 26 Non-Functional Requirements across 7 categories (`NFR-SEC`, `NFR-PRIV`, `NFR-USAB`, `NFR-PORT`, `NFR-REL`, `NFR-MAINT`, `NFR-PERF`) with empirical benchmarks.
+    - Section 5: External interface specifications covering all 19 web screens, 31 Express API routes, MongoDB, Gemini API, and local filesystem radiograph streaming.
+    - Section 6: Data requirements with Mermaid entity-relationship diagram and 7 entity schema specifications.
+    - Section 7: 9 detailed use cases (`UC-01` to `UC-09`) mapped to functional requirements.
+    - Section 8: Known limitations and technical debt items (`ISS-01` to `ISS-08`) accurately transcribed from `docs/KNOWN-ISSUES.md`.
+    - Section 9: Traceability gap audit establishing 100% verification coverage (0 unverified requirements) and cataloging internal scaffolding test suites.
+  - Generated `docs/as-built/traceability.csv` containing 91 requirements mapped to source tasks, ADRs, code directories, test files, and manual verification IDs.
+  - Quality gates: `npm run lint` clean, 789/789 tests pass across 96 suites, `npm run build` succeeds in 487ms. Zero banned multi-operator references.
 
 - Completed T15: Comprehensive UI polish pass across all 19 screens (PR #28 merged):
   - Cataloged 58 static audit issues and 2 user-reported items in `docs/qa/UI-AUDIT.md`.
