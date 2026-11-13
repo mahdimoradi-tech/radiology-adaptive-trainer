@@ -217,7 +217,7 @@ export function ProgressView({ data, onStartTest, isInstructor = false }) {
                           {t(`classes.${item.trueClass}`)}
                         </span>
                         <span className="text-slate-500 font-bold text-xs" aria-hidden="true">
-                          ←
+                          {lang === 'fa' ? '←' : '→'}
                         </span>
                         <span className="font-bold text-rose-700 text-sm">
                           {t(`classes.${item.predicted}`)}

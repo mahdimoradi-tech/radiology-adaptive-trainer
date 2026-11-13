@@ -252,7 +252,7 @@ export function ReportPage() {
                         className: t('classes.' + classId),
                         acc: fmt.percent(metrics.accuracy, i18n.language),
                         band: bandLabel,
-                        breakdown: bucketParts.join('؛ '),
+                        breakdown: bucketParts.join(i18n.language === 'fa' ? '؛ ' : '; '),
                       })}
                     </span>
                   </div>
@@ -407,7 +407,7 @@ export function ReportPage() {
                           {t('buckets.' + b)}
                         </th>
                       ))}
-                      <th className="py-2 px-2 font-bold">مجموع</th>
+                      <th className="py-2 px-2 font-bold">{t('report.totalCol')}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
@@ -458,7 +458,7 @@ export function ReportPage() {
                           {t('buckets.' + b)}
                         </th>
                       ))}
-                      <th className="py-2 px-2 font-bold">مجموع</th>
+                      <th className="py-2 px-2 font-bold">{t('report.totalCol')}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
@@ -523,7 +523,7 @@ export function ReportPage() {
                         </span>
                       </div>
                       <div className="flex items-center justify-between text-slate-500">
-                        <span>وزن خطا:</span>
+                        <span>{t('report.errorWeight')}:</span>
                         <span className="font-medium text-sky-700">
                           {plan.weights?.[c] !== undefined
                             ? fmt.percent(plan.weights[c], i18n.language)

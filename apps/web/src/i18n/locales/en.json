@@ -261,7 +261,9 @@
     "actionReview": "Review Questions",
     "actionNextTest": "Start Next Test",
     "classBucketSummary": "In class {{className}}, your accuracy was {{acc}} ({{band}}): {{breakdown}}",
-    "bucketBreakdownItem": "answered {{correct}} of {{total}} {{bucket}} questions correctly"
+    "bucketBreakdownItem": "answered {{correct}} of {{total}} {{bucket}} questions correctly",
+    "totalCol": "Total",
+    "errorWeight": "Error Weight"
   },
   "review": {
     "title": "Review Questions for Test #{{index}}",
@@ -424,6 +426,14 @@
     "pneumoniaDesc": "Bacterial pneumonia typically presents as focal lobar or segmental consolidation with air bronchograms and may be accompanied by parapneumonic effusion. In contrast, viral or atypical pneumonias more often present with peribronchial thickening, interstitial patterns, patchy opacities, and lung hyperinflation. Pneumonia sub-types are not differentiated in this diagnostic system.",
     "normalTitle": "Normal",
     "normalDesc": "A normal chest radiograph features clear lung fields, sharp costophrenic angles, age-appropriate cardiac and mediastinal contours, without any focal opacities or pleural effusions.",
-    "kbSourceLabel": "Text Source:"
+    "kbSourceLabel": "Text Source:",
+    "cycleStep1Tag": "Initial Assessment",
+    "cycleStep2Tag": "Error Engine",
+    "cycleStep3Tag": "Personalization",
+    "cycleStep4Tag": "Mastery",
+    "stepBadge": "Step {{num}}",
+    "fpBadge": "False Positive",
+    "fnBadge": "False Negative",
+    "classBadge": "Diagnostic Class"
   }
 }

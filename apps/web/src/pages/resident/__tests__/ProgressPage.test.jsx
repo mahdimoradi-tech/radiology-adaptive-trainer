@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter, Routes, Route } from 'react-router';
 import { ProgressPage } from '../ProgressPage.jsx';
@@ -187,5 +187,27 @@ describe('Resident ProgressPage (apps/web/src/pages/resident/ProgressPage.jsx)',
     expect(screen.getByTestId('mastery-badge-pneumonia')).toHaveTextContent('تسلط حاصل شد');
     expect(screen.getByTestId('mastery-badge-normal')).toHaveTextContent('در حال یادگیری');
     expect(screen.queryByTestId('mastery-goal-alert')).not.toBeInTheDocument();
+  });
+
+  it('renders arrow right (→) for confusions in en mode and left (←) in fa mode', async () => {
+    vi.spyOn(api, 'getProgress').mockResolvedValue(mockProgressData);
+    const { default: i18n } = await import('../../../i18n/index.js');
+    await act(async () => {
+      await i18n.changeLanguage('en');
+    });
+
+    try {
+      renderProgressPage();
+      await waitFor(() => {
+        expect(screen.getByTestId('resident-progress-page')).toBeInTheDocument();
+      });
+      const confusions = screen.getAllByTestId('confusion-item');
+      expect(confusions[0]).toHaveTextContent('→');
+      expect(confusions[0]).not.toHaveTextContent('←');
+    } finally {
+      await act(async () => {
+        await i18n.changeLanguage('fa');
+      });
+    }
   });
 });

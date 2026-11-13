@@ -6,42 +6,43 @@ import { Badge } from '../../components/ui/index.js';
  * error metric interpretations, and approved radiological findings.
  */
 export function EducationPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isFa = i18n.language?.startsWith('fa') ?? true;
 
   const cycleSteps = [
     {
-      num: '۱',
+      num: isFa ? '۱' : '1',
       title: t('education.cycleStep1Title'),
       desc: t('education.cycleStep1Desc'),
       badgeVariant: 'secondary',
-      tag: 'سنجش نخست',
+      tag: t('education.cycleStep1Tag'),
       accentColor: 'border-t-sky-500',
       badgeBg: 'bg-sky-50 text-sky-800 border border-sky-200/80',
     },
     {
-      num: '۲',
+      num: isFa ? '۲' : '2',
       title: t('education.cycleStep2Title'),
       desc: t('education.cycleStep2Desc'),
       badgeVariant: 'secondary',
-      tag: 'موتور تحلیلی',
+      tag: t('education.cycleStep2Tag'),
       accentColor: 'border-t-indigo-500',
       badgeBg: 'bg-indigo-50 text-indigo-800 border border-indigo-200/80',
     },
     {
-      num: '۳',
+      num: isFa ? '۳' : '3',
       title: t('education.cycleStep3Title'),
       desc: t('education.cycleStep3Desc'),
       badgeVariant: 'primary',
-      tag: 'شخصی‌سازی',
+      tag: t('education.cycleStep3Tag'),
       accentColor: 'border-t-amber-500',
       badgeBg: 'bg-amber-50 text-amber-800 border border-amber-200/80',
     },
     {
-      num: '۴',
+      num: isFa ? '۴' : '4',
       title: t('education.cycleStep4Title'),
       desc: t('education.cycleStep4Desc'),
       badgeVariant: 'success',
-      tag: 'تثبیت تسلط',
+      tag: t('education.cycleStep4Tag'),
       accentColor: 'border-t-emerald-500',
       badgeBg: 'bg-emerald-50 text-emerald-800 border border-emerald-200/80',
     },
@@ -142,7 +143,9 @@ export function EducationPage() {
                   >
                     {step.tag}
                   </span>
-                  <Badge variant={step.badgeVariant}>{`مرحله ${step.num}`}</Badge>
+                  <Badge variant={step.badgeVariant}>
+                    {t('education.stepBadge', { num: step.num })}
+                  </Badge>
                 </div>
                 <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2">{step.title}</h3>
                 <p className="text-sm text-slate-600 leading-relaxed font-normal">{step.desc}</p>
@@ -168,7 +171,7 @@ export function EducationPage() {
                 <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-sm shadow-2xs">
                   FP
                 </div>
-                <Badge variant="warning">مثبت کاذب</Badge>
+                <Badge variant="warning">{t('education.fpBadge')}</Badge>
               </div>
               <h3 className="text-base sm:text-lg font-bold text-amber-950 mb-3">
                 {t('education.fpTitle')}
@@ -185,7 +188,7 @@ export function EducationPage() {
                 <div className="w-10 h-10 rounded-xl bg-rose-100 text-rose-800 flex items-center justify-center font-bold text-sm shadow-2xs">
                   FN
                 </div>
-                <Badge variant="danger">منفی کاذب</Badge>
+                <Badge variant="danger">{t('education.fnBadge')}</Badge>
               </div>
               <h3 className="text-base sm:text-lg font-bold text-rose-950 mb-3">
                 {t('education.fnTitle')}
@@ -214,19 +217,21 @@ export function EducationPage() {
               className={`rounded-2xl border border-slate-200/90 bg-white shadow-2xs hover:shadow-xs transition-shadow flex flex-col justify-between overflow-hidden text-start ${item.topBorder}`}
             >
               <div>
-                <div className={`p-5 pb-3 border-b border-slate-100 ${item.headerBg}`}>
-                  <div className="flex items-center justify-between mb-2">
+                <div
+                  className={`p-5 pb-3 border-b border-slate-100 flex items-center justify-between ${item.headerBg}`}
+                >
+                  <div className="flex items-center gap-2.5">
                     <span
-                      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold ${item.badgeClass}`}
-                    >
-                      <span className={`w-2 h-2 rounded-full ${item.dotClass}`} />
-                      {t(`classes.${item.key}`)}
-                    </span>
-                    <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
-                      {item.key}
-                    </span>
+                      className={`w-3 h-3 rounded-full shrink-0 shadow-2xs ${item.dotClass}`}
+                      aria-hidden="true"
+                    />
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900">{item.title}</h3>
                   </div>
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900">{item.title}</h3>
+                  <span
+                    className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold ${item.badgeClass}`}
+                  >
+                    {t('education.classBadge')}
+                  </span>
                 </div>
 
                 <div className="p-5 sm:p-6 pt-4">

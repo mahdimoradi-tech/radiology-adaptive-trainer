@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter, Routes, Route } from 'react-router';
 import { ReportPage } from '../ReportPage.jsx';
@@ -222,5 +222,45 @@ describe('ReportPage', () => {
     await waitFor(() => {
       expect(screen.getByTestId('quiz-page')).toBeInTheDocument();
     });
+  });
+
+  it('renders English column headers and error weight label in en mode without Persian strings', async () => {
+    const adaptiveReport = {
+      ...mockReport,
+      kind: 'adaptive',
+      index: 2,
+    };
+
+    globalThis.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      headers: new Headers({ 'content-type': 'application/json' }),
+      json: async () => ({ data: adaptiveReport }),
+    });
+
+    const { default: i18n } = await import('../../../i18n/index.js');
+    await act(async () => {
+      await i18n.changeLanguage('en');
+    });
+
+    try {
+      renderReport('rep-en');
+
+      await waitFor(() => {
+        expect(screen.getByText('Report for Test #2')).toBeInTheDocument();
+      });
+
+      // Total headers in breakdown tables
+      expect(screen.getAllByText('Total').length).toBeGreaterThanOrEqual(2);
+      expect(screen.getAllByText(/Error Weight/).length).toBeGreaterThanOrEqual(3);
+
+      // No hardcoded Persian strings
+      expect(screen.queryByText('مجموع')).not.toBeInTheDocument();
+      expect(screen.queryByText('وزن خطا:')).not.toBeInTheDocument();
+    } finally {
+      await act(async () => {
+        await i18n.changeLanguage('fa');
+      });
+    }
   });
 });
