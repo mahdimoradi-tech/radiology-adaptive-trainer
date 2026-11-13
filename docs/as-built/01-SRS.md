@@ -140,3 +140,59 @@ The platform is designed and verified to run in the following environment (`READ
 1. **Dataset Demographic Confounder:** All normal (1,582) and pneumonia (4,245) radiographs derive from the pediatric Kermany cohort (ages 1–5), while all COVID-19 radiographs (177) derive from adult cohorts (`ADR 0005`, `docs/KNOWN-ISSUES.md:ISS-01`). DenseNet-121 classifiers partially exploit institutional and anatomical acquisition artifacts.
 2. **Gemini Free-Tier Quota Constraints:** The Google AI Studio free tier limits live API consumption to 20 requests/day and 5 requests/minute (`ADR 0012`). Live online sessions cannot sustain high-volume classroom usage. The platform implements a client-side daily budget guard (16 requests/day cap) and pre-computes offline cache seeds (`llm-cache.portable.json`) to guarantee 100% functionality in `cache-only` mode (`apps/api/src/modules/llm/guard.js:1-60`).
 3. **Catalog Class Scarcity:** The curated 1,177-image catalog contains only 2 Medium and 3 Hard COVID-19 images. The adaptive engine implements nearest-bucket fallback logic to maintain total test question quotas without throwing runtime exceptions (`ADR 0004`, `packages/engine/src/allocation.js:50-80`).
+
+
+---
+
+## 3. Functional Requirements
+
+### 3.1 Module 1: Authentication & User Management (`FR-AUTH`)
+
+| ID | Statement | Priority | Source | Verification | Status |
+|---|---|---|---|---|---|
+| **FR-AUTH-01** | The system shall allow new resident trainees to register with an email address, password (minimum 8 characters), and full name. | Must | `T03-AC1`, `ADR 0007` | `apps/api/src/__tests__/auth.test.js`, `M01`, `M03` | Implemented |
+| **FR-AUTH-02** | The system shall reject duplicate registration attempts with existing email addresses returning HTTP 409 and a localized error message. | Must | `T03-AC1`, `ADR 0007` | `apps/api/src/__tests__/auth.test.js`, `M02` | Implemented |
+| **FR-AUTH-03** | The system shall authenticate users using bcrypt password verification and issue an HTTP-only, SameSite-strict `rt_session` JWT cookie. | Must | `T03-AC1`, `ADR 0007` | `apps/api/src/__tests__/auth.test.js`, `M04` | Implemented |
+| **FR-AUTH-04** | The system shall enforce rate limiting on authentication routes (maximum 10 failed login attempts per 15-minute window per IP) returning HTTP 429. | Must | `T03-AC1`, `docs/qa/SECURITY-REPORT.md:S11` | `apps/api/src/__tests__/security/auth.security.test.js`, `M04` | Implemented |
+| **FR-AUTH-05** | The system shall provide a logout endpoint that invalidates and clears the client's `rt_session` cookie. | Must | `T03-AC1`, `ADR 0007` | `apps/api/src/__tests__/auth.test.js`, `M05` | Implemented |
+| **FR-AUTH-06** | The system shall expose an identity introspection route (`GET /api/me`) returning the authenticated user's profile and active role. | Must | `T03-AC1`, `ADR 0007` | `apps/api/src/__tests__/auth.test.js`, `M06` | Implemented |
+| **FR-AUTH-07** | The system shall enforce role-based access control guards prohibiting residents from accessing instructor routes (`HTTP 403`) and instructors from taking tests (`HTTP 403`). | Must | `T04-AC1`, `T11-AC1`, `ADR 0006` | `apps/api/src/__tests__/access-matrix.test.js`, `M07`, `M08` | Implemented |
+| **FR-AUTH-08** | The system shall isolate multi-tenant resident resources, strictly denying access when a resident requests another resident's sessions or images (`HTTP 404`). | Must | `T11-AC1`, `T14-AC2` | `apps/api/src/__tests__/access-matrix.test.js`, `M10` | Implemented |
+
+### 3.2 Module 2: Diagnostic Tests & Baseline Examination (`FR-TEST`)
+
+| ID | Statement | Priority | Source | Verification | Status |
+|---|---|---|---|---|---|
+| **FR-TEST-01** | The system shall initialize a resident's first test as a 45-question baseline exam with exactly 15 `covid19`, 15 `pneumonia`, and 15 `normal` radiographs. | Must | `T05-AC1`, `ADR 0010` | `apps/api/src/__tests__/session.test.js`, `M11` | Implemented |
+| **FR-TEST-02** | The system shall distribute baseline questions within each class across difficulty buckets according to a 40% Easy (6), 30% Medium (5), and 30% Hard (4) quota (or closest integer apportionment). | Must | `T05-AC1`, `ADR 0010` | `apps/api/src/__tests__/session.test.js`, `M11` | Implemented |
+| **FR-TEST-03** | The system shall serve exam questions sequentially or by question index without disclosing ground truth pathology, difficulty score, or source dataset. | Must | `T03-AC1`, `T05-AC1`, `ADR 0008` | `apps/api/src/__tests__/global-leak.test.js`, `M19` | Implemented |
+| **FR-TEST-04** | The system shall accept single-choice diagnostic answers (`covid19`, `pneumonia`, `normal`) and immediately persist progress to MongoDB. | Must | `T05-AC1`, `ADR 0010` | `apps/api/src/__tests__/session.test.js`, `M12` | Implemented |
+| **FR-TEST-05** | The system shall provide keyboard navigation shortcuts (keys `1`, `2`, `3` for disease classes; `Space` for save & next) in the quiz interface. | Should | `T06-AC1`, `T15-AC5` | `apps/web/src/pages/resident/__tests__/QuizPage.test.jsx`, `M12` | Implemented |
+| **FR-TEST-06** | The system shall maintain test state across browser reloads and navigation interruptions, resuming the active test without regenerating questions. | Must | `T05-AC1`, `T06-AC2`, `ADR 0010` | `apps/web/src/pages/resident/__tests__/QuizPage.test.jsx`, `M13`, `M14` | Implemented |
+| **FR-TEST-07** | The system shall process answer submissions idempotently, preventing duplicate response records or altered answers for already-answered questions. | Must | `T05-AC1`, `ADR 0010` | `apps/api/src/__tests__/session.test.js`, `M15`, `M16` | Implemented |
+| **FR-TEST-08** | The system shall reject answer submissions or modifications on finalized tests returning HTTP 409. | Must | `T05-AC1`, `ADR 0010` | `apps/api/src/__tests__/session.test.js`, `M18` | Implemented |
+
+### 3.3 Module 3: Adaptive Engine & Test Rebalancing (`FR-ADAPT`)
+
+| ID | Statement | Priority | Source | Verification | Status |
+|---|---|---|---|---|---|
+| **FR-ADAPT-01** | The engine shall compute per-class False Positive Rate ($FPR_c$) and False Negative Rate ($FNR_c$) from cumulative confusion matrices using Laplace smoothing ($\alpha = 1$). | Must | `T02-AC1`, `T05-AC2`, `ADR 0004` | `packages/engine/src/__tests__/formulas.test.js` | Implemented |
+| **FR-ADAPT-02** | The engine shall calculate unweighted diagnostic error ($Error_c = FPR_c + FNR_c$) and normalize into error weights ($Weight_c = Error_c / \sum Error$) summing to 1.0. | Must | `T02-AC2`, `ADR 0004` | `packages/engine/src/__tests__/formulas.test.js` | Implemented |
+| **FR-ADAPT-03** | The engine shall allocate 45 test questions across classes using the largest-remainder method while enforcing a minimum floor of 9 questions (20% of $N$) per class. | Must | `T02-AC2`, `ADR 0004` | `packages/engine/src/__tests__/allocation.test.js` | Implemented |
+| **FR-ADAPT-04** | The engine shall allocate questions within each class across difficulty buckets enforcing a minimum floor of 2 questions (4% of $N$) per bucket. | Must | `T02-AC2`, `ADR 0004` | `packages/engine/src/__tests__/allocation.test.js` | Implemented |
+| **FR-ADAPT-05** | The engine shall apply nearest-bucket fallback reallocation when the requested candidate image pool in a specific class-bucket combination is insufficient. | Must | `T05-AC2`, `ADR 0004`, `docs/KNOWN-ISSUES.md:ISS-02` | `packages/engine/src/__tests__/allocation.test.js`, `apps/api/src/__tests__/session.test.js` | Implemented |
+| **FR-ADAPT-06** | The system shall block creation of adaptive training sessions until the resident has completed the baseline examination. | Must | `T05-AC1`, `ADR 0010` | `apps/api/src/__tests__/session.test.js`, `M23` | Implemented |
+| **FR-ADAPT-07** | The system shall track image exposure history, selecting candidate radiographs without replacement until the entire catalog pool is exhausted. | Should | `T05-AC1`, `docs/DOMAIN.md:D5` | `apps/api/src/__tests__/session.test.js` | Implemented |
+| **FR-ADAPT-08** | The engine shall provide a virtual resident simulator to benchmark adaptive versus random learning trajectories across configurable seeds and learning rates. | Should | `T02-AC3`, `T10-AC2` | `packages/engine/src/__tests__/simulator.test.js` | Implemented |
+
+### 3.4 Module 4: Session Report & Performance Review (`FR-REP`)
+
+| ID | Statement | Priority | Source | Verification | Status |
+|---|---|---|---|---|---|
+| **FR-REP-01** | The system shall finalize an active test upon submission of all 45 answers, transitioning status to `finished` and computing summary statistics. | Must | `T05-AC1`, `ADR 0010` | `apps/api/src/__tests__/session.test.js`, `M17` | Implemented |
+| **FR-REP-02** | The system shall compute overall accuracy, per-class sensitivity (recall), specificity, precision, and F1-score for each finished session. | Must | `T05-AC1`, `ADR 0010` | `apps/api/src/__tests__/session.test.js`, `M20` | Implemented |
+| **FR-REP-03** | The system shall display a full $3 \times 3$ diagnostic confusion matrix showing the distribution of true versus predicted classes. | Must | `T06-AC1`, `docs/DOMAIN.md:Sec 6` | `apps/web/src/pages/resident/__tests__/ReportPage.test.jsx`, `M20` | Implemented |
+| **FR-REP-04** | The system shall provide an item-by-item question review interface displaying the radiograph, user response, true diagnosis, and difficulty bucket. | Must | `T06-AC1`, `ADR 0011` | `apps/web/src/pages/resident/__tests__/ReviewPage.test.jsx`, `M20` | Implemented |
+| **FR-REP-05** | The system shall display the computed adaptive error weights and projected question allocation for the resident's upcoming session. | Should | `T06-AC1`, `ADR 0010` | `apps/web/src/pages/resident/__tests__/ReportPage.test.jsx`, `M22` | Implemented |
+| **FR-REP-06** | The system shall allow residents to request pedagogical error explanations for mistake confusion pairs within the review interface. | Should | `T07-AC3`, `T13-AC2` | `apps/web/src/features/sessions/__tests__/LlmPanel.test.jsx`, `M21` | Implemented |
+| **FR-REP-07** | The system shall support on-demand generation of a structured narrative performance report summarizing strengths and focal diagnostic weaknesses. | Should | `T07-AC3`, `T13-AC2` | `apps/web/src/features/sessions/__tests__/LlmPanel.test.jsx`, `M21` | Implemented |
