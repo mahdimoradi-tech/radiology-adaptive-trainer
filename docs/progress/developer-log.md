@@ -8,7 +8,7 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T16b (As-built SDD) in review. Ready for T16c (Test report and process documentation).
+- T16b (As-built SDD) merged (PR #33). Ready for T16c (Test report and process documentation).
 
 ## Done (newest first)
 
