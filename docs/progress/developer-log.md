@@ -29,7 +29,11 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
     - Polished `LineChart` legend with matching colored badges, line markers, and Persian pattern names (`پیوسته`, `خط‌چین`, `نقطه‌چین`).
     - Added `whitespace-nowrap shrink-0` to question count label in `TestsPage.jsx` preventing multiline word breaks.
     - Removed internal repository source code paths (`apps/api/src/modules/llm/kb/...`) from `EducationPage.jsx` and i18n subtitles.
-  - Monorepo tests expanded to 785 passing tests across 96 files. Lint, build, and RTL checks pass cleanly.
+    - Localized education page badges (FP, FN, cycle steps and tags) to English in `en` mode without hardcoded Persian badges.
+    - Cleaned up disease card headers in `EducationPage.jsx`: eliminated redundant title repetitions in English and Persian.
+    - Corrected confusion pair arrow direction in `ProgressView.jsx`: points right (`→`) in English LTR and left (`←`) in Persian RTL.
+    - Localized Score Report table column headers (`Total` / `مجموع`) and adaptive plan label (`Error Weight` / `وزن خطا:`) in `ReportPage.jsx`.
+  - Monorepo tests expanded to 788 passing tests across 96 files. Lint, build, and RTL checks pass cleanly.
 
 
 - Completed T14: Bug hunt, security verification, route inventory, regression tests, and triage fixes (PR #25, PR #26 merged):
