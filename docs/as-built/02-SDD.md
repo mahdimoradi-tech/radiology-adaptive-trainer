@@ -1114,6 +1114,159 @@ Questions passing pre-validation are stored in `question_bank` with `status: 'pe
 
 ---
 
+## 10. Machine Learning Pipeline Design (Offline)
+
+The machine learning pipeline operates as an independent, offline Python subsystem (`ml/`) designed to extract diagnostic difficulty metrics and out-of-fold misclassification profiles from open-access chest radiograph repositories. It generates the static difficulty artifacts consumed by the adaptive training engine.
+
+### 10.1 Datasets and Cohort Composition
+The platform merges 6,004 frontal chest radiographs across three public repositories (`docs/DATA-SOURCES.md`, `docs/evaluation/ml.json:1-9`):
+
+| Source Dataset | Clinical Cohort | COVID-19 (`covid19`) | Pneumonia (`pneumonia`) | Normal (`normal`) | Total Images | License / Attribution |
+|---|---|---|---|---|---|---|
+| **Kermany et al. (2018)** | Pediatric (Ages 1–5, Guangzhou Women and Children's Medical Center) | 0 | 4,245 | 1,582 | **5,827** | CC BY 4.0 |
+| **Cohen et al. (2020)** | Adult COVID-19 Open Research Dataset | 142 | 0 | 0 | **142** | Open Access (Non-commercial) |
+| **Figure 1 COVID-19** | Adult Clinician-Curated Cases | 35 | 0 | 0 | **35** | CC BY-NC-SA 4.0 |
+| **Total Merged** | *Multi-source heterogeneous dataset* | **177** | **4,245** | **1,582** | **6,004** | *Verified in `ml.json`* |
+
+### 10.2 Feature Extraction and 5-Fold Cross-Validation Architecture
+In compliance with `ADR 0002`, the ML pipeline executes locally on CPU using Python 3.12, PyTorch CPU (`2.14.1+cpu`), and torchvision (`0.29.1+cpu`):
+1. **Pre-trained Backbone:** DenseNet-121 pre-trained on ImageNet. The convolutional feature extractor is frozen, producing a 1,024-dimensional feature vector per radiograph:
+   $$\mathbf{f}_i = \text{DenseNet-121}(\mathbf{x}_i) \in \mathbb{R}^{1024}$$
+2. **Trainable Diagnostic Head:** A linear classification layer with Softmax:
+   $$\hat{\mathbf{y}}_i = \text{Softmax}\left(\mathbf{W} \mathbf{f}_i + \mathbf{b}\right) \in \mathbb{R}^3$$
+3. **Stratified 5-Fold Cross-Validation:** The 6,004 images are partitioned using `StratifiedKFold(n_splits=5, shuffle=True, random_state=42)`. In each fold, four splits train the classification head using Cross-Entropy loss with Adam optimizer (learning rate $10^{-3}$, 10 epochs), while out-of-fold (OOF) predictions are computed for the held-out split.
+4. **Overall OOF Performance:** Across all 6,004 out-of-fold predictions, the pipeline achieves an overall accuracy of 95.24% (95% CI: [94.67%, 95.75%]) with class recalls: COVID-19 98.31%, Pneumonia 94.75%, Normal 96.21% (`docs/evaluation/ml.json:10-64`).
+
+### 10.3 Difficulty Scoring, Bucketing, and Catalog Policy (`ADR 0005`)
+- **Difficulty Score Formulation:**
+  For each image $\mathbf{x}_i$ with true class $c_{\text{true}}$, its difficulty score $d_i$ represents the model's error probability:
+  $$d_i = 1 - p(c_{\text{true}} \mid \mathbf{x}_i), \quad d_i \in [0.0, 1.0]$$
+- **Primary Confusion Candidate:**
+  The class $c \neq c_{\text{true}}$ with the maximum predicted probability is assigned as `confusedWith`:
+  $$\text{confusedWith}_i = \arg\max_{c \neq c_{\text{true}}} p(c \mid \mathbf{x}_i)$$
+- **Difficulty Bucketing Thresholds:**
+  Continuous difficulty scores are partitioned into three pedagogical tiers:
+  - **Easy:** $d_i < 0.34$ ($p(c_{\text{true}}) > 0.66$)
+  - **Medium:** $0.34 \le d_i < 0.68$ ($0.32 < p(c_{\text{true}}) \le 0.66$)
+  - **Hard:** $d_i \ge 0.68$ ($p(c_{\text{true}}) \le 0.32$)
+- **Catalog Quota and Stratification Policy:**
+  To optimize local disk storage and prevent pneumonia class over-representation, `ADR 0005` establishes a cap of at most 500 images per disease class. The resulting curated catalog contains exactly 1,177 images:
+  - **covid19:** All 177 available images (157 Easy, 17 Medium, 3 Hard).
+  - **pneumonia:** 500 images (174 Easy, 163 Medium, 163 Hard).
+  - **normal:** 500 images (174 Easy, 163 Medium, 163 Hard).
+- **Generated File Artifacts:**
+  - `ml/artifacts/difficulty.json`: Complete record of OOF predictions across all 6,004 merged images.
+  - `ml/artifacts/catalog.json`: 1,177-item catalog manifest ingested by `npm run seed:catalog`.
+
+### 10.4 Honest Disclosure of Source Confounder
+The system architecture explicitly acknowledges and documents a critical dataset confounding limitation (`ADR 0005`, `docs/EVALUATION.md`, `docs/KNOWN-ISSUES.md`):
+- **100% Demographic Confounding:** 100% of `normal` (1,582) and `pneumonia` (4,245) radiographs originate from the Kermany pediatric cohort (children aged 1 to 5). In contrast, 100% of `covid19` radiographs (177) originate from adult cohorts (Cohen and Figure 1).
+- **Confounder Consequence:** The DenseNet-121 neural network can achieve near-perfect COVID-19 discrimination (98.3% recall) by learning pediatric vs. adult skeletal features (ribcage dimensions, clavicular ossification, cardiac silhouette scale) rather than distinguishing viral pulmonary infiltrates.
+- **Pedagogical Resolution:** The platform is explicitly restricted to educational simulation. The out-of-fold difficulty rankings serve strictly to rank relative diagnostic ambiguity for resident training, not as a validated clinical classifier.
+
+---
+
+## 11. Frontend Architecture and User Interface
+
+The web application (`apps/web`) is implemented with React 19, Vite 8, React Router 7, and Tailwind CSS 4. It provides dedicated, role-guarded resident and instructor portals with native Right-to-Left (RTL) Persian typography.
+
+### 11.1 Client Routing and Route Protection
+Routing is configured in `apps/web/src/app/router.jsx` utilizing React Router 7 in library mode (`createBrowserRouter`). All nineteen user screens are governed by authentication and role guards:
+
+```mermaid
+flowchart TD
+    Req["Browser URL Request"] --> AuthGuard{"RequireAuth Guard"}
+    
+    AuthGuard -- "Not Authenticated" --> Login["/login"]
+    AuthGuard -- "Authenticated" --> RoleGuard{"RequireRole Guard"}
+    
+    RoleGuard -- "Role = resident" --> ResTree["/app/* (ResidentLayout)"]
+    RoleGuard -- "Role = instructor" --> InsTree["/instructor/* (InstructorLayout)"]
+    RoleGuard -- "Role Mismatch" --> Forbidden["/403 (ForbiddenPage)"]
+    
+    subgraph ResidentScreens ["Resident Trainee Screens"]
+        ResTree --> RHome["/app (Dashboard)"]
+        ResTree --> RTests["/app/tests (Tests Overview)"]
+        ResTree --> RQuiz["/app/tests/:id (Active Quiz)"]
+        ResTree --> RRep["/app/reports/:id (Report)"]
+        ResTree --> RRev["/app/reports/:id/review (Review)"]
+        ResTree --> RPrac["/app/practice (Practice Home)"]
+        ResTree --> RPracSet["/app/practice/:id (Practice Set)"]
+        ResTree --> RProg["/app/progress (Trajectory)"]
+        ResTree --> REdu["/app/education (Guide)"]
+    end
+
+    subgraph InstructorScreens ["Instructor Screens"]
+        InsTree --> IHome["/instructor (Dashboard)"]
+        InsTree --> IRes["/instructor/residents (Roster)"]
+        InsTree --> IResDet["/instructor/residents/:id (Inspector)"]
+        InsTree --> IRev["/instructor/review (Question Bank)"]
+        InsTree --> ICat["/instructor/catalog (Catalog Monitor)"]
+    end
+```
+
+#### Complete Screen Inventory (19 Routes)
+
+| # | Route Path | Access / Guard | Layout | Page Component | Primary Functional Scope |
+|---|---|---|---|---|---|
+| **1** | `/` | Public | None | `RootRedirect` | Redirects authenticated users to `/app` or `/instructor`; unauthenticated to `/login`. |
+| **2** | `/login` | Public | `AuthLayout` | `LoginPage` | Email and password authentication; sets `rt_session` cookie. |
+| **3** | `/register` | Public | `AuthLayout` | `RegisterPage` | Resident self-registration with client Zod validation. |
+| **4** | `/403` | Public | None | `ForbiddenPage` | Role denial notice with smart back-navigation (`/app` or `/instructor`). |
+| **5** | `/app` | `resident` | `ResidentLayout` | `ResidentHomePage` | Resident dashboard: active test banner, quick metrics, recent history. |
+| **6** | `/app/tests` | `resident` | `ResidentLayout` | `TestsPage` | Test creation (sizes 45, 60, 90, 120), resume banner, paginated past tests. |
+| **7** | `/app/tests/:id` | `resident` | None (Focused) | `QuizPage` | Active test exam viewer: dark canvas, keys 1/2/3, question navigator, autosave. |
+| **8** | `/app/reports/:id` | `resident` | `ResidentLayout` | `ReportPage` | Final performance report: accuracy, 3x3 confusion matrix, metrics, LLM narrative. |
+| **9** | `/app/reports/:id/review`| `resident` | `ResidentLayout` | `ReviewPage` | Item-by-item question review with trainee vs true diagnosis and LLM explanation. |
+| **10** | `/app/practice` | `resident` | `ResidentLayout` | `PracticeHomePage` | Targeted practice dashboard: confusion pair remediation sets and history. |
+| **11** | `/app/practice/:id` | `resident` | None (Focused) | `PracticeSetPage` | 5-question micro-learning MCQ player with immediate pedagogical rationale reveal. |
+| **12** | `/app/progress` | `resident` | `ResidentLayout` | `ProgressPage` | Longitudinal learning trajectory: SVG `LineChart`, mastery status cards. |
+| **13** | `/app/education` | `resident` | `ResidentLayout` | `EducationPage` | Static clinical guide: 4-step adaptive cycle, disease signs grounded in KB files. |
+| **14** | `/instructor` | `instructor` | `InstructorLayout` | `InstructorHomePage` | Instructor dashboard: system overview, review alerts, catalog summary. |
+| **15** | `/instructor/residents`| `instructor` | `InstructorLayout` | `InstructorResidentsPage`| Resident roster table: trainee display names, completed sessions, latest accuracy. |
+| **16** | `/instructor/residents/:id`| `instructor`| `InstructorLayout` | `ResidentDetailPage` | Detailed resident inspector re-using `ProgressView` in instructor mode. |
+| **17** | `/instructor/review` | `instructor` | `InstructorLayout` | `InstructorReviewPage` | Question bank triage: split-view image, consensus badges, keyboard shortcuts A/R/J/K. |
+| **18** | `/instructor/catalog`| `instructor` | `InstructorLayout` | `InstructorCatalogPage`| Catalog monitor: class x bucket matrix, 3-axis filters, image records table. |
+| **19** | `*` | Public | None | `NotFoundPage` | 404 error page for unregistered URL paths. |
+
+### 11.2 State Management and Query Cache Topology
+Server state is managed using TanStack Query 5 (`@tanstack/react-query ^5.105.1`). Cache keys are strictly namespaced (`keys.js`):
+- `['auth', 'me']`: Authenticated user identity and active role.
+- `['sessions', 'active']`: Active resident session in progress.
+- `['sessions', id]`: Full session question hierarchy.
+- `['sessions', id, 'report']`: Final performance metrics and confusion breakdown.
+- `['progress']`: Historical learning trajectory and class mastery status.
+- `['practice', 'list', page, pageSize]`: Resident targeted practice history.
+- `['admin', 'questions', filters]`: Filtered question bank triage list.
+- `['admin', 'catalog', 'stats']`: Image catalog distribution metrics.
+
+#### Optimistic UI Updates and Invalidation
+- **Quiz Answering:** Answering question $N$ applies an immediate optimistic update to the local TanStack cache, toggling `answered: true` and updating question navigator markers without UI lag, backed by automatic rollback on network failure (`apps/web/src/features/sessions/hooks.js`).
+- **Session Finalization:** Invoking finish invalidates `['sessions']` and `['progress']`, triggering background refetches across dashboard widgets.
+- **Question Triage:** Approving or rejecting a question invalidates `['admin', 'questions']` and `['admin', 'questions', 'stats']`, seamlessly updating triage counters.
+- **Session Logout:** `queryClient.clear()` is executed immediately upon logout, flushing all cached clinical records from browser memory (`S25`).
+
+### 11.3 Right-to-Left (RTL) Persian Design and Accessibility
+- **Tailwind CSS 4 Logical Utilities:** Layouts strictly avoid physical `left` and `right` rules, using logical properties (`ms-*`, `me-*`, `ps-*`, `pe-*`, `text-start`, `text-end`). Verified by automated linter `scripts/check-rtl-classes.js` (0 violations).
+- **Typography:** Persian typography is rendered using the variable Vazirmatn font (`@fontsource-variable/vazirmatn ^5.3.0`), providing clear legibility across Persian medical terminology.
+- **Medical Image Integrity Guard (`XrayImage.jsx`):**
+  Frontal chest radiographs contain critical lateral markers (e.g., gastric bubble on left, aortic arch on left, liver shadow on right). In compliance with medical safety rules, `XrayImage.jsx` enforces an isolated `dir="ltr"` container and strictly prohibits CSS transforms (`transform: scaleX(-1)`), guaranteeing radiographs are **never mirrored or horizontally flipped** (`NFR-USAB-04`).
+- **Bilingual Localization and Parity:**
+  Internationalization is driven by `i18next` and `react-i18next`. Default language is Persian (`fa`), toggleable to English (`en`). 100% bilingual key parity between `fa.json` and `en.json` is enforced by Vitest regression tests (`apps/web/src/__tests__/i18n.test.js`).
+- **Jalali Date Formatting:** Dates in Persian mode are rendered in the Solar Hijri (Jalali) calendar using native ECMAScript internationalization:
+  ```javascript
+  new Intl.DateTimeFormat('fa-IR-u-ca-persian', { dateStyle: 'medium' }).format(date);
+  ```
+- **WCAG AA Contrast Tokens:** Color tokens in `@theme` (`index.css`) maintain a contrast ratio $\ge 4.5:1$ against backgrounds, validated by automated contrast scanners (`check-contrast-classes.test.js`).
+
+### 11.4 Interactive Examination Keyboard Handling
+To simulate standard diagnostic PACS workstations and provide rapid test administration:
+- The active exam viewer (`QuizPage.jsx`) captures physical keyboard key presses `1`, `2`, and `3`, automatically selecting COVID-19, Pneumonia, or Normal respectively.
+- The question navigator sidebar supports arrow navigation.
+- Next radiograph image assets are prefetched in the background to ensure instantaneous image transitions upon answer submission (`NFR-PERF-01`).
+
+---
+
 ## 12. Deployment and Runtime View
 
 ### 12.1 Local Workstation Operating Model
@@ -1193,3 +1346,53 @@ All environment configuration is strictly validated at application startup using
 | `LLM_MIN_INTERVAL_MS` | Integer $\ge 0$ | `13000` (13 sec) | Non-negative integer | Enforces spacing between external LLM calls to comply with the 5 RPM rate limit. |
 | `LLM_TIMEOUT_MS` | Integer $\ge 1000$ | `60000` (60 sec) | Milliseconds | Abort timeout for outgoing Gemini API requests. |
 | `LLM_RATE_LIMIT_PER_USER_PER_HOUR` | Integer $\ge 1$ | `30` | Positive integer | Endpoint rate limit protecting LLM feedback requests from resident flooding. |
+
+---
+
+## 13. Design Decisions and Trade-offs (ADRs 0001–0014)
+
+All fundamental architectural decisions are recorded in the repository as Markdown Architectural Decision Records (MADR format) under `docs/adr/`. The table below cross-references each record with its decision, alternatives considered, and architectural trade-offs:
+
+| ADR ID | Decision Title | Decision Taken | Alternatives Considered | Architectural Consequence and Trade-offs |
+|---|---|---|---|---|
+| [**0001**](../adr/0001-record-architecture-decisions.md) | **Record Architecture Decisions** | Adopt MADR template for all architectural decisions committed directly to Git. | Unstructured wiki, Word/PDF documents, inline code comments. | Decisions are version-controlled, auditable, and reviewed alongside code. |
+| [**0002**](../adr/0002-technology-stack.md) | **Technology Stack Selection** | React 19 + Express 5 + Node 24 LTS + MongoDB 8 natively on Windows 11; pure JavaScript (ES modules, no TypeScript); Python 3.12 for offline ML. | TypeScript, Docker/Docker Compose, PostgreSQL, NestJS, Next.js. | Zero virtualization overhead; rapid Windows setup; easily understood and defended by single developer; requires strict Zod runtime schemas to compensate for no compile-time TypeScript. |
+| [**0003**](../adr/0003-development-workflow.md) | **Solo Development Workflow** | Strict single-developer workflow: branch per task (`type/Txx-name`), Conventional Commits, independent AI review gate, merge commits, green main branch. | Trunk-based development without PRs; squashed commits. | Complete step-by-step auditability; granular commit history; zero undocumented code merges. |
+| [**0004**](../adr/0004-adaptive-engine-allocation.md) | **Adaptive Question Allocation** | Laplace smoothing ($\alpha = 1$); Largest Remainder (Hamilton-Hare) integer math; normalized error weights ($w_c = \text{error}_c / \sum \text{error}_k$); $N \ge 45$ design floor; no-repeat policy. | Raw paper formulas (division by zero risk); naive float rounding (integer drift); unconstrained small test sizes. | Guaranteed integer sums ($N$ exact); eliminates division by zero; prevents image memorization; requires 1,177 curated images to support non-repeating sessions. |
+| [**0005**](../adr/0005-difficulty-thresholds-and-catalog-policy.md) | **Difficulty Thresholds and Catalog Policy** | $d = 1 - p(\text{true})$; thresholds 0.34/0.68; 500 images/class quota cap (1,177 total catalog); honest disclosure of adult vs pediatric confounder. | Include all 6,004 images; hide dataset source imbalance; use heuristic difficulty scoring. | Manageable local repository size (~45MB web images); complete academic integrity regarding demographic confounders. |
+| [**0006**](../adr/0006-product-assumptions-and-roles.md) | **Product Assumptions and Roles** | Dual user roles (`resident`, `instructor`); strict non-clinical educational simulation boundary; zero protected health information (PHI). | Multi-institutional tenancy; clinical diagnostic decision support system (CDSS/SaMD). | Eliminates medical device compliance liability; sharp academic focus on resident error adaptation. |
+| [**0007**](../adr/0007-api-architecture-and-auth.md) | **API Architecture and Auth** | Express 5 REST API; stateless HS256 JWT in `HttpOnly` `SameSite=Lax` cookies; Zod runtime input validation; dynamic database role verification. | Stateful Redis session store; OAuth2/OIDC provider; Bearer tokens in localStorage. | Zero external cache dependency; immediate administrative role revocation; eliminates client-side XSS token theft. |
+| [**0008**](../adr/0008-opaque-public-ids-and-label-leakage.md) | **Opaque Public IDs and Label Leakage** | HMAC-SHA256 image public IDs; strict schema projection; zero ground truth, difficulty, or source dataset emission prior to test completion. | Sequential IDs (`/api/images/1`); exposing source filenames (`kermany_01.png`). | Guarantees exam integrity; prevents trainees from inspecting DevTools network requests to deduce answers. |
+| [**0009**](../adr/0009-web-architecture-rtl-and-routing.md) | **Web Architecture and RTL** | React 19 SPA + React Router 7 library mode + Tailwind CSS 4 logical utilities + Vazirmatn font; isolated `dir="ltr"` container for radiographs. | Next.js App Router; component libraries with heavy RTL CSS hacks (MUI/AntD). | Extremely fast build (<500ms); zero anatomical image mirroring; clean native RTL layout. |
+| [**0010**](../adr/0010-session-lifecycle-and-metrics.md) | **Session Lifecycle and Metrics** | MongoDB partial unique index for single active session; server-determined baseline vs adaptive test kind; raw unsmoothed metrics on final reports. | Client-chosen session types; multiple simultaneous open tests; smoothed report metrics. | Prevents double-click race conditions; ensures structured learning trajectory; provides clinically objective final scores. |
+| [**0011**](../adr/0011-resident-training-ui.md) | **Resident Training UI** | Immediate autosave per answer; two-column quiz layout with RTL navigator; keyboard keys 1/2/3; modal finish dialog; background image prefetching. | Single-question wizard with next/prev submit; delayed batch submission on finish. | PACS-like rapid diagnostic workflow; prevents answer loss on accidental tab closure or browser refresh. |
+| [**0012**](../adr/0012-llm-core-and-quota-guard.md) | **LLM Core and Quota Guard** | Three modes (`live`, `cache-only`, `fake`); 16 RPD daily budget guard in Pacific timezone; 13s inter-call throttle; circuit breaker; grounded KB retrieval. | Always-online live LLM calls; uncontrolled concurrent requests. | Zero quota suspension risk; 100% offline demonstration resilience without internet connectivity. |
+| [**0013**](../adr/0013-image-analysis-pipeline-and-batching.md) | **Multimodal Analysis & Review** | Closed vocabulary; dual-run A and B (6 imgs/batch) with reversed-rotated order; 9-rule validation engine ($A \cap B$); instructor triage with single-key shortcuts. | Single-pass VLM inference; free-form generative descriptions; automatic unreviewed question publishing. | High inter-rater agreement ($\kappa = 0.713$); zero hallucinated anatomical terms; instructor retains final authority. |
+| [**0014**](../adr/0014-targeted-practice.md) | **Targeted Practice Module** | 5-question micro-sessions for specific confusion pairs; deterministic seeded PRNG option shuffling; immediate pedagogical rationale reveal. | Generic random practice questions; delayed feedback until end of set. | Immediate remediation of diagnostic blind spots; eliminates answer position bias; rapid resident learning feedback. |
+
+---
+
+## 14. Requirements Traceability Matrix
+
+The matrix below maps each architectural component and design subsystem of this Software Design Description to the corresponding requirements codified in the [Software Requirements Specification (SRS)](01-SRS.md):
+
+| SDD Subsystem / Architectural Component | Primary Source Files / Modules | Covered SRS Functional Requirements | Covered SRS Non-Functional Requirements |
+|---|---|---|---|
+| **System Architecture & Stack** | `package.json`, `apps/api/src/server.js`, `apps/web/vite.config.js` | `FR-AUTH-05` | `NFR-PORT-01`, `NFR-PORT-02`, `NFR-PORT-03`, `NFR-MAINT-01`, `NFR-MAINT-02`, `NFR-REL-01` |
+| **Authentication & Session Tokens** | `apps/api/src/modules/auth/`, `packages/contracts/src/auth.js` | `FR-AUTH-01`, `FR-AUTH-02`, `FR-AUTH-03`, `FR-AUTH-04` | `NFR-SEC-01`, `NFR-SEC-04` |
+| **Authorization & Access Guards** | `apps/api/src/middleware/requireRole.js`, `requireAuth.js`, `canViewImage` | `FR-INS-01`, `FR-TEST-02` | `NFR-SEC-02`, `NFR-SEC-03` |
+| **Opaque Image IDs & Label Safety**| `apps/api/src/modules/catalog/service.js`, `packages/contracts/src/catalog.js` | `FR-TEST-02`, `FR-DATA-02` | `NFR-PRIV-01`, `NFR-PRIV-02`, `NFR-PRIV-03`, `NFR-PRIV-04` |
+| **Adaptive Mathematical Engine** | `packages/engine/src/rates.js`, `allocation.js`, `math.js` | `FR-ADAPT-01`, `FR-ADAPT-02`, `FR-ADAPT-03`, `FR-ADAPT-04`, `FR-ADAPT-05` | `NFR-MAINT-01`, `NFR-PERF-02` |
+| **Test Assembly & Shortage Logic** | `packages/engine/src/selection.js`, `packages/contracts/src/engine.js` | `FR-ADAPT-06`, `FR-ADAPT-07`, `FR-ADAPT-08`, `FR-TEST-01` | `NFR-MAINT-01`, `NFR-REL-03` |
+| **Session Lifecycle & Answering** | `apps/api/src/modules/sessions/`, `packages/contracts/src/session.js` | `FR-TEST-01`, `FR-TEST-02`, `FR-TEST-03`, `FR-TEST-04`, `FR-TEST-05`, `FR-TEST-06`, `FR-TEST-07` | `NFR-PERF-01`, `NFR-REL-03` |
+| **Performance Reporting & Metrics** | `apps/api/src/modules/sessions/metrics.js`, `ReportPage.jsx` | `FR-REP-01`, `FR-REP-02`, `FR-REP-03`, `FR-REP-04`, `FR-REP-05`, `FR-REP-06`, `FR-REP-07`, `FR-REP-08` | `NFR-USAB-01`, `NFR-USAB-02` |
+| **Progress Tracking & Mastery** | `apps/api/src/modules/sessions/service.js`, `packages/engine/src/targeted.js` | `FR-PROG-01`, `FR-PROG-02`, `FR-PROG-03`, `FR-PROG-04`, `FR-PROG-05`, `FR-PROG-06` | `NFR-USAB-01`, `NFR-USAB-05` |
+| **Targeted Practice Module** | `apps/api/src/modules/practice/`, `packages/contracts/src/practice.js` | `FR-PRAC-01`, `FR-PRAC-02`, `FR-PRAC-03`, `FR-PRAC-04`, `FR-PRAC-05`, `FR-PRAC-06`, `FR-PRAC-07` | `NFR-PRIV-02`, `NFR-USAB-01` |
+| **Educational Guide & Clinical KB**| `apps/web/src/pages/resident/EducationPage.jsx`, `apps/api/src/modules/llm/kb/` | `FR-EDU-01`, `FR-EDU-02`, `FR-EDU-03`, `FR-EDU-04` | `NFR-USAB-01`, `NFR-USAB-02` |
+| **Instructor Administration** | `apps/api/src/modules/admin/`, `apps/web/src/pages/instructor/` | `FR-INS-01`, `FR-INS-02`, `FR-INS-03`, `FR-INS-04` | `NFR-SEC-02`, `NFR-USAB-01` |
+| **Question Bank & Review Panel** | `apps/api/src/modules/bank/`, `packages/contracts/src/questionBank.js` | `FR-INS-05`, `FR-INS-06`, `FR-INS-07`, `FR-INS-08` | `NFR-USAB-01`, `NFR-USAB-05` |
+| **Multimodal VLM Analysis** | `apps/api/src/modules/analysis/`, `packages/contracts/src/vocabulary.js` | `FR-LLM-01`, `FR-LLM-02`, `FR-LLM-03`, `FR-LLM-04` | `NFR-REL-01`, `NFR-MAINT-03` |
+| **LLM Explanations & Narrative** | `apps/api/src/modules/llm/`, `packages/contracts/src/llm.js` | `FR-LLM-05`, `FR-LLM-06`, `FR-LLM-07`, `FR-LLM-08` | `NFR-REL-01`, `NFR-PERF-03` |
+| **Offline ML Pipeline & Artifacts**| `ml/src/`, `ml/artifacts/catalog.json`, `difficulty.json` | `FR-DATA-01`, `FR-DATA-02`, `FR-DATA-03`, `FR-DATA-04` | `NFR-REL-02`, `NFR-PORT-03` |
+| **RTL Persian User Interface** | `apps/web/src/`, `Tailwind CSS 4`, `i18next`, `Vazirmatn` | `FR-AUTH-01..05`, `FR-TEST-01..07`, `FR-REP-01..08` | `NFR-USAB-01`, `NFR-USAB-02`, `NFR-USAB-03`, `NFR-USAB-04`, `NFR-USAB-05` |
+| **Security Controls & Hardening** | `apps/api/src/middleware/helmet`, `errorHandler`, `budget.js` | `FR-AUTH-01..05`, `FR-LLM-08` | `NFR-SEC-01`, `NFR-SEC-02`, `NFR-SEC-03`, `NFR-SEC-04`, `NFR-SEC-05` |
