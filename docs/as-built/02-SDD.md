@@ -175,6 +175,449 @@ Every component and library version in the table below is verified against the r
 
 ---
 
+## 4. Data Design
+
+### 4.1 Entity-Relationship Overview
+The data persistence tier is implemented using MongoDB Community Server 8.3 and Mongoose 9.11. The schema encompasses twelve specialized collections governing authentication, image catalog assets, adaptive session lifecycle, error response histories, targeted practice, LLM quota management, offline multimodal VLM analyses, and instructor question review.
+
+```mermaid
+erDiagram
+    USER ||--o{ SESSION : "initiates"
+    USER ||--o{ RESPONSE : "submits"
+    USER ||--o{ PRACTICE_SET : "undertakes"
+    SESSION ||--o{ RESPONSE : "contains"
+    SESSION }o--o{ IMAGE : "references (publicId)"
+    PRACTICE_SET }o--o{ QUESTION_BANK : "includes (questionIds)"
+    IMAGE ||--o{ IMAGE_ANALYSIS : "subject of"
+    ANALYSIS_BATCH ||--o{ IMAGE_ANALYSIS : "executes"
+    IMAGE ||--o| ANALYSIS_VALIDATION : "evaluated by"
+    IMAGE ||--o{ QUESTION_BANK : "grounds"
+    IMAGE ||--o{ QUESTION_GEN_ATTEMPT : "attempted on"
+
+    USER {
+        ObjectId _id PK
+        string email UK
+        string passwordHash
+        string displayName
+        string role
+        string language
+    }
+
+    IMAGE {
+        string _id PK
+        string publicId UK
+        string filename
+        string trueClass
+        string source
+        float difficulty
+        string bucket
+        string confusedWith
+    }
+
+    SESSION {
+        ObjectId _id PK
+        ObjectId userId FK
+        int index
+        string kind
+        string status
+        int size
+        date startedAt
+        date finishedAt
+    }
+
+    RESPONSE {
+        ObjectId _id PK
+        ObjectId sessionId FK
+        ObjectId userId FK
+        int questionNo
+        string imageId
+        string trueClass
+        string answer
+        bool correct
+        int timeMs
+    }
+
+    PRACTICE_SET {
+        ObjectId _id PK
+        ObjectId userId FK
+        string status
+        int size
+        date completedAt
+    }
+
+    QUESTION_BANK {
+        ObjectId _id PK
+        string stableId UK
+        string imageId FK
+        string type
+        string status
+        int correctIndex
+        bool edited
+    }
+
+    ANALYSIS_BATCH {
+        string _id PK
+        string batchId UK
+        int group
+        string run
+        string status
+        int attempts
+    }
+
+    IMAGE_ANALYSIS {
+        ObjectId _id PK
+        string imageId FK
+        string run
+        string promptVersion
+        string batchId FK
+    }
+
+    ANALYSIS_VALIDATION {
+        ObjectId _id PK
+        string imageId FK
+        string promptVersion
+        string status
+        string datasetLabel
+    }
+
+    QUESTION_GEN_ATTEMPT {
+        ObjectId _id PK
+        string imageId FK
+        string promptVersion
+        string type
+    }
+
+    LLM_USAGE {
+        ObjectId _id PK
+        string day UK
+        int count
+        date lastCallAt
+        bool exhausted
+    }
+
+    LLM_CACHE {
+        ObjectId _id PK
+        string key UK
+        string promptId
+        string version
+        string lang
+        bool portable
+    }
+```
+
+### 4.2 Collection Specifications
+
+#### 4.2.1 `users` Collection (`UserModel`, `apps/api/src/modules/auth/model.js:3-42`)
+- **Purpose:** Stores accounts and credentials for resident trainees and instructors.
+- **Key Fields:**
+  - `_id`: MongoDB ObjectId primary key.
+  - `email`: String, required, unique, lowercase, trimmed, maximum 254 characters.
+  - `passwordHash`: String, required. Salted bcrypt hash with work factor 12.
+  - `displayName`: String, required, 2 to 60 characters.
+  - `role`: String enum (`'resident' | 'instructor'`), default `'resident'`.
+  - `language`: String enum (`'fa' | 'en'`), default `'fa'`.
+  - `createdAt`, `updatedAt`: Timestamps automatically managed by Mongoose.
+- **Indexes:**
+  - `{ email: 1 }` (unique).
+- **Relationships:** Referenced as foreign key by `sessions.userId`, `responses.userId`, and `practice_sets.userId`.
+
+#### 4.2.2 `images` Collection (`ImageModel`, `apps/api/src/modules/catalog/model.js:3-52`)
+- **Purpose:** Primary metadata catalog for the 1,177 web-optimized frontal chest radiographs.
+- **Key Fields:**
+  - `_id`: String primary key representing the deterministic catalog identifier (e.g. `kermany_f9ddce356c7b`).
+  - `publicId`: String, required, unique. Opaque HMAC-SHA256 token used in client-facing APIs.
+  - `filename`: String, required. Web-optimized PNG filename under `data/catalog/images/`.
+  - `trueClass`: String enum (`'covid19' | 'pneumonia' | 'normal'`), ground truth diagnosis.
+  - `source`: String, dataset provenance (`'cohen' | 'figure1' | 'kermany'`).
+  - `difficulty`: Number in $[0.0, 1.0]$, computed as $d = 1 - p(\text{trueClass})$.
+  - `bucket`: String enum (`'easy' | 'medium' | 'hard'`).
+  - `confusedWith`: String enum (`'covid19' | 'pneumonia' | 'normal'`), primary out-of-fold confusion candidate.
+- **Indexes:**
+  - `{ publicId: 1 }` (unique, index for HMAC radiograph file streaming).
+  - `{ trueClass: 1, bucket: 1 }` (compound index for fast stratified sampling).
+- **Relationships:** Referenced by `sessions.questions.imageId`, `responses.imageId`, `image_analyses.imageId`, `analysis_validations.imageId`, and `question_bank.imageId`.
+
+#### 4.2.3 `sessions` Collection (`SessionModel`, `apps/api/src/modules/sessions/model.js:42-108`)
+- **Purpose:** Manages the full lifecycle, question ordering, and evaluation metrics for diagnostic tests.
+- **Key Fields:**
+  - `_id`: MongoDB ObjectId primary key.
+  - `userId`: ObjectId referencing `users._id`.
+  - `index`: Integer $\ge 1$, sequential session counter for the resident.
+  - `kind`: String enum (`'baseline' | 'adaptive'`).
+  - `status`: String enum (`'in_progress' | 'finished'`), default `'in_progress'`.
+  - `size`: Integer $\ge 45$, total questions (default 60).
+  - `configSnapshot`: Mixed document storing algorithm parameters used during generation.
+  - `plan`: Mixed document recording planned class and bucket quotas.
+  - `questions`: Array of embedded question subdocuments (`no`, `imageId`, `publicId`, `trueClass`, `bucket`, `difficulty`, `confusedWith`).
+  - `startedAt`: Date, default `Date.now`.
+  - `finishedAt`: Date, default `null`. Set upon finalization.
+  - `metrics`: Mixed document containing finalized session evaluation metrics ($FPR$, $FNR$, precision, recall, confusion matrix).
+- **Indexes:**
+  - `{ userId: 1, index: 1 }` (unique, enforces strict session sequencing).
+  - `{ userId: 1, status: 1 }` (unique partial index where `status: 'in_progress'`, enforces single-active-session rule).
+  - `{ userId: 1, 'questions.publicId': 1 }` (verifies resident authorization for image bytes).
+- **Relationships:** Belongs to `users`; parents multiple `responses`.
+
+#### 4.2.4 `responses` Collection (`ResponseModel`, `apps/api/src/modules/sessions/model.js:109-172`)
+- **Purpose:** Logs atomic question submission events during an active training session.
+- **Key Fields:**
+  - `_id`: MongoDB ObjectId primary key.
+  - `sessionId`: ObjectId referencing `sessions._id`.
+  - `userId`: ObjectId referencing `users._id`.
+  - `questionNo`: Integer $\ge 1$, question ordinal in the session.
+  - `imageId`: String catalog identifier.
+  - `trueClass`: String enum (`'covid19' | 'pneumonia' | 'normal'`).
+  - `answer`: String enum (`'covid19' | 'pneumonia' | 'normal'`), trainee's diagnosis.
+  - `bucket`: String enum (`'easy' | 'medium' | 'hard'`).
+  - `correct`: Boolean indicating whether `answer === trueClass`.
+  - `answeredAt`: Date, timestamp of submission.
+  - `timeMs`: Number, resident response latency in milliseconds.
+- **Indexes:**
+  - `{ sessionId: 1, questionNo: 1 }` (unique, guarantees idempotent single response per question).
+  - `{ userId: 1 }` (aggregates trainee performance trajectories).
+  - `{ sessionId: 1 }` (fetches session answer histories).
+- **Relationships:** Belongs to `sessions` and `users`.
+
+#### 4.2.5 `practice_sets` Collection (`PracticeSetModel`, `apps/api/src/modules/practice/model.js:44-101`)
+- **Purpose:** Represents targeted remediation micro-sessions focused on specific diagnostic confusion pairs.
+- **Key Fields:**
+  - `_id`: MongoDB ObjectId primary key.
+  - `userId`: ObjectId referencing `users._id`.
+  - `status`: String enum (`'in_progress' | 'completed'`), default `'in_progress'`.
+  - `size`: Integer between 1 and 20 (standard 5 questions).
+  - `questionIds`: Array of ObjectIds referencing approved `question_bank` entries.
+  - `publicIds`: Array of opaque HMAC tokens for associated radiographs.
+  - `optionOrder`: 2D Array of integers recording deterministic option permutations.
+  - `plan`: Mixed object recording targeted pair and pedagogical focus.
+  - `answers`: Array of embedded subdocuments (`questionId`, `selectedIndex`, `shuffledIndex`, `correct`, `timeMs`, `answeredAt`).
+  - `completedAt`: Date, default `null`. Set when all questions are answered.
+- **Indexes:**
+  - `{ userId: 1, createdAt: -1 }` (paginated resident practice history).
+  - `{ userId: 1 }`, `{ status: 1 }`, `{ publicIds: 1 }` (image streaming authorization).
+- **Relationships:** Belongs to `users`; references multiple `question_bank` items.
+
+#### 4.2.6 `llm_usage` Collection (`LlmUsage`, `apps/api/src/modules/llm/budget.js:17-46`)
+- **Purpose:** Enforces the 16 requests per calendar day external Gemini budget guard via atomic increments.
+- **Key Fields:**
+  - `_id`: MongoDB ObjectId primary key.
+  - `day`: String, unique format `YYYY-MM-DD` in `America/Los_Angeles` timezone.
+  - `count`: Integer $\ge 0$, daily request counter.
+  - `lastCallAt`: Date, timestamp of the most recent live API request.
+  - `exhausted`: Boolean, set to `true` when budget limit is reached or repeated 429s trip the breaker.
+- **Indexes:**
+  - `{ day: 1 }` (unique).
+- **Relationships:** Independent operational collection.
+
+#### 4.2.7 `llm_cache` Collection (`LlmCache`, `apps/api/src/modules/llm/cache.js:35-77`)
+- **Purpose:** Stores deterministic prompt inputs and structured outputs for error explanations and report narratives.
+- **Key Fields:**
+  - `_id`: MongoDB ObjectId primary key.
+  - `key`: String, unique SHA-256 hash computed over `${promptId}:${version}:${canonicalJson(input)}`.
+  - `promptId`: String, prompt identifier (e.g. `explanation-pair`, `report-narrative`).
+  - `version`: String, prompt template version (e.g. `v1`).
+  - `lang`: String enum (`'fa' | 'en'`), default `'fa'`.
+  - `portable`: Boolean flag indicating seedable entries checked into Git (`llm-cache.portable.json`).
+  - `input`: Mixed document, exact normalized prompt input parameters.
+  - `response`: Mixed document, cached structured JSON response.
+- **Indexes:**
+  - `{ key: 1 }` (unique, primary cache lookup key).
+  - `{ promptId: 1 }`, `{ portable: 1 }`.
+- **Relationships:** Queried by the LLM caching middleware before invoking external providers.
+
+#### 4.2.8 `analysis_batches` Collection (`AnalysisBatchModel`, `apps/api/src/modules/analysis/model.js:7-44`)
+- **Purpose:** Tracks planned multimodal Gemini API batch operations (6 images per call, Run A or Run B).
+- **Key Fields:**
+  - `_id` / `batchId`: String primary key (format `v1-g07-A`).
+  - `group`: Integer $\ge 0$, image grouping index.
+  - `run`: String enum (`'A' | 'B'`).
+  - `imageIds`: Array of 6 string catalog identifiers.
+  - `status`: String enum (`'pending' | 'done' | 'failed'`), default `'pending'`.
+  - `attempts`: Integer $\ge 0$, execution retry counter.
+  - `lastError`: String, error trace of most recent failure.
+  - `requestedAt`, `finishedAt`: Execution timestamps.
+  - `model`, `promptVersion`: Model identifier and prompt version.
+- **Indexes:**
+  - `{ batchId: 1 }` (unique).
+  - `{ status: 1 }`, `{ group: 1, run: 1 }`.
+- **Relationships:** Groups multiple `image_analyses`.
+
+#### 4.2.9 `image_analyses` Collection (`ImageAnalysisModel`, `apps/api/src/modules/analysis/model.js:50-68`)
+- **Purpose:** Stores parsed, Zod-validated multimodal finding extractions for an image under a specific run.
+- **Key Fields:**
+  - `_id`: MongoDB ObjectId primary key.
+  - `imageId`: String catalog identifier.
+  - `run`: String enum (`'A' | 'B'`).
+  - `promptVersion`: String, prompt template version (default `'v1'`).
+  - `model`: String, Gemini model name used for inference.
+  - `batchId`: String referencing `analysis_batches.batchId`.
+  - `output`: Mixed document containing structured findings: `laterality`, `zones`, `patterns`, `distribution`, `predictedClass`, `certainty`, `imageQuality`.
+- **Indexes:**
+  - `{ imageId: 1, run: 1, promptVersion: 1 }` (unique compound index preventing duplicate analysis runs).
+  - `{ batchId: 1 }`.
+- **Relationships:** References `images` and `analysis_batches`.
+
+#### 4.2.10 `analysis_validations` Collection (`AnalysisValidationModel`, `apps/api/src/modules/analysis/model.js:74-106`)
+- **Purpose:** Records cross-run consistency evaluations and consensus finding intersections ($A \cap B$).
+- **Key Fields:**
+  - `_id`: MongoDB ObjectId primary key.
+  - `imageId`: String catalog identifier.
+  - `promptVersion`: String (default `'v1'`).
+  - `status`: String enum (`'auto_passed' | 'auto_rejected'`).
+  - `reasons`: Array of rejection codes if auto-validation failed (from 9-rule validation engine).
+  - `consensus`: Object storing consensus findings: `patterns` (intersection array), `distribution`, `laterality`, `zones`.
+  - `datasetLabel`: String enum (`'covid19' | 'pneumonia' | 'normal'`).
+  - `validatedAt`: Date, timestamp of evaluation.
+- **Indexes:**
+  - `{ imageId: 1, promptVersion: 1 }` (unique, exactly one validation per image).
+  - `{ status: 1 }`.
+- **Relationships:** References `images`.
+
+#### 4.2.11 `question_bank` Collection (`QuestionBankModel`, `apps/api/src/modules/bank/model.js:37-216`)
+- **Purpose:** Manages multiple-choice pedagogical questions for instructor triage and resident practice.
+- **Key Fields:**
+  - `_id`: MongoDB ObjectId primary key.
+  - `stableId`: String, unique SHA-1 hash guaranteeing generation idempotency.
+  - `imageId`: String catalog identifier.
+  - `type`: String enum (`'finding' | 'distribution' | 'differential'`).
+  - `pair`: Object defining `{ trueClass, confusedWith }`.
+  - `bucket`: String enum (`'easy' | 'medium' | 'hard'`).
+  - `stem`: String, Persian question prompt.
+  - `options`: Array of exactly 4 subdocuments: `{ text: string, key: string | null }`.
+  - `correctIndex`: Integer $0..3$, zero-based index of the correct answer.
+  - `rationale`: String, Persian explanation ($\le 300$ characters).
+  - `kbRef`: String, reference tag to grounded medical knowledge base file.
+  - `tags`: Array of domain strings.
+  - `status`: String enum (`'pending_review' | 'approved' | 'rejected'`), default `'pending_review'`.
+  - `edited`: Boolean, flag indicating instructor text modification.
+  - `source`: Object recording generation provenance (`model`, `promptVersion`, `analysisIds`).
+  - `reviewedBy`: String, instructor identifier.
+  - `reviewedAt`: Date of approval or rejection.
+  - `note`: String, instructor feedback or review note.
+  - `history`: Array of audit events (`action`, `by`, `at`, `fromStatus`, `toStatus`, `changes`, `note`).
+  - `analysisSummary`: Snapshot of consensus findings and VLM certainty.
+- **Indexes:**
+  - `{ stableId: 1 }` (unique).
+  - `{ imageId: 1 }`.
+  - `{ status: 1, type: 1 }` (fast instructor triage filtering).
+  - `{ 'pair.trueClass': 1, 'pair.confusedWith': 1 }` (targeted practice selection).
+  - `{ createdAt: -1 }`.
+- **Relationships:** References `images`; referenced by `practice_sets.questionIds`.
+
+#### 4.2.12 `question_gen_attempts` Collection (`QuestionGenAttemptModel`, `apps/api/src/modules/bank/model.js:220-236`)
+- **Purpose:** Logs candidate questions rejected by automated pre-validation rules for evaluation tracking.
+- **Key Fields:**
+  - `_id`: MongoDB ObjectId primary key.
+  - `imageId`: String catalog identifier.
+  - `promptVersion`: String.
+  - `type`: String question type.
+  - `candidate`: Mixed document recording rejected question content.
+  - `reasons`: Array of validation failure codes.
+  - `createdAt`: Date, timestamp of attempt.
+- **Indexes:**
+  - `{ imageId: 1, promptVersion: 1 }`.
+- **Relationships:** References `images`.
+
+---
+
+## 5. API Design
+
+### 5.1 Endpoint Inventory (31 Routes)
+All thirty-one registered routes in `apps/api` are detailed below in full alignment with `docs/qa/ROUTE-INVENTORY.md` and `packages/contracts`.
+
+| # | HTTP Method | Route Path | Access / Role | Request Schema (Body / Query) | Response Schema | Mapped SRS Requirements |
+|---|---|---|---|---|---|---|
+| **1** | `GET` | `/api/health` | Public | None | `{ status: 'ok', time, uptime, db, contractsVersion }` | `FR-AUTH-05`, `NFR-REL-01` |
+| **2** | `POST` | `/api/auth/register` | Public (`authLimiter`) | `RegisterBodySchema` | `AuthResponseSchema` (Sets `rt_session` cookie) | `FR-AUTH-01`, `NFR-SEC-01` |
+| **3** | `POST` | `/api/auth/login` | Public (`authLimiter`) | `LoginBodySchema` | `AuthResponseSchema` (Sets `rt_session` cookie) | `FR-AUTH-02`, `NFR-SEC-01` |
+| **4** | `POST` | `/api/auth/logout` | Public | None | `{ message: string }` (Clears `rt_session` cookie) | `FR-AUTH-03` |
+| **5** | `GET` | `/api/me` | Authenticated (`resident`, `instructor`) | None | `AuthResponseSchema` | `FR-AUTH-04` |
+| **6** | `GET` | `/api/images/:publicId/file` | Authenticated + `canViewImage` | Param: `publicId` (HMAC string) | Binary stream (`image/png`) | `FR-TEST-02`, `FR-DATA-02`, `NFR-PRIV-01` |
+| **7** | `POST` | `/api/sessions` | `resident` | `CreateSessionBodySchema` (`size?`) | `SessionPublicSchema` | `FR-TEST-01`, `FR-ADAPT-01` |
+| **8** | `GET` | `/api/sessions` | `resident` | Query: `PaginationQuerySchema` | `PaginatedSessionsSchema` | `FR-TEST-04` |
+| **9** | `GET` | `/api/sessions/:id` | `resident` | Param: `id` (ObjectId) | `SessionPublicSchema` | `FR-TEST-01`, `FR-TEST-02`, `NFR-PRIV-02` |
+| **10** | `PUT` | `/api/sessions/:id/questions/:no/answer` | `resident` | `AnswerBodySchema` (`answer`, `timeMs?`) | `AnswerPublicSchema` | `FR-TEST-02` |
+| **11** | `POST` | `/api/sessions/:id/finish` | `resident` | Param: `id` (ObjectId) | `SessionReportSchema` | `FR-TEST-03`, `FR-REP-01` |
+| **12** | `GET` | `/api/sessions/:id/report` | `resident` | Param: `id` (ObjectId) | `SessionReportSchema` | `FR-REP-01..08` |
+| **13** | `GET` | `/api/progress` | `resident` | None | `ProgressSchema` | `FR-PROG-01..06` |
+| **14** | `POST` | `/api/sessions/:id/explanations` | `resident` | `ExplanationsBodySchema` (`pairs?`, `lang?`) | `ExplanationsResponseSchema` | `FR-LLM-05` |
+| **15** | `POST` | `/api/sessions/:id/report-narrative` | `resident` (`narrativeLimiter`) | `NarrativeBodySchema` (`lang?`, `detail?`) | `NarrativeResponseSchema` | `FR-LLM-06`, `NFR-PERF-03` |
+| **16** | `POST` | `/api/practice` | `resident` | `PracticeCreateRequestSchema` (`pair`, `size?`) | `PracticeSetResidentSchema` | `FR-PRAC-01`, `FR-PRAC-02` |
+| **17** | `GET` | `/api/practice` | `resident` | Query: `PaginationQuerySchema` | `{ items: PracticeSummarySchema[], total, page, pageSize }` | `FR-PRAC-06` |
+| **18** | `GET` | `/api/practice/:id` | `resident` | Param: `id` (ObjectId) | `PracticeSetResidentSchema` | `FR-PRAC-03`, `NFR-PRIV-02` |
+| **19** | `PUT` | `/api/practice/:id/questions/:no/answer` | `resident` | `PracticeAnswerRequestSchema` (`selectedIndex`, `timeMs?`) | `PracticeAnswerResponseSchema` | `FR-PRAC-04`, `FR-PRAC-05` |
+| **20** | `GET` | `/api/catalog/stats` | `instructor` | None | `CatalogStatsSchema` | `FR-INS-04`, `FR-DATA-03` |
+| **21** | `GET` | `/api/catalog/images` | `instructor` | Query: `CatalogImagesQuerySchema` | `CatalogImagesResponseSchema` | `FR-INS-04`, `FR-DATA-04` |
+| **22** | `GET` | `/api/admin/users` | `instructor` | Query: `PaginationQuerySchema` | `{ items: AdminResidentSummarySchema[], total, page, pageSize }` | `FR-INS-01` |
+| **23** | `GET` | `/api/admin/users/:userId/progress` | `instructor` | Param: `userId` (ObjectId) | `ProgressSchema` | `FR-INS-02` |
+| **24** | `GET` | `/api/admin/sessions/:id/report` | `instructor` | Param: `id` (ObjectId) | `SessionReportSchema` | `FR-INS-03` |
+| **25** | `GET` | `/api/admin/questions` | `instructor` | Query: `QuestionBankQuerySchema` | `QuestionBankListResponseSchema` | `FR-INS-05` |
+| **26** | `GET` | `/api/admin/questions/stats` | `instructor` | None | `QuestionBankStatsSchema` | `FR-INS-05` |
+| **27** | `GET` | `/api/admin/questions/:id` | `instructor` | Param: `id` (ObjectId) | `QuestionBankItemSchema` | `FR-INS-06` |
+| **28** | `POST` | `/api/admin/questions/:id/approve` | `instructor` | `ApproveQuestionBodySchema` (`note?`) | `QuestionBankItemSchema` | `FR-INS-07` |
+| **29** | `POST` | `/api/admin/questions/:id/reject` | `instructor` | `RejectQuestionBodySchema` (`note?`) | `QuestionBankItemSchema` | `FR-INS-07` |
+| **30** | `PUT` | `/api/admin/questions/:id` | `instructor` | `EditQuestionBodySchema` (`stem`, `options`, `correctIndex`, `rationale`, `note?`) | `QuestionBankItemSchema` | `FR-INS-08` |
+| **31** | `GET` | `/api/admin/llm/status` | `instructor` | None | `AdminLlmStatusSchema` | `FR-LLM-08` |
+
+### 5.2 Error Response Format and Status Codes
+The Express 5 centralized error middleware (`apps/api/src/middleware/errorHandler.js:7-50`) ensures all failed HTTP requests emit a standardized, predictable JSON payload compliant with `ApiErrorSchema` (`packages/contracts/src/common.js:32-38`):
+
+```json
+{
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Validation error",
+    "details": [
+      {
+        "code": "invalid_type",
+        "expected": "string",
+        "received": "undefined",
+        "path": ["email"],
+        "message": "Required"
+      }
+    ]
+  }
+}
+```
+
+#### HTTP Status Codes Utilized by the API
+- **`200 OK`:** Successful data retrieval or idempotent update.
+- **`201 Created`:** Successful entity creation (`POST /api/auth/register`, `POST /api/sessions`, `POST /api/practice`).
+- **`204 No Content`:** Preflight CORS `OPTIONS` completion.
+- **`400 Bad Request`:**
+  - `VALIDATION_ERROR`: Zod schema validation failed on request body, query parameters, or URL route params.
+  - `VALIDATION_ERROR`: Malformed JSON in request payload.
+- **`401 Unauthorized`:**
+  - `UNAUTHENTICATED`: Missing, invalid, expired, or tampered `rt_session` JWT cookie.
+  - `INVALID_CREDENTIALS`: Incorrect email or password during login.
+- **`403 Forbidden`:**
+  - `FORBIDDEN`: Role mismatch (resident attempting instructor routes, or instructor attempting resident training routes).
+  - `FORBIDDEN`: Resident attempting to access a radiograph image not present in their active session or practice set.
+- **`404 Not Found`:**
+  - `NOT_FOUND`: Resource with given ID does not exist, or unhandled endpoint path.
+  - `NOT_FOUND`: Malformed Mongoose ObjectId returning 404 CastError (`BUG-001` fix).
+  - `QUESTION_NOT_FOUND`: Referenced question number does not exist within the session.
+- **`409 Conflict`:**
+  - `SESSION_IN_PROGRESS`: Resident already has an active session (`status: 'in_progress'`).
+  - `SESSION_NOT_IN_PROGRESS`: Resident submitting answer to an inactive or finished session.
+  - `SESSION_NOT_FINISHED`: Requesting report for a session that has not been completed.
+  - `SESSION_ALREADY_FINISHED`: Attempting to finalize an already completed session.
+  - `EMAIL_TAKEN`: Attempting to register an email address that is already registered.
+  - `POOL_EXHAUSTED`: Insufficient eligible radiographs in the catalog to build a non-repeating test.
+  - `NO_HISTORY`: Resident has zero completed sessions and cannot generate targeted practice.
+  - `PRACTICE_POOL_EXHAUSTED`: All approved question bank items for the confusion pair have already been practiced.
+- **`413 Payload Too Large`:** Request body exceeds the 100kb threshold configured on `express.json()`.
+- **`415 Unsupported Media Type`:**
+  - `UNSUPPORTED_MEDIA_TYPE`: State-changing request (`POST`, `PUT`, `PATCH`) with payload lacks `Content-Type: application/json`.
+- **`429 Too Many Requests`:**
+  - `RATE_LIMITED`: Endpoint brute-force limit exceeded on authentication, LLM narrative generation, or daily Gemini budget.
+- **`500 Internal Server Error`:**
+  - `INTERNAL_ERROR`: Unhandled exception. Detailed error stack traces are logged via Pino and suppressed from client responses in production.
+
+### 5.3 Postman API Collection
+The complete REST interface is documented, parameterized, and executable via Postman. The collection file is maintained in the repository at [docs/postman/radiology-api.postman_collection.json](../postman/radiology-api.postman_collection.json). It provides pre-configured requests, environment variables (`baseUrl`, `residentEmail`, `instructorEmail`), authentication scripts, and response assertions covering the entire testing lifecycle.
+
+---
+
 ## 12. Deployment and Runtime View
 
 ### 12.1 Local Workstation Operating Model
