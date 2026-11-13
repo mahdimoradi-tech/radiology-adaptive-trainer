@@ -27,6 +27,9 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
     - Section 9: Traceability gap audit establishing 100% verification coverage (0 unverified requirements) and cataloging internal scaffolding test suites.
   - Generated `docs/as-built/traceability.csv` containing 91 requirements mapped to source tasks, ADRs, code directories, test files, and manual verification IDs.
   - Quality gates: `npm run lint` clean, 789/789 tests pass across 96 suites, `npm run build` succeeds in 487ms. Zero banned multi-operator references.
+  - Review feedback follow-up:
+    - Populated `manual_test` column in `docs/as-built/traceability.csv` across all 91 rows (49 rows mapped to explicit `M01`–`M38` test IDs; remaining 42 rows populated with `NONE`), eliminating all empty cells (0 empty cells).
+    - Resolved technical discrepancy regarding test length: corrected all occurrences in `01-SRS.md` and `GLOSSARY.md` to reflect runtime defaults ($N = 60$ questions by default, 20 per class, 8/6/6 difficulty bucket distribution) and schema constraints ($N \ge 45$ minimum floor), matching `apps/api/src/modules/sessions/service.js:21`, `packages/contracts/src/session.js:25`, and `create-session.test.js:56`.
 
 - Completed T15: Comprehensive UI polish pass across all 19 screens (PR #28 merged):
   - Cataloged 58 static audit issues and 2 user-reported items in `docs/qa/UI-AUDIT.md`.
