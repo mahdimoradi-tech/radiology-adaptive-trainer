@@ -340,7 +340,7 @@ export function PracticeSetPage() {
               type="button"
               onClick={() => setCurrentNo(q.no)}
               className={`w-9 h-9 rounded-lg border text-xs flex items-center justify-center transition-all ${dotStyle}`}
-              aria-label={`سوال ${q.no}`}
+              aria-label={t('practice.questionBtnAria', { no: fmt.number(q.no, i18n.language) })}
             >
               {fmt.number(q.no, i18n.language)}
             </button>

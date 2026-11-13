@@ -27,7 +27,8 @@
     "submitRegister": "Create Account",
     "noAccount": "Don't have an account?",
     "haveAccount": "Already have an account?",
-    "passwordHint": "At least 8 characters"
+    "passwordHint": "At least 8 characters",
+    "namePlaceholder": "Dr. Ahmadi"
   },
   "home": {
     "welcome": "Welcome, {{name}}",
@@ -95,7 +96,14 @@
       "editReturnsToPending": "Saving will return the question status to Pending Review.",
       "pageOf": "Page {{page}} of {{total}}",
       "prevPage": "Previous",
-      "nextPage": "Next"
+      "nextPage": "Next",
+      "edited": "Edited",
+      "errorLoading": "Failed to load questions from the question bank.",
+      "selectCorrectHint": "(Select correct option)",
+      "editNotePlaceholder": "Explain reason for editing...",
+      "distributionLabel": "Distribution",
+      "modelCertainty": "Model certainty",
+      "editValidationError": "Validation error during edit"
     },
     "residents": {
       "title": "Resident Trainees",
@@ -318,7 +326,11 @@
     "forbiddenDesc": "You do not have permission to view this page.",
     "comingInTask": "This feature will be implemented in task {{task}}.",
     "roleResident": "Resident",
-    "roleInstructor": "Instructor"
+    "roleInstructor": "Instructor",
+    "errorLoading": "Failed to load data.",
+    "pageIndicator": "Page {{current}} of {{total}}",
+    "prev": "Previous",
+    "next": "Next"
   },
   "charts": {
     "noData": "No data available to display chart.",
@@ -395,7 +407,8 @@
     "takeAdaptiveTest": "Start Adaptive Test",
     "targetedPractice": "Targeted Practice for These Errors",
     "notFoundOrForbidden": "Practice set not found or access forbidden.",
-    "answerFailed": "Failed to record answer. Please try again."
+    "answerFailed": "Failed to record answer. Please try again.",
+    "questionBtnAria": "Question {{no}}"
   },
   "education": {
     "title": "Educational Guide & Learning Cycle",

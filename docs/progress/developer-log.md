@@ -33,7 +33,10 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
     - Cleaned up disease card headers in `EducationPage.jsx`: eliminated redundant title repetitions in English and Persian.
     - Corrected confusion pair arrow direction in `ProgressView.jsx`: points right (`→`) in English LTR and left (`←`) in Persian RTL.
     - Localized Score Report table column headers (`Total` / `مجموع`) and adaptive plan label (`Error Weight` / `وزن خطا:`) in `ReportPage.jsx`.
-  - Monorepo tests expanded to 788 passing tests across 96 files. Lint, build, and RTL checks pass cleanly.
+    - Localized Question Bank review option letters (A, B, C, D in EN mode, الف، ب، ج، د in FA mode) and added missing `edited`, `errorLoading`, and detail label keys in `BankQuestionDetail.jsx`.
+    - Localized pagination controls and error states (`pageIndicator`, `prev`, `next`, `errorLoading`) in `PracticeHomePage.jsx`.
+    - Localized avatar initial fallbacks in navigation layouts ('I'/'R' in EN, 'ا'/'ر' in FA) and registration placeholder in `RegisterPage.jsx`.
+  - Monorepo tests expanded to 789 passing tests across 96 files. Lint, build, and RTL checks pass cleanly.
 
 
 - Completed T14: Bug hunt, security verification, route inventory, regression tests, and triage fixes (PR #25, PR #26 merged):

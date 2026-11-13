@@ -84,12 +84,16 @@ Issues are categorized according to the rules in `docs/qa/UI-CHECKLIST.md`:
 |---|---|---|---|---|
 | M1 | `ResidentHomePage.jsx:34,55,76,97` & `InstructorHomePage.jsx:34,55,76` | Developer task badges (T06, T08, T09) displayed on production cards | Remove task badge tags from all dashboard cards | Resident Home, Instructor Home |
 | M2 | `ProgressView.jsx` & `LineChart.jsx` & `ResidentDetailPage.jsx` | Chart labels, table text, and metrics in progress views are barely visible / low contrast | Overhaul text colors to high-contrast tokens, fix sizing and dark-mode readability | Resident Progress, Instructor Resident Detail |
+| M3 | `BankQuestionDetail.jsx:68` | Question option letters hardcoded to Persian ['الف', 'ب', 'ج', 'د'] in English mode | Dynamically select ['A', 'B', 'C', 'D'] when locale is English | Instructor Review |
+| M4 | `BankQuestionDetail.jsx:81` & `BankQuestionList.jsx:84` | Missing translation key `instructor.review.edited` rendered raw key string | Added localized strings in en.json ('Edited') and fa.json ('ویرایش‌شده') | Instructor Review |
+| M5 | `PracticeHomePage.jsx:103,170` | Missing pagination and loading keys in `common` ('errorLoading', 'pageIndicator', 'prev', 'next') | Added localized keys in en.json and fa.json | Resident Practice |
+| M6 | `InstructorLayout.jsx:111` & `ResidentLayout.jsx:113` | Avatar initial fallback hardcoded to Persian ('ا' / 'ر') in English mode | Dynamically select English initials ('I' / 'R') when locale is English | App Navigation |
 
 ---
 
 ## 3. Summary of Findings & Resolution Status
 
-- **Total issues identified by static audit:** 58 items + 2 items found by Mahdi (M1, M2).
+- **Total issues identified by static audit:** 58 items + 6 items found during human/bilingual review (M1-M6).
   - Low-contrast text classes & placeholders: 42 items -> **ALL RESOLVED** (verified by `scripts/check-low-contrast.js`).
   - Border/divider spacing against buttons: 3 items -> **ALL RESOLVED** (all dividers have `pt-4` / `mt-4`).
   - Raw unstyled `<select>` elements: 6 items -> **ALL RESOLVED** (all dropdowns use accessible `Select.jsx` with custom chevron).
@@ -98,10 +102,11 @@ Issues are categorized according to the rules in `docs/qa/UI-CHECKLIST.md`:
   - Component variant mappings & responsive shell padding: 5 items -> **ALL RESOLVED** (Alert danger, Badge primary, responsive mobile drawer navigation).
   - Developer task badges (T06, T08, T09): **ALL REMOVED** from resident and instructor dashboards.
   - Progress and instructor chart legibility: **OVERHAULED** with high-contrast text and dark-theme tokens.
+  - Bilingual localization & option letter alignment: **RESOLVED** across all resident and instructor screens.
 
 - **Automated Verification:**
   - `scripts/check-low-contrast.js`: PASS (0 violations)
   - `scripts/check-rtl-classes.js`: PASS (0 physical classes)
   - `npm run lint`: PASS (0 warnings, 0 errors)
-  - `npm test`: PASS (96 test files, 785 tests)
+  - `npm test`: PASS (96 test files, 789 tests)
   - `npm run build`: PASS (Vite production bundle built cleanly)

@@ -5,7 +5,7 @@ import { useMe, useLogout } from '../../features/auth/hooks.js';
 import { LanguageSwitcher, Button } from '../../components/ui/index.js';
 
 export function ResidentLayout() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { data: user } = useMe();
   const logout = useLogout();
   const navigate = useNavigate();
@@ -110,7 +110,11 @@ export function ResidentLayout() {
             {user && (
               <div className="hidden sm:flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200/80 shadow-2xs">
                 <div className="w-6 h-6 rounded-lg bg-sky-100 text-sky-800 font-bold text-xs flex items-center justify-center">
-                  {user.displayName ? user.displayName.charAt(0) : 'ر'}
+                  {user.displayName
+                    ? user.displayName.charAt(0)
+                    : i18n.language === 'fa'
+                      ? 'ر'
+                      : 'R'}
                 </div>
                 <span className="text-xs font-semibold text-slate-800">{user.displayName}</span>
                 <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-white text-sky-800 border border-sky-200 shadow-2xs">
@@ -191,7 +195,11 @@ export function ResidentLayout() {
               {user && (
                 <div className="flex items-center gap-2">
                   <div className="w-6 h-6 rounded-lg bg-sky-100 text-sky-800 font-bold text-xs flex items-center justify-center">
-                    {user.displayName ? user.displayName.charAt(0) : 'ر'}
+                    {user.displayName
+                      ? user.displayName.charAt(0)
+                      : i18n.language === 'fa'
+                        ? 'ر'
+                        : 'R'}
                   </div>
                   <span className="text-xs font-semibold text-slate-800">{user.displayName}</span>
                   <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-white text-sky-800 border border-sky-200 shadow-2xs">

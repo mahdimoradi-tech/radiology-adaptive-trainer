@@ -27,7 +27,8 @@
     "submitRegister": "ایجاد حساب",
     "noAccount": "حساب ندارید؟",
     "haveAccount": "حساب دارید؟",
-    "passwordHint": "حداقل ۸ نویسه"
+    "passwordHint": "حداقل ۸ نویسه",
+    "namePlaceholder": "دکتر احمدی"
   },
   "home": {
     "welcome": "خوش آمدید، {{name}}",
@@ -95,7 +96,14 @@
       "editReturnsToPending": "با ذخیره ویرایش، وضعیت سؤال مجدداً «در انتظار بازبینی» خواهد شد.",
       "pageOf": "صفحه {{page}} از {{total}}",
       "prevPage": "قبلی",
-      "nextPage": "بعدی"
+      "nextPage": "بعدی",
+      "edited": "ویرایش‌شده",
+      "errorLoading": "خطا در بارگذاری سؤالات بانک سوال.",
+      "selectCorrectHint": "(انتخاب پاسخ صحیح)",
+      "editNotePlaceholder": "توضیح دلیل ویرایش...",
+      "distributionLabel": "توزیع",
+      "modelCertainty": "اطمینان مدل",
+      "editValidationError": "خطا در اعتبارسنجی ویرایش"
     },
     "residents": {
       "title": "فهرست دستیاران",
@@ -318,7 +326,11 @@
     "forbiddenDesc": "شما مجوز دسترسی به این صفحه را ندارید.",
     "comingInTask": "این بخش در تسک {{task}} پیاده‌سازی خواهد شد.",
     "roleResident": "رزیدنت",
-    "roleInstructor": "استاد"
+    "roleInstructor": "استاد",
+    "errorLoading": "خطا در بارگذاری اطلاعات.",
+    "pageIndicator": "صفحه {{current}} از {{total}}",
+    "prev": "قبلی",
+    "next": "بعدی"
   },
   "charts": {
     "noData": "داده‌ای برای نمایش نمودار وجود ندارد.",
@@ -395,7 +407,8 @@
     "takeAdaptiveTest": "شروع آزمون تطبیقی جدید",
     "targetedPractice": "تمرین هدفمند روی این اشتباهات",
     "notFoundOrForbidden": "مجموعه تمرین یافت نشد یا دسترسی به آن مجاز نیست.",
-    "answerFailed": "خطا در ثبت پاسخ. لطفاً دوباره تلاش کنید."
+    "answerFailed": "خطا در ثبت پاسخ. لطفاً دوباره تلاش کنید.",
+    "questionBtnAria": "سؤال {{no}}"
   },
   "education": {
     "title": "راهنمای آموزشی و چرخه یادگیری",

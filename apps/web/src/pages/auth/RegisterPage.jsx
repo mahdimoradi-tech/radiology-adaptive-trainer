@@ -95,7 +95,7 @@ export function RegisterPage() {
                 onChange={handleChange}
                 error={fieldErrors.displayName}
                 autoComplete="name"
-                placeholder="دکتر احمدی"
+                placeholder={t('auth.namePlaceholder')}
                 required
               />
             </Field>

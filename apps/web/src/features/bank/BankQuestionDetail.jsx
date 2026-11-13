@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Card, Badge, Button, XrayImage, Alert } from '../../components/ui/index.js';
 
 export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isActionLoading }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
   const [reviewNote, setReviewNote] = useState('');
   const [editError, setEditError] = useState(null);
@@ -51,7 +51,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
       });
       setIsEditing(false);
     } catch (err) {
-      setEditError(err.message || 'خطا در اعتبارسنجی ویرایش');
+      setEditError(err.message || t('instructor.review.editValidationError'));
     }
   };
 
@@ -65,7 +65,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
     setReviewNote('');
   };
 
-  const optionLetters = ['الف', 'ب', 'ج', 'د'];
+  const optionLetters = i18n.language === 'fa' ? ['الف', 'ب', 'ج', 'د'] : ['A', 'B', 'C', 'D'];
 
   return (
     <Card className="h-full flex flex-col p-6 overflow-y-auto">
@@ -145,7 +145,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
 
             <div className="space-y-2">
               <label className="block text-xs font-semibold text-slate-700">
-                {t('instructor.review.options')} (انتخاب پاسخ صحیح)
+                {t('instructor.review.options')} {t('instructor.review.selectCorrectHint')}
               </label>
               {editOptions.map((opt, idx) => (
                 <div key={idx} className="flex items-center gap-2">
@@ -204,7 +204,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
                 type="text"
                 value={editNote}
                 onChange={(e) => setEditNote(e.target.value)}
-                placeholder="توضیح دلیل ویرایش..."
+                placeholder={t('instructor.review.editNotePlaceholder')}
                 className="w-full text-xs px-3 py-1.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500"
               />
             </div>
@@ -309,7 +309,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
                 )}
                 {question.analysisSummary.consensus.distribution && (
                   <div>
-                    توزیع:{' '}
+                    {t('instructor.review.distributionLabel')}:{' '}
                     <span className="font-semibold text-slate-800">
                       {question.analysisSummary.consensus.distribution}
                     </span>
@@ -317,7 +317,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
                 )}
                 {question.analysisSummary.certaintyA && (
                   <div>
-                    اطمینان مدل:{' '}
+                    {t('instructor.review.modelCertainty')}:{' '}
                     <span className="text-slate-700">
                       A: {question.analysisSummary.certaintyA} | B:{' '}
                       {question.analysisSummary.certaintyB || 'N/A'}
