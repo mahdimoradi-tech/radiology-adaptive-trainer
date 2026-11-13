@@ -262,3 +262,219 @@ The platform is designed and verified to run in the following environment (`READ
 | **FR-DATA-02** | The system shall authorize radiograph image streaming (`GET /api/images/:publicId/file`), restricting residents to images included in their active or finished training sets. | Must | `T03-AC1`, `T11-AC1` | `apps/api/src/__tests__/access-matrix.test.js`, `apps/api/src/__tests__/security/authz.security.test.js` | Implemented |
 | **FR-DATA-03** | The system shall provide an idempotent catalog seed script (`npm run seed:catalog`) that imports the curated 1,177-image catalog with difficulty metrics and pool-health checks. | Must | `T03-AC2` | `apps/api/src/__tests__/seed-catalog.test.js` | Implemented |
 | **FR-DATA-04** | The system shall provide export and import scripts for verified image analyses, approved questions, and portable LLM cache entries to support zero-network deployments. | Should | `T08a-AC1`, `T08b-AC1`, `T13-AC2` | `apps/api/src/__tests__/admin-questions.test.js` | Implemented |
+
+
+---
+
+## 4. Non-Functional Requirements
+
+### 4.1 Security Requirements (`NFR-SEC`)
+
+| ID | Statement | Target Metric / Benchmark | Verification Source | Status |
+|---|---|---|---|---|
+| **NFR-SEC-01** | Passwords shall be hashed using bcrypt with a work factor of $\ge 10$ rounds; plaintext passwords and `passwordHash` fields shall never be returned in API responses. | 10 bcrypt salt rounds; 0 password hashes in API payloads | `apps/api/src/__tests__/security/auth.security.test.js:15-45` | Implemented |
+| **NFR-SEC-02** | Authentication tokens shall be stored in HTTP-only, SameSite-strict cookies; the `Secure` flag shall be enforced when `NODE_ENV=production`. | `HttpOnly=true`, `SameSite=Strict`, `Secure=true` in production | `apps/api/src/__tests__/security/headers.security.test.js:20-50` | Implemented |
+| **NFR-SEC-03** | The API shall set secure HTTP response headers via Helmet, disabling `X-Powered-By` and enforcing strict MIME-type sniffing prevention. | `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, no `X-Powered-By` | `apps/api/src/__tests__/security/headers.security.test.js:55-80` | Implemented |
+| **NFR-SEC-04** | The API shall reject non-JSON state-changing request bodies with HTTP 415 and restrict incoming JSON payloads to a maximum of 100 kilobytes. | Max payload 100kb (HTTP 413); strict JSON content type (HTTP 415) | `apps/api/src/__tests__/security/input.security.test.js:25-60` | Implemented |
+| **NFR-SEC-05** | The system shall enforce rate limiting on sensitive routes, restricting login attempts to 10 per 15 minutes per IP and report narratives to 10 per 15 minutes. | 10 requests / 15 min window (HTTP 429) | `apps/api/src/__tests__/security/auth.security.test.js:65-95` | Implemented |
+
+### 4.2 Privacy & Data Leakage Protection (`NFR-PRIV`)
+
+| ID | Statement | Target Metric / Benchmark | Verification Source | Status |
+|---|---|---|---|---|
+| **NFR-PRIV-01** | Active quiz and practice question responses shall never contain diagnostic ground truth (`trueClass`), model confidences, difficulty scores, or dataset provenance. | 0 occurrences of forbidden keys across all test session responses | `apps/api/src/__tests__/global-leak.test.js:1-120` | Implemented |
+| **NFR-PRIV-02** | Image file URLs and references delivered to clients shall use HMAC-SHA256 derived opaque tokens, completely concealing internal database IDs and filenames. | 0 raw filenames, paths, or dataset identifiers in client responses | `apps/api/src/__tests__/catalog.test.js`, `apps/api/src/__tests__/global-leak.test.js` | Implemented |
+| **NFR-PRIV-03** | The system shall maintain zero patient health information (PHI), using only de-identified, publicly licensed academic research datasets. | 0 real patient names, medical record numbers (MRNs), or institutional records | `docs/DATA-SOURCES.md:1-50`, `README.md:14-22` | Implemented |
+
+### 4.3 Usability & Accessibility Requirements (`NFR-USAB`)
+
+| ID | Statement | Target Metric / Benchmark | Verification Source | Status |
+|---|---|---|---|---|
+| **NFR-USAB-01** | The user interface shall provide native right-to-left (RTL) layout using Persian Vazirmatn typography and logical CSS alignment utilities. | 0 non-logical physical directional classes (`left-`, `right-`) | `scripts/check-rtl-classes.js`, `apps/web/src/pages/__tests__/rtl-classes.test.js` | Implemented |
+| **NFR-USAB-02** | All user-visible text, interactive controls, and notification badges shall satisfy WCAG AA contrast standards ($\ge 4.5:1$ normal text; $\ge 3:1$ large text). | 0 low-contrast violations across all color tokens and theme classes | `scripts/check-low-contrast.js`, `apps/web/src/__tests__/check-contrast-classes.test.js` | Implemented |
+| **NFR-USAB-03** | Key user interface screens shall achieve Google Lighthouse accessibility scores of $\ge 95/100$. | Mean score 99.3/100 (range: 98–100 across 6 audited screens) | `docs/qa/LIGHTHOUSE-REPORT.md:1-97` | Implemented |
+| **NFR-USAB-04** | All 19 application screens shall remain fully functional and responsive across desktop and mobile viewports (1366x768, 1920x1080, 390x844). | 100% sign-off across all 19 screens at 3 target resolutions | `docs/qa/UI-CHECKLIST.md:Section C` | Implemented |
+| **NFR-USAB-05** | The web application shall provide 100% string localization coverage with zero hard-coded user-facing strings and complete English/Persian key parity. | 0 missing translation keys; parity verified by automated test | `apps/web/src/i18n/__tests__/i18n-parity.test.js:1-45` | Implemented |
+
+### 4.4 Portability & Environment Requirements (`NFR-PORT`)
+
+| ID | Statement | Target Metric / Benchmark | Verification Source | Status |
+|---|---|---|---|---|
+| **NFR-PORT-01** | The entire system shall execute natively on Microsoft Windows 11 workstations using Windows PowerShell 5.1 and modern PowerShell 7. | Verified execution on Windows 11 host without Linux dependencies | `docs/progress/developer-log.md:5-7`, `README.md:24-42` | Implemented |
+| **NFR-PORT-02** | The platform shall operate without containerization engines (Docker), running against a local native Windows MongoDB 8.0 instance. | Native Windows MongoDB service on `127.0.0.1:27017` | `AGENTS.md:Context`, `ADR 0002` | Implemented |
+| **NFR-PORT-03** | All npm lifecycle scripts and build commands shall be cross-platform, using Node.js utilities instead of Unix-specific shell builtins. | 0 Unix shell scripts (`rm -rf`, `export`); verified in PowerShell | `package.json:1-45`, `README.md:90-120` | Implemented |
+
+### 4.5 Reliability & Quota Resilience (`NFR-REL`)
+
+| ID | Statement | Target Metric / Benchmark | Verification Source | Status |
+|---|---|---|---|---|
+| **NFR-REL-01** | The platform shall maintain 100% functionality for all trainee test sessions and targeted practice without external internet or VPN access in `cache-only` mode. | 0 external network requests during `LLM_MODE=cache-only` execution | `apps/api/src/__tests__/llm-provider.test.js:40-75`, `M38` | Implemented |
+| **NFR-REL-02** | The adaptive allocation algorithms and virtual resident simulation shall be strictly deterministic and reproducible given an identical random seed. | Deterministic test outputs across identical seeds | `packages/engine/src/__tests__/simulator.test.js:1-90` | Implemented |
+| **NFR-REL-03** | The system shall gracefully handle database disconnections and API outages, displaying user-friendly error banners with retry mechanisms. | Informative error dialog with retry action; no unhandled crashes | `apps/web/src/components/Alert.jsx`, `M35`, `M36` | Implemented |
+
+### 4.6 Maintainability & Code Quality (`NFR-MAINT`)
+
+| ID | Statement | Target Metric / Benchmark | Verification Source | Status |
+|---|---|---|---|---|
+| **NFR-MAINT-01** | The application code shall be written exclusively in standard JavaScript (ES Modules), with static type definitions documented via JSDoc `@typedef`. | 0 TypeScript files; clean JSDoc contracts in `@radiology/contracts` | `packages/contracts/package.json:1-25`, `ADR 0002` | Implemented |
+| **NFR-MAINT-02** | All runtime data crossing architectural boundaries (HTTP requests, environment variables, seed files) shall be strictly validated using Zod schemas. | 100% boundary input coverage using Zod 4 schemas | `apps/api/src/config/env.js`, `packages/contracts/src` | Implemented |
+| **NFR-MAINT-03** | Monorepo codebases shall pass ESLint and Prettier style checks cleanly with zero unaddressed warnings or linting errors. | 0 errors, 0 warnings across all workspaces | `npm run lint` | Implemented |
+| **NFR-MAINT-04** | Monorepo automated test suites shall maintain comprehensive regression coverage across contracts, engine, backend API, and web components. | > 780 passing automated unit/integration tests across 95+ test suites | `docs/progress/developer-log.md:42` (789 passing tests) | Implemented |
+
+### 4.7 Performance Requirements (`NFR-PERF`)
+
+| ID | Statement | Target Metric / Benchmark | Verification Source | Status |
+|---|---|---|---|---|
+| **NFR-PERF-01** | Fresh clone automated setup (`npm ci`, seeding, building) shall complete in under 30 seconds on a standard developer workstation. | Measured setup time: 24.9 seconds | `docs/tasks/pr-t11-body.md:Step 6` | Implemented |
+| **NFR-PERF-02** | REST API response times for standard non-LLM transactional operations (question delivery, answer submission) shall be sub-second. | Empirical local latency $< 50\text{ ms}$; formal service level agreement | `UNSPECIFIED` | Implemented |
+| **NFR-PERF-03** | Production frontend JavaScript vendor bundle size shall remain under 1 megabyte uncompressed. | Actual vendor bundle size: ~688 kB (~196 kB gzipped) | `docs/KNOWN-ISSUES.md:ISS-06`, `docs/tasks/pr-t11-body.md` | Implemented |
+
+---
+
+## 5. External Interface Specifications
+
+### 5.1 User Interfaces
+The system provides two distinct, responsive web portals implemented in React 19 across 19 dedicated screens (`docs/qa/UI-CHECKLIST.md`):
+
+1. **Authentication & System Pages:**
+   - Login Page (`/login`): User authentication with email/password and localized validation errors.
+   - Registration Page (`/register`): Resident self-registration with password complexity hints.
+   - Forbidden Page (`/forbidden`): Access rejection notice (`HTTP 403`) with role-aware return navigation.
+   - Not Found Page (`/404`): Generic resource 404 display with home redirection.
+2. **Resident Portal (`/app`):**
+   - Resident Dashboard (`/app`): Active metrics summary, current mastery status cards, and action shortcuts.
+   - Diagnostic Tests List (`/app/tests`): Historical exam log with status badges and test initiation.
+   - Active Quiz Interface (`/app/tests/:id`): Non-distorting radiograph viewport, option selector with keyboard shortcuts (`1`, `2`, `3`), progress bar, and autosave.
+   - Session Report Page (`/app/sessions/:id/report`): Diagnostic summary, $3 \times 3$ confusion matrix, class performance metrics, upcoming test plan preview, and AI narrative.
+   - Question Review Page (`/app/sessions/:id/review`): Question-by-question review with true label disclosure and pedagogical mistake explanations.
+   - Targeted Practice Home (`/app/practice`): Diagnostic confusion pair selection cards and practice history.
+   - Practice Session Interface (`/app/practice/:id`): 5-question micro-quiz with instant rationales.
+   - Trainee Progress Page (`/app/progress`): Multi-session accuracy trajectory line charts and confusion trends.
+   - Educational Reference Page (`/app/education`): Radiological findings definitions, disease presentation patterns, and sample radiographs.
+3. **Instructor Portal (`/instructor`):**
+   - Instructor Dashboard (`/instructor`): Cohort-wide statistics, active resident counts, and catalog summary.
+   - Resident Roster Page (`/instructor/residents`): Comprehensive table of trainees with completed tests, accuracy, and mastery indicators.
+   - Resident Trainee Detail (`/instructor/residents/:id`): Detailed historical inspection of a specific resident's exam trajectory and confusion matrix.
+   - Question Review Panel (`/instructor/review`): Administrative triage queue for approving, rejecting, and editing AI-generated questions with keyboard shortcuts (`A`, `R`, `J`, `K`).
+   - Image Catalog Browser (`/instructor/catalog`): Filterable index of the 1,177 curated radiographs with difficulty distributions and demographic confounder disclosure.
+
+### 5.2 Software Interfaces
+1. **Application Programming Interface (API):** Express 5 REST API providing 31 registered endpoints documented in [ROUTE-INVENTORY.md](../qa/ROUTE-INVENTORY.md) and the Postman Collection (`docs/postman/radiology-adaptive-trainer.postman_collection.json`).
+2. **Database Engine Interface:** Native Windows MongoDB 8.0 server communicating via Mongoose 9 ODM over TCP/IP (`127.0.0.1:27017`).
+3. **Multimodal LLM Service Interface:** Google AI Studio Gemini API (`gemini-1.5-flash` / `gemini-2.0-flash`) accessed via `@google/genai` Node.js SDK during live generation passes.
+4. **Machine Learning Artifacts Interface:** Static JSON difficulty dataset (`ml/artifacts/difficulty.json`) generated by the offline Python DenseNet-121 pipeline.
+
+### 5.3 Hardware & File System Interfaces
+1. **Local Radiograph Storage:** Curated chest X-ray images are hosted on the local file system (`apps/api/public/images/`) and served securely via streaming controllers (`apps/api/src/modules/catalog/controller.js:65-90`).
+2. **Display Hardware Compatibility:** Compatible with standard desktop monitors (1366x768 and 1920x1080) and mobile viewport widths down to 390 pixels.
+
+---
+
+## 6. Data Requirements
+
+### 6.1 Entity-Relationship Model
+
+```mermaid
+erDiagram
+    USER ||--o{ SESSION : takes
+    USER ||--o{ PRACTICE_SET : completes
+    SESSION ||--|{ SESSION_QUESTION : contains
+    IMAGE_CATALOG ||--o{ SESSION_QUESTION : referenced_by
+    IMAGE_CATALOG ||--o{ IMAGE_ANALYSIS : analyzed_as
+    IMAGE_ANALYSIS ||--o{ GENERATED_QUESTION : generates
+    GENERATED_QUESTION ||--o{ PRACTICE_QUESTION : used_in
+    PRACTICE_SET ||--|{ PRACTICE_QUESTION : contains
+    USER ||--o{ AUDIT_LOG : actions
+
+    USER {
+        ObjectId _id
+        string email
+        string passwordHash
+        string role "resident | instructor"
+        string fullName
+        date createdAt
+    }
+
+    IMAGE_CATALOG {
+        ObjectId _id
+        string catalogId
+        string trueClass "covid19 | pneumonia | normal"
+        string confusedWith
+        number difficulty
+        string bucket "easy | medium | hard"
+        string sourceDataset "kermany | cohen | figure1"
+        string opaquePublicId
+    }
+
+    SESSION {
+        ObjectId _id
+        ObjectId residentId
+        string type "baseline | adaptive"
+        string status "active | finished"
+        number questionCount "45"
+        number currentIndex
+        date finishedAt
+        json metricsSummary
+        json adaptiveWeights
+    }
+
+    PRACTICE_SET {
+        ObjectId _id
+        ObjectId residentId
+        string confusionPair
+        string status "active | finished"
+        number totalQuestions "5"
+        number correctCount
+    }
+
+    GENERATED_QUESTION {
+        ObjectId _id
+        string imageCatalogId
+        string questionType "finding | distribution | differential"
+        string status "pending_review | approved | rejected"
+        string stemFa
+        string correctOptionId
+        json options
+        string explanationFa
+    }
+```
+
+### 6.2 Data Model Definitions
+1. **User Entity (`User`):** Represents authenticated users with role separation (`resident` or `instructor`), email uniqueness, and bcrypt password hashing (`apps/api/src/modules/auth/model.js`).
+2. **Image Catalog Entity (`ImageCatalog`):** Metadata records for all 1,177 curated radiographs, storing ground truth label, out-of-fold difficulty score ($d$), assigned bucket, secondary confusion class, source dataset, and opaque public token (`apps/api/src/modules/catalog/model.js`).
+3. **Training Session Entity (`Session`):** Tracks resident test sessions (baseline and adaptive), containing the array of 45 questions, selected answers, response timestamps, final confusion matrix, and computed performance metrics (`apps/api/src/modules/sessions/model.js`).
+4. **Practice Set Entity (`PracticeSet`):** 5-question targeted micro-learning sessions focusing on a single confusion pair, recording resident responses and completion timestamps (`apps/api/src/modules/practice/model.js`).
+5. **Image Analysis Entity (`ImageAnalysis`):** Standardized closed-vocabulary multimodal annotations extracted by Gemini, recording laterality, lung zones, pattern type, and distribution characteristics (`apps/api/src/modules/llm/model.js`).
+6. **Generated Question Entity (`GeneratedQuestion`):** Pedagogical multiple-choice questions synthesized from verified image analyses, including Persian stem, four options, correct answer key, localized explanation, and review lifecycle status (`apps/api/src/modules/admin/model.js`).
+7. **LLM Cache Entity (`LlmCache`):** Key-value store caching multimodal analyses, mistake explanations, and narrative reports by input hash to facilitate offline execution (`apps/api/src/modules/llm/cacheModel.js`).
+
+---
+
+## 7. Use Cases
+
+| Use Case ID | Name | Primary Actor | Main Success Scenario (Summary) | Requirements Covered |
+|---|---|---|---|---|
+| **UC-01** | Register & Authenticate | Resident / Instructor | 1. Trainee submits registration form.<br>2. System validates input, hashes password, creates account.<br>3. User logs in with email/password.<br>4. System issues HTTP-only `rt_session` cookie and redirects to role home. | `FR-AUTH-01`, `FR-AUTH-03`, `FR-AUTH-06`, `NFR-SEC-01`, `NFR-SEC-02` |
+| **UC-02** | Take Baseline Examination | Resident Trainee | 1. Resident initiates initial training exam.<br>2. System generates balanced 45-question baseline (15 each class).<br>3. Resident reviews radiographs and selects answers via keyboard (1/2/3) or click.<br>4. System autosaves progress and redirects to report upon completion. | `FR-TEST-01`, `FR-TEST-02`, `FR-TEST-04`, `FR-TEST-05`, `FR-TEST-06`, `FR-REP-01` |
+| **UC-03** | Review Performance Report | Resident Trainee | 1. Trainee opens finished test report.<br>2. System presents $3 \times 3$ confusion matrix, class accuracy, and metric breakdowns.<br>3. Resident reviews individual answers with ground truth revealed.<br>4. Resident requests AI error explanation or performance narrative. | `FR-REP-02`, `FR-REP-03`, `FR-REP-04`, `FR-REP-06`, `FR-REP-07` |
+| **UC-04** | Complete Adaptive Test | Resident Trainee | 1. Resident starts subsequent training session.<br>2. System calculates error weights from prior sessions and rebalances class counts.<br>3. Resident completes 45 questions biased toward prior weak classes.<br>4. System recalculates mastery and updates longitudinal progress. | `FR-ADAPT-01`, `FR-ADAPT-02`, `FR-ADAPT-03`, `FR-ADAPT-04`, `FR-ADAPT-05`, `FR-PROG-01` |
+| **UC-05** | Engage in Targeted Practice | Resident Trainee | 1. Trainee selects a high-error confusion pair (e.g., `covid19_pneumonia`).<br>2. System creates 5-question micro-quiz from approved question bank.<br>3. Trainee answers questions sequentially, receiving immediate pedagogical rationales.<br>4. Trainee views practice summary. | `FR-PRAC-01`, `FR-PRAC-02`, `FR-PRAC-03`, `FR-PRAC-04`, `FR-PRAC-05` |
+| **UC-06** | Monitor Longitudinal Progress | Resident Trainee | 1. Trainee navigates to Progress page.<br>2. System renders historical line chart of per-class accuracy.<br>3. System highlights achieved 80% mastery badges and residual confusion tendencies. | `FR-PROG-01`, `FR-PROG-02`, `FR-PROG-03`, `FR-PROG-04` |
+| **UC-07** | Review Generated Questions | Radiology Instructor | 1. Instructor opens Question Review queue.<br>2. System displays candidate AI question with radiograph and extracted findings.<br>3. Instructor approves, rejects (with reason), or edits question content using keyboard shortcuts.<br>4. System updates question state; approved items enter the targeted practice pool. | `FR-INS-04`, `FR-INS-05`, `FR-INS-06`, `FR-LLM-03` |
+| **UC-08** | Audit Resident Cohort | Radiology Instructor | 1. Instructor inspects resident roster.<br>2. System lists trainees with session counts and competency indicators.<br>3. Instructor drills down into an individual trainee's longitudinal trajectory and finished reports. | `FR-INS-01`, `FR-INS-02`, `FR-INS-03` |
+| **UC-09** | Audit Image Catalog | Radiology Instructor | 1. Instructor visits Catalog view.<br>2. System presents image counts across classes and difficulty buckets.<br>3. System displays prominent demographic confounder disclosure regarding pediatric Kermany vs adult COVID-19 datasets. | `FR-INS-07`, `FR-DATA-01`, `FR-DATA-03` |
+
+---
+
+## 8. Known Limitations & Technical Debt
+
+The platform operates subject to explicit technical boundaries and identified trade-offs codified in [KNOWN-ISSUES.md](../KNOWN-ISSUES.md):
+
+1. **ISS-01: Dataset Demographic Confounder (Severity: Medium):** 100% of Normal (1,582) and Pneumonia (4,245) radiographs derive from the pediatric Kermany cohort (ages 1–5), whereas 100% of COVID-19 radiographs (177) derive from adult cohorts (Cohen, Figure1). The DenseNet-121 classifier partially learns institutional and patient age artifacts alongside true radiological findings (`ADR 0005`, `docs/KNOWN-ISSUES.md:ISS-01`).
+2. **ISS-02: COVID-19 Hard/Medium Pool Scarcity (Severity: Low):** The 1,177-image catalog contains 172 Easy COVID-19 images, but only 2 Medium and 3 Hard COVID-19 images. The adaptive engine handles this gracefully via nearest-bucket fallback reallocation with zero net question deficit (`ADR 0004`, `docs/KNOWN-ISSUES.md:ISS-02`).
+3. **ISS-03: Asymptotic Learning Model in Simulator (Severity: Low):** The virtual resident simulation uses an asymptotic deterministic update model ($S_c \leftarrow S_c + \eta(1-S_c)$) that models monotonic skill acquisition without human cognitive fatigue or forgetting curves (`docs/KNOWN-ISSUES.md:ISS-03`).
+4. **ISS-04: Gemini Free-Tier Quota Constraints (Severity: Medium):** Google AI Studio free tier limits usage to 20 requests/day and 5 requests/minute. The system mitigates this via daily budget guards (16 requests/day cap) and full offline `cache-only` mode (`ADR 0012`, `docs/KNOWN-ISSUES.md:ISS-04`).
+5. **ISS-05: Single Non-Expert Question Rubric Reviewer (Severity: Low):** Pedagogical evaluation of generated questions was performed by a single reviewer rather than multi-rater double-blind board-certified radiologists (`docs/KNOWN-ISSUES.md:ISS-05`).
+6. **ISS-06: Frontend Vendor Bundle Size (Severity: Low):** Production vendor bundle size is ~688 kB (~196 kB gzipped), exceeding default Vite chunk warnings. Acceptable for local workstation presentation (`docs/KNOWN-ISSUES.md:ISS-06`).
+7. **ISS-07: Visual Radiograph Text Annotations (Severity: Low):** While programmatic IDs are opaque HMAC tokens, some raw radiograph scans feature intrinsic hospital acquisition markers (`docs/KNOWN-ISSUES.md:ISS-07`).
+8. **ISS-08: Development Session Cookie Security (Severity: Low):** Local development uses `Secure: false` over HTTP (`127.0.0.1`); `Secure: true` is enforced in production mode (`docs/KNOWN-ISSUES.md:ISS-08`).
