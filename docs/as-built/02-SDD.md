@@ -944,6 +944,176 @@ sequenceDiagram
 
 ---
 
+## 8. Security Design
+
+The security architecture implements defense-in-depth across authentication, granular role-based authorization, cryptographic tokenization, privacy sanitization, and input validation. All security controls are verified by automated security regression test suites (`apps/api/src/__tests__/security/`) and documented against the 26 criteria in [docs/qa/SECURITY-REPORT.md](../qa/SECURITY-REPORT.md).
+
+### 8.1 Authentication and Token Management
+- **Stateless JWT via HTTP-Only Cookies:**
+  Authentication tokens are issued as JSON Web Tokens (JWT) signed using the HMAC-SHA256 (`HS256`) algorithm (`JWT_SECRET` minimum 32 characters, `S02`). The token is delivered exclusively in a secure cookie named `rt_session` (`apps/api/src/modules/auth/service.js:15-35`):
+  - `HttpOnly: true` prevents access via client-side JavaScript (`document.cookie`), mitigating Cross-Site Scripting (XSS) token theft (`S01`).
+  - `SameSite: 'Lax'` prevents cross-site request forgery in top-level navigations (`S01`).
+  - `Path: '/'` bounds cookie scope across all API routes.
+  - `Secure: true` is strictly enforced when `NODE_ENV === 'production'` or `COOKIE_SECURE=true`, disallowing plaintext transmission over HTTP (`S01`).
+  - `JWT_TTL_HOURS: 12` sets a 12-hour session lifetime.
+- **Dynamic Role Verification:**
+  While the JWT contains `{ sub: userId, role }` for initial inspection, `requireAuth` queries MongoDB on every incoming request (`UserModel.findById(payload.sub)`). This architectural decision ensures that administrative role revocation or promotion takes effect immediately on the resident's next HTTP request without waiting for token expiration (`S03`).
+- **Password Storage and Timing-Attack Resistance:**
+  Passwords are validated against `PasswordSchema` (enforcing 8 to 72 bytes via `TextEncoder`) and hashed using `bcryptjs` with a computational cost factor of 12 (`BCRYPT_COST=12`, reduced to 4 in testing environments for test performance, `S04`). To prevent user enumeration via response latency differences, `loginUser` executes a dummy bcrypt comparison (`DUMMY_HASH`) whenever an email is not found, ensuring identical execution timing for existing and non-existing accounts (`S05`).
+
+### 8.2 Role-Based Access Control and Authorization
+The system defines two primary user roles (`resident` and `instructor`), verified by the `requireRole(role)` middleware (`apps/api/src/middleware/requireRole.js:1-25`):
+- **Role Isolation:** Residents attempting to call instructor endpoints (`/api/admin/*`, `/api/catalog/*`) receive HTTP 403 `FORBIDDEN`. Instructors attempting to initiate resident sessions receive HTTP 403 `FORBIDDEN`.
+- **Insecure Direct Object Reference (IDOR) Mitigation:**
+  Residents can only access their own sessions, response histories, reports, and targeted practice sets (`S10`). All database queries filter strictly by `req.user._id`. If a resident attempts to access a resource owned by another user, the API responds with HTTP 404 `NOT_FOUND` rather than 403, preventing resource enumeration and ID probing.
+- **Image Serving Authorization (`canViewImage`):**
+  Access to physical radiograph image streams (`GET /api/images/:publicId/file`) is governed by `canViewImage` (`apps/api/src/modules/catalog/service.js:1-65`). While instructors possess global catalog access, residents are strictly restricted to images that are active components of their own assigned training sessions or practice sets:
+  ```javascript
+  const authorized =
+    (await SessionModel.exists({ userId, 'questions.publicId': publicId })) ||
+    (await PracticeSetModel.exists({ userId, publicIds: publicId }));
+  ```
+  Requests for unassigned or unauthorized images are rejected with HTTP 403 `FORBIDDEN` (`S11`).
+
+### 8.3 Opaque Public IDs and Label-Leak Prevention (`ADR 0008`)
+- **HMAC-SHA256 Tokenization:**
+  Internal database identifiers (e.g. `kermany_f9ddce356c7b`) encode clinical dataset provenance (`kermany`, `cohen`, `figure1`), which would leak ground truth pathology to radiology trainees. To eliminate this vulnerability, client-facing endpoints reference radiographs exclusively through opaque 64-character hexadecimal tokens generated via HMAC-SHA256:
+  $$\text{publicId} = \text{HMAC-SHA256}(\text{catalogId}, \text{PUBLIC\_ID\_SALT})$$
+  The `PUBLIC_ID_SALT` is an environment secret requiring at least 16 characters (`apps/api/src/config/env.js:12`).
+- **Strict Boundary Projection:**
+  Resident-facing Zod schemas (`SessionPublicSchema`, `PracticeQuestionResident`) apply strict projections. During active testing, the question object exposes only:
+  ```json
+  { "no": 1, "publicId": "7f9a...", "imageUrl": "/api/images/7f9a.../file", "answered": false, "answer": null }
+  ```
+  Ground truth pathology (`trueClass`), model difficulty ($d$), difficulty bucket (`bucket`), primary confusion candidate (`confusedWith`), internal filenames, and dataset sources are strictly stripped.
+- **Automated Recursive Security Scanning:**
+  The automated security test `apps/api/src/__tests__/global-leak.test.js` performs deep recursive object traversals on all responses and HTTP headers throughout the session lifecycle, verifying zero occurrences of forbidden keys or dataset substrings (`cohen`, `kermany`, `figure1`) prior to test completion (`S13`).
+
+### 8.4 Rate Limiting and Denial-of-Service Defense
+- **Authentication Limiter (`authLimiter`):** Restricts `/api/auth/register` and `/api/auth/login` to 20 requests per 15-minute window per IP address, mitigating brute-force password cracking (`S06`).
+- **LLM Narrative Limiter (`narrativeLimiter`):** Restricts `/api/sessions/:id/report-narrative` to 30 requests per hour per authenticated resident, preventing denial-of-wallet and quota exhaustion (`S06`).
+- **Payload Size Limits:** `express.json({ limit: '100kb' })` rejects payloads exceeding 100kb with HTTP 413 `VALIDATION_ERROR`, protecting against memory exhaustion attacks.
+- **CSRF Defense via `jsonOnly`:** All state-changing routes (`POST`, `PUT`, `PATCH`, `DELETE`) with non-empty bodies require `Content-Type: application/json`. Non-JSON requests (such as browser HTML form submissions via `application/x-www-form-urlencoded` or `multipart/form-data`) are rejected with HTTP 415 `UNSUPPORTED_MEDIA_TYPE` (`S07`).
+
+### 8.5 HTTP Security Headers and Input Sanitization
+- **Helmet Middleware:** Enforces standard secure HTTP headers globally: disables `X-Powered-By`, sets `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy: no-referrer`, and configures strict Content Security Policy directives (`S18`).
+- **Universal Zod Validation:** All incoming query parameters, URL path variables, and JSON bodies are validated at the route boundary before controller execution. Malformed ObjectIds return HTTP 404 (`CastError` handling, `BUG-001` fix), preventing unhandled server crashes (`S16`).
+- **NoSQL Injection Defense:** All queries use strongly-typed Mongoose query methods with explicit parameter binding. Passing raw JSON query objects (e.g. `{"$ne": null}`) fails Zod schema string validation with HTTP 400 (`S15`).
+- **Cross-Site Scripting (XSS) Prevention:** The React frontend uses standard JSX text nodes that auto-escape user content. Zero occurrences of `dangerouslySetInnerHTML`, `eval()`, or raw HTML rendering exist in the client codebase (`S23`).
+
+---
+
+## 9. LLM Architecture and Question Generation
+
+The multimodal AI subsystem integrates large language and vision-language capabilities to analyze radiographs, generate pedagogical multiple-choice questions, and provide grounded clinical error explanations while operating within strict external API budget constraints.
+
+### 9.1 Three-Mode Provider Architecture (`ADR 0012`)
+The LLM module (`apps/api/src/modules/llm/provider.js`) defines a unified provider abstraction supporting three interchangeable operational modes governed by the `LLM_MODE` configuration:
+
+```mermaid
+flowchart TD
+    ClientReq["Client / Script Request"] --> ModeRouter{"LLM_MODE"}
+    
+    ModeRouter -- "live" --> QuotaGuard{"Daily Quota Guard\n(<16 RPD, 13s spacing)"}
+    QuotaGuard -- "Budget OK" --> GeminiLive["Gemini Interactions API\n(@google/genai)\n[gemini-3.8-flash]"]
+    QuotaGuard -- "Budget Exhausted" --> CacheOrFallback["Cache Lookup or Fallback"]
+    GeminiLive -- "Save Result" --> MongoCache[("llm_cache Collection")]
+    
+    ModeRouter -- "cache-only (default)" --> MongoCache
+    MongoCache -- "Cache Hit" --> ReturnCached["Return Cached JSON"]
+    MongoCache -- "Cache Miss" --> FallbackEngine["Deterministic Medical Fallback\n(apps/api/src/modules/llm/fallback.js)"]
+    
+    ModeRouter -- "fake" --> FakeProvider["Deterministic In-Memory Stubs\n(apps/api/src/modules/llm/provider.js)"]
+```
+
+1. **`live` Mode:** Communicates with Google Gemini Interactions API (`@google/genai ^2.32.0`) using the configured model (`GEMINI_MODEL=gemini-3.8-flash`). Used exclusively during scheduled offline data runs to analyze images and generate questions.
+2. **`cache-only` Mode (Default):** Guarantees 100% offline functionality with zero external network traffic (`NFR-REL-01`). Looks up pre-generated, portable responses from MongoDB `llm_cache` (seeded via `apps/api/seed/llm-cache.portable.json`). If a key is missing, serves clinically verified, deterministic template fallbacks (`fallback.js`).
+3. **`fake` Mode:** In-memory mock provider used in Vitest unit and integration suites to test error handling, retry backoff, and JSON response parsing without database or network dependencies.
+
+### 9.2 Gemini API Quota Guard and Throttle (`ADR 0012`, `docs/LLM-RUNBOOK.md`)
+The free-tier Gemini API enforces hard limits of 5 Requests Per Minute (RPM) and 20 Requests Per Day (RPD). To eliminate the risk of quota suspension, `apps/api/src/modules/llm/budget.js` implements a multi-tier protective guard:
+- **Daily Budget Floor:** Sets a strict maximum of 16 requests per calendar day (`LLM_DAILY_REQUEST_BUDGET=16`), reserving a safety margin of 4 calls below the 20 RPD cap.
+- **Pacific Day Boundary:** Tracks dates strictly within the `America/Los_Angeles` timezone (`day = YYYY-MM-DD`), aligning exactly with Google's quota reset window at 00:00 Pacific Time (~11:30 AM Tehran Time).
+- **Atomic MongoDB Counter:** Every live request executes an atomic `findOneAndUpdate` on `llm_usage` incrementing `count`. If `count > budget`, the request is rejected immediately without network egress.
+- **Inter-Call Throttle:** Enforces a mandatory minimum delay of 13,000 ms (`LLM_MIN_INTERVAL_MS=13000`) between consecutive calls, ensuring a maximum throughput of $\approx 4.6$ RPM, strictly below the 5 RPM ceiling.
+- **Circuit Breaker:** If Google responds with HTTP 429 (`RESOURCE_EXHAUSTED`), the system automatically flags `exhausted = true` in MongoDB for the current Pacific day, aborting subsequent calls until the daily reset.
+
+### 9.3 Multimodal Finding Extraction and Closed Vocabulary
+To prevent model hallucination during radiograph analysis, all extracted findings are restricted to a formal closed vocabulary (`packages/contracts/src/vocabulary.js:1-112`):
+- **Laterality:** `['bilateral', 'left', 'right', 'none']`
+- **Zones:** `['upper', 'middle', 'lower']`
+- **Patterns:** `['clear_lungs', 'opacity', 'consolidation', 'ground_glass', 'air_bronchograms', 'interstitial', 'pleural_thickening', 'pleural_effusion', 'hyperinflation']`
+- **Distribution:** `['peripheral', 'central_perihilar', 'diffuse', 'focal_lobar', 'none']`
+- **Certainty:** `['low', 'medium', 'high']`
+- **Image Quality:** `['ok', 'poor', 'not_cxr']`
+
+#### Dual-Run Strategy and 9-Rule Consistency Validation Engine
+Every image is analyzed twice in independent, mixed-class batches of 6 images:
+- **Run A:** Executed using Prompt A (`apps/api/src/modules/analysis/prompts/v1/analyze-a.js`).
+- **Run B:** Executed using Prompt B (`analyze-b.js`) with the 6 images presented in reversed-and-rotated order to eliminate prompt position bias.
+
+Once both runs are recorded in `image_analyses`, the pure validation engine (`apps/api/src/modules/analysis/validate.js:6-16`) evaluates the candidate across nine deterministic rules:
+1. `RUN_MISSING`: Either Run A or Run B output is missing.
+2. `SCHEMA_INVALID`: Output fails Zod validation against `ImageAnalysisResultSchema`.
+3. `QUALITY_NOT_OK`: Either run marks `imageQuality !== 'ok'`.
+4. `RUNS_DISAGREE`: `predictedClass` differs between Run A and Run B.
+5. `LABEL_MISMATCH`: The consensus predicted class differs from the dataset ground truth label (`datasetLabel`).
+6. `RULE_CLEAR_EXCLUSIVE`: The pattern `'clear_lungs'` is combined with any other pathology pattern in the same run.
+7. `RULE_NORMAL_PATTERNS`: For `normal` lungs, patterns are not strictly equal to `['clear_lungs']`.
+8. `RULE_DISEASE_NEEDS_PATTERN`: An image labeled `covid19` or `pneumonia` contains no non-clear pattern.
+9. `NO_CONSENSUS_PATTERN`: For pathology cases, the mathematical intersection of patterns ($A \cap B$) is empty.
+
+An image achieves `status: 'auto_passed'` if and only if all 9 rules pass (`reasons.length === 0`). The resulting consensus patterns ($A \cap B$) are stored in `analysis_validations`.
+
+---
+
+### 9.4 Question Bank Generation and Instructor Review
+Candidate multiple-choice questions are generated offline using consensus findings and grounded medical knowledge base files (`apps/api/src/modules/bank/generate.js:1-120`).
+
+```mermaid
+flowchart TD
+    subgraph Phase1 ["1. Multimodal Finding Extraction (Offline)"]
+        Images["Curated Radiographs (120 Images)"] --> Planner["Batch Planner (6 imgs/batch)"]
+        Planner --> RunA["Run A (Prompt A)"]
+        Planner --> RunB["Run B (Prompt B Reversed)"]
+        RunA & RunB --> ValEngine{"9-Rule Validation Engine\n(validate.js)"}
+        ValEngine -- "Pass (0 errors)" --> Consensus["Consensus Findings (A ∩ B)\n(69 images auto_passed)"]
+        ValEngine -- "Reject" --> RejLog[("analysis_validations (rejected)")]
+    end
+
+    subgraph Phase2 ["2. Pedagogical Question Generation"]
+        Consensus --> GenPrompt["Question Generator Prompt\n(generate-questions.js)"]
+        KB[("Clinically Grounded KB\napps/api/src/modules/llm/kb/*.md")] --> GenPrompt
+        GenPrompt --> CandidatePreCheck{"Pre-Validation Guard\n(4 unique opts, Persian >=60%,\nno label leakage, no numbers)"}
+        CandidatePreCheck -- "Pass" --> BankPending[("question_bank\nstatus: pending_review")]
+        CandidatePreCheck -- "Reject" --> AttemptLog[("question_gen_attempts")]
+    end
+
+    subgraph Phase3 ["3. Instructor Review & Remediation"]
+        BankPending --> ReviewUI["Instructor Review Panel\n(apps/web - Rapid Keyboard Triage)"]
+        ReviewUI -- "Approve ('A')" --> BankApproved[("question_bank\nstatus: approved (83 items)")]
+        ReviewUI -- "Reject ('R')" --> BankRejected[("question_bank\nstatus: rejected")]
+        ReviewUI -- "Edit text" --> BankPending
+        BankApproved --> TargetEngine["Targeted Practice Engine\n(selectTargetedQuestions)"]
+        TargetEngine --> ResidentUI["Resident Micro-Practice\n(5 MCQs with Immediate Rationale)"]
+    end
+```
+
+#### Pre-Validation Quality Rules for Candidates
+Before any generated question is stored in `question_bank`, it must satisfy ten strict automated pre-validation checks (`apps/api/src/modules/bank/validate.js:1-140`):
+- Exactly 4 unique options; options must not be identical after text normalization.
+- Non-empty question stem; valid zero-based `correctIndex` in $[0..3]$.
+- Zero disease class leakage: the question stem must not mention `'covid19'`, `'pneumonia'`, `'normal'`, or their Persian translations.
+- Absolute prohibition of digits (0–9, ۰–۹) and percentages (% / ٪) in stems and options.
+- Persian script ratio $\ge 60\%$ across the question stem.
+- Tied-keys vocabulary consistency: option keys must match approved vocabulary terms.
+- Pedagogical rationale capped at 300 characters.
+
+#### Instructor Review State Machine
+Questions passing pre-validation are stored in `question_bank` with `status: 'pending_review'`. Instructors review items via the instructor panel (`/instructor/review`), which offers split-view radiograph inspection, consensus finding badges, and single-key keyboard actions (`A` to approve, `R` to reject, `J`/`K` to navigate). Editing any question resets its status to `'pending_review'` and logs an audit record in `history`. Bulk approvals are strictly prohibited (`FR-INS-07`).
+
+---
+
 ## 12. Deployment and Runtime View
 
 ### 12.1 Local Workstation Operating Model
