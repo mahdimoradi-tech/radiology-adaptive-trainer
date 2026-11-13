@@ -36,6 +36,9 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
     - Localized Question Bank review option letters (A, B, C, D in EN mode, الف، ب، ج، د in FA mode) and added missing `edited`, `errorLoading`, and detail label keys in `BankQuestionDetail.jsx`.
     - Localized pagination controls and error states (`pageIndicator`, `prev`, `next`, `errorLoading`) in `PracticeHomePage.jsx`.
     - Localized avatar initial fallbacks in navigation layouts ('I'/'R' in EN, 'ا'/'ر' in FA) and registration placeholder in `RegisterPage.jsx`.
+    - Generated baseline audit report `docs/qa/ui-audit-before.md` (60 initial findings) and final audit report `docs/qa/ui-audit-final.md` (0 remaining findings, 100% resolved).
+    - Completed Section C per-screen sign-off in `docs/qa/UI-CHECKLIST.md` across all 19 screens at 1366x768, 1920x1080, and 390x844 viewports.
+    - Executed and documented Lighthouse accessibility audit across 6 key screens (`docs/qa/LIGHTHOUSE-REPORT.md`): Login 100, Resident Home 100, Quiz 98, Report 100, Instructor Review 98, Catalog 100 (mean 99.3/100, target 95+).
   - Monorepo tests expanded to 789 passing tests across 96 files. Lint, build, and RTL checks pass cleanly.
 
 

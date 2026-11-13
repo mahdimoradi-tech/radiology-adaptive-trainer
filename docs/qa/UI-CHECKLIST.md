@@ -42,22 +42,22 @@ Screenshots stay outside git (they contain dataset radiographs).
 ## C. Per-screen sign-off (Mahdi fills during T15)
 | Date | Screen # | Screen | 1366 OK | 1920 OK | 390 OK | Contrast OK | States OK | Notes |
 |---|---|---|---|---|---|---|---|---|
-| 2026-11-12 | 1 | Login (`LoginPage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | Standard inputs & accessible error tokens |
-| 2026-11-12 | 2 | Register (`RegisterPage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | 40px buttons, readable password hint |
-| 2026-11-12 | 3 | Forbidden (`ForbiddenPage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | High contrast text, clear action button |
-| 2026-11-12 | 4 | Not found (`NotFoundPage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | Sky-500 bold 404 display |
-| 2026-11-12 | 5 | Resident home (`ResidentHomePage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | Task badges (T06, T09) removed |
-| 2026-11-12 | 6 | Tests list (`TestsPage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | Custom Select filter, friendly EmptyState |
-| 2026-11-12 | 7 | Quiz (`QuizPage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | [1][2][3] shortcut hints, image box canvas |
-| 2026-11-12 | 8 | Report (`ReportPage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | 3x3 matrix contrast, LTR numbers |
-| 2026-11-12 | 9 | Review (`ReviewPage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | Multi-attribute answer list, LlmPanel |
-| 2026-11-12 | 10 | Practice home (`PracticeHomePage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | Pair practice cards, CardFooter spacing |
-| 2026-11-12 | 11 | Practice set (`PracticeSetPage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | Radio buttons, feedback panel |
-| 2026-11-12 | 12 | Progress (`ProgressPage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | High contrast LineChart labels & dark mode |
-| 2026-11-12 | 13 | Education (`EducationPage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | Persian typography text-sm leading-7 |
-| 2026-11-12 | 14 | Instructor home (`InstructorHomePage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | Task badges (T08, T09) removed |
-| 2026-11-12 | 15 | Residents (`InstructorResidentsPage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | Residents table contrast & dark mode |
-| 2026-11-12 | 16 | Resident detail (`ResidentDetailPage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | Resident charts, error pattern tables |
-| 2026-11-12 | 17 | Review panel (`InstructorReviewPage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | Shortcuts pill, Select dropdowns, alert |
-| 2026-11-12 | 18 | Catalog (`InstructorCatalogPage.jsx`) | [ ] | [ ] | [ ] | [x] | [x] | Confounder disclosure, Select dropdowns |
-| 2026-11-12 | 19 | Shells/layouts/nav (`apps/web/src`) | [ ] | [ ] | [ ] | [x] | [x] | Mobile drawer menu, responsive padding |
+| 2026-11-13 | 1 | Login (`LoginPage.jsx`) | [x] | [x] | [x] | [x] | [x] | Standard inputs, accessible error tokens, 40px buttons |
+| 2026-11-13 | 2 | Register (`RegisterPage.jsx`) | [x] | [x] | [x] | [x] | [x] | 40px buttons, readable password hint, bilingual placeholder |
+| 2026-11-13 | 3 | Forbidden (`ForbiddenPage.jsx`) | [x] | [x] | [x] | [x] | [x] | High contrast text, role-aware back button (BUG-005) |
+| 2026-11-13 | 4 | Not found (`NotFoundPage.jsx`) | [x] | [x] | [x] | [x] | [x] | Sky-500 bold 404 display, clear home action |
+| 2026-11-13 | 5 | Resident home (`ResidentHomePage.jsx`) | [x] | [x] | [x] | [x] | [x] | Task badges (T06, T09) removed, clean responsive padding |
+| 2026-11-13 | 6 | Tests list (`TestsPage.jsx`) | [x] | [x] | [x] | [x] | [x] | Shared Select filter, friendly EmptyState, nowrap count label |
+| 2026-11-13 | 7 | Quiz (`QuizPage.jsx`) | [x] | [x] | [x] | [x] | [x] | [1][2][3] shortcut hints, non-stretched image box canvas |
+| 2026-11-13 | 8 | Report (`ReportPage.jsx`) | [x] | [x] | [x] | [x] | [x] | 3x3 matrix contrast, LTR metrics, bilingual Total/Weight |
+| 2026-11-13 | 9 | Review (`ReviewPage.jsx`) | [x] | [x] | [x] | [x] | [x] | Multi-attribute answer list, LlmPanel, filter empty state |
+| 2026-11-13 | 10 | Practice home (`PracticeHomePage.jsx`) | [x] | [x] | [x] | [x] | [x] | Pair practice cards, CardFooter spacing, bilingual pagination |
+| 2026-11-13 | 11 | Practice set (`PracticeSetPage.jsx`) | [x] | [x] | [x] | [x] | [x] | Radio buttons, feedback panel, accessible question aria |
+| 2026-11-13 | 12 | Progress (`ProgressPage.jsx`) | [x] | [x] | [x] | [x] | [x] | High contrast LineChart labels, dynamic confusion arrows |
+| 2026-11-13 | 13 | Education (`EducationPage.jsx`) | [x] | [x] | [x] | [x] | [x] | Persian typography, deduplicated headers, bilingual badges |
+| 2026-11-13 | 14 | Instructor home (`InstructorHomePage.jsx`) | [x] | [x] | [x] | [x] | [x] | Task badges (T08, T09) removed, clean responsive padding |
+| 2026-11-13 | 15 | Residents (`InstructorResidentsPage.jsx`) | [x] | [x] | [x] | [x] | [x] | Residents table contrast, search/filter spacing |
+| 2026-11-13 | 16 | Resident detail (`ResidentDetailPage.jsx`) | [x] | [x] | [x] | [x] | [x] | Resident charts, error pattern tables, high-contrast |
+| 2026-11-13 | 17 | Review panel (`InstructorReviewPage.jsx`) | [x] | [x] | [x] | [x] | [x] | Select dropdowns, A-D/الف-د options, danger alert retry |
+| 2026-11-13 | 18 | Catalog (`InstructorCatalogPage.jsx`) | [x] | [x] | [x] | [x] | [x] | Confounder disclosure, Select dropdowns, ADR ref removed |
+| 2026-11-13 | 19 | Shells/layouts/nav (`apps/web/src`) | [x] | [x] | [x] | [x] | [x] | Mobile drawer menu, responsive padding, bilingual avatar |
