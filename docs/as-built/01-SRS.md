@@ -227,3 +227,38 @@ The platform is designed and verified to run in the following environment (`READ
 | **FR-EDU-02** | The system shall provide disease summaries detailing characteristic radiographic presentations of COVID-19, non-COVID pneumonia, and normal anatomy. | Must | `T09c-AC1`, `docs/DOMAIN.md:Sec 7` | `apps/web/src/pages/resident/__tests__/EducationPage.test.jsx`, `M27` | Implemented |
 | **FR-EDU-03** | The system shall display verified sample chest radiographs illustrating typical presentations for each pathology class. | Should | `T09c-AC1`, `T15-AC1` | `apps/web/src/pages/resident/__tests__/EducationPage.test.jsx`, `M27` | Implemented |
 | **FR-EDU-04** | The system shall display a persistent non-clinical disclaimer in the UI layout footer emphasizing educational use and prohibiting diagnostic triage. | Must | `T09c-AC1`, `README.md:14-22` | `apps/web/src/app/layouts/__tests__/ResidentLayout.test.jsx`, `M27` | Implemented |
+
+
+### 3.8 Module 8: Instructor Administration & Monitoring (`FR-INS`)
+
+| ID | Statement | Priority | Source | Verification | Status |
+|---|---|---|---|---|---|
+| **FR-INS-01** | The system shall provide an instructor roster view listing all registered residents with completed session counts, current mastery status, and aggregate accuracy. | Must | `T09a-AC1`, `docs/qa/ROUTE-INVENTORY.md:Route 22` | `apps/api/src/__tests__/admin.test.js`, `M30` | Implemented |
+| **FR-INS-02** | The system shall enable instructors to inspect longitudinal diagnostic trajectories and error patterns for any individual resident. | Must | `T09a-AC1`, `docs/qa/ROUTE-INVENTORY.md:Route 23` | `apps/api/src/__tests__/admin.test.js`, `M30` | Implemented |
+| **FR-INS-03** | The system shall permit instructors to audit detailed session reports and individual question responses for any completed resident test. | Must | `T09a-AC1`, `docs/qa/ROUTE-INVENTORY.md:Route 24` | `apps/api/src/__tests__/admin.test.js`, `M30` | Implemented |
+| **FR-INS-04** | The system shall provide a dedicated question review queue enabling instructors to approve, reject (with reason), or edit AI-generated multiple-choice questions. | Must | `T08b-AC1`, `docs/qa/ROUTE-INVENTORY.md:Routes 25-30` | `apps/api/src/__tests__/admin-questions.test.js`, `M28` | Implemented |
+| **FR-INS-05** | The system shall provide keyboard shortcuts (keys `A` for approve, `R` for reject, `J`/`K` for question navigation) in the instructor review panel. | Should | `T08b-AC1`, `T15-AC5` | `apps/web/src/pages/instructor/__tests__/InstructorReviewPage.test.jsx`, `M28` | Implemented |
+| **FR-INS-06** | The system shall guarantee that unapproved or rejected questions remain strictly inaccessible to residents and excluded from targeted practice sets. | Must | `T08b-AC1`, `T08b-AC2` | `apps/api/src/__tests__/practice.test.js`, `M29` | Implemented |
+| **FR-INS-07** | The system shall provide an image catalog inspection interface displaying class counts, difficulty distributions, and demographic cohort confounder disclosures. | Must | `T09c-AC2`, `ADR 0005` | `apps/api/src/__tests__/catalog.test.js`, `M31` | Implemented |
+| **FR-INS-08** | The system shall expose an administrative monitoring endpoint reporting LLM service health, daily quota consumption, and cache collection sizes. | Should | `T07-AC2`, `docs/qa/ROUTE-INVENTORY.md:Route 31` | `apps/api/src/__tests__/llm.test.js` | Implemented |
+
+### 3.9 Module 9: Multimodal Analysis & Feedback (`FR-LLM`)
+
+| ID | Statement | Priority | Source | Verification | Status |
+|---|---|---|---|---|---|
+| **FR-LLM-01** | The system shall extract standardized radiological findings from radiographs using Gemini models with a strict closed vocabulary (laterality, zones, pattern, distribution). | Must | `T08a-AC1`, `ADR 0013` | `apps/api/src/__tests__/llm.test.js` | Implemented |
+| **FR-LLM-02** | The system shall execute dual-prompt analysis validation and consistency checks before storing candidate image analyses in the database. | Must | `T08a-AC1`, `T13-AC1` | `apps/api/src/__tests__/llm-validation.test.js` | Implemented |
+| **FR-LLM-03** | The system shall generate 4-option multiple-choice questions in Persian across three pedagogical types (`finding`, `distribution`, `differential`) initialized in `pending_review` state. | Must | `T08b-AC1`, `ADR 0013` | `apps/api/src/__tests__/llm-generator.test.js` | Implemented |
+| **FR-LLM-04** | The system shall generate mistake-specific pedagogical explanations grounded in curated knowledge-base reference documents (`apps/api/src/modules/llm/kb/`). | Must | `T07-AC3`, `ADR 0012` | `apps/api/src/__tests__/llm-feedback.test.js`, `M21` | Implemented |
+| **FR-LLM-05** | The system shall synthesize session narrative performance summaries from engine-computed statistics without permitting the LLM to invent scores or ground-truth labels. | Should | `T07-AC3`, `ADR 0012` | `apps/api/src/__tests__/llm-feedback.test.js`, `M21` | Implemented |
+| **FR-LLM-06** | The system shall enforce a daily budget limit (16 requests per Pacific day) and 13-second inter-request throttling to protect free-tier API quotas. | Must | `T07-AC2`, `ADR 0012` | `apps/api/src/__tests__/llm-guard.test.js` | Implemented |
+| **FR-LLM-07** | The system shall support a fully network-isolated `cache-only` operational mode serving feedback exclusively from local MongoDB collections with zero outbound network traffic. | Must | `T07-AC1`, `T11-AC3` | `apps/api/src/__tests__/llm-provider.test.js`, `M38` | Implemented |
+
+### 3.10 Module 10: Data Catalog & Image Privacy (`FR-DATA`)
+
+| ID | Statement | Priority | Source | Verification | Status |
+|---|---|---|---|---|---|
+| **FR-DATA-01** | The system shall generate opaque HMAC-SHA256 tokens for public image referencing, preventing client exposure of catalog IDs, dataset origins, or filenames. | Must | `T03-AC1`, `ADR 0008` | `apps/api/src/__tests__/catalog.test.js`, `apps/api/src/__tests__/global-leak.test.js` | Implemented |
+| **FR-DATA-02** | The system shall authorize radiograph image streaming (`GET /api/images/:publicId/file`), restricting residents to images included in their active or finished training sets. | Must | `T03-AC1`, `T11-AC1` | `apps/api/src/__tests__/access-matrix.test.js`, `apps/api/src/__tests__/security/authz.security.test.js` | Implemented |
+| **FR-DATA-03** | The system shall provide an idempotent catalog seed script (`npm run seed:catalog`) that imports the curated 1,177-image catalog with difficulty metrics and pool-health checks. | Must | `T03-AC2` | `apps/api/src/__tests__/seed-catalog.test.js` | Implemented |
+| **FR-DATA-04** | The system shall provide export and import scripts for verified image analyses, approved questions, and portable LLM cache entries to support zero-network deployments. | Should | `T08a-AC1`, `T08b-AC1`, `T13-AC2` | `apps/api/src/__tests__/admin-questions.test.js` | Implemented |
