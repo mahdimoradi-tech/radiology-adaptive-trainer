@@ -88,10 +88,10 @@ $$\text{confusedWith} = \arg\max_{c \neq y_i} P(c \mid x_i)$$
 A retrospective engineering document that codifies the actual, verified behavior, APIs, data contracts, and operational boundaries of an already-implemented system.
 
 ### Baseline Test
-The diagnostic entry exam administered to new residents. It contains 45 questions with an equal class distribution (15 `covid19`, 15 `pneumonia`, 15 `normal`) and a 40% Easy / 30% Medium / 30% Hard difficulty distribution.
+The diagnostic entry exam administered to new residents. It contains 60 questions by default (configurable, min 45) with an equal class distribution (20 each of `covid19`, `pneumonia`, `normal` at $N=60$; 15 each at $N=45$) and a 40% Easy / 30% Medium / 30% Hard difficulty distribution.
 
 ### Adaptive Session
-A personalized 45-question diagnostic training session wherein question counts per class are dynamically weighted based on the resident's historical error profile, with guaranteed floors (minimum 9 questions per class; minimum 2 questions per difficulty bucket).
+A personalized diagnostic training session (default 60 questions, configurable with floor $N \ge 45$) wherein question counts per class are dynamically weighted based on the resident's historical error profile, with guaranteed floors (minimum 20% of $N$, i.e. $\ge 12$ per class at $N=60$ or $\ge 9$ at $N=45$; minimum 4% of $N$, i.e. $\ge 2$ per difficulty bucket).
 
 ### Targeted Practice
 A focused pedagogical micro-session consisting of 5 multiple-choice questions addressing a single diagnosed confusion pair (e.g., `covid19_pneumonia`), drawing questions from the approved question bank.
