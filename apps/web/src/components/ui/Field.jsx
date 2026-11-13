@@ -12,18 +12,25 @@ export function Field({ id, label, error, hint, children, className = '' }) {
   return (
     <div className={`space-y-1.5 ${className}`}>
       {label && (
-        <label htmlFor={id} className="block text-sm font-medium text-slate-700 text-start">
+        <label
+          htmlFor={id}
+          className="block text-sm font-semibold text-slate-800 text-start mb-1.5"
+        >
           {label}
         </label>
       )}
       {children}
       {error && (
-        <p id={`${id}-error`} role="alert" className="text-xs text-rose-600 text-start">
+        <p
+          id={`${id}-error`}
+          role="alert"
+          className="text-xs text-rose-700 font-medium text-start mt-1"
+        >
           {error}
         </p>
       )}
       {!error && hint && (
-        <p id={`${id}-hint`} className="text-xs text-slate-500 text-start">
+        <p id={`${id}-hint`} className="text-xs text-slate-600 text-start mt-1">
           {hint}
         </p>
       )}

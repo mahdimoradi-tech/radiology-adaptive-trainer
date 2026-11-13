@@ -21,9 +21,9 @@ export function QuestionNavigator({ questions = [], currentNo = 1, onSelect, cla
       aria-label={t('quiz.navigatorTitle')}
       className={`bg-white rounded-xl border border-slate-200 p-4 shadow-2xs flex flex-col ${className}`}
     >
-      <div className="border-b border-slate-100 pb-3 mb-3">
-        <h2 className="font-semibold text-slate-800 text-sm">{t('quiz.navigatorTitle')}</h2>
-        <div className="flex items-center justify-between text-xs text-slate-500 mt-1">
+      <div className="border-b border-slate-200 pb-3 mb-3">
+        <h2 className="font-semibold text-slate-900 text-sm">{t('quiz.navigatorTitle')}</h2>
+        <div className="flex items-center justify-between text-xs text-slate-600 font-medium mt-1">
           <span>{t('quiz.totalCount', { count: fmt.number(total, i18n.language) })}</span>
           <span className="font-medium text-emerald-700">
             {t('quiz.answeredCount', { count: fmt.number(answeredCount, i18n.language) })}

@@ -3,28 +3,32 @@ import { fmt } from '../../lib/format.js';
 
 export const SERIES_STYLES = [
   {
-    stroke: '#2563eb', // Blue
+    stroke: '#2563eb', // Blue-600
     strokeDasharray: 'none',
     marker: 'circle',
     dashName: 'solid',
+    dashNameFa: 'پیوسته',
   },
   {
-    stroke: '#d97706', // Amber
+    stroke: '#d97706', // Amber-600
     strokeDasharray: '6 4',
     marker: 'rect',
     dashName: 'dashed',
+    dashNameFa: 'خط‌چین',
   },
   {
-    stroke: '#10b981', // Emerald
+    stroke: '#059669', // Emerald-600
     strokeDasharray: '2 3',
     marker: 'triangle',
     dashName: 'dotted',
+    dashNameFa: 'نقطه‌چین',
   },
   {
-    stroke: '#8b5cf6', // Violet
+    stroke: '#7c3aed', // Violet-600
     strokeDasharray: '8 4 2 4',
     marker: 'diamond',
     dashName: 'dash-dot',
+    dashNameFa: 'خط و نقطه',
   },
 ];
 
@@ -100,7 +104,7 @@ export function LineChart({ series = [], yDomain = [0, 1], threshold, ariaLabel,
 
   if (!series || series.length === 0 || xValues.length === 0) {
     return (
-      <div className="p-8 text-center text-sm text-slate-500 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800">
+      <div className="p-8 text-center text-sm text-slate-500 bg-slate-50 rounded-xl border border-slate-200">
         <p>{t('charts.noData', 'داده‌ای برای نمایش نمودار وجود ندارد.')}</p>
       </div>
     );
@@ -148,7 +152,7 @@ export function LineChart({ series = [], yDomain = [0, 1], threshold, ariaLabel,
       {/* SVG Canvas in strictly LTR direction */}
       <div
         dir="ltr"
-        className="w-full overflow-x-auto rounded-lg bg-white dark:bg-slate-900 p-2 border border-slate-200 dark:border-slate-800"
+        className="w-full overflow-x-auto rounded-xl bg-white p-3 border border-slate-200 shadow-2xs"
       >
         <svg
           role="img"
@@ -168,16 +172,16 @@ export function LineChart({ series = [], yDomain = [0, 1], threshold, ariaLabel,
                   y2={y}
                   stroke="#e2e8f0"
                   strokeWidth="1"
-                  strokeDasharray="2 2"
-                  className="dark:stroke-slate-800"
+                  strokeDasharray="3 3"
                 />
                 <text
                   x={pad.left - 8}
                   y={y + 4}
                   textAnchor="end"
-                  fontSize="11"
-                  fill="#64748b"
-                  className="font-mono dark:fill-slate-400"
+                  fontSize="12"
+                  fill="#475569"
+                  fontWeight="500"
+                  className="font-mono"
                 >
                   {fmt.percent(tick, 'en', 0)}
                 </text>
@@ -195,15 +199,15 @@ export function LineChart({ series = [], yDomain = [0, 1], threshold, ariaLabel,
                 y2={thresholdY}
                 stroke="#dc2626"
                 strokeWidth="1.5"
-                strokeDasharray="5 3"
+                strokeDasharray="6 3"
               />
               <text
                 x={pad.left + innerW - 6}
                 y={thresholdY - 6}
                 textAnchor="end"
-                fontSize="11"
+                fontSize="12"
                 fill="#dc2626"
-                fontWeight="600"
+                fontWeight="700"
               >
                 {t('charts.thresholdLabel', 'آستانه تسلط ({{pct}})', {
                   pct: fmt.percent(threshold, lang, 0),
@@ -236,11 +240,11 @@ export function LineChart({ series = [], yDomain = [0, 1], threshold, ariaLabel,
                 />
                 <text
                   x={x}
-                  y={pad.top + innerH + 18}
+                  y={pad.top + innerH + 20}
                   textAnchor="middle"
-                  fontSize="11"
-                  fill="#64748b"
-                  className="dark:fill-slate-400"
+                  fontSize="12"
+                  fill="#334155"
+                  fontWeight="600"
                 >
                   {typeof xVal === 'number' ? fmt.number(xVal, lang) : String(xVal)}
                 </text>
@@ -272,7 +276,7 @@ export function LineChart({ series = [], yDomain = [0, 1], threshold, ariaLabel,
                   d={pathD}
                   fill="none"
                   stroke={style.stroke}
-                  strokeWidth="2.5"
+                  strokeWidth="3"
                   strokeDasharray={style.strokeDasharray}
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -291,61 +295,69 @@ export function LineChart({ series = [], yDomain = [0, 1], threshold, ariaLabel,
       </div>
 
       {/* Accessible Text Legend (Color + Dash Pattern + Symbol + Label) */}
-      <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-700 dark:text-slate-300">
+      <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 pt-3 border-t border-slate-100">
         {series.map((s, idx) => {
           const style = SERIES_STYLES[idx % SERIES_STYLES.length];
           return (
             <div
               key={s.id || idx}
-              className="inline-flex items-center gap-2"
+              className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 shadow-2xs"
               data-testid={`legend-item-${s.id}`}
             >
-              <svg width="24" height="12" viewBox="0 0 24 12" className="overflow-visible">
+              <svg
+                width="28"
+                height="14"
+                viewBox="0 0 28 14"
+                className="overflow-visible shrink-0"
+                aria-hidden="true"
+              >
                 <line
                   x1="0"
-                  y1="6"
-                  x2="24"
-                  y2="6"
+                  y1="7"
+                  x2="28"
+                  y2="7"
                   stroke={style.stroke}
-                  strokeWidth="2.5"
+                  strokeWidth="3"
                   strokeDasharray={style.strokeDasharray}
                 />
-                {renderMarker(style.marker, 12, 6, style.stroke, `legend-marker-${s.id}`)}
+                {renderMarker(style.marker, 14, 7, style.stroke, `legend-marker-${s.id}`)}
               </svg>
-              <span className="font-medium">{s.label}</span>
-              <span className="text-[10px] text-slate-400">({style.dashName})</span>
+              <span className="font-bold text-xs sm:text-sm text-slate-900">{s.label}</span>
+              <span
+                className="text-[10px] font-semibold px-2 py-0.5 rounded text-white shadow-2xs"
+                style={{ backgroundColor: style.stroke }}
+              >
+                {lang === 'fa' ? style.dashNameFa : style.dashName}
+              </span>
             </div>
           );
         })}
       </div>
 
       {/* Accessible Tabular Fallback */}
-      <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
+      <div className="overflow-x-auto rounded-lg border border-slate-200">
         <table className="w-full text-xs text-start border-collapse">
           <caption className="sr-only">{ariaLabel} - داده‌های جدول</caption>
-          <thead className="bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-200">
+          <thead className="bg-slate-50 text-slate-700">
             <tr>
-              <th
-                scope="col"
-                className="px-3 py-2 text-start font-semibold border-b border-slate-200 dark:border-slate-800"
-              >
+              <th scope="col" className="px-4 py-3 text-start font-bold border-b border-slate-200">
                 {xLabel || t('charts.sessionCol', 'جلسه')}
               </th>
               {series.map((s) => (
                 <th
                   key={s.id}
                   scope="col"
-                  className="px-3 py-2 text-start font-semibold border-b border-slate-200 dark:border-slate-800"
+                  className="px-4 py-3 text-start font-bold border-b border-slate-200"
                 >
                   {s.label}
                 </th>
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100 dark:divide-slate-800 bg-white dark:bg-slate-900">
+          <tbody className="divide-y divide-slate-100 bg-white">
             {xValues.map((xVal) => (
-              <tr key={`row-${xVal}`} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
-                <td className="px-3 py-2 text-slate-900 dark:text-slate-100 font-medium">
+              <tr key={`row-${xVal}`} className="hover:bg-slate-50/50">
+                <td className="px-4 py-2.5 text-slate-900 font-semibold">
                   {typeof xVal === 'number' ? fmt.number(xVal, lang) : String(xVal)}
                 </td>
                 {series.map((s) => {
@@ -353,7 +365,7 @@ export function LineChart({ series = [], yDomain = [0, 1], threshold, ariaLabel,
                   return (
                     <td
                       key={`cell-${s.id}-${xVal}`}
-                      className="px-3 py-2 font-mono text-slate-700 dark:text-slate-300"
+                      className="px-4 py-2.5 text-slate-800 font-bold"
                     >
                       {pt && typeof pt.y === 'number' ? fmt.percent(pt.y, lang, 1) : '—'}
                     </td>

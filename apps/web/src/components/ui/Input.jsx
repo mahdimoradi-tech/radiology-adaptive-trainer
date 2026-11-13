@@ -19,8 +19,8 @@ export function Input({
   ...rest
 }) {
   const borderState = error
-    ? 'border-rose-400 focus:border-rose-500 focus:ring-rose-500/20 text-rose-900 placeholder:text-rose-300'
-    : 'border-slate-300 focus:border-sky-500 focus:ring-sky-500/20 text-slate-900 placeholder:text-slate-400';
+    ? 'border-rose-400 focus:border-rose-500 focus:ring-rose-500/20 text-rose-900 placeholder:text-rose-500'
+    : 'border-slate-300 focus:border-sky-500 focus:ring-sky-500/20 text-slate-900 placeholder:text-slate-500';
 
   return (
     <input
@@ -30,7 +30,7 @@ export function Input({
       disabled={disabled}
       aria-invalid={Boolean(error)}
       aria-describedby={error && id ? `${id}-error` : undefined}
-      className={`w-full px-3 py-2 text-sm bg-white border rounded-lg shadow-xs transition-colors focus:outline-none focus:ring-3 disabled:bg-slate-50 disabled:text-slate-500 disabled:cursor-not-allowed text-start ${borderState} ${className}`}
+      className={`w-full px-3 py-2 h-10 min-h-[40px] text-sm bg-white border rounded-lg shadow-xs transition-colors focus:outline-none focus:ring-2 disabled:bg-slate-50 disabled:text-slate-500 disabled:cursor-not-allowed text-start ${borderState} ${className}`}
       {...rest}
     />
   );

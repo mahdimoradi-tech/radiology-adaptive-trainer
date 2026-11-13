@@ -10,6 +10,7 @@ import {
   CardContent,
   CardFooter,
   Button,
+  Select,
   Badge,
   Alert,
   Spinner,
@@ -119,30 +120,34 @@ export function TestsPage() {
               </Button>
             </div>
           ) : (
-            <div className="flex flex-wrap items-center gap-4">
-              <div className="flex items-center gap-2">
-                <label htmlFor={selectId} className="text-sm font-medium text-slate-700">
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="flex items-center gap-3 shrink-0">
+                <label
+                  htmlFor={selectId}
+                  className="text-sm font-semibold text-slate-700 whitespace-nowrap shrink-0"
+                >
                   {t('sessions.sizeLabel')}:
                 </label>
-                <select
+                <Select
                   id={selectId}
                   value={selectedSize}
                   onChange={(e) => setSelectedSize(Number(e.target.value))}
                   disabled={createMutation.isPending}
-                  className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 shadow-2xs focus:border-sky-500 focus:outline-hidden focus:ring-2 focus:ring-sky-500/20"
+                  className="w-36 shrink-0"
                 >
                   {SIZES.map((size) => (
                     <option key={size} value={size}>
                       {t('sessions.sizeOption', { count: fmt.number(size, i18n.language) })}
                     </option>
                   ))}
-                </select>
+                </Select>
               </div>
 
               <Button
                 variant="primary"
                 isLoading={createMutation.isPending}
                 onClick={handleStartSession}
+                className="shrink-0"
               >
                 {createMutation.isPending ? t('sessions.starting') : t('sessions.startNew')}
               </Button>
@@ -177,7 +182,7 @@ export function TestsPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-start text-sm border-collapse">
                 <thead>
-                  <tr className="border-b border-slate-200 text-slate-500 font-medium text-xs">
+                  <tr className="border-b border-slate-200 text-slate-700 font-semibold text-xs bg-slate-50/50">
                     <th className="py-3 px-3 text-start">{t('sessions.colIndex')}</th>
                     <th className="py-3 px-3 text-start">{t('sessions.colKind')}</th>
                     <th className="py-3 px-3 text-start">{t('sessions.colDate')}</th>
@@ -228,8 +233,8 @@ export function TestsPage() {
         </CardContent>
 
         {meta.totalPages > 1 && (
-          <CardFooter className="flex items-center justify-between border-t border-slate-100 pt-4">
-            <span className="text-xs text-slate-500">
+          <CardFooter className="flex items-center justify-between border-t border-slate-200 pt-4">
+            <span className="text-xs text-slate-600 font-medium">
               {t('sessions.pageInfo', {
                 current: fmt.number(meta.page, i18n.language),
                 total: fmt.number(meta.totalPages, i18n.language),

@@ -95,7 +95,7 @@ export function RegisterPage() {
                 onChange={handleChange}
                 error={fieldErrors.displayName}
                 autoComplete="name"
-                placeholder="دکتر احمدی"
+                placeholder={t('auth.namePlaceholder')}
                 required
               />
             </Field>
@@ -145,7 +145,10 @@ export function RegisterPage() {
 
         <CardFooter className="justify-center text-xs text-slate-600 gap-1">
           <span>{t('auth.haveAccount')}</span>
-          <Link to="/login" className="text-sky-600 hover:text-sky-700 font-medium hover:underline">
+          <Link
+            to="/login"
+            className="text-sky-700 hover:text-sky-800 font-semibold hover:underline"
+          >
             {t('auth.login')}
           </Link>
         </CardFooter>

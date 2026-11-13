@@ -27,11 +27,7 @@ export function XrayImage({
       className={`relative ${aspectRatio} bg-black rounded-lg overflow-hidden flex items-center justify-center select-none ${className}`}
     >
       {hasError ? (
-        <div
-          role="img"
-          aria-label={alt}
-          className="text-slate-400 text-xs text-center p-4"
-        >
+        <div role="img" aria-label={alt} className="text-slate-600 text-xs text-center p-4">
           {fallbackText}
         </div>
       ) : (

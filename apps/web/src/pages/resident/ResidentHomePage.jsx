@@ -8,7 +8,6 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-  Badge,
   Button,
 } from '../../components/ui/index.js';
 
@@ -22,17 +21,14 @@ export function ResidentHomePage() {
         <h1 className="text-2xl font-bold text-slate-900">
           {t('home.welcome', { name: user?.displayName || '' })}
         </h1>
-        <p className="text-sm text-slate-500 mt-1">{t('app.tagline')}</p>
+        <p className="text-sm text-slate-600 mt-1">{t('app.tagline')}</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* 1. Start Test Card */}
         <Card className="flex flex-col justify-between border-sky-200 bg-sky-50/30">
           <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle>{t('home.startTest')}</CardTitle>
-              <Badge variant="primary">T06</Badge>
-            </div>
+            <CardTitle>{t('home.startTest')}</CardTitle>
             <CardDescription>{t('home.startTestDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
@@ -50,14 +46,11 @@ export function ResidentHomePage() {
         {/* 2. Review Tests Card */}
         <Card className="flex flex-col justify-between">
           <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle>{t('home.reviewTests')}</CardTitle>
-              <Badge variant="secondary">T06</Badge>
-            </div>
+            <CardTitle>{t('home.reviewTests')}</CardTitle>
             <CardDescription>{t('home.reviewTestsDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-xs text-slate-500">{t('sessions.historyTitle')}</p>
+            <p className="text-xs text-slate-600">{t('sessions.historyTitle')}</p>
           </CardContent>
           <CardFooter>
             <Link to="/app/tests" className="w-full">
@@ -71,14 +64,11 @@ export function ResidentHomePage() {
         {/* 3. Education Card */}
         <Card className="flex flex-col justify-between">
           <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle>{t('home.education')}</CardTitle>
-              <Badge variant="secondary">T09</Badge>
-            </div>
+            <CardTitle>{t('home.education')}</CardTitle>
             <CardDescription>{t('home.educationDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-xs text-slate-500">{t('education.subtitle')}</p>
+            <p className="text-xs text-slate-600">{t('education.subtitle')}</p>
           </CardContent>
           <CardFooter>
             <Link to="/app/education" className="w-full">
@@ -92,14 +82,11 @@ export function ResidentHomePage() {
         {/* 4. Profile / Progress Card */}
         <Card className="flex flex-col justify-between">
           <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle>{t('home.profile')}</CardTitle>
-              <Badge variant="secondary">T09</Badge>
-            </div>
+            <CardTitle>{t('home.profile')}</CardTitle>
             <CardDescription>{t('home.profileDesc')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-xs text-slate-500">{t('progress.subtitle')}</p>
+            <p className="text-xs text-slate-600">{t('progress.subtitle')}</p>
           </CardContent>
           <CardFooter>
             <Link to="/app/progress" className="w-full">

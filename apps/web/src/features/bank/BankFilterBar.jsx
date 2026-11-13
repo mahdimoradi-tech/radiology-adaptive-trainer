@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Select } from '../../components/ui/index.js';
 
 export function BankFilterBar({ filters, onFilterChange }) {
   const { t } = useTranslation();
@@ -85,41 +86,49 @@ export function BankFilterBar({ filters, onFilterChange }) {
       </div>
 
       {/* Dropdowns */}
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-4">
         {/* Type Filter */}
-        <div className="flex items-center gap-1.5">
-          <label htmlFor="filter-type" className="text-xs font-medium text-slate-600">
+        <div className="flex items-center gap-2">
+          <label
+            htmlFor="filter-type"
+            className="text-xs font-semibold text-slate-700 whitespace-nowrap shrink-0"
+          >
             {t('instructor.review.filterType')}:
           </label>
-          <select
+          <Select
             id="filter-type"
+            size="sm"
             value={filters.type || 'all'}
             onChange={handleTypeChange}
-            className="text-xs bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500"
+            className="w-32 bg-slate-50"
           >
             <option value="all">{t('instructor.review.all')}</option>
             <option value="finding">{t('instructor.review.finding')}</option>
             <option value="distribution">{t('instructor.review.distribution')}</option>
             <option value="differential">{t('instructor.review.differential')}</option>
-          </select>
+          </Select>
         </div>
 
         {/* Class Filter */}
-        <div className="flex items-center gap-1.5">
-          <label htmlFor="filter-class" className="text-xs font-medium text-slate-600">
+        <div className="flex items-center gap-2">
+          <label
+            htmlFor="filter-class"
+            className="text-xs font-semibold text-slate-700 whitespace-nowrap shrink-0"
+          >
             {t('instructor.review.trueClass')}:
           </label>
-          <select
+          <Select
             id="filter-class"
+            size="sm"
             value={filters.trueClass || 'all'}
             onChange={handleClassChange}
-            className="text-xs bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500"
+            className="w-32 bg-slate-50"
           >
             <option value="all">{t('instructor.review.all')}</option>
             <option value="covid19">COVID-19</option>
             <option value="pneumonia">Pneumonia</option>
             <option value="normal">Normal</option>
-          </select>
+          </Select>
         </div>
       </div>
     </div>

@@ -289,8 +289,8 @@ export function PracticeSetPage() {
         </CardContent>
 
         {/* Card Actions Footer */}
-        <CardFooter className="flex items-center justify-between border-t border-slate-100 p-4">
-          <div className="text-xs text-slate-500">
+        <CardFooter className="flex items-center justify-between border-t border-slate-200 p-4">
+          <div className="text-xs text-slate-600 font-medium">
             {t('practice.questionProgress', {
               current: fmt.number(currentNo, i18n.language),
               total: fmt.number(set.size, i18n.language),
@@ -340,7 +340,7 @@ export function PracticeSetPage() {
               type="button"
               onClick={() => setCurrentNo(q.no)}
               className={`w-9 h-9 rounded-lg border text-xs flex items-center justify-center transition-all ${dotStyle}`}
-              aria-label={`سوال ${q.no}`}
+              aria-label={t('practice.questionBtnAria', { no: fmt.number(q.no, i18n.language) })}
             >
               {fmt.number(q.no, i18n.language)}
             </button>

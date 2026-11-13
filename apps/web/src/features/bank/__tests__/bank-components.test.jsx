@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BankStatsStrip } from '../BankStatsStrip.jsx';
 import { BankFilterBar } from '../BankFilterBar.jsx';
@@ -180,5 +180,42 @@ describe('Bank UI Components', () => {
     // No checkboxes in list
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
     expect(checkboxes.length).toBe(0);
+  });
+
+  it('renders English option letters (A, B, C, D) and labels in en mode', async () => {
+    const { default: i18n } = await import('../../../i18n/index.js');
+    await act(async () => {
+      await i18n.changeLanguage('en');
+    });
+
+    try {
+      render(
+        <BankQuestionDetail
+          question={{ ...mockQuestion, edited: true }}
+          onApprove={vi.fn()}
+          onReject={vi.fn()}
+          onEdit={vi.fn()}
+        />,
+      );
+
+      // Verify edited badge in English
+      expect(screen.getByText('Edited')).toBeInTheDocument();
+      expect(screen.getByText('Distribution:')).toBeInTheDocument();
+      expect(screen.getByText(/Model certainty:/)).toBeInTheDocument();
+
+      // Open edit form
+      fireEvent.click(screen.getByText('Edit'));
+
+      // Check option letters A, B, C, D in English mode
+      expect(screen.getByText('A')).toBeInTheDocument();
+      expect(screen.getByText('B')).toBeInTheDocument();
+      expect(screen.getByText('C')).toBeInTheDocument();
+      expect(screen.getByText('D')).toBeInTheDocument();
+      expect(screen.queryByText('الف')).not.toBeInTheDocument();
+    } finally {
+      await act(async () => {
+        await i18n.changeLanguage('fa');
+      });
+    }
   });
 });

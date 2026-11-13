@@ -112,7 +112,7 @@ export function ReportPage() {
               {t('sessions.kind' + (kind === 'adaptive' ? 'Adaptive' : 'Baseline'))}
             </Badge>
           </div>
-          <p className="text-sm text-slate-500 mt-1">{t('report.subtitle')}</p>
+          <p className="text-sm text-slate-600 mt-1">{t('report.subtitle')}</p>
         </div>
 
         <div className="flex items-center gap-3">
@@ -148,13 +148,13 @@ export function ReportPage() {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-              <span className="text-xs text-slate-500 block mb-1">
+              <span className="text-xs text-slate-600 font-medium block mb-1">
                 {t('report.overallAccuracy')}
               </span>
               <span className="text-2xl font-bold text-sky-700">
                 {isZeroAnswered ? '—' : fmt.percent(overall.accuracy, i18n.language)}
               </span>
-              <span className="text-xs text-slate-400 block mt-1">
+              <span className="text-xs text-slate-600 block mt-1">
                 {t('report.correctVsTotal', {
                   correct: fmt.number(overall.correct, i18n.language),
                   total: fmt.number(overall.total, i18n.language),
@@ -163,10 +163,12 @@ export function ReportPage() {
             </div>
 
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-              <span className="text-xs text-slate-500 block mb-1">{t('sessions.colAnswered')}</span>
+              <span className="text-xs text-slate-600 font-medium block mb-1">
+                {t('sessions.colAnswered')}
+              </span>
               <span className="text-2xl font-bold text-slate-800">
                 {fmt.number(answeredCount, i18n.language)}{' '}
-                <span className="text-sm text-slate-400 font-normal">
+                <span className="text-sm text-slate-600 font-normal">
                   / {fmt.number(size, i18n.language)}
                 </span>
               </span>
@@ -180,7 +182,9 @@ export function ReportPage() {
             </div>
 
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-100 flex flex-col justify-between">
-              <span className="text-xs text-slate-500 block mb-1">{t('report.masteryBanner')}</span>
+              <span className="text-xs text-slate-600 font-medium block mb-1">
+                {t('report.masteryBanner')}
+              </span>
               <div>
                 <Badge variant={mastered ? 'success' : 'secondary'} className="text-xs px-2.5 py-1">
                   {mastered ? t('report.masteryBand') : t('report.mediumBand')}
@@ -248,7 +252,7 @@ export function ReportPage() {
                         className: t('classes.' + classId),
                         acc: fmt.percent(metrics.accuracy, i18n.language),
                         band: bandLabel,
-                        breakdown: bucketParts.join('؛ '),
+                        breakdown: bucketParts.join(i18n.language === 'fa' ? '؛ ' : '; '),
                       })}
                     </span>
                   </div>
@@ -297,7 +301,7 @@ export function ReportPage() {
                                   ? 'bg-emerald-50 text-emerald-800 font-bold border-2 border-emerald-200'
                                   : count > 0
                                     ? 'bg-rose-50/50 text-rose-700 font-medium'
-                                    : 'text-slate-400'
+                                    : 'text-slate-600'
                               }`}
                             >
                               {fmt.number(count, i18n.language)}
@@ -332,7 +336,7 @@ export function ReportPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-start text-sm border-collapse">
                   <thead>
-                    <tr className="border-b border-slate-200 text-slate-500 font-medium text-xs">
+                    <tr className="border-b border-slate-200 text-slate-700 font-semibold text-xs bg-slate-50/50">
                       <th className="py-2.5 px-3 text-start">{t('report.colClass')}</th>
                       <th className="py-2.5 px-3 text-center">{t('report.colTP')}</th>
                       <th className="py-2.5 px-3 text-center">{t('report.colFP')}</th>
@@ -379,7 +383,7 @@ export function ReportPage() {
                 </table>
               </div>
             </CardContent>
-            <CardFooter className="text-xs text-slate-400 border-t border-slate-100 pt-3">
+            <CardFooter className="text-xs text-slate-600 border-t border-slate-200 pt-4">
               <p>{t('report.metricsFootnote')}</p>
             </CardFooter>
           </Card>
@@ -403,7 +407,7 @@ export function ReportPage() {
                           {t('buckets.' + b)}
                         </th>
                       ))}
-                      <th className="py-2 px-2 font-bold">مجموع</th>
+                      <th className="py-2 px-2 font-bold">{t('report.totalCol')}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
@@ -454,7 +458,7 @@ export function ReportPage() {
                           {t('buckets.' + b)}
                         </th>
                       ))}
-                      <th className="py-2 px-2 font-bold">مجموع</th>
+                      <th className="py-2 px-2 font-bold">{t('report.totalCol')}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
@@ -519,7 +523,7 @@ export function ReportPage() {
                         </span>
                       </div>
                       <div className="flex items-center justify-between text-slate-500">
-                        <span>وزن خطا:</span>
+                        <span>{t('report.errorWeight')}:</span>
                         <span className="font-medium text-sky-700">
                           {plan.weights?.[c] !== undefined
                             ? fmt.percent(plan.weights[c], i18n.language)

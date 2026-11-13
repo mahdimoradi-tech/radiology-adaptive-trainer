@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { EducationPage } from '../EducationPage.jsx';
 import '../../../i18n/index.js';
@@ -66,7 +66,7 @@ describe('EducationPage', () => {
     expect(screen.getByText(/ندیدن ارتشاح ذات‌الریه و طبیعی دانستن کلیشه/)).toBeInTheDocument();
   });
 
-  it('renders grounded radiological findings for the three diagnostic classes with KB source tags', () => {
+  it('renders grounded radiological findings for the three diagnostic classes without leaking codebase paths', () => {
     renderPage();
 
     expect(
@@ -91,9 +91,33 @@ describe('EducationPage', () => {
       screen.getByText(/زوایای دنده‌ای-دیافراگمی \(کوستوفرنیک\) تیز و مشخص/),
     ).toBeInTheDocument();
 
-    // Source tags
-    expect(screen.getByText('apps/api/src/modules/llm/kb/covid19.md')).toBeInTheDocument();
-    expect(screen.getByText('apps/api/src/modules/llm/kb/pneumonia.md')).toBeInTheDocument();
-    expect(screen.getByText('apps/api/src/modules/llm/kb/normal.md')).toBeInTheDocument();
+    // Codebase file paths should not be displayed to users
+    expect(screen.queryByText(/apps\/api\/src\/modules/)).not.toBeInTheDocument();
+  });
+
+  it('renders localized badges and English titles without leaking Persian strings in en mode', async () => {
+    const { default: i18n } = await import('../../../i18n/index.js');
+    await act(async () => {
+      await i18n.changeLanguage('en');
+    });
+
+    try {
+      renderPage();
+
+      expect(screen.getByText('Step 1')).toBeInTheDocument();
+      expect(screen.getByText('Initial Assessment')).toBeInTheDocument();
+      expect(screen.getByText('False Positive')).toBeInTheDocument();
+      expect(screen.getByText('False Negative')).toBeInTheDocument();
+      expect(screen.getAllByText('Diagnostic Class').length).toBe(3);
+
+      // No hardcoded Persian strings in en mode
+      expect(screen.queryByText('مثبت کاذب')).not.toBeInTheDocument();
+      expect(screen.queryByText('منفی کاذب')).not.toBeInTheDocument();
+      expect(screen.queryByText('سنجش نخست')).not.toBeInTheDocument();
+    } finally {
+      await act(async () => {
+        await i18n.changeLanguage('fa');
+      });
+    }
   });
 });

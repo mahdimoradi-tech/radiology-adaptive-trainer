@@ -12,9 +12,9 @@ const VARIANT_CLASSES = {
 };
 
 const SIZE_CLASSES = {
-  sm: 'px-3 py-1.5 text-xs',
-  md: 'px-4 py-2 text-sm',
-  lg: 'px-6 py-3 text-base',
+  sm: 'px-3 py-1.5 text-xs min-h-[32px]',
+  md: 'px-4 py-2 text-sm min-h-[40px] h-10',
+  lg: 'px-6 py-3 text-base min-h-[48px]',
 };
 
 /**
@@ -39,7 +39,7 @@ export function Button({
   ...rest
 }) {
   const base =
-    'inline-flex items-center justify-center font-medium rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none cursor-pointer';
+    'inline-flex items-center justify-center font-medium rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:pointer-events-none cursor-pointer';
 
   return (
     <button

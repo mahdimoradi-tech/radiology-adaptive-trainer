@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import {
   Button,
   Input,
+  Select,
   Field,
   Card,
   CardHeader,
@@ -10,6 +11,7 @@ import {
   CardContent,
   Alert,
   Badge,
+  EmptyState,
   Spinner,
   XrayImage,
 } from '../index.js';
@@ -48,6 +50,35 @@ describe('UI Kit Components', () => {
       expect(input).toHaveAttribute('aria-invalid', 'true');
       expect(input).toHaveAttribute('aria-describedby', 'test-pwd-error');
       expect(input.className).toContain('border-rose-400');
+    });
+  });
+
+  describe('Select', () => {
+    it('renders select with options and handles selection change', () => {
+      const handleChange = vi.fn();
+      render(
+        <Select id="test-select" value="opt1" onChange={handleChange}>
+          <option value="opt1">گزینه یک</option>
+          <option value="opt2">گزینه دو</option>
+        </Select>,
+      );
+      const select = screen.getByRole('combobox');
+      expect(select).toBeInTheDocument();
+      expect(select.className).toContain('appearance-none');
+      expect(select.className).toContain('pe-10');
+      fireEvent.change(select, { target: { value: 'opt2' } });
+      expect(handleChange).toHaveBeenCalledTimes(1);
+    });
+
+    it('renders select with error styling and aria attributes', () => {
+      render(
+        <Select id="test-select-err" error="انتخاب نامعتبر">
+          <option value="1">یک</option>
+        </Select>,
+      );
+      const select = screen.getByRole('combobox');
+      expect(select).toHaveAttribute('aria-invalid', 'true');
+      expect(select.className).toContain('border-rose-400');
     });
   });
 
@@ -103,6 +134,13 @@ describe('UI Kit Components', () => {
       expect(screen.getByText('خطای مهم')).toBeInTheDocument();
       expect(screen.getByText('متن پیام خطا')).toBeInTheDocument();
     });
+
+    it('renders danger variant mapped to rose styling', () => {
+      render(<Alert variant="danger">هشدار خطر</Alert>);
+      const alert = screen.getByRole('alert');
+      expect(alert.className).toContain('bg-rose-50');
+      expect(alert.className).toContain('border-rose-200');
+    });
   });
 
   describe('Badge', () => {
@@ -110,6 +148,32 @@ describe('UI Kit Components', () => {
       render(<Badge variant="success">فعال</Badge>);
       const badge = screen.getByText('فعال');
       expect(badge.className).toContain('bg-emerald-100');
+    });
+
+    it('renders primary and neutral variants correctly', () => {
+      render(
+        <div>
+          <Badge variant="primary">اصلی</Badge>
+          <Badge variant="neutral">خنثی</Badge>
+        </div>,
+      );
+      expect(screen.getByText('اصلی').className).toContain('bg-sky-100');
+      expect(screen.getByText('خنثی').className).toContain('bg-slate-100');
+    });
+  });
+
+  describe('EmptyState', () => {
+    it('renders title, description, and optional action', () => {
+      render(
+        <EmptyState
+          title="داده‌ای یافت نشد"
+          description="توضیحات تکمیلی برای راهنمایی کاربر"
+          action={<button>اقدام جدید</button>}
+        />,
+      );
+      expect(screen.getByText('داده‌ای یافت نشد')).toBeInTheDocument();
+      expect(screen.getByText('توضیحات تکمیلی برای راهنمایی کاربر')).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'اقدام جدید' })).toBeInTheDocument();
     });
   });
 

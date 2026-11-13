@@ -43,7 +43,7 @@ export function CatalogTable({ items = [], meta, isLoading = false, onPageChange
 
   if (isLoading) {
     return (
-      <div className="py-12 text-center text-sm text-slate-500">
+      <div className="py-12 text-center text-sm text-slate-600">
         {t('instructor.catalog.loadingImages')}
       </div>
     );
@@ -51,7 +51,7 @@ export function CatalogTable({ items = [], meta, isLoading = false, onPageChange
 
   if (!items || items.length === 0) {
     return (
-      <div className="py-12 text-center text-sm text-slate-500 bg-slate-50 border border-slate-200 rounded-lg">
+      <div className="py-12 text-center text-sm text-slate-600 bg-slate-50 border border-slate-200 rounded-lg">
         {t('instructor.catalog.emptyImages')}
       </div>
     );
@@ -62,26 +62,26 @@ export function CatalogTable({ items = [], meta, isLoading = false, onPageChange
       <div className="overflow-x-auto border border-slate-200 rounded-lg bg-white shadow-2xs">
         <table className="w-full text-sm text-start">
           <thead>
-            <tr className="bg-slate-50 border-b border-slate-200 text-xs text-slate-500">
-              <th className="py-2.5 px-3 text-center font-medium w-16">
+            <tr className="bg-slate-50 border-b border-slate-200 text-xs text-slate-600">
+              <th className="py-2.5 px-3 text-center font-semibold w-16">
                 {t('instructor.catalog.colPreview')}
               </th>
-              <th className="py-2.5 px-3 text-start font-medium">
+              <th className="py-2.5 px-3 text-start font-semibold">
                 {t('instructor.catalog.colFilename')}
               </th>
-              <th className="py-2.5 px-3 text-center font-medium">
+              <th className="py-2.5 px-3 text-center font-semibold">
                 {t('instructor.catalog.colClass')}
               </th>
-              <th className="py-2.5 px-3 text-center font-medium">
+              <th className="py-2.5 px-3 text-center font-semibold">
                 {t('instructor.catalog.colBucket')}
               </th>
-              <th className="py-2.5 px-3 text-center font-medium">
+              <th className="py-2.5 px-3 text-center font-semibold">
                 {t('instructor.catalog.colDifficulty')}
               </th>
-              <th className="py-2.5 px-3 text-center font-medium">
+              <th className="py-2.5 px-3 text-center font-semibold">
                 {t('instructor.catalog.colConfusedWith')}
               </th>
-              <th className="py-2.5 px-3 text-start font-medium">
+              <th className="py-2.5 px-3 text-start font-semibold">
                 {t('instructor.catalog.colSource')}
               </th>
             </tr>
@@ -106,7 +106,7 @@ export function CatalogTable({ items = [], meta, isLoading = false, onPageChange
                   <div className="font-mono text-xs text-slate-800 break-all">
                     <bdi>{item.filename}</bdi>
                   </div>
-                  <div className="text-[11px] text-slate-400 font-mono mt-0.5">
+                  <div className="text-[11px] text-slate-600 font-mono mt-0.5">
                     <bdi>{item.id}</bdi>
                   </div>
                 </td>
@@ -147,8 +147,8 @@ export function CatalogTable({ items = [], meta, isLoading = false, onPageChange
 
       {/* Pagination controls */}
       {meta && meta.totalPages > 1 && (
-        <div className="flex items-center justify-between pt-2">
-          <span className="text-xs text-slate-500">
+        <div className="flex items-center justify-between pt-4 mt-2">
+          <span className="text-xs text-slate-700 font-medium">
             {t('instructor.catalog.pagination', {
               current: meta.page,
               total: meta.totalPages,

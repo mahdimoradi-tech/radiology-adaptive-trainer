@@ -33,7 +33,7 @@ export function CardTitle({ className = '', children, ...rest }) {
 
 export function CardDescription({ className = '', children, ...rest }) {
   return (
-    <p className={`text-xs text-slate-500 mt-1 text-start ${className}`} {...rest}>
+    <p className={`text-xs text-slate-600 mt-1 text-start ${className}`} {...rest}>
       {children}
     </p>
   );
@@ -50,7 +50,7 @@ export function CardContent({ className = '', children, ...rest }) {
 export function CardFooter({ className = '', children, ...rest }) {
   return (
     <div
-      className={`p-5 pt-0 flex items-center justify-between border-t border-slate-100 mt-4 ${className}`}
+      className={`p-5 pt-4 flex items-center justify-between border-t border-slate-200 mt-4 ${className}`}
       {...rest}
     >
       {children}

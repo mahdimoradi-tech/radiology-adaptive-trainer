@@ -1,5 +1,45 @@
 @import "tailwindcss";
 
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  font-family: var(--font-sans);
+}
+
 @theme {
   --font-sans: "Vazirmatn Variable", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-mono: "Vazirmatn Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Accessible Color Tokens (WCAG 2.1 AA >= 4.5:1 against light surfaces) */
+  --color-app-body: #0f172a;        /* slate-900 (17.6:1 contrast against white) */
+  --color-app-muted: #475569;       /* slate-600 (7.5:1 contrast against white) */
+  --color-app-subtle: #64748b;      /* slate-500 (4.67:1 contrast against white) */
+  --color-app-surface: #ffffff;
+  --color-app-surface-muted: #f8fafc; /* slate-50 */
+  --color-app-border: #cbd5e1;      /* slate-300 */
+  --color-app-border-subtle: #e2e8f0; /* slate-200 */
+
+  /* Status Colors (WCAG AA Text) */
+  --color-app-primary: #0284c7;     /* sky-600 */
+  --color-app-primary-hover: #0369a1; /* sky-700 */
+  --color-app-primary-text: #0369a1; /* sky-700 (5.85:1 contrast) */
+
+  --color-app-danger: #e11d48;      /* rose-600 */
+  --color-app-danger-hover: #be123c; /* rose-700 */
+  --color-app-danger-text: #9f1239;  /* rose-800 (8.88:1 contrast) */
+
+  --color-app-success: #059669;     /* emerald-600 */
+  --color-app-success-hover: #047857; /* emerald-700 */
+  --color-app-success-text: #065f46; /* emerald-800 (7.60:1 contrast) */
+
+  --color-app-warning: #d97706;     /* amber-600 */
+  --color-app-warning-hover: #b45309; /* amber-700 */
+  --color-app-warning-text: #92400e; /* amber-800 (7.37:1 contrast) */
+
+  /* Spacing Scale Tokens */
+  --spacing-btn-h: 2.5rem;          /* 40px standard control height */
+  --spacing-divider: 1rem;          /* 16px distance from borders/dividers */
 }

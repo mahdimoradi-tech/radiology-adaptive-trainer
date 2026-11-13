@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Alert, Button } from '../../components/ui/index.js';
 import { BankStatsStrip } from '../../features/bank/BankStatsStrip.jsx';
 import { BankFilterBar } from '../../features/bank/BankFilterBar.jsx';
 import { BankQuestionList } from '../../features/bank/BankQuestionList.jsx';
@@ -22,7 +23,7 @@ export function InstructorReviewPage() {
     pageSize: 20,
   });
 
-  const { data, isLoading } = useBankQuestions(filters);
+  const { data, isLoading, isError, error, refetch } = useBankQuestions(filters);
 
   const questions = useMemo(() => data?.items || [], [data?.items]);
   const total = data?.total || 0;
@@ -136,7 +137,7 @@ export function InstructorReviewPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h1 className="text-xl font-bold text-slate-900">{t('instructor.review.title')}</h1>
-          <p className="text-xs text-slate-500 mt-0.5">{t('instructor.reviewDesc')}</p>
+          <p className="text-xs text-slate-600 mt-1">{t('instructor.reviewDesc')}</p>
         </div>
 
         {/* Shortcuts Pill */}
@@ -144,6 +145,20 @@ export function InstructorReviewPage() {
           {t('instructor.review.shortcutsHint')}
         </div>
       </div>
+
+      {isError && (
+        <Alert
+          variant="danger"
+          action={
+            <Button variant="outline" size="sm" onClick={() => refetch()}>
+              {t('common.retry', 'تلاش مجدد')}
+            </Button>
+          }
+        >
+          {error?.message ||
+            t('instructor.review.errorLoading', 'خطا در بارگذاری سؤالات بانک سوال.')}
+        </Alert>
+      )}
 
       {/* Stats Summary Strip */}
       <BankStatsStrip />

@@ -117,7 +117,7 @@ export function ReviewPage({ extra = null }) {
               {fmt.number(report.size, i18n.language)}
             </Badge>
           </div>
-          <p className="text-sm text-slate-500 mt-1">{t('report.subtitle')}</p>
+          <p className="text-sm text-slate-600 mt-1">{t('report.subtitle')}</p>
         </div>
 
         <Link to={`/app/reports/${sessionId}`}>
@@ -170,15 +170,17 @@ export function ReviewPage({ extra = null }) {
             aria-label={t('quiz.navigatorTitle')}
             className="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs flex flex-col"
           >
-            <div className="border-b border-slate-100 pb-3 mb-3">
-              <h2 className="font-semibold text-slate-800 text-sm">{t('quiz.navigatorTitle')}</h2>
-              <span className="text-xs text-slate-500">
+            <div className="border-b border-slate-200 pb-3 mb-3">
+              <h2 className="font-semibold text-slate-900 text-sm">{t('quiz.navigatorTitle')}</h2>
+              <span className="text-xs text-slate-600 font-medium">
                 {t('quiz.totalCount', { count: fmt.number(filteredItems.length, i18n.language) })}
               </span>
             </div>
 
             {filteredItems.length === 0 ? (
-              <p className="text-xs text-slate-400 py-4 text-center">{t('review.emptyFilter')}</p>
+              <p className="text-xs text-slate-600 font-medium py-4 text-center">
+                {t('review.emptyFilter')}
+              </p>
             ) : (
               <div className="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-5 gap-1.5 max-h-[60vh] overflow-y-auto p-1">
                 {filteredItems.map((item) => {

@@ -1,7 +1,8 @@
 {
   "app": {
     "name": "Radiology Adaptive Trainer",
-    "tagline": "Diagnostic practice on chest radiographs"
+    "tagline": "Diagnostic practice on chest radiographs",
+    "disclaimer": "This platform is strictly for education and not for clinical diagnosis."
   },
   "nav": {
     "home": "Home",
@@ -13,7 +14,8 @@
     "residents": "Residents",
     "catalog": "Image Catalog",
     "logout": "Logout",
-    "language": "Language"
+    "language": "Language",
+    "toggleMenu": "Toggle navigation menu"
   },
   "auth": {
     "login": "Login",
@@ -25,7 +27,8 @@
     "submitRegister": "Create Account",
     "noAccount": "Don't have an account?",
     "haveAccount": "Already have an account?",
-    "passwordHint": "At least 8 characters"
+    "passwordHint": "At least 8 characters",
+    "namePlaceholder": "Dr. Ahmadi"
   },
   "home": {
     "welcome": "Welcome, {{name}}",
@@ -93,7 +96,14 @@
       "editReturnsToPending": "Saving will return the question status to Pending Review.",
       "pageOf": "Page {{page}} of {{total}}",
       "prevPage": "Previous",
-      "nextPage": "Next"
+      "nextPage": "Next",
+      "edited": "Edited",
+      "errorLoading": "Failed to load questions from the question bank.",
+      "selectCorrectHint": "(Select correct option)",
+      "editNotePlaceholder": "Explain reason for editing...",
+      "distributionLabel": "Distribution",
+      "modelCertainty": "Model certainty",
+      "editValidationError": "Validation error during edit"
     },
     "residents": {
       "title": "Resident Trainees",
@@ -115,7 +125,7 @@
     "catalog": {
       "title": "Image Catalog & Difficulty Monitoring",
       "subtitle": "Statistical distribution analysis, data sources, and model difficulty tiers",
-      "biasAlertTitle": "Technical Note on Data and Source Confounding (ADR 0005)",
+      "biasAlertTitle": "Technical Note on Data and Source Confounding",
       "biasAlertText": "All 177 COVID-19 radiographs originate from adult cohorts (Cohen and Figure1), while pneumonia and normal images originate from pediatric cohorts (Kermany). Consequently, computed difficulty partly reflects demographic and imaging equipment domain shift. A quota cap of up to 500 images per class is enforced to prevent bucket starvation.",
       "statsTitle": "Catalog Statistical Distribution",
       "totalImages": "Total Catalog Images",
@@ -259,7 +269,9 @@
     "actionReview": "Review Questions",
     "actionNextTest": "Start Next Test",
     "classBucketSummary": "In class {{className}}, your accuracy was {{acc}} ({{band}}): {{breakdown}}",
-    "bucketBreakdownItem": "answered {{correct}} of {{total}} {{bucket}} questions correctly"
+    "bucketBreakdownItem": "answered {{correct}} of {{total}} {{bucket}} questions correctly",
+    "totalCol": "Total",
+    "errorWeight": "Error Weight"
   },
   "review": {
     "title": "Review Questions for Test #{{index}}",
@@ -314,7 +326,11 @@
     "forbiddenDesc": "You do not have permission to view this page.",
     "comingInTask": "This feature will be implemented in task {{task}}.",
     "roleResident": "Resident",
-    "roleInstructor": "Instructor"
+    "roleInstructor": "Instructor",
+    "errorLoading": "Failed to load data.",
+    "pageIndicator": "Page {{current}} of {{total}}",
+    "prev": "Previous",
+    "next": "Next"
   },
   "charts": {
     "noData": "No data available to display chart.",
@@ -391,7 +407,8 @@
     "takeAdaptiveTest": "Start Adaptive Test",
     "targetedPractice": "Targeted Practice for These Errors",
     "notFoundOrForbidden": "Practice set not found or access forbidden.",
-    "answerFailed": "Failed to record answer. Please try again."
+    "answerFailed": "Failed to record answer. Please try again.",
+    "questionBtnAria": "Question {{no}}"
   },
   "education": {
     "title": "Educational Guide & Learning Cycle",
@@ -415,13 +432,21 @@
     "fnTitle": "False Negative Error (FN)",
     "fnDesc": "Occurs when pathology is present in the radiograph, but you fail to detect it or misidentify it as normal (e.g., missing pneumonia consolidation).",
     "classesTitle": "Radiological Signs of Diagnostic Classes",
-    "classesSubtitle": "Directly grounded in the approved system knowledge base (apps/api/src/modules/llm/kb)",
+    "classesSubtitle": "Directly grounded in the approved system knowledge base",
     "covid19Title": "COVID-19",
     "covid19Desc": "Typical COVID-19 findings on chest radiography include bilateral alveolar opacities, predominantly peripheral and in the lower lung zones. Ground-glass opacities (GGO) and/or consolidation are common. Pleural effusion and mediastinal lymphadenopathy are unusual, and initial chest radiographs may be normal. Definitive diagnosis requires laboratory testing and clinical correlation.",
     "pneumoniaTitle": "Pneumonia",
     "pneumoniaDesc": "Bacterial pneumonia typically presents as focal lobar or segmental consolidation with air bronchograms and may be accompanied by parapneumonic effusion. In contrast, viral or atypical pneumonias more often present with peribronchial thickening, interstitial patterns, patchy opacities, and lung hyperinflation. Pneumonia sub-types are not differentiated in this diagnostic system.",
     "normalTitle": "Normal",
     "normalDesc": "A normal chest radiograph features clear lung fields, sharp costophrenic angles, age-appropriate cardiac and mediastinal contours, without any focal opacities or pleural effusions.",
-    "kbSourceLabel": "Text Source:"
+    "kbSourceLabel": "Text Source:",
+    "cycleStep1Tag": "Initial Assessment",
+    "cycleStep2Tag": "Error Engine",
+    "cycleStep3Tag": "Personalization",
+    "cycleStep4Tag": "Mastery",
+    "stepBadge": "Step {{num}}",
+    "fpBadge": "False Positive",
+    "fnBadge": "False Negative",
+    "classBadge": "Diagnostic Class"
   }
 }

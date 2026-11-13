@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Card, Badge, Button, XrayImage, Alert } from '../../components/ui/index.js';
 
 export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isActionLoading }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
   const [reviewNote, setReviewNote] = useState('');
   const [editError, setEditError] = useState(null);
@@ -17,7 +17,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
 
   if (!question) {
     return (
-      <div className="flex items-center justify-center h-full min-h-[400px] border border-dashed border-slate-200 rounded-2xl bg-white p-8 text-center text-slate-400 text-xs">
+      <div className="flex items-center justify-center h-full min-h-[400px] border border-dashed border-slate-200 rounded-2xl bg-white p-8 text-center text-slate-600 text-xs">
         {t('instructor.review.noSelection')}
       </div>
     );
@@ -51,7 +51,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
       });
       setIsEditing(false);
     } catch (err) {
-      setEditError(err.message || 'خطا در اعتبارسنجی ویرایش');
+      setEditError(err.message || t('instructor.review.editValidationError'));
     }
   };
 
@@ -65,7 +65,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
     setReviewNote('');
   };
 
-  const optionLetters = ['الف', 'ب', 'ج', 'د'];
+  const optionLetters = i18n.language === 'fa' ? ['الف', 'ب', 'ج', 'د'] : ['A', 'B', 'C', 'D'];
 
   return (
     <Card className="h-full flex flex-col p-6 overflow-y-auto">
@@ -145,7 +145,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
 
             <div className="space-y-2">
               <label className="block text-xs font-semibold text-slate-700">
-                {t('instructor.review.options')} (انتخاب پاسخ صحیح)
+                {t('instructor.review.options')} {t('instructor.review.selectCorrectHint')}
               </label>
               {editOptions.map((opt, idx) => (
                 <div key={idx} className="flex items-center gap-2">
@@ -156,7 +156,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
                     onChange={() => setEditCorrectIndex(idx)}
                     className="h-4 w-4 text-amber-600 focus:ring-amber-500"
                   />
-                  <span className="text-xs font-semibold text-slate-500 w-6">
+                  <span className="text-xs font-semibold text-slate-600 w-6">
                     {optionLetters[idx]}
                   </span>
                   <input
@@ -171,7 +171,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
                     required
                   />
                   {question.options[idx]?.key && (
-                    <span className="text-[10px] text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded font-mono">
+                    <span className="text-[10px] text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded font-mono">
                       {question.options[idx].key}
                     </span>
                   )}
@@ -191,7 +191,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
                 className="w-full text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500"
                 required
               />
-              <span className="text-[10px] text-slate-400 text-end block">
+              <span className="text-[10px] text-slate-600 text-end block">
                 {editRationale.length}/300
               </span>
             </div>
@@ -204,7 +204,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
                 type="text"
                 value={editNote}
                 onChange={(e) => setEditNote(e.target.value)}
-                placeholder="توضیح دلیل ویرایش..."
+                placeholder={t('instructor.review.editNotePlaceholder')}
                 className="w-full text-xs px-3 py-1.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500"
               />
             </div>
@@ -222,7 +222,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
           <>
             {/* Question Stem */}
             <div>
-              <span className="text-[11px] font-bold text-slate-500 block mb-1">
+              <span className="text-[11px] font-bold text-slate-600 block mb-1">
                 {t('instructor.review.stem')}
               </span>
               <p className="text-sm font-semibold text-slate-900 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200/80">
@@ -232,7 +232,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
 
             {/* Options */}
             <div>
-              <span className="text-[11px] font-bold text-slate-500 block mb-2">
+              <span className="text-[11px] font-bold text-slate-600 block mb-2">
                 {t('instructor.review.options')}
               </span>
               <div className="grid grid-cols-1 gap-2">
@@ -248,13 +248,13 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-slate-500 w-5">{optionLetters[idx]}</span>
+                        <span className="font-bold text-slate-600 w-5">{optionLetters[idx]}</span>
                         <span>{opt.text}</span>
                       </div>
 
                       <div className="flex items-center gap-2">
                         {opt.key && (
-                          <span className="text-[10px] text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded font-mono">
+                          <span className="text-[10px] text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded font-mono">
                             {opt.key}
                           </span>
                         )}
@@ -272,7 +272,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
 
             {/* Educational Rationale */}
             <div>
-              <span className="text-[11px] font-bold text-slate-500 block mb-1">
+              <span className="text-[11px] font-bold text-slate-600 block mb-1">
                 {t('instructor.review.rationale')}
               </span>
               <p className="text-xs text-slate-700 leading-relaxed bg-amber-50/40 p-3 rounded-xl border border-amber-200/60">
@@ -309,7 +309,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
                 )}
                 {question.analysisSummary.consensus.distribution && (
                   <div>
-                    توزیع:{' '}
+                    {t('instructor.review.distributionLabel')}:{' '}
                     <span className="font-semibold text-slate-800">
                       {question.analysisSummary.consensus.distribution}
                     </span>
@@ -317,7 +317,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
                 )}
                 {question.analysisSummary.certaintyA && (
                   <div>
-                    اطمینان مدل:{' '}
+                    {t('instructor.review.modelCertainty')}:{' '}
                     <span className="text-slate-700">
                       A: {question.analysisSummary.certaintyA} | B:{' '}
                       {question.analysisSummary.certaintyB || 'N/A'}
@@ -330,7 +330,7 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
             {/* Audit History */}
             {question.history?.length > 0 && (
               <div>
-                <span className="text-[11px] font-bold text-slate-500 block mb-1.5">
+                <span className="text-[11px] font-bold text-slate-600 block mb-1.5">
                   {t('instructor.review.history')}
                 </span>
                 <div className="space-y-1.5">
@@ -344,9 +344,9 @@ export function BankQuestionDetail({ question, onApprove, onReject, onEdit, isAc
                           {h.action}
                         </Badge>
                         <span className="font-medium text-slate-700">{h.by}</span>
-                        {h.note && <span className="text-slate-500 italic">({h.note})</span>}
+                        {h.note && <span className="text-slate-600 italic">({h.note})</span>}
                       </div>
-                      <span className="text-slate-400 text-[10px]">
+                      <span className="text-slate-600 text-[10px]">
                         {new Date(h.at).toLocaleDateString('fa-IR')}
                       </span>
                     </div>
