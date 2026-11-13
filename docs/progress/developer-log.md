@@ -8,9 +8,28 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T16a (As-built SRS) merged (PR #31). Ready for T16b (SDD documentation).
+- T16b (As-built SDD) in review. Ready for T16c (Test report and process documentation).
 
 ## Done (newest first)
+
+- Completed T16b: As-built Software Design Description (SDD) and architectural specifications:
+  - Authored comprehensive IEEE 1016 tailored `docs/as-built/02-SDD.md` (1,400 lines) across 14 sections:
+    - Section 1: Introduction and design goals, linking all 91 SRS requirements (`FR-AUTH`, `FR-TEST`, `FR-ADAPT`, `FR-REP`, `FR-PRAC`, `FR-PROG`, `FR-EDU`, `FR-INS`, `FR-LLM`, `FR-DATA`, and 7 NFR areas), and mapping 5 core architectural quality attributes (label-leak safety, offline demo, RTL Persian UI, pure engine, reproducible ML).
+    - Section 2: Architecture overview, monorepo decomposition matrix (`packages/contracts`, `packages/engine`, `apps/api`, `apps/web`, `ml/`), tier component diagram, and verification of the strict dependency rule via `git grep`.
+    - Section 3: Technology stack table with exact pinned library versions from `package.json` and `ml/uv.lock`.
+    - Section 4: Data design with Mermaid entity-relationship diagram and specifications for all 12 MongoDB/Mongoose collections (`users`, `images`, `sessions`, `responses`, `practice_sets`, `llm_usage`, `llm_cache`, `analysis_batches`, `image_analyses`, `analysis_validations`, `question_bank`, `question_gen_attempts`) with purpose, fields, and schema indexes.
+    - Section 5: API design with full 31-endpoint inventory (100% parity with `docs/qa/ROUTE-INVENTORY.md`), request/response schemas, mapped FRs, error handling format, HTTP status codes, and link to Postman collection.
+    - Section 6: Core algorithms documenting 9 mathematical algorithms (`confusionMatrix`, `rates`, `classWeights`, `largestRemainder`, `allocateClassCounts`, `allocateBucketCounts`, `selectFirstTest`/`selectNextTest`, `selectTargetedQuestions`, `isMastered`, `wilsonInterval`, `cohenKappa`), each with exact formula, source file:line, and worked test examples from test suites; reconciled class weight formula (`error / totalError` matching code vs historical text); documented ADR 0004 deviations.
+    - Section 7: Session lifecycle with state machine diagram (`in_progress` -> `finished`), concurrency guards, and sequence diagrams for baseline (Sequence A) and adaptive (Sequence B) training examinations.
+    - Section 8: Security architecture detailing HTTP-only JWT cookies, dynamic MongoDB role verification, IDOR defense, opaque HMAC image tokens, label-leak sanitization, rate limits, and cross-reference to `docs/qa/SECURITY-REPORT.md`.
+    - Section 9: LLM subsystem detailing three-mode provider (`live`, `cache-only`, `fake`), 16 RPD daily quota guard in Pacific day, 13s inter-call throttle, closed vocabulary, 9-rule dual-run consistency engine ($A \cap B$), pre-validation candidate checks, instructor review state machine, and data-flow diagram.
+    - Section 10: Offline ML pipeline architecture detailing DenseNet-121 feature extraction, stratified 5-fold cross-validation, difficulty scoring ($d = 1 - p$), 500-image catalog quota policy, and honest disclosure of the 100% pediatric vs adult dataset confounder.
+    - Section 11: Frontend architecture with 19-screen route map and guards, TanStack Query cache topology, RTL Persian logical layout, un-mirrored radiograph protection (`XrayImage`), and keyboard examination shortcuts.
+    - Section 12: Deployment and runtime view detailing Windows 11 host processes, filesystem asset folders, and exhaustive environment variables table (names and constraints only).
+    - Section 13: Design decisions and trade-offs matrix linking ADR 0001 through ADR 0014.
+    - Section 14: Traceability matrix mapping all 18 architectural subsystems to the 91 SRS requirements.
+  - Updated index and reading order in `docs/as-built/README.md`.
+  - Quality gates: `npm run lint` clean, 789/789 tests pass across 96 suites, `npm run build` succeeds in 417ms. Zero forbidden multi-operator references.
 
 - Completed T16a: As-built Software Requirements Specification (SRS), traceability matrix, and domain glossary (PR #31 merged):
   - Created `docs/as-built/README.md` establishing document reading order and retrospective status banner baselined on commit `9357ace`.

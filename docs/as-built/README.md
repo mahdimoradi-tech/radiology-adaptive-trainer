@@ -17,7 +17,7 @@ The as-built documentation suite is structured according to international softwa
 1. [**GLOSSARY.md**](GLOSSARY.md) — Domain definitions, mathematical formulations, metrics, and technical acronyms.
 2. [**01-SRS.md**](01-SRS.md) — Software Requirements Specification (functional and non-functional requirements, use cases, external interfaces, and constraints).
 3. [**traceability.csv**](traceability.csv) — Bidirectional traceability matrix linking every requirement to its originating task, ADR, source code implementation, automated test file, and manual verification step.
-4. [**02-SDD.md**](02-SDD.md) *(T16b)* — Software Design Document (system architecture, package decomposition, data models, state machines, and API specifications).
+4. [**02-SDD.md**](02-SDD.md) — Software Design Description (system architecture, monorepo decomposition, MongoDB data models, REST API specifications, adaptive mathematical algorithms, session lifecycle, security controls, and ML pipeline design).
 5. [**03-TEST-REPORT.md**](03-TEST-REPORT.md) *(T16c)* — Verification and Validation Report (test suite execution logs, security audits, evaluation benchmarks, and quality gate outcomes).
 
 ## Core System Principles
