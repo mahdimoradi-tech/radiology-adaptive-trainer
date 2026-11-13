@@ -196,3 +196,34 @@ The platform is designed and verified to run in the following environment (`READ
 | **FR-REP-05** | The system shall display the computed adaptive error weights and projected question allocation for the resident's upcoming session. | Should | `T06-AC1`, `ADR 0010` | `apps/web/src/pages/resident/__tests__/ReportPage.test.jsx`, `M22` | Implemented |
 | **FR-REP-06** | The system shall allow residents to request pedagogical error explanations for mistake confusion pairs within the review interface. | Should | `T07-AC3`, `T13-AC2` | `apps/web/src/features/sessions/__tests__/LlmPanel.test.jsx`, `M21` | Implemented |
 | **FR-REP-07** | The system shall support on-demand generation of a structured narrative performance report summarizing strengths and focal diagnostic weaknesses. | Should | `T07-AC3`, `T13-AC2` | `apps/web/src/features/sessions/__tests__/LlmPanel.test.jsx`, `M21` | Implemented |
+
+
+### 3.5 Module 5: Targeted Practice (`FR-PRAC`)
+
+| ID | Statement | Priority | Source | Verification | Status |
+|---|---|---|---|---|---|
+| **FR-PRAC-01** | The system shall identify a resident trainee's top confusion pairs ($(c_{\text{true}}, c_{\text{pred}})$) from finished diagnostic session data. | Must | `T09b-AC1`, `ADR 0014` | `apps/api/src/__tests__/practice.test.js`, `M25` | Implemented |
+| **FR-PRAC-02** | The system shall generate 5-question micro-practice sets targeted to a selected confusion pair using instructor-approved question bank items. | Must | `T09b-AC1`, `ADR 0014` | `apps/api/src/__tests__/practice.test.js`, `M25` | Implemented |
+| **FR-PRAC-03** | The system shall deliver practice questions with 4 localized options without disclosing correct answers or rationale prior to submission. | Must | `T09b-AC1`, `ADR 0014` | `apps/api/src/__tests__/practice.test.js`, `M25` | Implemented |
+| **FR-PRAC-04** | The system shall display immediate pedagogical explanations and highlight the correct option upon practice answer submission. | Must | `T09b-AC1`, `ADR 0014` | `apps/api/src/__tests__/practice.test.js`, `M25` | Implemented |
+| **FR-PRAC-05** | The system shall serve practice questions entirely without live LLM calls, drawing exclusively from local approved MongoDB question collections. | Must | `T09b-AC2`, `ADR 0014` | `apps/api/src/__tests__/practice.test.js`, `M38` | Implemented |
+| **FR-PRAC-06** | The system shall enforce resident ownership and access isolation on practice sets, returning HTTP 404 for foreign sets and HTTP 403 for instructors. | Must | `T09b-AC3`, `T11-AC1` | `apps/api/src/__tests__/access-matrix.test.js`, `apps/api/src/__tests__/practice.test.js` | Implemented |
+
+### 3.6 Module 6: Resident Progress & Mastery (`FR-PROG`)
+
+| ID | Statement | Priority | Source | Verification | Status |
+|---|---|---|---|---|---|
+| **FR-PROG-01** | The system shall maintain a longitudinal record of all finished training sessions for each resident, recording chronological accuracy trends. | Must | `T09a-AC1`, `docs/DOMAIN.md:Sec 3` | `apps/api/src/__tests__/progress.test.js`, `M26` | Implemented |
+| **FR-PROG-02** | The system shall evaluate class mastery status against an 80% cumulative accuracy benchmark for each pathology class (`covid19`, `pneumonia`, `normal`). | Must | `T09a-AC1`, `docs/DOMAIN.md:Sec 3` | `apps/api/src/__tests__/progress.test.js`, `M24` | Implemented |
+| **FR-PROG-03** | The system shall render longitudinal line charts plotting per-class accuracy across sequential sessions with high-contrast, accessible styling. | Must | `T06-AC1`, `T15-AC1` | `apps/web/src/pages/resident/__tests__/ProgressPage.test.jsx`, `M26` | Implemented |
+| **FR-PROG-04** | The system shall display prominent mastery status badges indicating achieved, in-progress, or deficient competencies per class. | Should | `T09a-AC1`, `T15-AC1` | `apps/web/src/features/progress/__tests__/ProgressView.test.jsx`, `M24` | Implemented |
+| **FR-PROG-05** | The system shall provide an idempotent synthetic demo seed script (`npm run demo:seed`) generating pre-populated resident training histories. | Should | `T09a-AC3` | `apps/api/src/__tests__/seed-demo.test.js` | Implemented |
+
+### 3.7 Module 7: Educational Reference (`FR-EDU`)
+
+| ID | Statement | Priority | Source | Verification | Status |
+|---|---|---|---|---|---|
+| **FR-EDU-01** | The system shall provide a dedicated educational reference page detailing primary pulmonary findings (consolidation, GGO, pleural thickening). | Must | `T09c-AC1`, `docs/DOMAIN.md:Sec 7` | `apps/web/src/pages/resident/__tests__/EducationPage.test.jsx`, `M27` | Implemented |
+| **FR-EDU-02** | The system shall provide disease summaries detailing characteristic radiographic presentations of COVID-19, non-COVID pneumonia, and normal anatomy. | Must | `T09c-AC1`, `docs/DOMAIN.md:Sec 7` | `apps/web/src/pages/resident/__tests__/EducationPage.test.jsx`, `M27` | Implemented |
+| **FR-EDU-03** | The system shall display verified sample chest radiographs illustrating typical presentations for each pathology class. | Should | `T09c-AC1`, `T15-AC1` | `apps/web/src/pages/resident/__tests__/EducationPage.test.jsx`, `M27` | Implemented |
+| **FR-EDU-04** | The system shall display a persistent non-clinical disclaimer in the UI layout footer emphasizing educational use and prohibiting diagnostic triage. | Must | `T09c-AC1`, `README.md:14-22` | `apps/web/src/app/layouts/__tests__/ResidentLayout.test.jsx`, `M27` | Implemented |
