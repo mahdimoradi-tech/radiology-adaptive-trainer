@@ -618,6 +618,332 @@ The complete REST interface is documented, parameterized, and executable via Pos
 
 ---
 
+## 6. Core Algorithms
+
+The core adaptive and statistical algorithms are implemented as pure, deterministic JavaScript functions within `@radiology/engine` (`packages/engine/src/`). They have strictly zero external I/O or network dependencies and are verified against formal property tests and hand-calculated mathematical proofs.
+
+### 6.1 Diagnostic Error Pattern Extraction
+
+#### 6.1.1 3x3 Confusion Matrix
+- **Function Name:** `confusionMatrix(responses, classIds = CLASS_IDS)`
+- **Source Location:** `packages/engine/src/rates.js:10-27`
+- **Mathematical Formula:**
+  For a set of resident test responses $R$ and pathology classifications $\mathcal{C} = \{\text{covid19}, \text{pneumonia}, \text{normal}\}$:
+  $$M[c_{\text{true}}][c_{\text{pred}}] = \sum_{r \in R} \mathbb{I}(r.\text{trueClass} = c_{\text{true}} \land r.\text{answer} = c_{\text{pred}})$$
+- **Worked Test Example (`packages/engine/src/__tests__/math-and-rates.test.js:56-97`):**
+  Given 4 responses:
+  1. `trueClass: 'covid19'`, `answer: 'covid19'` (TP for covid19)
+  2. `trueClass: 'covid19'`, `answer: 'pneumonia'` (FN for covid19, FP for pneumonia, TN for normal)
+  3. `trueClass: 'pneumonia'`, `answer: 'pneumonia'` (TP for pneumonia, TN for covid19, TN for normal)
+  4. `trueClass: 'normal'`, `answer: 'pneumonia'` (FN for normal, FP for pneumonia, TN for covid19)
+  
+  Produces matrix:
+  ```json
+  {
+    "covid19":   { "covid19": 1, "pneumonia": 1, "normal": 0 },
+    "pneumonia": { "covid19": 0, "pneumonia": 1, "normal": 0 },
+    "normal":    { "covid19": 0, "pneumonia": 1, "normal": 0 }
+  }
+  ```
+
+#### 6.1.2 Laplace-Smoothed Rates (FPR, FNR, Error)
+- **Function Name:** `rates(responses, alpha = 1, classIds = CLASS_IDS)`
+- **Source Location:** `packages/engine/src/rates.js:37-71`
+- **Mathematical Formulas:**
+  One-vs-rest tallies for class $c$:
+  $$TP_c = \sum_{r \in R} \mathbb{I}(r.\text{trueClass} = c \land r.\text{answer} = c)$$
+  $$FN_c = \sum_{r \in R} \mathbb{I}(r.\text{trueClass} = c \land r.\text{answer} \neq c)$$
+  $$FP_c = \sum_{r \in R} \mathbb{I}(r.\text{trueClass} \neq c \land r.\text{answer} = c)$$
+  $$TN_c = \sum_{r \in R} \mathbb{I}(r.\text{trueClass} \neq c \land r.\text{answer} \neq c)$$
+
+  To eliminate division by zero on unexposed classes ($0/0$), additive Laplace smoothing ($\alpha = 1$) is applied:
+  $$\text{FNR}_c = \frac{FN_c + \alpha}{(TP_c + FN_c) + 2\alpha}$$
+  $$\text{FPR}_c = \frac{FP_c + \alpha}{(FP_c + TN_c) + 2\alpha}$$
+  $$\text{error}_c = \text{FNR}_c + \text{FPR}_c$$
+
+- **Worked Test Example (`packages/engine/src/__tests__/math-and-rates.test.js:70-87`):**
+  Using the 4-response dataset above with $\alpha = 1$:
+  - **covid19:** $TP=1, FN=1, FP=0, TN=2$
+    $$\text{FNR} = \frac{1 + 1}{2 + 2} = \frac{2}{4} = 0.5000$$
+    $$\text{FPR} = \frac{0 + 1}{2 + 2} = \frac{1}{4} = 0.2500$$
+    $$\text{error} = 0.5000 + 0.2500 = 0.7500$$
+  - **pneumonia:** $TP=1, FN=0, FP=2, TN=1$
+    $$\text{FNR} = \frac{0 + 1}{1 + 2} = \frac{1}{3} \approx 0.3333$$
+    $$\text{FPR} = \frac{2 + 1}{3 + 2} = \frac{3}{5} = 0.6000$$
+    $$\text{error} = \frac{1}{3} + \frac{3}{5} = \frac{14}{15} \approx 0.9333$$
+  - **normal:** $TP=0, FN=1, FP=0, TN=3$
+    $$\text{FNR} = \frac{1 + 1}{1 + 2} = \frac{2}{3} \approx 0.6667$$
+    $$\text{FPR} = \frac{0 + 1}{3 + 2} = \frac{1}{5} = 0.2000$$
+    $$\text{error} = \frac{2}{3} + \frac{1}{5} = \frac{13}{15} \approx 0.8667$$
+  - **Total Error Sum:**
+    $$\sum_{c} \text{error}_c = \frac{3}{4} + \frac{14}{15} + \frac{13}{15} = \frac{3}{4} + \frac{27}{15} = \frac{3}{4} + \frac{9}{5} = \frac{51}{20} = 2.5500$$
+
+#### 6.1.3 Normalized Class Error Weights and Formula Reconciliation
+- **Function Name:** `classWeights(ratesResult, classIds = CLASS_IDS)`
+- **Source Location:** `packages/engine/src/rates.js:81-100`
+- **Mathematical Formula:**
+  $$w_c = \begin{cases} \frac{\text{error}_c}{\sum_{k \in \mathcal{C}} \text{error}_k} & \text{if } \sum_{k} \text{error}_k > 0 \\ \frac{1}{|\mathcal{C}|} & \text{if } \sum_{k} \text{error}_k = 0 \end{cases}$$
+- **Reconciliation of Documentation vs. Code:**
+  - *Paper / Early Draft Text:* Some preliminary project notes referenced non-normalized heuristic scaling factors ($W_i = \text{base} + \lambda \cdot \text{error}_i$).
+  - *Actual Implementation:* In `@radiology/engine`, `classWeights` implements the exact normalized error ratio $w_c = \text{error}_c / \sum \text{error}_k$. This mathematical design guarantees that $\sum_{c \in \mathcal{C}} w_c = 1.0$ unconditionally, preventing weight drift, overflow, or negative allocations across arbitrary numbers of iterations (`ADR 0004`).
+- **Worked Test Example (`packages/engine/src/__tests__/math-and-rates.test.js:92-97`):**
+  Given total error sum $51/20 = 2.55$:
+  $$w_{\text{covid19}} = \frac{3/4}{51/20} = \frac{15}{51} = \frac{5}{17} \approx 0.294118$$
+  $$w_{\text{pneumonia}} = \frac{14/15}{51/20} = \frac{56}{153} \approx 0.366013$$
+  $$w_{\text{normal}} = \frac{13/15}{51/20} = \frac{52}{153} \approx 0.339869$$
+  $$\sum w_c = \frac{45 + 56 + 52}{153} = \frac{153}{153} = 1.000000$$
+
+---
+
+### 6.2 Integer Allocation Algorithms
+
+#### 6.2.1 Largest Remainder (Hamilton-Hare) Method
+- **Function Name:** `largestRemainder(total, weights)`
+- **Source Location:** `packages/engine/src/math.js:9-44`
+- **Algorithm:**
+  1. Normalize weights: $w'_i = w_i / \sum_k w_k$.
+  2. Compute exact unrounded quotas: $q_i = total \times w'_i$.
+  3. Assign initial floored integer counts: $f_i = \lfloor q_i \rfloor$.
+  4. Compute remaining unallocated items: $R = total - \sum_i f_i$.
+  5. Compute fractional remainders: $d_i = q_i - f_i$.
+  6. Sort bins descending by $d_i$. Ties ($|d_a - d_b| \le 10^{-9}$) are broken deterministically by lowest bin index $i$.
+  7. Increment the first $R$ bins by 1. Return $\mathbf{f}$.
+- **Worked Test Example (`packages/engine/src/__tests__/math-and-rates.test.js:18-24`):**
+  - Allocate $total = 10$ with weights $[0.333, 0.333, 0.334]$.
+  - Exact quotas: $[3.33, 3.33, 3.34]$.
+  - Floored integers: $[3, 3, 3]$, allocated $= 9$, remainder $R = 1$.
+  - Fractional parts: $d_0 = 0.33, d_1 = 0.33, d_2 = 0.34$.
+  - Index 2 has the largest fractional part ($0.34 > 0.33$) and receives $+1$.
+  - Final integer allocation: $[3, 3, 4]$. Sum $= 10$.
+
+#### 6.2.2 Disease Class Allocation
+- **Function Name:** `allocateClassCounts(totalQuestions, weights, minClassShare = 0.20, classIds = CLASS_IDS)`
+- **Source Location:** `packages/engine/src/allocation.js:15-37`
+- **Algorithm:**
+  1. Calculate reserved minimum floor per class: $\text{minClass} = \lceil \text{minClassShare} \times totalQuestions \rceil$.
+  2. For $N = 60$ and $\text{minClassShare} = 0.20$, $\text{minClass} = \lceil 0.20 \times 60 \rceil = 12$.
+  3. Compute unreserved adaptive pool: $R = totalQuestions - |\mathcal{C}| \times \text{minClass} = 60 - 36 = 24$.
+  4. Distribute $R$ using `largestRemainder(R, weights)`.
+  5. Final class count: $N_c = \text{minClass} + \text{remainderAlloc}_c$.
+- **Worked Test Example (`packages/engine/src/__tests__/allocation.test.js:6-31`):**
+  - $N = 60$, weights: $\{ \text{covid19}: 0.60, \text{pneumonia}: 0.30, \text{normal}: 0.10 \}$.
+  - Floor: 12 per class (36 total). Remainder $R = 24$.
+  - Exact fractional distribution of 24:
+    - covid19: $24 \times 0.60 = 14.4$ ($\text{floor}=14, \text{frac}=0.4$)
+    - pneumonia: $24 \times 0.30 = 7.2$ ($\text{floor}=7, \text{frac}=0.2$)
+    - normal: $24 \times 0.10 = 2.4$ ($\text{floor}=2, \text{frac}=0.4$)
+  - Initial sum $= 14 + 7 + 2 = 23$. Leftover $= 1$.
+  - Tie-break: covid19 (index 0) and normal (index 2) share fraction 0.4. Index 0 receives the extra item.
+  - Final class allocations:
+    $$\text{covid19}: 12 + 15 = 27$$
+    $$\text{pneumonia}: 12 + 7 = 19$$
+    $$\text{normal}: 12 + 2 = 14$$
+    $$\text{Sum} = 27 + 19 + 14 = 60$$
+
+#### 6.2.3 Difficulty Bucket Allocation
+- **Function Name:** `allocateBucketCounts(classCounts, totalQuestions, responses = [], options = {})`
+- **Source Location:** `packages/engine/src/allocation.js:54-121`
+- **Algorithm:**
+  - **Baseline Session (`isFirstTest = true`):**
+    For each class $c$, distributes $N_c$ via `largestRemainder(Nc, firstTestBucketShares)` where default shares are $\{ \text{easy}: 0.40, \text{medium}: 0.30, \text{hard}: 0.30 \}$.
+    *Worked Test Example (`allocation.test.js:58-69`):* For $N_c = 20$, yields $\{ \text{easy}: 8, \text{medium}: 6, \text{hard}: 6 \}$.
+  - **Adaptive Session:**
+    1. Reserved bucket floor: $\text{minBucket} = \max(1, \text{round}(\text{minBucketShare} \times totalQuestions))$. For $N = 60$, $\text{minBucket} = \max(1, \text{round}(0.04 \times 60)) = 2$.
+    2. Computes historical incorrect rate per class-bucket bin:
+       $$IR_{c,b} = \frac{\text{incorrect}_{c,b} + \alpha}{\text{total}_{c,b} + 2\alpha}$$
+    3. Normalizes weights: $w_{c,b} = IR_{c,b} / \sum_{b'} IR_{c,b'}$.
+    4. Distributes remainder $R_c = N_c - 3 \times \text{minBucket}$ via `largestRemainder(Rc, wc)`.
+    5. Final bucket count: $N_{c,b} = \text{minBucket} + \text{remainderAlloc}_b$.
+
+---
+
+### 6.3 Test Assembly and Targeted Selection
+
+#### 6.3.1 Session Question Selection and Shortage Substitution
+- **Function Names:**
+  - Baseline Test: `selectFirstTest(imagePool, userConfig = {})` (`packages/engine/src/selection.js:174-194`)
+  - Adaptive Test: `selectNextTest(imagePool, responseHistory = [], userConfig = {})` (`packages/engine/src/selection.js:204-234`)
+  - Image Picker: `pickImagesFromPool(...)` (`packages/engine/src/selection.js:34-165`)
+- **Execution Logic:**
+  1. PRNG Initialization: Initialized with deterministic seed (`createRng(config.seed)`).
+  2. Binning: Available catalog images partitioned into bins by $[c][b]$, excluding previously shown images when `allowRepeats = false`.
+  3. Quota Draw: Exact counts $N_{c,b}$ drawn from candidate bins.
+  4. Multi-Tier Shortage Substitution (if a bin is depleted):
+     - Tier 1: Fallback to nearest difficulty bucket within the same class (for `easy`: `medium` then `hard`; for `hard`: `medium` then `easy`; for `medium`: `easy` then `hard`).
+     - Tier 2: Draw from other classes ordered descending by class error weight $w_c$ (`medium` $\to$ `easy` $\to$ `hard`).
+     - Audit: Every substitution is recorded in `plan.shortfalls`. Total missing images recorded in `plan.deficit`.
+
+#### 6.3.2 Targeted Practice Question Selection
+- **Function Name:** `selectTargetedQuestions(bank, history = [], config = {}, n = 10, answeredQuestionIds = [], classIds = CLASS_IDS)`
+- **Source Location:** `packages/engine/src/targeted.js:56-191`
+- **Algorithm:**
+  1. Extracts the 6 off-diagonal confusion pairs $(c_{\text{true}} \neq c_{\text{pred}})$.
+  2. Computes pair error weight with Laplace smoothing: $W_{tc \to pred} = M[tc][pred] + \alpha$.
+  3. Allocates target count $n$ across pairs using `largestRemainder`.
+  4. Draws approved, unpracticed questions matching each specific confusion pair.
+  5. Shortage fallback: Fills missing items from questions matching the same `trueClass`, then from any remaining approved questions.
+
+#### 6.3.3 Resident Mastery Rule
+- **Function Name:** `isMastered(latestSessionResponses, threshold = MASTERY_THRESHOLD, classIds = CLASS_IDS)`
+- **Source Location:** `packages/engine/src/targeted.js:16-40`
+- **Mastery Threshold Constant:** `MASTERY_THRESHOLD = 0.8` (`packages/contracts/src/engine.js:10`).
+- **Mathematical Rule:**
+  A resident achieves overall diagnostic mastery if and only if:
+  $$\forall c \in \mathcal{C}: \quad \text{Count}_c > 0 \quad \land \quad \frac{\text{Correct}_c}{\text{Count}_c} \ge \text{MASTERY\_THRESHOLD}$$
+- **Worked Test Example (`packages/engine/src/__tests__/targeted-and-mastery.test.js:7-35`):**
+  A finished session with accuracy per class:
+  - covid19: $4/5 = 80\%$ ($\ge 0.8$)
+  - pneumonia: $5/5 = 100\%$ ($\ge 0.8$)
+  - normal: $8/10 = 80\%$ ($\ge 0.8$)
+  $\implies$ `isMastered` evaluates to `true`.
+  If covid19 drops to $3/5 = 60\%$, `isMastered` evaluates to `false`.
+
+---
+
+### 6.4 Statistical Helpers
+
+#### 6.4.1 Wilson Score Confidence Interval
+- **Function Name:** `wilsonInterval(k, n, z = 1.96)`
+- **Source Location:** `packages/engine/src/stats/wilson.js:9-24`
+- **Mathematical Formula:**
+  For $k$ successes in $n$ binomial trials with standard normal quantile $z$ (1.96 for 95% confidence):
+  $$p = \frac{k}{n}, \quad \text{center} = \frac{p + \frac{z^2}{2n}}{1 + \frac{z^2}{n}}$$
+  $$\text{half} = \frac{z}{1 + \frac{z^2}{n}} \sqrt{\frac{p(1-p)}{n} + \frac{z^2}{4n^2}}$$
+  $$\text{low} = \max\left(0, \text{center} - \text{half}\right), \quad \text{high} = \min\left(1, \text{center} + \text{half}\right)$$
+- **Worked Test Example (`packages/engine/src/__tests__/stats.test.js:6-11`):**
+  For $k = 8, n = 10, z = 1.96$:
+  $$p = 0.8000, \quad \text{low} \approx 0.4900, \quad \text{high} \approx 0.9433$$
+  Returns `{ p: 0.8, low: 0.490..., high: 0.943... }`. Handles $n=0$ by returning `null` values.
+
+#### 6.4.2 Cohen's Kappa Inter-Rater Agreement
+- **Function Name:** `cohenKappa(table)`
+- **Source Location:** `packages/engine/src/stats/kappa.js:8-74`
+- **Mathematical Formula:**
+  For an $m \times m$ agreement contingency matrix between two raters (or Run A vs. Run B):
+  $$p_o = \frac{\sum_{i=1}^m x_{ii}}{N}, \quad p_e = \sum_{i=1}^m \frac{R_i \cdot C_i}{N^2}, \quad \kappa = \frac{p_o - p_e}{1 - p_e}$$
+- **Worked Test Example (`packages/engine/src/__tests__/stats.test.js:50-58`):**
+  Given $2 \times 2$ agreement table $\begin{pmatrix} 20 & 5 \\ 10 & 15 \end{pmatrix}$:
+  $$N = 50, \quad \sum x_{ii} = 20 + 15 = 35 \implies p_o = \frac{35}{50} = 0.7000$$
+  $$R_1 = 25, C_1 = 30 \implies \frac{25 \times 30}{2500} = 0.3000$$
+  $$R_2 = 25, C_2 = 20 \implies \frac{25 \times 20}{2500} = 0.2000 \implies p_e = 0.5000$$
+  $$\kappa = \frac{0.7000 - 0.5000}{1 - 0.5000} = \frac{0.2000}{0.5000} = 0.4000$$
+
+---
+
+### 6.5 Architectural Deviations from Reference Paper (ADR 0004 Summary)
+
+| # | Topic | Reference Paper Approach | System Implementation (`@radiology/engine`) | Architectural Rationale (`ADR 0004`) |
+|---|---|---|---|---|
+| **1** | **Division by Zero** | Raw ratios $FNR = \frac{FN}{TP+FN}$, $FPR = \frac{FP}{FP+TN}$. | Additive Laplace smoothing ($\alpha = 1$): $\frac{FN + 1}{TP + FN + 2}$. | Prevents `0/0` (`NaN`) or `Infinity` when a class has zero exposures or zero errors. |
+| **2** | **Integer Rounding** | Naive floating-point rounding. | Largest Remainder (Hamilton-Hare) integer apportionment. | Guarantees $\sum N_c = N$ and $\sum N_{c,b} = N_c$ exactly with zero integer drift. |
+| **3** | **Class Error Weights** | Unnormalized or arbitrary linear scaling. | Strictly normalized error proportion: $w_c = \text{error}_c / \sum \text{error}_k$. | Enforces $\sum w_c = 1.0$ unconditionally; eliminates negative or unbounded weight values. |
+| **4** | **Minimum Test Size** | Unconstrained test sizes ($N$ arbitrary). | Enforced design floor: $N \ge 45$ questions. | Reserved class minimums ($3 \times 20\%$) take $\approx 60\%$ of $N$. At $N < 45$, fewer than 18 questions remain for adaptive error reallocation, compromising educational efficacy. |
+| **5** | **Image Repetition** | Allows unconstrained image repetition across sessions. | Default `allowRepeats = false` with deterministic shortage substitution. | Prevents residents from answering via rote visual recall rather than diagnostic reasoning. |
+
+---
+
+## 7. Session Lifecycle and State Machine
+
+### 7.1 Session State Machine (`ADR 0010`)
+The training session lifecycle is governed by an explicit finite state machine with strict database-level concurrency and access guards.
+
+```mermaid
+stateDiagram-v2
+    [*] --> in_progress : POST /api/sessions\n(Kind: baseline if sessions=0, else adaptive)
+    
+    state in_progress {
+        [*] --> answering
+        answering --> answering : PUT /questions/:no/answer\n(Idempotent, Zero Diagnostic Leakage)
+    }
+
+    in_progress --> finished : POST /api/sessions/:id/finish\n(Calculates final metrics & locks session)
+    
+    state finished {
+        [*] --> report_ready
+        report_ready --> report_ready : GET /api/sessions/:id/report
+        report_ready --> report_ready : POST /explanations (Cached LLM)
+        report_ready --> report_ready : POST /report-narrative (LLM Tutor)
+    }
+
+    finished --> [*]
+```
+
+#### State Transition Rules and Integrity Guards
+1. **Single Active Session Guard:** At most one session with `status: 'in_progress'` is permitted per resident. Enforced at the database level by MongoDB unique partial index `{ userId: 1, status: 1 }` with filter `{ status: 'in_progress' }`. Attempting to start another session returns `409 SESSION_IN_PROGRESS`.
+2. **Answer Ingestion Guard:** Submissions via `PUT /api/sessions/:id/questions/:no/answer` are accepted strictly when `status === 'in_progress'`. Submitting to a completed session returns `409 SESSION_NOT_IN_PROGRESS`.
+3. **Atomic Finalization:** Calling `POST /api/sessions/:id/finish` evaluates final metrics, records `finishedAt = new Date()`, updates status to `'finished'`, and locks the session. Re-invoking finish returns `409 SESSION_ALREADY_FINISHED`.
+4. **Report Privacy Guard:** Calling `GET /api/sessions/:id/report` while a session is active returns `409 SESSION_NOT_FINISHED`. Diagnostic ground truth is never accessible to residents while answering questions.
+
+---
+
+### 7.2 Session Lifecycle Sequence Diagrams
+
+#### 7.2.1 Sequence A: Baseline Examination Flow
+A new resident completes their initial 60-question diagnostic baseline exam.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Resident as Resident Trainee
+    participant Web as React Web SPA (apps/web)
+    participant API as Express API (apps/api)
+    participant Engine as Adaptive Engine (@radiology/engine)
+    participant DB as MongoDB (sessions, responses)
+
+    Resident->>Web: Clicks "Start Baseline Test"
+    Web->>API: POST /api/sessions { size: 60 }
+    API->>DB: Count finished sessions for resident (returns 0)
+    API->>Engine: selectFirstTest(imagePool, { totalQuestions: 60, seed })
+    Engine-->>API: Returns 60 balanced images (20 covid, 20 pneu, 20 norm)
+    API->>DB: Session.create({ kind: 'baseline', status: 'in_progress', questions })
+    API-->>Web: 201 Created (SessionPublicSchema: 60 questions, no labels)
+    Web-->>Resident: Renders Question 1 on dark X-ray viewer
+
+    loop 60 Examination Questions
+        Resident->>Web: Selects diagnosis (COVID-19 / Pneumonia / Normal)
+        Web->>API: PUT /api/sessions/:id/questions/:no/answer { answer, timeMs }
+        API->>DB: Response.findOneAndUpdate({ sessionId, questionNo }, answer, { upsert: true })
+        API-->>Web: 200 OK { sessionId, questionNo, answered: true, answer }
+        Web-->>Resident: Autosaves and advances to next radiograph
+    end
+
+    Resident->>Web: Clicks "Finish Session" in confirmation dialog
+    Web->>API: POST /api/sessions/:id/finish
+    API->>DB: Load all 60 answered responses
+    API->>API: Compute raw confusion matrix & metrics (tp, fp, fn, recall, precision)
+    API->>DB: Session.updateOne({ status: 'finished', finishedAt, metrics })
+    API-->>Web: 200 OK (SessionReportSchema with revealed ground truth)
+    Web-->>Resident: Displays Performance Report & Confusion Matrix
+```
+
+#### 7.2.2 Sequence B: Adaptive Examination Flow
+A resident with historical errors starts an adaptively calibrated training test.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Resident as Resident Trainee
+    participant Web as React Web SPA (apps/web)
+    participant API as Express API (apps/api)
+    participant Engine as Adaptive Engine (@radiology/engine)
+    participant DB as MongoDB (sessions, responses)
+
+    Resident->>Web: Clicks "Start Next Adaptive Test"
+    Web->>API: POST /api/sessions { size: 60 }
+    API->>DB: Count finished sessions (count >= 1)
+    API->>DB: Fetch all past responses from finished sessions
+    API->>Engine: selectNextTest(imagePool, pastResponses, { totalQuestions: 60, seed })
+    Engine->>Engine: Compute Laplace rates & error weights (rates.js)
+    Engine->>Engine: allocateClassCounts & allocateBucketCounts (allocation.js)
+    Engine->>Engine: pickImagesFromPool (excluding previously shown images)
+    Engine-->>API: Returns 60 adaptively weighted images (e.g. 27 covid, 19 pneu, 14 norm)
+    API->>DB: Session.create({ kind: 'adaptive', status: 'in_progress', plan, questions })
+    API-->>Web: 201 Created (SessionPublicSchema)
+    Web-->>Resident: Presents tailored training test targeting resident's diagnostic weaknesses
+```
+
+---
+
 ## 12. Deployment and Runtime View
 
 ### 12.1 Local Workstation Operating Model
