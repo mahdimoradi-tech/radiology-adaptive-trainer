@@ -28,7 +28,7 @@ Session start: `/sync`, then `/start-task <Txx>`. Notes go to `docs/progress/dev
 | T15 | merged | style/T15-ui-polish | #28 | `apps/web/` |
 | T16a | merged | docs/T16a-srs | #31 | `docs/` |
 | T16b | merged | docs/T16b-sdd | #33 | `docs/` |
-| T16c | in-review | docs/T16c-test-report-and-process | - | `docs/` |
+| T16c | merged | docs/T16c-test-report-and-process | #35 | `docs/` |
 
 ## Open questions
 - Professor meeting: confirm goal (reproduce paper vs usable product), LLM expectation (image analysis + question generation), who reviews generated questions/KB scientifically, deadline and delivery format, how individual grades are assessed, whether the agent-assisted workflow is accepted.
