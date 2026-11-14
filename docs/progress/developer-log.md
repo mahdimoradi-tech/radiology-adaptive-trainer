@@ -8,11 +8,11 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T16c (Test report, user guide, run guide, and process report) in review (PR pending). All as-built documentation complete.
+- All 24 engineering tasks (T00 through T16c) merged to main (PR #35). Milestone complete.
 
 ## Done (newest first)
 
-- Completed T16c: As-built Test Report, User Guide, Run Guide, and Process Report:
+- Completed T16c: As-built Test Report, User Guide, Run Guide, and Process Report (PR #35 merged):
   - Authored `docs/as-built/03-TEST-REPORT.md` (IEEE 829 / ISO/IEC/IEEE 29119 lite):
     - Documented 10-tier test strategy: unit, integration, property-based, diagnostic label leakage, access matrix, static scanners, virtual simulation, empirical evaluation, security verification, and manual verification.
     - Real test inventory matching live `npm test` execution: 96 test files, 789 passed tests, 0 failures, 33.79s duration.
