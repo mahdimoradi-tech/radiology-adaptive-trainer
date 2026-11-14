@@ -8,9 +8,41 @@ OS/shell: Windows 11 / PowerShell 5.1 · Node/npm: v24.11.0 / 11.21.1 · MongoDB
 
 ## Current task
 
-- T16b (As-built SDD) merged (PR #33). Ready for T16c (Test report and process documentation).
+- T16c (Test report, user guide, run guide, and process report) in review (PR pending). All as-built documentation complete.
 
 ## Done (newest first)
+
+- Completed T16c: As-built Test Report, User Guide, Run Guide, and Process Report:
+  - Authored `docs/as-built/03-TEST-REPORT.md` (IEEE 829 / ISO/IEC/IEEE 29119 lite):
+    - Documented 10-tier test strategy: unit, integration, property-based, diagnostic label leakage, access matrix, static scanners, virtual simulation, empirical evaluation, security verification, and manual verification.
+    - Real test inventory matching live `npm test` execution: 96 test files, 789 passed tests, 0 failures, 33.79s duration.
+    - Breakdown by workspace: `@radiology/contracts` (10 files, 158 tests), `@radiology/engine` (9 files, 56 tests), `@radiology/api` (48 files, 417 tests), `@radiology/web` (29 files, 158 tests).
+    - Quality gates audit: `npm run lint` clean (0 errors, 0 warnings), `npm run build` clean (467ms), `npm audit --omit=dev` clean (0 vulnerabilities in production dependencies; 3 moderate devDependency vulnerabilities in `minimatch` via `eslint` documented as accepted technical debt).
+    - Requirements traceability summary: 91/91 requirements (100%) backed by automated tests; 49 requirements mapped to manual UI tests (M01–M38); 0 verification gaps.
+    - Verbatim transcription of empirical evaluations E1, E2, E3, and E4 from `docs/EVALUATION.md` (baseline SHA `68da0d2c10d55b1210f6483131d1c6ba6e89d176`) with zero speculative interpretation.
+    - Manual test run summary (35 PASS, 3 FAIL/noted, resolved in T15) and security audit summary (23 PASS, 3 PARTIAL, 0 FAIL, 43 regression tests).
+    - Bug statistics from `BUG-LOG.md` (0 Blocker, 1 Major fixed, 5 Minor, 1 Cosmetic) and full inventory of 8 known issues (ISS-01 through ISS-08).
+  - Authored `docs/as-built/04-USER-GUIDE.md`:
+    - Comprehensive resident and instructor operational guidance covering all 19 application routes.
+    - Outlined demo credentials, self-registration flow, keyboard shortcuts (1-3, Space in quiz; A, R, J, K in review), and radiograph viewer protections.
+    - Explained examination lifecycle, 3x3 confusion matrix interpretation, False Positive Rate (FPR), False Negative Rate (FNR), class error weights ($w_c = E_c / \sum E_k$), next test allocation, and class mastery thresholds ($\le 0.10$).
+    - Targeted practice solving, immediate formative feedback, and longitudinal progress tracking.
+    - Inserted standard image placeholders (`[SCREENSHOT: <route>]`) across all screens.
+  - Authored `docs/as-built/05-RUN-GUIDE.md`:
+    - Clean-clone setup guide in Windows PowerShell covering prerequisites (Node 24, MongoDB Community Server 8.3, Python 3.12 + uv for ML only, no Docker).
+    - Step-by-step PowerShell commands for cloning, configuring `.env`, installing dependencies, seeding images, provisioning instructor, importing question bank, importing LLM cache, seeding demo resident, and launching `npm run dev`.
+    - Exhaustive environment variable table detailing semantic meanings, formats, and constraints for all 22 configuration variables without leaking secrets.
+    - Detailed operational comparison of `LLM_MODE=cache-only` (100% offline demo) vs `LLM_MODE=live` (Gemini API with VPN).
+    - Comprehensive failure troubleshooting table addressing MongoDB connection refusal, port collisions, VPN interference, 429 quota exhaustion, and execution policy bypass.
+    - Every command explicitly verified or marked UNVERIFIED.
+  - Authored `docs/as-built/06-PROCESS-REPORT.md`:
+    - Documented the iterative, task-driven, AI-assisted engineering methodology: task files, ADRs, Conventional Commits, PR merge gates, independent AI reviews in fresh context, and human triage.
+    - Git history timeline: October 22 to November 14, 2026 (24 days), 316 commits, 35 merged PRs, with complete task implementation ledger (T00 through T16c) including dates, SHAs, and diff statistics.
+    - Clear demarcation of roles: Mahdi Moradi (human repository owner) conducted all architecture, design, task definition, prompt engineering, code reviews, manual testing, and commit authorizations; AI coding agent synthesized code and test suites under continuous supervision.
+    - Verified strict compliance with tone rules: 0 second-person references (`you`, `your`).
+    - Retrospective risk register (confounded datasets, free-tier API quotas, simulation convergence, single rubric reviewer) and candid lessons learned on retrospective documentation and preventing agent hallucination.
+  - Updated `docs/as-built/README.md` indexing all 8 documents and adding a Document Control version history table with baseline commit SHAs.
+  - Quality gates: `npm run lint` clean, 789/789 tests pass across 96 suites, `npm run build` succeeds in 581ms. Clean working tree.
 
 - Completed T16b: As-built Software Design Description (SDD) and architectural specifications:
   - Authored comprehensive IEEE 1016 tailored `docs/as-built/02-SDD.md` (1,400 lines) across 14 sections:
