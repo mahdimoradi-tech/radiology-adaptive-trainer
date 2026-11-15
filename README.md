@@ -399,4 +399,6 @@ This project is a B.Sc. capstone project designed and implemented by **Mahdi Mor
 
 ## License
 
-This project is developed for educational and academic evaluation purposes. Source code is licensed under the [MIT License](LICENSE). Embedded medical image datasets remain subject to their respective original research licenses.
+The source code is released under the MIT License (see LICENSE).
+The datasets used by the offline ML pipeline (Kermany, Cohen, Figure1) are NOT part of this repository and keep their own licenses and terms.
+This software is for educational use only and is not a medical device.
